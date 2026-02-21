@@ -1,140 +1,92 @@
-"use server";
+'use server';
 
-import { getUserById } from "@/data/user";
-import { currentUser } from "@/lib/auth";
-import { stripe } from "@/lib/stripe";
-import { absoluteUrl } from "@/lib/utils";
-import { sanityClient } from "@/sanity/lib/client";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { itemByIdQuery } from "@/sanity/lib/queries";
-import type { ItemInfo } from "@/types";
-import { redirect } from "next/navigation";
+import { websiteConfig } from '@/config/website';
+import type { User } from '@/lib/auth-types';
+import { findPlanByPlanId } from '@/lib/price-plan';
+import { userActionClient } from '@/lib/safe-action';
+import { getUrlWithLocale } from '@/lib/urls/urls';
+import { createCheckout } from '@/payment';
+import type { CreateCheckoutParams } from '@/payment/types';
+import { Routes } from '@/routes';
+import { getLocale } from 'next-intl/server';
+import { cookies } from 'next/headers';
+import { z } from 'zod';
 
-export type ServerActionResponse = {
-  status: "success" | "error";
-  message?: string;
-  stripeUrl?: string;
-};
+// Checkout schema for validation
+// metadata is optional, and may contain referral information if you need
+const checkoutSchema = z.object({
+  userId: z.string().min(1, { error: 'User ID is required' }),
+  planId: z.string().min(1, { error: 'Plan ID is required' }),
+  priceId: z.string().min(1, { error: 'Price ID is required' }),
+  metadata: z.record(z.string(), z.string()).optional(),
+});
 
 /**
- * https://github.com/javayhu/lms-studio-antonio/blob/main/app/api/courses/%5BcourseId%5D/checkout/route.ts
+ * Create a checkout session for a price plan
  */
-export async function createCheckoutSession(
-  itemId: string,
-  priceId: string,
-  pricePlan: string,
-): Promise<ServerActionResponse> {
-  let redirectUrl = "";
+export const createCheckoutAction = userActionClient
+  .schema(checkoutSchema)
+  .action(async ({ parsedInput, ctx }) => {
+    const { planId, priceId, metadata } = parsedInput;
+    const currentUser = (ctx as { user: User }).user;
 
-  try {
-    const user = await currentUser();
-    if (!user || !user.email || !user.id) {
-      return { status: "error", message: "Unauthorized" };
-    }
+    try {
+      // Get the current locale from the request
+      const locale = await getLocale();
 
-    const item = await sanityFetch<ItemInfo>({
-      query: itemByIdQuery,
-      params: { id: itemId },
-    });
-    if (!item) {
-      return { status: "error", message: "Item not found!" };
-    }
-
-    // 1. get user's stripeCustomerId
-    const sanityUser = await getUserById(user.id);
-    if (item.submitter._id !== user.id) {
-      return { status: "error", message: "You are not allowed to do this!" };
-    }
-    let stripeCustomerId = sanityUser?.stripeCustomerId;
-    // console.log('stripeCustomerId:', stripeCustomerId);
-
-    // 2. if the item is paid and the submitter is the user, then redirect to the billing portal
-    if (stripeCustomerId && item.paid) {
-      console.log("item is paid, redirect to billing portal");
-      const billingUrl = absoluteUrl("/dashboard");
-      const stripeSession = await stripe.billingPortal.sessions.create({
-        customer: stripeCustomerId,
-        return_url: billingUrl,
-      });
-      redirectUrl = stripeSession.url as string;
-      // console.log('stripe billing portal session created, url:', redirectUrl);
-    } else {
-      // 3. make sure the user has a stripeCustomerId
-      console.log("item is not paid, redirect to stripe checkout session");
-      if (!stripeCustomerId) {
-        console.log("creating customer in Stripe and Sanity");
-        const customer = await stripe.customers.create({
-          email: user.email,
-        });
-        if (!customer) {
-          return {
-            status: "error",
-            message: "Failed to create customer in Stripe",
-          };
-        }
-
-        const result = await sanityClient
-          .patch(user.id)
-          .set({
-            stripeCustomerId: customer.id,
-          })
-          .commit();
-        if (!result) {
-          return {
-            status: "error",
-            message: "Failed to save customer in Sanity",
-          };
-        }
-        stripeCustomerId = customer.id;
+      // Check if plan exists
+      const plan = findPlanByPlanId(planId);
+      if (!plan) {
+        return {
+          success: false,
+          error: 'Price plan not found',
+        };
       }
 
-      // 4. create stripe checkout session
-      console.log(
-        "Creating Stripe checkout session:",
-        {
-          customerId: stripeCustomerId,
-          priceId,
-          userId: user.id,
-          itemId,
-        }
+      // Add user id to metadata, so we can get it in the webhook event
+      const customMetadata: Record<string, string> = {
+        ...metadata,
+        userId: currentUser.id,
+        userName: currentUser.name,
+      };
+
+      // https://datafa.st/docs/stripe-checkout-api
+      // if datafast analytics is enabled, add the revenue attribution to the metadata
+      if (websiteConfig.features.enableDatafastRevenueTrack) {
+        const cookieStore = await cookies();
+        customMetadata.datafast_visitor_id =
+          cookieStore.get('datafast_visitor_id')?.value ?? '';
+        customMetadata.datafast_session_id =
+          cookieStore.get('datafast_session_id')?.value ?? '';
+      }
+
+      // Create the checkout session with localized URLs
+      const successUrl = getUrlWithLocale(
+        `${Routes.Payment}?session_id={CHECKOUT_SESSION_ID}&callback=${Routes.SettingsBilling}`,
+        locale
       );
-      // TODO: optimize the success and cancel urls with sessionId!!!
-      const successUrl = absoluteUrl(`/publish/${itemId}?pay=success`);
-      const cancelUrl = absoluteUrl(`/payment/${itemId}?pay=failed`);
-      const stripeSession = await stripe.checkout.sessions.create({
-        customer: stripeCustomerId,
-        mode: "payment",
-        line_items: [
-          {
-            price: priceId,
-            quantity: 1,
-          },
-        ],
-        metadata: {
-          userId: user.id,
-          itemId: itemId,
-          priceId: priceId,
-          pricePlan: pricePlan,
-        },
-        success_url: successUrl,
-        cancel_url: cancelUrl,
-        // do not limit to card, allow other payment methods
-        // payment_method_types: ["card"],
-        billing_address_collection: "auto",
-        // allow promotion codes if you need
-        allow_promotion_codes: true,
-      });
+      const cancelUrl = getUrlWithLocale(Routes.SettingsBilling, locale);
+      const params: CreateCheckoutParams = {
+        planId,
+        priceId,
+        customerEmail: currentUser.email,
+        metadata: customMetadata,
+        successUrl,
+        cancelUrl,
+        locale,
+      };
 
-      redirectUrl = stripeSession.url as string;
-      console.log("stripe checkout session created, url:", redirectUrl);
+      const result = await createCheckout(params);
+      // console.log('create checkout session result:', result);
+      return {
+        success: true,
+        data: result,
+      };
+    } catch (error) {
+      console.error('create checkout session error:', error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Something went wrong',
+      };
     }
-  } catch (error) {
-    return {
-      status: "error",
-      message: "Failed to generate stripe checkout session",
-    };
-  }
-
-  // 5. redirect to new url, no revalidatePath because redirect
-  redirect(redirectUrl);
-}
+  });

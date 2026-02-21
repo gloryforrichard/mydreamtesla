@@ -1,15 +1,13 @@
-import { siteConfig } from "@/config/site";
-import type { MetadataRoute } from "next";
+import type { MetadataRoute } from 'next';
+import { getBaseUrl } from '../lib/urls/urls';
 
-/**
- * https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots
- */
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: "*",
-      allow: "/",
+      userAgent: '*',
+      allow: '/',
+      disallow: ['/api/*', '/_next/*', '/settings/*', '/dashboard/*'],
     },
-    sitemap: `${siteConfig.url}/sitemap.xml`,
+    sitemap: `${getBaseUrl()}/sitemap.xml`,
   };
 }

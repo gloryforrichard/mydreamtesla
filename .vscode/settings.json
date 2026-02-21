@@ -1,4 +1,9 @@
 {
+  "i18n-ally.localesPaths": [
+    "messages",
+    "src/i18n"
+  ],
+  "i18n-ally.keystyle": "nested",
   "editor.defaultFormatter": "biomejs.biome",
   "[javascript]": {
     "editor.defaultFormatter": "biomejs.biome"
@@ -17,6 +22,14 @@
   "search.exclude": {
     "**/node_modules": true,
     ".next": true,
-    ".content-collections": true
+    ".source": true,
+    ".wrangler": true,
+    ".open-next": true,
+    ".vscode": true,
+    ".cursor": true,
+    ".claude": true,
+    ".conductor": true,
+    ".kiro": true,
+    ".github": true
   }
 }

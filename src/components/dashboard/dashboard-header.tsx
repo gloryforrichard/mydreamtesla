@@ -1,36 +1,82 @@
-import BackButtonSmall from "../shared/back-button-small";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import { Separator } from '@/components/ui/separator';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { isDemoWebsite } from '@/lib/demo';
+import React, { type ReactNode } from 'react';
+import { CreditsBalanceButton } from '../layout/credits-balance-button';
+import LocaleSwitcher from '../layout/locale-switcher';
+import { ModeSwitcher } from '../layout/mode-switcher';
 
-interface DashboardHeaderProps {
-  title: string;
-  subtitle?: string;
-  children?: React.ReactNode;
-  showBackButton?: boolean;
+interface DashboardBreadcrumbItem {
+  label: string;
+  isCurrentPage?: boolean;
 }
 
+interface DashboardHeaderProps {
+  breadcrumbs: DashboardBreadcrumbItem[];
+  actions?: ReactNode;
+}
+
+/**
+ * Dashboard header
+ */
 export function DashboardHeader({
-  title,
-  subtitle,
-  children,
-  showBackButton = false,
+  breadcrumbs,
+  actions,
 }: DashboardHeaderProps) {
+  const isDemo = isDemoWebsite();
+
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex flex-col space-y-4">
-        {/* title */}
-        <div className="flex items-center space-x-4">
-          {showBackButton && <BackButtonSmall href="/dashboard" />}
+    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
+      <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
+        <SidebarTrigger className="-ml-1 cursor-pointer" />
+        <Separator
+          orientation="vertical"
+          className="mx-2 data-[orientation=vertical]:h-4"
+        />
 
-          <h1 className="text-2xl font-semibold">{title}</h1>
+        <Breadcrumb>
+          <BreadcrumbList className="text-base font-medium">
+            {breadcrumbs.map((item, index) => (
+              <React.Fragment key={`breadcrumb-${index}`}>
+                {index > 0 && (
+                  <BreadcrumbSeparator
+                    key={`sep-${index}`}
+                    className="hidden md:block"
+                  />
+                )}
+                <BreadcrumbItem
+                  key={`item-${index}`}
+                  className={
+                    index < breadcrumbs.length - 1 ? 'hidden md:block' : ''
+                  }
+                >
+                  {item.isCurrentPage ? (
+                    <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                  ) : (
+                    item.label
+                  )}
+                </BreadcrumbItem>
+              </React.Fragment>
+            ))}
+          </BreadcrumbList>
+        </Breadcrumb>
+
+        {/* dashboard header actions on the right side */}
+        <div className="ml-auto flex items-center gap-3 pl-4">
+          {actions}
+
+          <CreditsBalanceButton />
+          <ModeSwitcher />
+          <LocaleSwitcher />
         </div>
-
-        {/* subtitle */}
-        {subtitle && (
-          <h2 className="text-base text-muted-foreground">{subtitle}</h2>
-        )}
       </div>
-
-      {/* actions */}
-      {children}
-    </div>
+    </header>
   );
 }

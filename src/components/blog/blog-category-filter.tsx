@@ -1,15 +1,13 @@
-import Container from "@/components/container";
-import type { BlogCategoryListQueryResult } from "@/sanity.types";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { blogCategoryListQuery } from "@/sanity/lib/queries";
-import { BlogCategoryListDesktop } from "./blog-category-list-desktop";
-import { BlogCategoryListMobile } from "./blog-category-list-mobile";
+import Container from '@/components/layout/container';
+import type { BlogCategory } from '@/types';
+import { BlogCategoryListDesktop } from './blog-category-list-desktop';
+import { BlogCategoryListMobile } from './blog-category-list-mobile';
 
-export async function BlogCategoryFilter() {
-  const categoryList = await sanityFetch<BlogCategoryListQueryResult>({
-    query: blogCategoryListQuery,
-  });
+interface BlogCategoryFilterProps {
+  categoryList: BlogCategory[];
+}
 
+export function BlogCategoryFilter({ categoryList }: BlogCategoryFilterProps) {
   return (
     <section className="w-full">
       {/* Desktop View, has Container */}

@@ -1,72 +1,69 @@
+import { websiteConfig } from './config/website';
+
 /**
- * An array of routes that are accessible to the public
- * These routes do not require authentication
- * @type {string[]}
+ * The routes for the application
  */
-export const publicRoutes = [
-  "/",
-  "/studio(/.*)?",
+export enum Routes {
+  Root = '/',
 
-  "/search(/.*)?",
-  "/collection(/.*)?",
-  "/category(/.*)?",
-  "/tag(/.*)?",
-  "/item(/.*)?",
-  "/blog(/.*)?",
-  "/pricing(/.*)?",
+  // marketing pages
+  FAQ = '/#faqs',
+  Features = '/#features',
+  Pricing = '/pricing', // change to /#pricing if you want to use the pricing section in homepage
+  Blog = '/blog',
+  Docs = '/docs',
+  About = '/about',
+  Contact = '/contact',
+  Waitlist = '/waitlist',
+  Changelog = '/changelog',
+  Roadmap = '/roadmap',
+  CookiePolicy = '/cookie',
+  PrivacyPolicy = '/privacy',
+  TermsOfService = '/terms',
 
-  "/about(/.*)?",
-  "/terms(/.*)?",
-  "/privacy(/.*)?",
-  "/changelog(/.*)?",
+  // auth routes
+  Login = '/auth/login',
+  Register = '/auth/register',
+  AuthError = '/auth/error',
+  ForgotPassword = '/auth/forgot-password',
+  ResetPassword = '/auth/reset-password',
 
-  // user clicks verification link from email
-  "/auth/new-verification",
+  // dashboard routes
+  Dashboard = '/dashboard',
+  AdminUsers = '/admin/users',
+  SettingsProfile = '/settings/profile',
+  SettingsBilling = '/settings/billing',
+  SettingsCredits = '/settings/credits',
+  SettingsSecurity = '/settings/security',
+  SettingsNotifications = '/settings/notifications',
+  SettingsApiKeys = '/settings/apikeys',
 
-  // unsubscribe
-  "/unsubscribe(/.*)?",
+  // payment processing
+  Payment = '/payment',
+}
 
-  // stripe webhook must be public, otherwise can not receive stripe events
-  "/api/webhook",
+/**
+ * The routes that can not be accessed by logged in users
+ */
+export const routesNotAllowedByLoggedInUsers = [Routes.Login, Routes.Register];
 
-  // send emails, like submission approval or rejection emails
-  "/api/send-email",
-
-  // og images
-  "/api/og",
-
-  // draft mode
-  "/api/draft",
-
-  // test pages
-  "/shadcn(/.*)?",
-  "/loading(/.*)?",
-  "/home2(/.*)?",
-  "/home3(/.*)?",
+/**
+ * The routes that are protected and require authentication
+ */
+export const protectedRoutes = [
+  Routes.Dashboard,
+  Routes.AdminUsers,
+  Routes.SettingsProfile,
+  Routes.SettingsBilling,
+  Routes.SettingsCredits,
+  Routes.SettingsSecurity,
+  Routes.SettingsNotifications,
+  Routes.SettingsApiKeys,
+  Routes.Payment,
 ];
-
-/**
- * An array of routes that are used for authentication
- * These routes will redirect logged in users to /dashboard
- * @type {string[]}
- */
-export const authRoutes = [
-  "/auth/login",
-  "/auth/register",
-  "/auth/error",
-  "/auth/reset",
-  "/auth/new-password",
-];
-
-/**
- * The prefix for API authentication routes
- * Routes that start with this prefix are used for API authentication purposes
- * @type {string}
- */
-export const apiAuthPrefix = "/api/auth";
 
 /**
  * The default redirect path after logging in
- * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
+export const DEFAULT_LOGIN_REDIRECT =
+  websiteConfig.routes.defaultLoginRedirect ?? Routes.Dashboard;

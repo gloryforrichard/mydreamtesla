@@ -1,10 +1,12 @@
-import { CheckIcon } from "lucide-react";
-import Link from "next/link";
+'use client';
 
-export interface FilterItemMobileProps {
+import { LocaleLink } from '@/i18n/navigation';
+import { cn } from '@/lib/utils';
+
+interface FilterItemMobileProps {
   title: string;
   href: string;
-  active: boolean;
+  active?: boolean;
   clickAction?: () => void;
 }
 
@@ -15,16 +17,17 @@ export default function FilterItemMobile({
   clickAction,
 }: FilterItemMobileProps) {
   return (
-    <div>
-      {/* shwo in mobile, wrapped in Link and shwo in a Drawer */}
-      <Link href={href} prefetch={false} onClick={clickAction}>
-        <li className="rounded-lg text-foreground hover:bg-muted">
-          <div className="flex items-center justify-between p-3 text-sm">
-            <h2>{title}</h2>
-            {active && <CheckIcon className="size-4" />}
-          </div>
-        </li>
-      </Link>
-    </div>
+    <li className="mb-1 last:mb-0">
+      <LocaleLink
+        href={href}
+        onClick={clickAction}
+        className={cn(
+          'flex w-full items-center justify-between rounded-md px-3 py-2 text-sm hover:bg-muted',
+          active && 'bg-primary text-primary-foreground hover:bg-primary/90'
+        )}
+      >
+        {title}
+      </LocaleLink>
+    </li>
   );
 }

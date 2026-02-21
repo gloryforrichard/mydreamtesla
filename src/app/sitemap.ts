@@ -1,286 +1,153 @@
-import { COLLECTIONS_PER_PAGE, ITEMS_PER_PAGE } from "@/lib/constants";
-import type {
-  BlogCategoryListQueryForSitemapResult,
-  BlogListQueryForSitemapResult,
-  CategoryListQueryForSitemapResult,
-  CollectionListQueryForSitemapResult,
-  ItemListQueryForSitemapResult,
-  PageListQueryForSitemapResult,
-  TagListQueryForSitemapResult,
-} from "@/sanity.types";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import {
-  blogCategoryListQueryForSitemap,
-  blogListQueryForSitemap,
-  categoryListQueryForSitemap,
-  collectionListQueryForSitemap,
-  itemListQueryForSitemap,
-  pageListQueryForSitemap,
-  tagListQueryForSitemap,
-} from "@/sanity/lib/queries";
-import collection from "@/sanity/schemas/documents/directory/collection";
-import type { MetadataRoute } from "next";
+import { websiteConfig } from '@/config/website';
+import { getLocalePathname } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
+import { generateHreflangUrls } from '@/lib/hreflang';
+import { blogSource, categorySource, source } from '@/lib/source';
+import type { MetadataRoute } from 'next';
+import type { Locale } from 'next-intl';
+import { getBaseUrl } from '../lib/urls/urls';
 
-const site_url = process.env.NEXT_PUBLIC_APP_URL;
+type Href = Parameters<typeof getLocalePathname>[0]['href'];
 
 /**
- * Google's limit is 50,000 URLs per sitemap
+ * static routes for sitemap, you may change the routes for your own
+ */
+const staticRoutes = [
+  '/',
+  '/pricing',
+  '/about',
+  '/contact',
+  '/waitlist',
+  '/changelog',
+  '/privacy',
+  '/terms',
+  '/cookie',
+  '/auth/login',
+  '/auth/register',
+  ...(websiteConfig.blog.enable ? ['/blog'] : []),
+  ...(websiteConfig.docs.enable ? ['/docs'] : []),
+];
+
+/**
+ * Generate a sitemap for the website with hreflang support
  *
  * https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps
- * https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
+ * https://github.com/javayhu/cnblocks/blob/main/app/sitemap.ts
+ * https://ahrefs.com/blog/hreflang-tags/
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  console.log("sitemap start");
-
   const sitemapList: MetadataRoute.Sitemap = []; // final result
 
-  const sitemapRoutes: MetadataRoute.Sitemap = [
-    {
-      url: "", // home
-      lastModified: new Date(),
-    },
-    {
-      url: "search",
-      lastModified: new Date(),
-    },
-    {
-      url: "category",
-      lastModified: new Date(),
-    },
-    {
-      url: "tag",
-      lastModified: new Date(),
-    },
-    {
-      url: "collection",
-      lastModified: new Date(),
-    },
-    {
-      url: "blog",
-      lastModified: new Date(),
-    },
-    {
-      url: "pricing",
-      lastModified: new Date(),
-    },
-    {
-      url: "auth/login",
-      lastModified: new Date(),
-    },
-    {
-      url: "auth/register",
-      lastModified: new Date(),
-    },
-    {
-      url: "about",
-      lastModified: new Date(),
-    },
-    {
-      url: "privacy",
-      lastModified: new Date(),
-    },
-    {
-      url: "terms",
-      lastModified: new Date(),
-    },
-  ];
-
-  for (const route of sitemapRoutes) {
-    // console.log(`sitemap, url:${site_url}/${route.url}`);
-    sitemapList.push({
-      url: `${site_url}/${route.url}`,
-      lastModified: new Date(route.lastModified).toISOString(),
-    });
-  }
-
-  const [
-    itemListQueryResult,
-    categoryListQueryResult,
-    tagListQueryResult,
-    collectionListQueryResult,
-    blogListQueryResult,
-    blogCategoryListQueryResult,
-    pageListQueryResult,
-  ] = await Promise.all([
-    sanityFetch<ItemListQueryForSitemapResult>({
-      query: itemListQueryForSitemap,
-    }),
-    sanityFetch<CategoryListQueryForSitemapResult>({
-      query: categoryListQueryForSitemap,
-    }),
-    sanityFetch<TagListQueryForSitemapResult>({
-      query: tagListQueryForSitemap,
-    }),
-    sanityFetch<CollectionListQueryForSitemapResult>({
-      query: collectionListQueryForSitemap,
-    }),
-    sanityFetch<BlogListQueryForSitemapResult>({
-      query: blogListQueryForSitemap,
-    }),
-    sanityFetch<BlogCategoryListQueryForSitemapResult>({
-      query: blogCategoryListQueryForSitemap,
-    }),
-    sanityFetch<PageListQueryForSitemapResult>({
-      query: pageListQueryForSitemap,
-    }),
-  ]);
-
-  console.log("sitemap, itemListQueryResult size:", itemListQueryResult.length);
-  console.log(
-    "sitemap, categoryListQueryResult size:",
-    categoryListQueryResult.length,
+  // add static routes
+  sitemapList.push(
+    ...staticRoutes.flatMap((route) => {
+      return routing.locales.map((locale) => ({
+        url: getUrl(route, locale),
+        alternates: {
+          languages: generateHreflangUrls(route),
+        },
+      }));
+    })
   );
-  console.log("sitemap, tagListQueryResult size:", tagListQueryResult.length);
-  console.log("sitemap, blogListQueryResult size:", blogListQueryResult.length);
-  console.log(
-    "sitemap, blogCategoryListQueryResult size:",
-    blogCategoryListQueryResult.length,
-  );
-  console.log("sitemap, pageListQueryResult size:", pageListQueryResult.length);
 
-  for (const item of itemListQueryResult) {
-    if (item.slug) {
-      const routeUrl = `/item/${item.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(item._updatedAt).toISOString(),
-      });
-    } else {
-      console.warn(`sitemap, item slug invalid, id:${item._id}`);
-    }
-  }
-
-  const pageCount = Math.ceil(itemListQueryResult.length / ITEMS_PER_PAGE);
-  console.log(`sitemap, item count:${itemListQueryResult.length}, pageCount:${pageCount}`);
-  for (let i = 2; i <= pageCount; i++) {
-    const routeUrl = `/?page=${i}`;
-    sitemapList.push({
-      url: `${site_url}${routeUrl}`,
-      lastModified: new Date().toISOString(),
-    });
-  }
-
-  for (const category of categoryListQueryResult) {
-    if (category.slug) {
-      const routeUrl = `/category/${category.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(category._updatedAt).toISOString(),
-      });
-
-      const pageCount = Math.ceil(category.count / ITEMS_PER_PAGE);
-      console.log(`sitemap, category:${category.slug}, count:${category.count}, pageCount:${pageCount}`);
-      for (let i = 2; i <= pageCount; i++) {
-        const routeUrl = `/category/${category.slug}?page=${i}`;
-        sitemapList.push({
-          url: `${site_url}${routeUrl}`,
-          lastModified: new Date(category._updatedAt).toISOString(),
-        });
-      }
-    } else {
-      console.warn(`sitemap, category slug invalid, id:${category._id}`);
-    }
-  }
-
-  for (const tag of tagListQueryResult) {
-    if (tag.slug) {
-      const routeUrl = `/tag/${tag.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(tag._updatedAt).toISOString(),
-      });
-
-      const pageCount = Math.ceil(tag.count / ITEMS_PER_PAGE);
-      console.log(`sitemap, tag:${tag.slug}, count:${tag.count}, pageCount:${pageCount}`);
-      for (let i = 2; i <= pageCount; i++) {
-        const routeUrl = `/tag/${tag.slug}?page=${i}`;
-        sitemapList.push({
-          url: `${site_url}${routeUrl}`,
-          lastModified: new Date(tag._updatedAt).toISOString(),
-        });
-      }
-    } else {
-      console.warn(`sitemap, tag slug invalid, id:${tag._id}`);
-    }
-  }
-
-  for (const collection of collectionListQueryResult) {
-    if (collection.slug) {
-      const routeUrl = `/collection/${collection.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(collection._updatedAt).toISOString(),
-      });
-
-      const pageCount = Math.ceil(collection.count / COLLECTIONS_PER_PAGE);
-      console.log(`sitemap, collection:${collection.slug}, count:${collection.count}, pageCount:${pageCount}`);
-      for (let i = 2; i <= pageCount; i++) {
-        const routeUrl = `/collection/${collection.slug}?page=${i}`;
-        sitemapList.push({
-          url: `${site_url}${routeUrl}`,
-          lastModified: new Date(collection._updatedAt).toISOString(),
-        });
-      }
-    } else {
-      console.warn(`sitemap, collection slug invalid, id:${collection._id}`);
-    }
-  }
-
-  for (const blog of blogListQueryResult) {
-    if (blog.slug) {
-      const routeUrl = `/blog/${blog.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(blog._updatedAt).toISOString(),
-      });
-    } else {
-      console.warn(`sitemap, blog post slug invalid, id:${blog._id}`);
-    }
-  }
-
-  for (const blogCategory of blogCategoryListQueryResult) {
-    if (blogCategory.slug) {
-      const routeUrl = `/blog/category/${blogCategory.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(blogCategory._updatedAt).toISOString(),
-      });
-
-      const pageCount = Math.ceil(blogCategory.count / ITEMS_PER_PAGE);
-      console.log(`sitemap, blog category:${blogCategory.slug}, count:${blogCategory.count}, pageCount:${pageCount}`);
-      for (let i = 2; i <= pageCount; i++) {
-        const routeUrl = `/blog/category/${blogCategory.slug}?page=${i}`;
-        sitemapList.push({
-          url: `${site_url}${routeUrl}`,
-          lastModified: new Date(blogCategory._updatedAt).toISOString(),
-        });
-      }
-    } else {
-      console.warn(
-        `sitemap, blog category slug invalid, id:${blogCategory._id}`,
+  // add blog related routes if enabled
+  if (websiteConfig.blog.enable) {
+    // add paginated blog list pages
+    routing.locales.forEach((locale) => {
+      const posts = blogSource
+        .getPages(locale)
+        .filter((post) => post.data.published);
+      const totalPages = Math.max(
+        1,
+        Math.ceil(posts.length / websiteConfig.blog.paginationSize)
       );
-    }
-  }
+      // /blog/page/[page] (from 2)
+      for (let page = 2; page <= totalPages; page++) {
+        sitemapList.push({
+          url: getUrl(`/blog/page/${page}`, locale),
+          alternates: {
+            languages: generateHreflangUrls(`/blog/page/${page}`),
+          },
+        });
+      }
+    });
 
-  for (const page of pageListQueryResult) {
-    if (page.slug) {
-      const routeUrl = `/page/${page.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(page._updatedAt).toISOString(),
+    // add paginated category pages
+    routing.locales.forEach((locale) => {
+      const localeCategories = categorySource.getPages(locale);
+      localeCategories.forEach((category) => {
+        // posts in this category and locale
+        const postsInCategory = blogSource
+          .getPages(locale)
+          .filter((post) => post.data.published)
+          .filter((post) =>
+            post.data.categories.some((cat) => cat === category.slugs[0])
+          );
+        const totalPages = Math.max(
+          1,
+          Math.ceil(postsInCategory.length / websiteConfig.blog.paginationSize)
+        );
+        // /blog/category/[slug] (first page)
+        sitemapList.push({
+          url: getUrl(`/blog/category/${category.slugs[0]}`, locale),
+          alternates: {
+            languages: generateHreflangUrls(
+              `/blog/category/${category.slugs[0]}`
+            ),
+          },
+        });
+        // /blog/category/[slug]/page/[page] (from 2)
+        for (let page = 2; page <= totalPages; page++) {
+          sitemapList.push({
+            url: getUrl(
+              `/blog/category/${category.slugs[0]}/page/${page}`,
+              locale
+            ),
+            alternates: {
+              languages: generateHreflangUrls(
+                `/blog/category/${category.slugs[0]}/page/${page}`
+              ),
+            },
+          });
+        }
       });
-    } else {
-      console.warn(`sitemap, page slug invalid, id:${page._id}`);
-    }
+    });
+
+    // add posts (single post pages)
+    routing.locales.forEach((locale) => {
+      const posts = blogSource
+        .getPages(locale)
+        .filter((post) => post.data.published);
+      posts.forEach((post) => {
+        sitemapList.push({
+          url: getUrl(`/blog/${post.slugs.join('/')}`, locale),
+          alternates: {
+            languages: generateHreflangUrls(`/blog/${post.slugs.join('/')}`),
+          },
+        });
+      });
+    });
   }
 
-  console.log("sitemap end, size:", sitemapList.length);
+  // add docs related routes if enabled
+  if (websiteConfig.docs.enable) {
+    const docsParams = source.generateParams();
+    sitemapList.push(
+      ...docsParams.flatMap((param) =>
+        routing.locales.map((locale) => ({
+          url: getUrl(`/docs/${param.slug.join('/')}`, locale),
+          alternates: {
+            languages: generateHreflangUrls(`/docs/${param.slug.join('/')}`),
+          },
+        }))
+      )
+    );
+  }
+
   return sitemapList;
+}
+
+function getUrl(href: Href, locale: Locale) {
+  const pathname = getLocalePathname({ locale, href });
+  return getBaseUrl() + pathname;
 }

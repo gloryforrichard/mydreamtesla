@@ -1,10 +1,10 @@
-import React from "react";
-import type { SVGProps } from "react";
+import React from 'react';
+import type { SVGProps } from 'react';
 
 /**
  * https://icon-sets.iconify.design/fa6-brands/google/
  */
-export function FaBrandsGoogle(props: SVGProps<SVGSVGElement>) {
+export function GoogleIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

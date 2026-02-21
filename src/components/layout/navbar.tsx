@@ -1,228 +1,263 @@
-"use client";
+'use client';
 
-import { LoginWrapper } from "@/components/auth/login-button";
-import Container from "@/components/container";
-import { Icons } from "@/components/icons/icons";
-import { ModeToggle } from "@/components/layout/mode-toggle";
-import { UserButton } from "@/components/layout/user-button";
-import { Button } from "@/components/ui/button";
+import { LoginWrapper } from '@/components/auth/login-wrapper';
+import Container from '@/components/layout/container';
+import { Logo } from '@/components/layout/logo';
+import { ModeSwitcher } from '@/components/layout/mode-switcher';
+import { NavbarMobile } from '@/components/layout/navbar-mobile';
+import { UserButton } from '@/components/layout/user-button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { siteConfig } from "@/config/site";
-import { useCurrentUser } from "@/hooks/use-current-user";
-import { useScroll } from "@/hooks/use-scroll";
-import { cn } from "@/lib/utils";
-import type { DashboardConfig, MarketingConfig } from "@/types";
-import { ArrowRightIcon, MenuIcon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import React from "react";
-import { Logo } from "../logo";
+} from '@/components/ui/navigation-menu';
+import { useNavbarLinks } from '@/config/navbar-config';
+import { useScroll } from '@/hooks/use-scroll';
+import { LocaleLink, useLocalePathname } from '@/i18n/navigation';
+import { authClient } from '@/lib/auth-client';
+import { cn } from '@/lib/utils';
+import { Routes } from '@/routes';
+import { ArrowUpRightIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { Skeleton } from '../ui/skeleton';
+import LocaleSwitcher from './locale-switcher';
 
 interface NavBarProps {
   scroll?: boolean;
-  config: DashboardConfig | MarketingConfig;
 }
 
-export function Navbar({ scroll = false, config }: NavBarProps) {
+const customNavigationMenuTriggerStyle = cn(
+  navigationMenuTriggerStyle(),
+  'relative bg-transparent text-muted-foreground cursor-pointer',
+  'hover:bg-accent hover:text-accent-foreground',
+  'focus:bg-accent focus:text-accent-foreground',
+  'data-active:font-semibold data-active:bg-transparent data-active:text-accent-foreground',
+  'data-[state=open]:bg-transparent data-[state=open]:text-accent-foreground'
+);
+
+export function Navbar({ scroll }: NavBarProps) {
+  const t = useTranslations();
   const scrolled = useScroll(50);
-  const user = useCurrentUser();
-  // console.log(`navbar: user:`, user);
+  const menuLinks = useNavbarLinks();
+  const localePathname = useLocalePathname();
+  const [mounted, setMounted] = useState(false);
+  const { data: session, isPending } = authClient.useSession();
+  const currentUser = session?.user;
+  // console.log(`Navbar, user:`, user);
 
-  const pathname = usePathname();
-  // console.log(`Navbar, pathname: ${pathname}`);
-  const links = config.menus;
-  // console.log(`Navbar, links: ${links.map((link) => link.title)}`);
-
-  const isLinkActive = (href: string) => {
-    if (href === "/") {
-      return pathname === "/";
-    }
-    // console.log(`Navbar, href: ${href}, pathname: ${pathname}`);
-    return pathname.startsWith(href);
-  };
-
-  const [open, setOpen] = useState(false);
-  // prevent body scroll when modal is open
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [open]);
+    setMounted(true);
+  }, []);
 
   return (
-    <div className="sticky top-0 z-40 w-full">
-      {/* Desktop View */}
-      <header
-        className={cn(
-          "hidden md:flex justify-center bg-background/60 backdrop-blur-xl transition-all",
-          scroll ? (scrolled ? "border-b" : "bg-transparent") : "border-b",
-        )}
-      >
-        <Container className="flex h-16 items-center justify-between">
-          {/* navbar left show logo and links */}
-          <div className="flex items-center gap-6 md:gap-10">
-            {/* logo */}
-            <Link href="/" className="flex items-center space-x-2">
+    <section
+      className={cn(
+        'sticky inset-x-0 top-0 z-40 py-4 transition-all duration-300',
+        scroll
+          ? scrolled
+            ? 'bg-muted/50 backdrop-blur-md border-b supports-backdrop-filter:bg-muted/50'
+            : 'bg-transparent'
+          : 'border-b bg-muted/50'
+      )}
+    >
+      <Container className="px-4">
+        {/* desktop navbar */}
+        <nav className="hidden lg:flex">
+          {/* logo and name */}
+          <div className="flex items-center">
+            <LocaleLink href="/" className="flex items-center space-x-2">
               <Logo />
+              <span className="text-xl font-semibold">
+                {t('Metadata.name')}
+              </span>
+            </LocaleLink>
+          </div>
 
-              <span className="text-xl font-bold">{siteConfig.name}</span>
-            </Link>
-
-            {/* links */}
-            {links && links.length > 0 ? (
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {links.map((item) => (
-                    <NavigationMenuItem key={item.title}>
-                      <NavigationMenuLink
-                        href={item.disabled ? "#" : item.href}
-                        target={item.external ? "_blank" : ""}
-                        className={cn(
-                          navigationMenuTriggerStyle(),
-                          "px-2 bg-transparent focus:bg-transparent text-base",
-                          isLinkActive(item.href)
-                            ? "text-foreground font-semibold"
-                            : "text-foreground/60",
-                          item.disabled && "cursor-not-allowed opacity-80",
-                        )}
+          {/* menu links */}
+          <div className="flex-1 flex items-center justify-center space-x-2">
+            <NavigationMenu className="relative">
+              <NavigationMenuList className="flex items-center">
+                {menuLinks?.map((item, index) =>
+                  item.items ? (
+                    <NavigationMenuItem key={index} className="relative">
+                      <NavigationMenuTrigger
+                        data-active={
+                          item.items.some((subItem) =>
+                            subItem.href
+                              ? localePathname.startsWith(subItem.href)
+                              : false
+                          )
+                            ? 'true'
+                            : undefined
+                        }
+                        className={customNavigationMenuTriggerStyle}
                       >
                         {item.title}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid w-[400px] gap-4 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                          {item.items?.map((subItem, subIndex) => {
+                            const isSubItemActive =
+                              subItem.href &&
+                              localePathname.startsWith(subItem.href);
+                            return (
+                              <li key={subIndex}>
+                                <NavigationMenuLink asChild>
+                                  <LocaleLink
+                                    href={subItem.href || '#'}
+                                    target={
+                                      subItem.external ? '_blank' : undefined
+                                    }
+                                    rel={
+                                      subItem.external
+                                        ? 'noopener noreferrer'
+                                        : undefined
+                                    }
+                                    className={cn(
+                                      'group flex select-none flex-row items-center gap-4 rounded-md',
+                                      'p-2 leading-none no-underline outline-hidden transition-colors',
+                                      'hover:bg-accent hover:text-accent-foreground',
+                                      'focus:bg-accent focus:text-accent-foreground',
+                                      isSubItemActive &&
+                                        'bg-accent text-accent-foreground'
+                                    )}
+                                  >
+                                    <div
+                                      className={cn(
+                                        'flex size-8 shrink-0 items-center justify-center transition-colors',
+                                        'bg-transparent text-muted-foreground',
+                                        'group-hover:bg-transparent group-hover:text-accent-foreground',
+                                        'group-focus:bg-transparent group-focus:text-accent-foreground',
+                                        isSubItemActive &&
+                                          'bg-transparent text-accent-foreground'
+                                      )}
+                                    >
+                                      {subItem.icon ? subItem.icon : null}
+                                    </div>
+                                    <div className="flex-1">
+                                      <div
+                                        className={cn(
+                                          'text-sm font-medium text-muted-foreground',
+                                          'group-hover:bg-transparent group-hover:text-accent-foreground',
+                                          'group-focus:bg-transparent group-focus:text-accent-foreground',
+                                          isSubItemActive &&
+                                            'bg-transparent text-accent-foreground'
+                                        )}
+                                      >
+                                        {subItem.title}
+                                      </div>
+                                      {subItem.description && (
+                                        <div
+                                          className={cn(
+                                            'text-sm text-muted-foreground',
+                                            'group-hover:bg-transparent group-hover:text-accent-foreground/80',
+                                            'group-focus:bg-transparent group-focus:text-accent-foreground/80',
+                                            isSubItemActive &&
+                                              'bg-transparent text-accent-foreground/80'
+                                          )}
+                                        >
+                                          {subItem.description}
+                                        </div>
+                                      )}
+                                    </div>
+                                    {subItem.external && (
+                                      <ArrowUpRightIcon
+                                        className={cn(
+                                          'size-4 shrink-0 text-muted-foreground',
+                                          'group-hover:bg-transparent group-hover:text-accent-foreground',
+                                          'group-focus:bg-transparent group-focus:text-accent-foreground',
+                                          isSubItemActive &&
+                                            'bg-transparent text-accent-foreground'
+                                        )}
+                                      />
+                                    )}
+                                  </LocaleLink>
+                                </NavigationMenuLink>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  ) : (
+                    <NavigationMenuItem key={index}>
+                      <NavigationMenuLink
+                        asChild
+                        active={
+                          item.href
+                            ? item.href === '/'
+                              ? localePathname === '/'
+                              : localePathname.startsWith(item.href)
+                            : false
+                        }
+                        className={customNavigationMenuTriggerStyle}
+                      >
+                        <LocaleLink
+                          href={item.href || '#'}
+                          target={item.external ? '_blank' : undefined}
+                          rel={
+                            item.external ? 'noopener noreferrer' : undefined
+                          }
+                        >
+                          {item.title}
+                        </LocaleLink>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
-                  ))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            ) : null}
+                  )
+                )}
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
-          {/* navbar right show sign in or account */}
+          {/* navbar right show sign in or user */}
           <div className="flex items-center gap-x-4">
-            {user ? (
-              <div className="flex items-center">
-                <UserButton />
-              </div>
+            {!mounted || isPending ? (
+              <Skeleton className="size-8 border rounded-full" />
+            ) : currentUser ? (
+              <>
+                {/* <CreditsBalanceButton /> */}
+                <UserButton user={currentUser} />
+              </>
             ) : (
-              <LoginWrapper mode="modal" asChild>
-                <Button
-                  className="flex gap-2 px-5 rounded-full"
-                  variant="default"
-                  size="default"
-                >
-                  <span>Sign In</span>
-                  <ArrowRightIcon className="size-4" />
-                </Button>
-              </LoginWrapper>
-            )}
-
-            {/* <ModeToggle /> */}
-          </div>
-        </Container>
-      </header>
-
-      {/* Mobile View */}
-      <header className="md:hidden flex justify-center bg-background/60 backdrop-blur-xl transition-all">
-        <div className="w-full px-4 h-16 flex items-center justify-between">
-          {/* mobile navbar left show menu icon when closed & show sheet when menu is open */}
-          <div className="flex items-center gap-x-4">
-            <Sheet open={open} onOpenChange={setOpen}>
-              <SheetTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="size-9 shrink-0"
-                >
-                  <MenuIcon className="size-5" />
-                  <span className="sr-only">Toggle navigation menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="flex flex-col p-0">
-                <div className="flex h-screen flex-col">
-                  {/* logo */}
-                  <Link
-                    href="/"
-                    className="flex items-center space-x-2 pl-4 pt-4"
-                    onClick={() => setOpen(false)}
+              <div className="flex items-center gap-x-4">
+                <LoginWrapper mode="modal" asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="cursor-pointer"
                   >
-                    <Logo />
+                    {t('Common.login')}
+                  </Button>
+                </LoginWrapper>
 
-                    <span className="text-xl font-bold">{siteConfig.name}</span>
-                  </Link>
-
-                  <nav className="flex flex-1 flex-col gap-2 p-2 pt-8 font-medium">
-                    {links.map((item) => {
-                      const Icon = Icons[item.icon || "arrowRight"];
-                      return (
-                        <Link
-                          key={item.title}
-                          href={item.disabled ? "#" : item.href}
-                          target={item.external ? "_blank" : ""}
-                          onClick={() => {
-                            if (!item.disabled) setOpen(false);
-                          }}
-                          className={cn(
-                            "flex items-center rounded-md gap-2 p-2 text-sm font-medium hover:bg-muted",
-                            isLinkActive(item.href)
-                              ? "bg-muted text-foreground"
-                              : "text-muted-foreground hover:text-foreground",
-                            item.disabled &&
-                              "cursor-not-allowed opacity-80 hover:bg-transparent hover:text-muted-foreground",
-                          )}
-                        >
-                          <Icon className="size-5" />
-                          {item.title}
-                        </Link>
-                      );
-                    })}
-                  </nav>
-                </div>
-              </SheetContent>
-            </Sheet>
-
-            {/* logo */}
-            <Link
-              href="/"
-              className="flex items-center space-x-2"
-              onClick={() => setOpen(false)}
-            >
-              <Logo className="size-8" />
-
-              <span className="text-xl font-bold">{siteConfig.name}</span>
-            </Link>
-          </div>
-
-          {/* mobile navbar right show sign in or account */}
-          <div className="flex items-center gap-x-4">
-            {user ? (
-              <div className="flex items-center">
-                <UserButton />
-              </div>
-            ) : (
-              <LoginWrapper mode="redirect" asChild>
-                <Button
-                  className="flex gap-2 px-5 rounded-full"
-                  variant="default"
-                  size="default"
+                <LocaleLink
+                  href={Routes.Register}
+                  className={cn(
+                    buttonVariants({
+                      variant: 'default',
+                      size: 'sm',
+                    })
+                  )}
                 >
-                  <span>Sign In</span>
-                  <ArrowRightIcon className="size-4" />
-                </Button>
-              </LoginWrapper>
+                  {t('Common.signUp')}
+                </LocaleLink>
+              </div>
             )}
 
-            {/* <ModeToggle /> */}
+            <ModeSwitcher />
+            <LocaleSwitcher />
           </div>
-        </div>
-      </header>
-    </div>
+        </nav>
+
+        {/* mobile navbar */}
+        <NavbarMobile className="lg:hidden" />
+      </Container>
+    </section>
   );
 }

@@ -1,24 +1,22 @@
-"use client";
+'use client';
 
-import { BottomButton } from "@/components/auth/bottom-button";
-import { SocialLoginButton } from "@/components/auth/social-login-button";
+import { BottomLink } from '@/components/auth/bottom-link';
+import { Logo } from '@/components/layout/logo';
 import {
   Card,
   CardContent,
   CardDescription,
   CardFooter,
-  CardHeader
-} from "@/components/ui/card";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { Logo } from "@/components/logo";
+  CardHeader,
+} from '@/components/ui/card';
+import { LocaleLink } from '@/i18n/navigation';
+import { cn } from '@/lib/utils';
 
 interface AuthCardProps {
   children: React.ReactNode;
   headerLabel: string;
   bottomButtonLabel: string;
   bottomButtonHref: string;
-  showSocialLoginButton?: boolean;
   className?: string;
 }
 
@@ -27,25 +25,19 @@ export const AuthCard = ({
   headerLabel,
   bottomButtonLabel,
   bottomButtonHref,
-  showSocialLoginButton,
   className,
 }: AuthCardProps) => {
   return (
-    <Card className={cn("shadow-none", className)}>
-      <CardHeader className="items-center">
-        <Link href="/" prefetch={false}>
+    <Card className={cn('shadow-xs border border-border', className)}>
+      <CardHeader className="flex flex-col items-center">
+        <LocaleLink href="/" prefetch={false}>
           <Logo className="mb-2" />
-        </Link>
+        </LocaleLink>
         <CardDescription>{headerLabel}</CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>
-      {showSocialLoginButton && (
-        <CardFooter>
-          <SocialLoginButton />
-        </CardFooter>
-      )}
       <CardFooter>
-        <BottomButton label={bottomButtonLabel} href={bottomButtonHref} />
+        <BottomLink label={bottomButtonLabel} href={bottomButtonHref} />
       </CardFooter>
     </Card>
   );

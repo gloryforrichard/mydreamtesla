@@ -1,36 +1,23 @@
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
-import { buttonVariants } from "../ui/button";
+import { MkSaaSLogo } from '@/components/layout/logo-mksaas';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export default function BuiltWithButton() {
   return (
     <Link
       target="_blank"
-      href="https://mkdirs.com?utm_source=demo&utm_medium=website&utm_campaign=built-with-mkdirs-button&utm_content=built-with-mkdirs"
+      href="https://mksaas.com?utm_source=built-with-mksaas"
       className={cn(
-        buttonVariants({ variant: "outline", size: "sm" }),
-        "px-4 rounded-md",
+        buttonVariants({ variant: 'outline', size: 'sm' }),
+        'border border-border px-4 rounded-md'
       )}
     >
       <span>Built with</span>
       <span>
-        <LogoMkdirs className="size-4 rounded-full" />
+        <MkSaaSLogo className="size-5 rounded-full" />
       </span>
-      <span className="font-bold">Mkdirs</span>
+      <span className="font-semibold">MkSaaS</span>
     </Link>
-  );
-}
-
-function LogoMkdirs({ className }: { className?: string }) {
-  return (
-    <Image
-      src="/logo_mkdirs.png"
-      alt="Logo"
-      title="Logo"
-      width={96}
-      height={96}
-      className={cn("size-8 rounded-md", className)}
-    />
   );
 }

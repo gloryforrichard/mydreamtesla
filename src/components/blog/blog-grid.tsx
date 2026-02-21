@@ -1,18 +1,20 @@
-import BlogCard, { BlogCardSkeleton } from "@/components/blog/blog-card";
-import { POSTS_PER_PAGE } from "@/lib/constants";
-import type { BlogPostListQueryResult } from "@/sanity.types";
+import BlogCard, { BlogCardSkeleton } from '@/components/blog/blog-card';
+import { websiteConfig } from '@/config/website';
+import type { BlogType } from '@/lib/source';
 
 interface BlogGridProps {
-  posts: BlogPostListQueryResult;
+  locale: string;
+  posts: BlogType[];
 }
 
-export default function BlogGrid({ posts }: BlogGridProps) {
+export default function BlogGrid({ locale, posts }: BlogGridProps) {
+  // console.log('BlogGrid, posts', posts);
   return (
     <div>
-      {posts && posts?.length > 0 && (
+      {posts?.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <BlogCard key={post._id} post={post} />
+            <BlogCard key={post.slugs.join('/')} locale={locale} post={post} />
           ))}
         </div>
       )}
@@ -21,12 +23,13 @@ export default function BlogGrid({ posts }: BlogGridProps) {
 }
 
 export function BlogGridSkeleton({
-  count = POSTS_PER_PAGE,
-}: { count?: number }) {
+  count = websiteConfig.blog.paginationSize,
+}: {
+  count?: number;
+}) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {[...Array(count)].map((_, index) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <BlogCardSkeleton key={index} />
       ))}
     </div>

@@ -1,123 +1,121 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import { urlForImage } from "@/lib/image";
-import { getLocaleDate } from "@/lib/utils";
-import type { BlogPostInfo } from "@/types";
-import Image from "next/image";
-import Link from "next/link";
-import { UserAvatar } from "../shared/user-avatar";
+import { Skeleton } from '@/components/ui/skeleton';
+import { LocaleLink } from '@/i18n/navigation';
+import { formatDate } from '@/lib/formatter';
+import { type BlogType, authorSource, categorySource } from '@/lib/source';
+import Image from 'next/image';
+import { PremiumBadge } from '../premium/premium-badge';
+import BlogImage from './blog-image';
 
-type BlogCardProps = {
-  post: BlogPostInfo;
-};
+interface BlogCardProps {
+  locale: string;
+  post: BlogType;
+}
 
-export default function BlogCard({ post }: BlogCardProps) {
-  const imageProps = post?.image ? urlForImage(post.image) : null;
-  const imageBlurDataURL = post?.image?.blurDataURL || null;
-  const publishDate = post.publishDate || post._createdAt;
-  const date = getLocaleDate(publishDate);
-  const postUrlPrefix = "/blog";
+export default function BlogCard({ locale, post }: BlogCardProps) {
+  const { date, title, description, image, author, categories } = post.data;
+  const publishDate = formatDate(new Date(date));
+  const blogAuthor = authorSource.getPage([author], locale);
+  const blogCategories = categorySource
+    .getPages(locale)
+    .filter((category) => categories.includes(category.slugs[0] ?? ''));
 
   return (
-    <div className="group cursor-pointer flex flex-col gap-4">
-      {/* Image container */}
-      <div className="group overflow-hidden relative aspect-[4/3] rounded-lg transition-all">
-        <Link href={`${postUrlPrefix}/${post.slug.current}`}>
-          {imageProps && (
-            <div className="relative w-full h-full">
-              <Image
-                src={imageProps.src}
-                alt={post.image.alt || "image for blog post"}
-                title={post.image.alt || "image for blog post"}
-                className="object-cover image-scale"
-                fill
-                {...(imageBlurDataURL && {
-                  placeholder: "blur",
-                  blurDataURL: imageBlurDataURL,
-                })}
-              />
+    <LocaleLink href={`/blog/${post.slugs}`} className="block h-full">
+      <div className="group flex flex-col border border-border rounded-lg overflow-hidden h-full transition-all duration-300 ease-in-out hover:border-primary hover:shadow-lg hover:shadow-primary/20">
+        {/* Image container - fixed aspect ratio */}
+        <div className="group overflow-hidden relative aspect-16/9 w-full">
+          <div className="relative w-full h-full">
+            <BlogImage
+              src={image}
+              alt={title || 'image for blog post'}
+              title={title || 'image for blog post'}
+            />
 
-              {post.categories && post.categories.length > 0 && (
-                <div className="absolute left-2 bottom-2 opacity-100 transition-opacity duration-300">
-                  <div className="flex flex-wrap gap-1">
-                    {post.categories.map((category, index) => (
-                      <span
-                        key={category._id}
-                        className="text-xs font-medium text-white bg-black bg-opacity-50 px-2 py-1 rounded-md"
-                      >
-                        {category.name}
-                      </span>
-                    ))}
-                  </div>
+            {/* Premium badge - top right */}
+            {post.data.premium && (
+              <div className="absolute top-2 right-2 z-20">
+                <PremiumBadge size="sm" />
+              </div>
+            )}
+
+            {/* categories */}
+            {blogCategories && blogCategories.length > 0 && (
+              <div className="absolute left-2 bottom-2 opacity-100 transition-opacity duration-300 z-20">
+                <div className="flex flex-wrap gap-1">
+                  {blogCategories.map((category, index) => (
+                    <span
+                      key={`${category?.slugs[0]}-${index}`}
+                      className="text-xs font-medium text-white bg-black/50 bg-opacity-50 px-2 py-1 rounded-md"
+                    >
+                      {category?.data.name}
+                    </span>
+                  ))}
                 </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Post info container */}
+        <div className="flex flex-col justify-between p-4 flex-1">
+          <div>
+            {/* Post title */}
+            <h3 className="text-lg line-clamp-2 font-medium">{title}</h3>
+
+            {/* Post excerpt */}
+            <div className="mt-2">
+              {description && (
+                <p className="line-clamp-2 text-sm text-muted-foreground">
+                  {description}
+                </p>
               )}
             </div>
-          )}
-        </Link>
-      </div>
-
-      {/* Post info container */}
-      <div className="flex flex-col flex-grow">
-        <div>
-          {/* Post title */}
-          <h3 className="text-lg line-clamp-2 font-medium">
-            <Link href={`${postUrlPrefix}/${post.slug.current}`}>
-              <span
-                className="bg-gradient-to-r from-green-200 to-green-100 
-                  bg-[length:0px_10px] bg-left-bottom bg-no-repeat
-                  transition-[background-size]
-                  duration-500
-                  hover:bg-[length:100%_3px]
-                  group-hover:bg-[length:100%_10px]
-                  dark:from-purple-800 dark:to-purple-900"
-              >
-                {post.title}
-              </span>
-            </Link>
-          </h3>
-
-          {/* Post excerpt, hidden for now */}
-          {/* <div className="hidden">
-            {post.excerpt && (
-              <p className="mt-2 line-clamp-3 text-sm text-gray-500 dark:text-gray-400">
-                <Link
-                  href={`${postUrlPrefix}/${post.slug.current}`}>
-                  {post.excerpt}
-                </Link>
-              </p>
-            )}
-          </div> */}
-        </div>
-
-        {/* Author and date */}
-        <div className="mt-auto pt-4 flex items-center justify-between space-x-4 text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <UserAvatar
-              name={post.author?.name || null}
-              image={post.author?.image || null}
-              className="border h-6 w-6 flex-shrink-0"
-            />
-            <span className="truncate text-sm">{post?.author?.name}</span>
           </div>
 
-          <time className="truncate text-sm" dateTime={date}>
-            {date}
-          </time>
+          {/* Author and date */}
+          <div className="mt-4 pt-4 border-t flex items-center justify-between space-x-4 text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <div className="relative h-8 w-8 shrink-0">
+                {blogAuthor?.data.avatar && (
+                  <Image
+                    src={blogAuthor?.data.avatar}
+                    alt={`avatar for ${blogAuthor?.data.name}`}
+                    className="rounded-full object-cover border"
+                    fill
+                  />
+                )}
+              </div>
+              <span className="truncate text-sm">{blogAuthor?.data.name}</span>
+            </div>
+
+            <time className="truncate text-sm" dateTime={date}>
+              {publishDate}
+            </time>
+          </div>
         </div>
       </div>
-    </div>
+    </LocaleLink>
   );
 }
 
 export function BlogCardSkeleton() {
   return (
-    <div className="group cursor-pointer flex flex-col gap-4">
-      <div className="group overflow-hidden relative aspect-[4/3] rounded-lg transition-all">
-        <Skeleton className="w-full aspect-[4/3] rounded-lg" />
+    <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden h-full">
+      <div className="overflow-hidden relative aspect-16/9 w-full">
+        <Skeleton className="h-full w-full rounded-b-none" />
       </div>
-      <Skeleton className="h-12 w-full" />
-      <div className="flex items-center justify-between gap-2">
-        <Skeleton className="h-8 w-32" />
-        <Skeleton className="h-8 w-32" />
+      <div className="p-4 flex flex-col justify-between flex-1">
+        <div>
+          <Skeleton className="h-6 w-full mb-2" />
+          <Skeleton className="h-4 w-full mb-4" />
+        </div>
+        <div className="pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-8 w-8 rounded-full" />
+            <Skeleton className="h-4 w-24" />
+          </div>
+          <Skeleton className="h-4 w-20" />
+        </div>
       </div>
     </div>
   );

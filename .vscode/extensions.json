@@ -2,6 +2,9 @@
   "recommendations": [
     "biomejs.biome",
     "bradlc.vscode-tailwindcss",
-    "eamodio.gitlens"
+    "Lokalise.i18n-ally",
+    "unifiedjs.vscode-mdx",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig"
   ]
 }
