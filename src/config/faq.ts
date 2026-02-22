@@ -1,5 +1,14 @@
-import type { FAQConfig } from "@/types";
 import { siteConfig } from "./site";
+
+interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+interface FAQConfig {
+  items: FAQItem[];
+}
 
 export const faqConfig: FAQConfig = {
   items: [

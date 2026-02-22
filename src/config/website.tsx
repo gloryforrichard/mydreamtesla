@@ -10,8 +10,8 @@ import type { WebsiteConfig } from '@/types';
 export const websiteConfig: WebsiteConfig = {
   ui: {
     mode: {
-      defaultMode: 'dark',
-      enableSwitch: true,
+      defaultMode: 'light',
+      enableSwitch: false,
     },
   },
   metadata: {
@@ -21,18 +21,18 @@ export const websiteConfig: WebsiteConfig = {
       logoDark: '/logo-dark.png',
     },
     social: {
-      github: 'https://github.com/MkSaaSHQ',
-      twitter: 'https://mksaas.link/twitter',
-      blueSky: 'https://mksaas.link/bsky',
-      discord: 'https://mksaas.link/discord',
-      mastodon: 'https://mksaas.link/mastodon',
-      linkedin: 'https://mksaas.link/linkedin',
-      youtube: 'https://mksaas.link/youtube',
+      github: '',
+      twitter: '',
+      blueSky: '',
+      discord: '',
+      mastodon: '',
+      linkedin: '',
+      youtube: '',
     },
   },
   features: {
-    enableUpgradeCard: true,
-    enableUpdateAvatar: true,
+    enableUpgradeCard: false,
+    enableUpdateAvatar: false,
     enableAffonsoAffiliate: false,
     enablePromotekitAffiliate: false,
     enableDatafastRevenueTrack: false,
@@ -40,7 +40,7 @@ export const websiteConfig: WebsiteConfig = {
     enableTurnstileCaptcha: process.env.NEXT_PUBLIC_DEMO_WEBSITE === 'true',
   },
   routes: {
-    defaultLoginRedirect: '/dashboard',
+    defaultLoginRedirect: '/',
   },
   analytics: {
     enableVercelAnalytics: false,
@@ -50,10 +50,10 @@ export const websiteConfig: WebsiteConfig = {
     enable: process.env.NEXT_PUBLIC_DEMO_WEBSITE === 'true',
   },
   auth: {
-    enableGoogleLogin: true,
-    enableGithubLogin: true,
-    enableCredentialLogin: true,
-    enableDeleteUser: true,
+    enableGoogleLogin: false,
+    enableGithubLogin: false,
+    enableCredentialLogin: false,
+    enableDeleteUser: false,
   },
   i18n: {
     defaultLocale: 'en',
@@ -63,11 +63,6 @@ export const websiteConfig: WebsiteConfig = {
         name: 'English',
         hreflang: 'en',
       },
-      zh: {
-        flag: '🇨🇳',
-        name: '中文',
-        hreflang: 'zh-CN',
-      },
     },
   },
   blog: {
@@ -76,20 +71,20 @@ export const websiteConfig: WebsiteConfig = {
     relatedPostsSize: 3,
   },
   docs: {
-    enable: true,
+    enable: false,
   },
   mail: {
     provider: 'resend',
-    fromEmail: 'MkSaaS <support@example.com>',
-    supportEmail: 'MkSaaS <support@example.com>',
+    fromEmail: 'MyDreamTesla <support@mydreamtesla.com>',
+    supportEmail: 'MyDreamTesla <support@mydreamtesla.com>',
   },
   newsletter: {
-    enable: true,
+    enable: false,
     provider: 'resend',
-    autoSubscribeAfterSignUp: true,
+    autoSubscribeAfterSignUp: false,
   },
   storage: {
-    enable: true,
+    enable: false,
     provider: 's3',
   },
   payment: {

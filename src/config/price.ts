@@ -1,5 +1,6 @@
-import { PricePlans } from "@/lib/submission";
 import type { PriceConfig } from "@/types";
+
+const PricePlans = { FREE: 'Free', PRO: 'Pro', SPONSOR: 'Sponsor' } as const;
 
 export const priceConfig: PriceConfig = {
   plans: [

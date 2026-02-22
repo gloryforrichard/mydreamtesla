@@ -14,11 +14,11 @@ import {
   TagsIcon,
   UploadIcon
 } from "lucide-react";
-import { FaBrandsGitHub } from "../icons/github";
-import { FaBrandsGoogle } from "../icons/google";
-import { LogosProductHunt } from "../icons/product-hunt";
-import { FaBrandsXTwitter } from "../icons/twitter";
-import { IonLogoYoutube } from "./youtube";
+import { GitHubIcon } from "../icons/github";
+import { GoogleIcon } from "../icons/google";
+import { ProductHuntIcon } from "../icons/product-hunt";
+import { TwitterIcon } from "../icons/twitter";
+import { YouTubeIcon } from "./youtube";
 
 export type Icon = LucideIcon;
 
@@ -47,9 +47,9 @@ export const Icons = {
   studio: LayoutListIcon,
   email: MailIcon,
 
-  github: FaBrandsGitHub,
-  google: FaBrandsGoogle,
-  twitter: FaBrandsXTwitter,
-  youtube: IonLogoYoutube,
-  productHunt: LogosProductHunt,
+  github: GitHubIcon,
+  google: GoogleIcon,
+  twitter: TwitterIcon,
+  youtube: YouTubeIcon,
+  productHunt: ProductHuntIcon,
 };

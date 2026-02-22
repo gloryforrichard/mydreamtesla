@@ -21,7 +21,7 @@ import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import * as React from "react";
 
 type FilterItem = {
-  value: string | null;
+  value: string;
   label: string;
 };
 
@@ -90,7 +90,7 @@ export function ResponsiveComboBox({
         <PopoverContent className="p-0" align="start">
           <FilterList
             filterItemList={filterItemList}
-            selectedValue={selectedValue}
+            selectedValue={selectedValue ?? ''}
             setOpen={setOpen}
             onSelect={handleSelect}
           />
@@ -117,7 +117,7 @@ export function ResponsiveComboBox({
         <div className="mt-4 border-t">
           <FilterList
             filterItemList={filterItemList}
-            selectedValue={selectedValue}
+            selectedValue={selectedValue ?? ''}
             setOpen={setOpen}
             onSelect={handleSelect}
           />

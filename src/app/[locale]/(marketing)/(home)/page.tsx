@@ -1,81 +1,79 @@
-import CallToActionSection from '@/components/blocks/calltoaction/calltoaction';
-import FaqSection from '@/components/blocks/faqs/faqs';
-import FeaturesSection from '@/components/blocks/features/features';
-import Features2Section from '@/components/blocks/features/features2';
-import Features3Section from '@/components/blocks/features/features3';
-import HeroSection from '@/components/blocks/hero/hero';
-import IntegrationSection from '@/components/blocks/integration/integration';
-import Integration2Section from '@/components/blocks/integration/integration2';
-import LogoCloud from '@/components/blocks/logo-cloud/logo-cloud';
-import PricingSection from '@/components/blocks/pricing/pricing';
-import StatsSection from '@/components/blocks/stats/stats';
-import TestimonialsSection from '@/components/blocks/testimonials/testimonials';
-import CrispChat from '@/components/layout/crisp-chat';
-import { NewsletterCard } from '@/components/newsletter/newsletter-card';
-import { constructMetadata } from '@/lib/metadata';
-import type { Metadata } from 'next';
-import type { Locale } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { getAllModels } from '@/lib/db/queries'
+import { ModelCard } from '@/components/tesla/model-card'
+import { ArrowRightIcon } from 'lucide-react'
 
-/**
- * https://next-intl.dev/docs/environments/actions-metadata-route-handlers#metadata-api
- */
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: Locale }>;
-}): Promise<Metadata | undefined> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'Metadata' });
-
-  return constructMetadata({
-    title: t('title'),
-    description: t('description'),
-    locale,
-    pathname: '',
-  });
+export const metadata: Metadata = {
+  title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
+  description:
+    'The most comprehensive Tesla vehicle database. Compare specs, pricing, and performance across every model year and trim — all in one place.',
 }
 
-interface HomePageProps {
-  params: Promise<{ locale: Locale }>;
-}
-
-export default async function HomePage(props: HomePageProps) {
-  const params = await props.params;
-  const { locale } = params;
-  const t = await getTranslations('HomePage');
+export default async function HomePage() {
+  const models = await getAllModels()
 
   return (
-    <>
-      <div className="flex flex-col">
-        <HeroSection />
+    <div>
+      {/* Hero */}
+      <section className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 sm:py-28 lg:px-8">
+        <h1 className="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+          Every Tesla.{' '}
+          <span className="text-blue-600">Every Year.</span>{' '}
+          Compared.
+        </h1>
+        <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
+          The most comprehensive Tesla vehicle database. Compare specs, pricing,
+          and performance across every model year and trim.
+        </p>
+        <div className="mt-10 flex items-center justify-center gap-4">
+          <Link
+            href="/models"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          >
+            Browse Models
+            <ArrowRightIcon className="size-4" />
+          </Link>
+        </div>
+      </section>
 
-        <LogoCloud />
+      {/* Model Showcase */}
+      {models.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold tracking-tight">
+              Tesla Lineup
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              Explore detailed specs for every Tesla model
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {models.map((model) => (
+              <ModelCard key={model.id} model={model} />
+            ))}
+          </div>
+        </section>
+      )}
 
-        <StatsSection />
-
-        <IntegrationSection />
-
-        <FeaturesSection />
-
-        <Features2Section />
-
-        <Features3Section />
-
-        <Integration2Section />
-
-        <PricingSection />
-
-        <FaqSection />
-
-        <CallToActionSection />
-
-        <TestimonialsSection />
-
-        <NewsletterCard />
-
-        <CrispChat />
-      </div>
-    </>
-  );
+      {/* CTA */}
+      <section className="border-t border-border bg-muted/30">
+        <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Find Your Perfect Tesla
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            Compare specs side by side to make the best decision.
+          </p>
+          <Link
+            href="/models"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+          >
+            Start Comparing
+            <ArrowRightIcon className="size-4" />
+          </Link>
+        </div>
+      </section>
+    </div>
+  )
 }

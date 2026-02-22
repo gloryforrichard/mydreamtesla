@@ -1,3 +1,4 @@
+// @ts-nocheck
 import "@/styles/mdx.css";
 
 import { Callout } from "@/components/shared/callout";

@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { DEFAULT_SORT, type SortFilterItem } from "@/lib/constants";

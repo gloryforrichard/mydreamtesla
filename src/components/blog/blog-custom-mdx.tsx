@@ -1,5 +1,6 @@
 import { CustomMdx } from "@/components/shared/custom-mdx";
 import { cn } from "@/lib/utils";
+import type React from "react";
 
 interface BlogCustomMdxProps {
   source: string;
@@ -16,7 +17,7 @@ export default function BlogCustomMdx({ source }: BlogCustomMdxProps) {
  * so we need to map h1, h2, h3 to h2, h3, h4
  */
 const markdownComponents = {
-  h1: ({ className, ...props }) => (
+  h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
         "mt-10 scroll-m-20 text-3xl font-semibold border-b pb-1 first:mt-0",
@@ -25,13 +26,13 @@ const markdownComponents = {
       {...props}
     />
   ),
-  h2: ({ className, ...props }) => (
+  h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn("mt-8 scroll-m-20 text-2xl font-semibold", className)}
       {...props}
     />
   ),
-  h3: ({ className, ...props }) => (
+  h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
       className={cn("mt-8 scroll-m-20 text-xl font-semibold", className)}
       {...props}

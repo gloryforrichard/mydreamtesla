@@ -1,0 +1,81 @@
+CREATE TABLE "tesla_model" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"name" varchar(100) NOT NULL,
+	"slug" varchar(100) NOT NULL,
+	"tagline" varchar(255),
+	"description" text,
+	"body_type" varchar(50) NOT NULL,
+	"production_start" integer,
+	"production_end" integer,
+	"is_active" boolean DEFAULT true,
+	"sort_order" integer DEFAULT 0,
+	"seo_title" varchar(70),
+	"seo_description" varchar(160),
+	"created_at" timestamp DEFAULT now(),
+	"updated_at" timestamp DEFAULT now(),
+	CONSTRAINT "tesla_model_slug_unique" UNIQUE("slug")
+);
+--> statement-breakpoint
+CREATE TABLE "vehicle" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"title" varchar(255) NOT NULL,
+	"slug" varchar(255) NOT NULL,
+	"model_id" integer NOT NULL,
+	"year" integer NOT NULL,
+	"trim_name" varchar(100) NOT NULL,
+	"drive_type" varchar(50) NOT NULL,
+	"base_price_msrp" integer,
+	"destination_fee" integer,
+	"federal_tax_credit" integer,
+	"effective_price" integer,
+	"range_epa" integer,
+	"acceleration_060" numeric,
+	"top_speed" integer,
+	"horsepower" integer,
+	"torque" integer,
+	"quarter_mile" numeric,
+	"battery_capacity" numeric,
+	"battery_type" varchar(50),
+	"supercharger_rate_max" integer,
+	"charging_time_10_50" varchar(50),
+	"onboard_charger" numeric,
+	"charge_port" varchar(50),
+	"length" numeric,
+	"width" numeric,
+	"height" numeric,
+	"wheelbase" numeric,
+	"curb_weight" integer,
+	"ground_clearance" numeric,
+	"cargo_volume" numeric,
+	"frunk_volume" numeric,
+	"towing_capacity" integer,
+	"seating_capacity" integer,
+	"display_size" varchar(50),
+	"has_rear_display" boolean,
+	"sound_system" varchar(100),
+	"wheel_options" json,
+	"color_options" json,
+	"ncap_rating" integer,
+	"autopilot_standard" varchar(100),
+	"fsd_available" boolean,
+	"fsd_price" integer,
+	"energy_consumption" integer,
+	"mpge" integer,
+	"pros_and_cons" json,
+	"key_changes_from_prior_year" text,
+	"seo_title" varchar(70),
+	"seo_description" varchar(160),
+	"is_current_model" boolean DEFAULT true,
+	"discontinued_date" varchar(20),
+	"last_updated" timestamp DEFAULT now(),
+	"created_at" timestamp DEFAULT now(),
+	CONSTRAINT "vehicle_slug_unique" UNIQUE("slug")
+);
+--> statement-breakpoint
+ALTER TABLE "vehicle" ADD CONSTRAINT "vehicle_model_id_tesla_model_id_fk" FOREIGN KEY ("model_id") REFERENCES "public"."tesla_model"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+CREATE INDEX "tesla_model_slug_idx" ON "tesla_model" USING btree ("slug");--> statement-breakpoint
+CREATE INDEX "tesla_model_is_active_idx" ON "tesla_model" USING btree ("is_active");--> statement-breakpoint
+CREATE INDEX "vehicle_slug_idx" ON "vehicle" USING btree ("slug");--> statement-breakpoint
+CREATE INDEX "vehicle_model_id_idx" ON "vehicle" USING btree ("model_id");--> statement-breakpoint
+CREATE INDEX "vehicle_year_idx" ON "vehicle" USING btree ("year");--> statement-breakpoint
+CREATE INDEX "vehicle_is_current_idx" ON "vehicle" USING btree ("is_current_model");

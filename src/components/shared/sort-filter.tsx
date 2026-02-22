@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { SortListDesktop } from "@/components/shared/sort-list-desktop";

@@ -1,4 +1,4 @@
-import { boolean, integer, pgTable, text, timestamp, index } from "drizzle-orm/pg-core";
+import { boolean, integer, json, numeric, pgTable, serial, text, timestamp, varchar, index } from "drizzle-orm/pg-core";
 
 // https://www.better-auth.com/docs/concepts/database#core-schema
 export const user = pgTable("user", {
@@ -152,4 +152,106 @@ export const creditTransaction = pgTable("credit_transaction", {
 }, (table) => ({
 	creditTransactionUserIdIdx: index("credit_transaction_user_id_idx").on(table.userId),
 	creditTransactionTypeIdx: index("credit_transaction_type_idx").on(table.type),
+}));
+
+// Tesla vehicle data tables
+
+export const teslaModel = pgTable('tesla_model', {
+	id: serial('id').primaryKey(),
+	name: varchar('name', { length: 100 }).notNull(),
+	slug: varchar('slug', { length: 100 }).notNull().unique(),
+	tagline: varchar('tagline', { length: 255 }),
+	description: text('description'),
+	bodyType: varchar('body_type', { length: 50 }).notNull(),
+	productionStart: integer('production_start'),
+	productionEnd: integer('production_end'),
+	isActive: boolean('is_active').default(true),
+	sortOrder: integer('sort_order').default(0),
+	seoTitle: varchar('seo_title', { length: 70 }),
+	seoDescription: varchar('seo_description', { length: 160 }),
+	createdAt: timestamp('created_at').defaultNow(),
+	updatedAt: timestamp('updated_at').defaultNow(),
+}, (table) => ({
+	teslaModelSlugIdx: index("tesla_model_slug_idx").on(table.slug),
+	teslaModelIsActiveIdx: index("tesla_model_is_active_idx").on(table.isActive),
+}));
+
+export const vehicle = pgTable('vehicle', {
+	id: serial('id').primaryKey(),
+	title: varchar('title', { length: 255 }).notNull(),
+	slug: varchar('slug', { length: 255 }).notNull().unique(),
+	modelId: integer('model_id').references(() => teslaModel.id).notNull(),
+	year: integer('year').notNull(),
+	trimName: varchar('trim_name', { length: 100 }).notNull(),
+	driveType: varchar('drive_type', { length: 50 }).notNull(),
+
+	// Pricing
+	basePriceMSRP: integer('base_price_msrp'),
+	destinationFee: integer('destination_fee'),
+	federalTaxCredit: integer('federal_tax_credit'),
+	effectivePrice: integer('effective_price'),
+
+	// Performance
+	rangeEPA: integer('range_epa'),
+	acceleration060: numeric('acceleration_060'),
+	topSpeed: integer('top_speed'),
+	horsepower: integer('horsepower'),
+	torque: integer('torque'),
+	quarterMile: numeric('quarter_mile'),
+
+	// Battery & Charging
+	batteryCapacity: numeric('battery_capacity'),
+	batteryType: varchar('battery_type', { length: 50 }),
+	superchargerRateMax: integer('supercharger_rate_max'),
+	chargingTime1050: varchar('charging_time_10_50', { length: 50 }),
+	onboardCharger: numeric('onboard_charger'),
+	chargePort: varchar('charge_port', { length: 50 }),
+
+	// Dimensions & Weight
+	length: numeric('length'),
+	width: numeric('width'),
+	height: numeric('height'),
+	wheelbase: numeric('wheelbase'),
+	curbWeight: integer('curb_weight'),
+	groundClearance: numeric('ground_clearance'),
+	cargoVolume: numeric('cargo_volume'),
+	frunkVolume: numeric('frunk_volume'),
+	towingCapacity: integer('towing_capacity'),
+
+	// Interior & Comfort
+	seatingCapacity: integer('seating_capacity'),
+	displaySize: varchar('display_size', { length: 50 }),
+	hasRearDisplay: boolean('has_rear_display'),
+	soundSystem: varchar('sound_system', { length: 100 }),
+	wheelOptions: json('wheel_options').$type<string[]>(),
+	colorOptions: json('color_options').$type<string[]>(),
+
+	// Safety & Autopilot
+	ncapRating: integer('ncap_rating'),
+	autopilotStandard: varchar('autopilot_standard', { length: 100 }),
+	fsdAvailable: boolean('fsd_available'),
+	fsdPrice: integer('fsd_price'),
+
+	// Efficiency
+	energyConsumption: integer('energy_consumption'),
+	mpge: integer('mpge'),
+
+	// Content
+	prosAndCons: json('pros_and_cons').$type<{ pros: string[]; cons: string[] }>(),
+	keyChangesFromPriorYear: text('key_changes_from_prior_year'),
+
+	// SEO
+	seoTitle: varchar('seo_title', { length: 70 }),
+	seoDescription: varchar('seo_description', { length: 160 }),
+
+	// Meta
+	isCurrentModel: boolean('is_current_model').default(true),
+	discontinuedDate: varchar('discontinued_date', { length: 20 }),
+	lastUpdated: timestamp('last_updated').defaultNow(),
+	createdAt: timestamp('created_at').defaultNow(),
+}, (table) => ({
+	vehicleSlugIdx: index("vehicle_slug_idx").on(table.slug),
+	vehicleModelIdIdx: index("vehicle_model_id_idx").on(table.modelId),
+	vehicleYearIdx: index("vehicle_year_idx").on(table.year),
+	vehicleIsCurrentIdx: index("vehicle_is_current_idx").on(table.isCurrentModel),
 }));

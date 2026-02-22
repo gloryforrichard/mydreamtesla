@@ -52,6 +52,9 @@ export default async function LocaleLayout({
       <head>
         <AffonsoScript />
         <PromotekitScript />
+        {process.env.NODE_ENV === 'development' && (
+          <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async />
+        )}
       </head>
       <body
         suppressHydrationWarning

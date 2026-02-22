@@ -321,14 +321,23 @@
   },
   "Marketing": {
     "navbar": {
+      "models": {
+        "title": "Models"
+      },
+      "compare": {
+        "title": "Compare"
+      },
+      "blog": {
+        "title": "Blog"
+      },
+      "about": {
+        "title": "About"
+      },
       "features": {
         "title": "Features"
       },
       "pricing": {
         "title": "Pricing"
-      },
-      "blog": {
-        "title": "Blog"
       },
       "docs": {
         "title": "Docs"
