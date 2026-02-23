@@ -1,75 +1,24 @@
 'use client';
 
-import Container from '@/components/layout/container';
-import { Logo } from '@/components/layout/logo';
-import { ModeSwitcherHorizontal } from '@/components/layout/mode-switcher-horizontal';
-import BuiltWithButton from '@/components/shared/built-with-button';
 import { useFooterLinks } from '@/config/footer-config';
-import { useSocialLinks } from '@/config/social-config';
 import { LocaleLink } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
 import type React from 'react';
 
 export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
-  const t = useTranslations();
   const footerLinks = useFooterLinks();
-  const socialLinks = useSocialLinks();
 
   return (
-    <footer className={cn('border-t', className)}>
-      <Container className="px-4">
-        <div className="grid grid-cols-2 gap-8 py-16 md:grid-cols-6">
-          <div className="flex flex-col items-start col-span-full md:col-span-2">
-            <div className="space-y-4">
-              {/* logo and name */}
-              <div className="items-center space-x-2 flex">
-                <Logo />
-                <span className="text-xl font-semibold">
-                  {t('Metadata.name')}
-                </span>
-              </div>
-
-              {/* tagline */}
-              <p className="text-muted-foreground text-base py-2 md:pr-12">
-                {t('Marketing.footer.tagline')}
-              </p>
-
-              {/* social links */}
-              <div className="flex items-center gap-4 py-2">
-                <div className="flex items-center gap-2">
-                  {socialLinks?.map((link) => (
-                    <a
-                      key={link.title}
-                      href={link.href || '#'}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={link.title}
-                      className="border border-border inline-flex h-8 w-8 items-center
-                          justify-center rounded-full hover:bg-accent hover:text-accent-foreground"
-                    >
-                      <span className="sr-only">{link.title}</span>
-                      {link.icon ? link.icon : null}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              {/* built with button */}
-              <BuiltWithButton />
-            </div>
-          </div>
-
-          {/* footer links */}
+    <footer className={cn('border-t border-[#D2D2D7]', className)}>
+      <div className="mx-auto max-w-[1024px] px-[22px]">
+        {/* Link columns */}
+        <div className="grid grid-cols-2 gap-6 py-8 sm:grid-cols-4">
           {footerLinks?.map((section) => (
-            <div
-              key={section.title}
-              className="col-span-1 md:col-span-1 items-start"
-            >
-              <span className="text-sm font-semibold uppercase">
+            <div key={section.title}>
+              <h4 className="text-[12px] font-semibold text-[#1D1D1F]">
                 {section.title}
-              </span>
-              <ul className="mt-4 list-inside space-y-3">
+              </h4>
+              <ul className="mt-3 flex flex-col gap-2">
                 {section.items?.map(
                   (item) =>
                     item.href && (
@@ -77,7 +26,7 @@ export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
                         <LocaleLink
                           href={item.href || '#'}
                           target={item.external ? '_blank' : undefined}
-                          className="text-sm text-muted-foreground hover:text-primary"
+                          className="text-[12px] text-[#6E6E73] hover:text-[#1D1D1F] hover:underline"
                         >
                           {item.title}
                         </LocaleLink>
@@ -88,19 +37,18 @@ export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
             </div>
           ))}
         </div>
-      </Container>
+      </div>
 
-      <div className="border-t py-8">
-        <Container className="px-4 flex items-center justify-between gap-x-4">
-          <span className="text-muted-foreground text-sm">
-            &copy; {new Date().getFullYear()} {t('Metadata.name')} All Rights
-            Reserved.
+      {/* Bottom bar */}
+      <div className="border-t border-[#D2D2D7]">
+        <div className="mx-auto flex max-w-[1024px] items-center justify-between px-[22px] py-4">
+          <span className="text-[12px] text-[#86868B]">
+            &copy; {new Date().getFullYear()} MyDreamTesla. Not affiliated with Tesla, Inc.
           </span>
-
-          <div className="flex items-center gap-x-4">
-            <ModeSwitcherHorizontal />
-          </div>
-        </Container>
+          <span className="text-[12px] text-[#86868B]">
+            Data from Tesla.com and public records.
+          </span>
+        </div>
       </div>
     </footer>
   );

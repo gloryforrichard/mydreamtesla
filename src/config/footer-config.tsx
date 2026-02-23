@@ -2,114 +2,43 @@
 
 import { Routes } from '@/routes';
 import type { NestedMenuItem } from '@/types';
-import { useTranslations } from 'next-intl';
-import { websiteConfig } from './website';
 
 /**
- * Get footer config with translations
- *
- * NOTICE: used in client components only
- *
- * docs:
- * https://mksaas.com/docs/config/footer
- *
- * @returns The footer config with translated titles
+ * Tesla-specific footer links (no translations needed for now)
  */
 export function useFooterLinks(): NestedMenuItem[] {
-  const t = useTranslations('Marketing.footer');
-
   return [
     {
-      title: t('product.title'),
+      title: 'Models',
       items: [
-        {
-          title: t('product.items.features'),
-          href: Routes.Features,
-          external: false,
-        },
-        {
-          title: t('product.items.pricing'),
-          href: Routes.Pricing,
-          external: false,
-        },
-        {
-          title: t('product.items.faq'),
-          href: Routes.FAQ,
-          external: false,
-        },
+        { title: 'Model 3', href: '/models/model-3' },
+        { title: 'Model Y', href: '/models/model-y' },
+        { title: 'Model S', href: '/models/model-s' },
+        { title: 'Model X', href: '/models/model-x' },
+        { title: 'All Models', href: Routes.Models },
       ],
     },
     {
-      title: t('resources.title'),
+      title: 'Compare',
       items: [
-        ...(websiteConfig.blog.enable
-          ? [
-              {
-                title: t('resources.items.blog'),
-                href: Routes.Blog,
-                external: false,
-              },
-            ]
-          : []),
-        ...(websiteConfig.docs.enable
-          ? [
-              {
-                title: t('resources.items.docs'),
-                href: Routes.Docs,
-                external: false,
-              },
-            ]
-          : []),
-        {
-          title: t('resources.items.changelog'),
-          href: Routes.Changelog,
-          external: false,
-        },
-        {
-          title: t('resources.items.roadmap'),
-          href: Routes.Roadmap,
-          external: false,
-        },
+        { title: 'Model 3 vs Y', href: '/compare/model-3-2025-long-range-awd-vs-model-3-2025-performance-awd' },
+        { title: 'All Comparisons', href: Routes.Compare },
       ],
     },
     {
-      title: t('company.title'),
+      title: 'Resources',
       items: [
-        {
-          title: t('company.items.about'),
-          href: Routes.About,
-          external: false,
-        },
-        {
-          title: t('company.items.contact'),
-          href: Routes.Contact,
-          external: false,
-        },
-        {
-          title: t('company.items.waitlist'),
-          href: Routes.Waitlist,
-          external: false,
-        },
+        { title: 'Blog', href: Routes.Blog },
+        { title: 'Tax Credit Guide', href: '/blog/tesla-federal-tax-credit-guide-2025' },
       ],
     },
     {
-      title: t('legal.title'),
+      title: 'Legal',
       items: [
-        {
-          title: t('legal.items.cookiePolicy'),
-          href: Routes.CookiePolicy,
-          external: false,
-        },
-        {
-          title: t('legal.items.privacyPolicy'),
-          href: Routes.PrivacyPolicy,
-          external: false,
-        },
-        {
-          title: t('legal.items.termsOfService'),
-          href: Routes.TermsOfService,
-          external: false,
-        },
+        { title: 'About', href: Routes.About },
+        { title: 'Privacy', href: Routes.PrivacyPolicy },
+        { title: 'Terms', href: Routes.TermsOfService },
+        { title: 'Contact', href: Routes.Contact },
       ],
     },
   ];
