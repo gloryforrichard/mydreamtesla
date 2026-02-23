@@ -7,6 +7,7 @@ import {
 } from '@/assets/fonts';
 import AffonsoScript from '@/components/affiliate/affonso';
 import PromotekitScript from '@/components/affiliate/promotekit';
+import { AdSenseScript } from '@/components/ads/adsense-script';
 import { TailwindIndicator } from '@/components/layout/tailwind-indicator';
 import { routing } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
@@ -52,6 +53,7 @@ export default async function LocaleLayout({
       <head>
         <AffonsoScript />
         <PromotekitScript />
+        <AdSenseScript />
         {process.env.NODE_ENV === 'development' && (
           <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async />
         )}

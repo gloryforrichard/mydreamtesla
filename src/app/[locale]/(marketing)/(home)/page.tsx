@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { blogSource } from '@/lib/source'
 import { getRepresentativeVehicles, getSiteCounts } from '@/lib/db/queries'
 import { formatPrice, formatAcceleration, formatSpec } from '@/lib/vehicle-utils'
 import { POPULAR_COMPARISONS, getCompareUrl } from '@/config/comparisons'
@@ -22,6 +23,12 @@ export default async function HomePage() {
 		getRepresentativeVehicles(),
 		getSiteCounts(),
 	])
+
+	const latestPosts = blogSource
+		.getPages('en')
+		.filter((p) => p.data.published)
+		.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+		.slice(0, 3)
 
 	const baseUrl = getBaseUrl()
 	const modelListItems = modelData.map((m, i) => ({
@@ -267,6 +274,51 @@ export default async function HomePage() {
 					))}
 				</div>
 			</section>
+
+			{/* Latest from the Blog */}
+			{latestPosts.length > 0 && (
+				<section className="px-4 py-24 text-center">
+					<h2 className="text-[48px] font-bold tracking-[-2px]">
+						Latest insights.
+					</h2>
+					<p className="mt-2 text-[21px] font-light text-[#6E6E73]">
+						Guides, comparisons, and news for Tesla buyers.
+					</p>
+					<div className="mx-auto mt-12 grid max-w-[1024px] grid-cols-1 gap-6 px-4 sm:grid-cols-3">
+						{latestPosts.map((post) => (
+							<Link
+								key={post.slugs.join('/')}
+								href={`/blog/${post.slugs.join('/')}`}
+								className="group rounded-[20px] bg-[#F5F5F7] p-0 overflow-hidden text-left transition-transform hover:scale-[1.02]"
+							>
+								{post.data.image && (
+									<div className="aspect-[16/9] w-full bg-gradient-to-br from-[#E8E8ED] to-[#D2D2D7]" />
+								)}
+								<div className="p-6">
+									<p className="text-[11px] font-semibold uppercase tracking-[1px] text-[#86868B]">
+										{post.data.categories?.[0] ?? 'Article'}
+									</p>
+									<h3 className="mt-2 text-[17px] font-semibold leading-snug line-clamp-2">
+										{post.data.title}
+									</h3>
+									<p className="mt-2 text-[14px] text-[#6E6E73] line-clamp-2">
+										{post.data.description}
+									</p>
+									<p className="mt-4 text-[14px] text-[#1D1D1F]">
+										Read more ›
+									</p>
+								</div>
+							</Link>
+						))}
+					</div>
+					<Link
+						href="/blog"
+						className="mt-10 inline-flex text-[17px] font-normal text-[#1D1D1F] transition-colors hover:text-[#6E6E73]"
+					>
+						View all articles ›
+					</Link>
+				</section>
+			)}
 
 			{/* CTA */}
 			<section className="bg-[#F5F5F7] px-4 py-24 text-center">

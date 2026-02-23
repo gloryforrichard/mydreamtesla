@@ -3,6 +3,7 @@ import { getLocalePathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { generateHreflangUrls } from '@/lib/hreflang';
 import { blogSource, categorySource, source } from '@/lib/source';
+import { getAllModelSlugs, getAllVehicleSlugs } from '@/lib/db/queries';
 import type { MetadataRoute } from 'next';
 import type { Locale } from 'next-intl';
 import { getBaseUrl } from '../lib/urls/urls';
@@ -142,6 +143,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }))
       )
     );
+  }
+
+  // add Tesla model pages
+  try {
+    const modelSlugs = await getAllModelSlugs();
+    sitemapList.push(
+      ...modelSlugs.flatMap((m) =>
+        routing.locales.map((locale) => ({
+          url: getUrl(`/models/${m.slug}`, locale),
+          lastModified: m.updatedAt ?? undefined,
+          alternates: {
+            languages: generateHreflangUrls(`/models/${m.slug}`),
+          },
+        }))
+      )
+    );
+  } catch {
+    // DB may not be available during build in some environments
+  }
+
+  // add Tesla vehicle pages
+  try {
+    const vehicleSlugs = await getAllVehicleSlugs();
+    sitemapList.push(
+      ...vehicleSlugs.flatMap((v) =>
+        routing.locales.map((locale) => ({
+          url: getUrl(`/vehicles/${v.slug}`, locale),
+          lastModified: v.lastUpdated ?? undefined,
+          alternates: {
+            languages: generateHreflangUrls(`/vehicles/${v.slug}`),
+          },
+        }))
+      )
+    );
+  } catch {
+    // DB may not be available during build in some environments
   }
 
   return sitemapList;

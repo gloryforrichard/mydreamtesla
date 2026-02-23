@@ -14,6 +14,8 @@ import {
   blogSource,
   categorySource,
 } from '@/lib/source';
+import { JsonLd } from '@/components/seo/json-ld';
+import { buildBlogPostingJsonLd } from '@/lib/seo/structured-data';
 import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
 import { CalendarIcon, FileTextIcon } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -110,6 +112,15 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
   return (
     <div className="flex flex-col gap-8">
+      <JsonLd
+        data={buildBlogPostingJsonLd({
+          title: title ?? '',
+          description: description ?? '',
+          slug: slug.join('/'),
+          datePublished: date,
+          image,
+        })}
+      />
       {/* content section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* left column (blog post content) */}

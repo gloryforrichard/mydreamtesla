@@ -68,6 +68,46 @@ export function generateCompareSlug(vehicleSlugs: string[]): string {
 }
 
 /**
+ * Parse a comparison slug back into vehicle slugs
+ * e.g., "model-3-2025-long-range-awd-vs-model-3-2025-performance-awd" → ["model-3-2025-long-range-awd", "model-3-2025-performance-awd"]
+ */
+export function parseCompareSlug(slug: string): string[] {
+  return slug.split('-vs-')
+}
+
+/**
+ * Spec comparison config: defines which specs to compare and their display metadata
+ */
+export const COMPARISON_SPEC_CONFIG = [
+  // Performance
+  { group: 'Performance', key: 'acceleration060', label: '0–60 mph', unit: 's', higherIsBetter: false, isNumericString: true },
+  { group: 'Performance', key: 'topSpeed', label: 'Top Speed', unit: 'mph', higherIsBetter: true },
+  { group: 'Performance', key: 'horsepower', label: 'Horsepower', unit: 'hp', higherIsBetter: true },
+  { group: 'Performance', key: 'torque', label: 'Torque', unit: 'lb-ft', higherIsBetter: true },
+  { group: 'Performance', key: 'quarterMile', label: 'Quarter Mile', unit: 's', higherIsBetter: false, isNumericString: true },
+  { group: 'Performance', key: 'driveType', label: 'Drive Type', unit: '', higherIsBetter: null },
+  // Battery & Charging
+  { group: 'Battery & Charging', key: 'rangeEPA', label: 'EPA Range', unit: 'mi', higherIsBetter: true },
+  { group: 'Battery & Charging', key: 'batteryCapacity', label: 'Battery', unit: 'kWh', higherIsBetter: true, isNumericString: true },
+  { group: 'Battery & Charging', key: 'superchargerRateMax', label: 'Supercharger Max', unit: 'kW', higherIsBetter: true },
+  { group: 'Battery & Charging', key: 'chargingTime1050', label: '10→50% Time', unit: '', higherIsBetter: null },
+  // Dimensions
+  { group: 'Dimensions & Weight', key: 'length', label: 'Length', unit: 'in', higherIsBetter: null, isNumericString: true },
+  { group: 'Dimensions & Weight', key: 'width', label: 'Width', unit: 'in', higherIsBetter: null, isNumericString: true },
+  { group: 'Dimensions & Weight', key: 'height', label: 'Height', unit: 'in', higherIsBetter: null, isNumericString: true },
+  { group: 'Dimensions & Weight', key: 'curbWeight', label: 'Curb Weight', unit: 'lbs', higherIsBetter: false },
+  { group: 'Dimensions & Weight', key: 'cargoVolume', label: 'Cargo Volume', unit: 'cu ft', higherIsBetter: true, isNumericString: true },
+  { group: 'Dimensions & Weight', key: 'seatingCapacity', label: 'Seating', unit: '', higherIsBetter: true },
+  // Pricing
+  { group: 'Pricing', key: 'basePriceMSRP', label: 'Base MSRP', unit: '$', higherIsBetter: false, isCurrency: true },
+  { group: 'Pricing', key: 'federalTaxCredit', label: 'Tax Credit', unit: '$', higherIsBetter: true, isCurrency: true },
+  { group: 'Pricing', key: 'effectivePrice', label: 'Effective Price', unit: '$', higherIsBetter: false, isCurrency: true },
+  // Efficiency
+  { group: 'Efficiency', key: 'mpge', label: 'MPGe', unit: '', higherIsBetter: true },
+  { group: 'Efficiency', key: 'energyConsumption', label: 'Energy Use', unit: 'Wh/mi', higherIsBetter: false },
+] as const
+
+/**
  * Vehicle type inferred from DB schema
  */
 export type Vehicle = {
