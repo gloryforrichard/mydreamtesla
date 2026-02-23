@@ -47,7 +47,6 @@ export default async function VehicleDetailPage({ params }: Props) {
 
   if (!vehicle) notFound()
 
-  // Resolve model + sibling vehicles
   const allModels = await getAllModels()
   const model = allModels.find((m) => m.id === vehicle.modelId)
   const modelName = model?.name ?? 'Tesla'
@@ -55,7 +54,6 @@ export default async function VehicleDetailPage({ params }: Props) {
   const siblings = model ? await getVehiclesForModel(model.id) : []
   const otherTrims = siblings.filter((v) => v.id !== vehicle.id).slice(0, 4)
 
-  // Build related items for internal linking
   const relatedItems = [
     ...otherTrims.map((other) => ({
       label: `${vehicle.title} vs ${other.title}`,
@@ -80,36 +78,40 @@ export default async function VehicleDetailPage({ params }: Props) {
       />
 
       {/* Hero */}
-      <div className="mb-10">
-        <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+      <header className="mb-12 mt-4">
+        <p className="text-[14px] font-medium uppercase tracking-[0.5px] text-[#86868B]">
           {vehicle.year} · {vehicle.driveType}
         </p>
-        <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="mt-2 text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1D1D1F] sm:text-[48px]">
           {vehicle.title}
         </h1>
-        <p className="mt-4 text-3xl font-bold text-blue-600">
+        <p className="mt-4 font-mono text-[32px] font-bold tracking-[-1px] text-[#1D1D1F]">
           {formatPrice(vehicle.basePriceMSRP)}
         </p>
         {vehicle.federalTaxCredit && (
-          <p className="mt-1 text-sm text-green-600">
+          <p className="mt-1 text-[14px] text-[#2D8A39]">
             After ${vehicle.federalTaxCredit.toLocaleString()} federal tax credit:{' '}
             <span className="font-semibold">{formatPrice(vehicle.effectivePrice)}</span>
           </p>
         )}
-      </div>
+      </header>
 
       {/* Key Specs */}
       <section className="mb-12">
-        <h2 className="mb-6 text-2xl font-semibold">Key Specifications</h2>
+        <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1D1D1F]">
+          Key Specifications
+        </h2>
         <KeySpecsGrid vehicle={vehicle} />
       </section>
 
       {/* What's New */}
       {vehicle.keyChangesFromPriorYear && (
         <section className="mb-12">
-          <h2 className="mb-4 text-2xl font-semibold">What&apos;s New</h2>
-          <div className="rounded-xl border border-blue-200 bg-blue-50/50 p-6">
-            <p className="text-sm leading-relaxed text-blue-900">
+          <h2 className="mb-4 text-[28px] font-bold tracking-[-0.5px] text-[#1D1D1F]">
+            What&apos;s New
+          </h2>
+          <div className="rounded-2xl bg-[#F5F5F7] p-6">
+            <p className="text-[15px] leading-relaxed text-[#1D1D1F]">
               {vehicle.keyChangesFromPriorYear}
             </p>
           </div>
@@ -118,25 +120,26 @@ export default async function VehicleDetailPage({ params }: Props) {
 
       {/* Full Specs */}
       <section className="mb-12">
-        <h2 className="mb-6 text-2xl font-semibold">Full Specifications</h2>
+        <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1D1D1F]">
+          Full Specifications
+        </h2>
         <SpecTable vehicle={vehicle} />
       </section>
 
       {/* Pros & Cons */}
       {vehicle.prosAndCons && (
         <section className="mb-12">
-          <h2 className="mb-6 text-2xl font-semibold">Pros & Cons</h2>
+          <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1D1D1F]">
+            Pros & Cons
+          </h2>
           <ProsAndCons prosAndCons={vehicle.prosAndCons} />
         </section>
       )}
 
-      {/* Ad placement */}
       <AdSensePlacement format="leaderboard" slot="vehicle-detail-1" className="my-8" />
 
-      {/* Data Disclaimer */}
       <DataDisclaimer lastUpdated={vehicle.lastUpdated} />
 
-      {/* Related: compare with other trims */}
       {relatedItems.length > 0 && (
         <RelatedContent
           title="Compare with other trims."
