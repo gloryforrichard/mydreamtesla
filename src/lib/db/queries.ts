@@ -119,6 +119,23 @@ export async function getRepresentativeVehicles() {
 	return result
 }
 
+/** All vehicles with model info — for comparison builder dropdown */
+export async function getAllVehicles() {
+	const db = await getDb()
+	const allModels = await db
+		.select()
+		.from(teslaModel)
+		.where(eq(teslaModel.isActive, true))
+		.orderBy(asc(teslaModel.sortOrder))
+
+	const allVehicles = await db
+		.select()
+		.from(vehicle)
+		.orderBy(asc(vehicle.modelId), desc(vehicle.year), asc(vehicle.trimName))
+
+	return { models: allModels, vehicles: allVehicles }
+}
+
 /** Get total counts for stats section */
 export async function getSiteCounts() {
 	const db = await getDb()

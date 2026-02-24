@@ -68,7 +68,7 @@ export default async function ComparePage({ params }: Props) {
 				<BreadcrumbNav
 					items={[
 						{ label: 'Home', href: '/' },
-						{ label: 'Compare', href: '/models' },
+						{ label: 'Compare', href: '/compare' },
 						{ label: names },
 					]}
 				/>
