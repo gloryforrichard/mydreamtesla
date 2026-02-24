@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getModelBySlug, getVehiclesForModel } from '@/lib/db/queries'
 import { VehicleCard } from '@/components/tesla/vehicle-card'
+import { VehicleImage } from '@/components/tesla/vehicle-image'
 import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav'
 import { JsonLd } from '@/components/seo/json-ld'
 import { buildItemListJsonLd } from '@/lib/seo/structured-data'
@@ -93,6 +94,18 @@ export default async function ModelDetailPage({ params }: Props) {
             {model.description}
           </p>
         )}
+        <div className="mt-8 overflow-hidden rounded-2xl bg-[#F5F5F7]">
+          <VehicleImage
+            src={`/images/vehicles/${model.slug}-detail.png`}
+            alt={`Tesla ${model.name}`}
+            width={1200}
+            height={600}
+            className="h-auto w-full object-contain p-8"
+            fallbackClassName="flex h-[320px] w-full items-center justify-center"
+            fallbackLabel={model.name}
+            priority
+          />
+        </div>
       </header>
 
       {/* Vehicles by Year */}

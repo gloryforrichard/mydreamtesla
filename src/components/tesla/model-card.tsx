@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { TeslaModel } from '@/lib/vehicle-utils'
+import { VehicleImage } from './vehicle-image'
 
 interface ModelCardProps {
   model: TeslaModel
@@ -12,10 +13,16 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
       href={`/models/${model.slug}`}
       className="group flex flex-col overflow-hidden rounded-2xl bg-[#F5F5F7] transition-transform hover:scale-[1.02]"
     >
-      <div className="flex aspect-[16/9] items-center justify-center">
-        <p className="text-5xl font-bold tracking-tight text-black/[0.06]">
-          {model.name}
-        </p>
+      <div className="flex aspect-[16/9] items-center justify-center overflow-hidden">
+        <VehicleImage
+          src={`/images/vehicles/${model.slug}-detail.png`}
+          alt={`Tesla ${model.name}`}
+          width={1200}
+          height={600}
+          className="h-full w-full object-contain p-4"
+          fallbackClassName="flex h-full w-full items-center justify-center"
+          fallbackLabel={model.name}
+        />
       </div>
       <div className="flex flex-1 flex-col p-5">
         <p className="text-xs font-medium uppercase tracking-wider text-[#86868B]">

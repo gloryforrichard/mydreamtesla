@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { formatPrice, formatSpec, formatAcceleration } from '@/lib/vehicle-utils'
 import type { Vehicle } from '@/lib/vehicle-utils'
+import { VehicleImage } from './vehicle-image'
 
 interface VehicleCardProps {
   vehicle: Vehicle
@@ -12,10 +13,16 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
       href={`/vehicles/${vehicle.slug}`}
       className="group flex flex-col overflow-hidden rounded-2xl bg-[#F5F5F7] transition-transform hover:scale-[1.02]"
     >
-      <div className="flex aspect-[16/10] items-center justify-center p-8">
-        <p className="text-4xl font-bold tracking-tight text-black/[0.06]">
-          {vehicle.year}
-        </p>
+      <div className="flex aspect-[16/10] items-center justify-center overflow-hidden">
+        <VehicleImage
+          src={`/images/vehicles/${vehicle.slug}.png`}
+          alt={vehicle.title}
+          width={1000}
+          height={500}
+          className="h-full w-full object-contain p-4"
+          fallbackClassName="flex h-full w-full items-center justify-center"
+          fallbackLabel={String(vehicle.year)}
+        />
       </div>
       <div className="flex flex-1 flex-col p-5">
         <p className="text-xs font-medium uppercase tracking-wider text-[#86868B]">

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { blogSource } from '@/lib/source'
+import { VehicleImage } from '@/components/tesla/vehicle-image'
 import { getRepresentativeVehicles, getSiteCounts } from '@/lib/db/queries'
 import { formatPrice, formatAcceleration, formatSpec } from '@/lib/vehicle-utils'
 import { POPULAR_COMPARISONS, getCompareUrl } from '@/config/comparisons'
@@ -76,11 +77,18 @@ export default async function HomePage() {
 						Compare now ›
 					</Link>
 				</div>
-				{/* Hero image placeholder */}
-				<div className="mx-auto mt-14 flex h-[400px] max-w-[800px] items-center justify-center rounded-2xl bg-gradient-to-br from-[#2A2A2D] to-[#3A3A3D]">
-					<span className="text-[120px] font-extrabold tracking-[-4px] text-white/[0.06]">
-						TESLA
-					</span>
+				{/* Hero image */}
+				<div className="mx-auto mt-14 max-w-[800px]">
+					<VehicleImage
+						src="/images/vehicles/hero-lineup.png"
+						alt="Tesla Model 3, Model Y, Model S, Model X lineup"
+						width={1600}
+						height={800}
+						className="h-auto w-full rounded-2xl"
+						fallbackClassName="flex h-[400px] w-full items-center justify-center rounded-2xl bg-gradient-to-br from-[#2A2A2D] to-[#3A3A3D]"
+						fallbackLabel="TESLA"
+						priority
+					/>
 				</div>
 			</section>
 
@@ -179,21 +187,21 @@ export default async function HomePage() {
 								</span>
 							</div>
 
-							{/* Image placeholder */}
-							<div
-								className={`mt-auto flex h-[240px] w-[400px] items-center justify-center rounded-t-xl ${
-									isDark
-										? 'bg-gradient-to-br from-[#2A2A2D] to-[#3A3A3D]'
-										: 'bg-gradient-to-br from-[#E8E8ED] to-[#D2D2D7]'
-								}`}
-							>
-								<span
-									className={`text-[80px] font-extrabold tracking-[-3px] ${
-										isDark ? 'text-white/[0.06]' : 'text-black/[0.06]'
+							{/* Model tile image */}
+							<div className="mt-auto w-full max-w-[400px]">
+								<VehicleImage
+									src={`/images/vehicles/${item.model.slug}-tile.png`}
+									alt={`Tesla ${item.model.name}`}
+									width={800}
+									height={480}
+									className="h-auto w-full rounded-t-xl object-contain"
+									fallbackClassName={`flex h-[240px] w-full items-center justify-center rounded-t-xl ${
+										isDark
+											? 'bg-gradient-to-br from-[#2A2A2D] to-[#3A3A3D]'
+											: 'bg-gradient-to-br from-[#E8E8ED] to-[#D2D2D7]'
 									}`}
-								>
-									{item.model.name.replace('Model ', '')}
-								</span>
+									fallbackLabel={item.model.name.replace('Model ', '')}
+								/>
 							</div>
 						</Link>
 					)

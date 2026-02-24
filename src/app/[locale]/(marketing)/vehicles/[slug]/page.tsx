@@ -12,6 +12,7 @@ import { formatPrice, generateCompareSlug } from '@/lib/vehicle-utils'
 import { getOgImageUrl } from '@/lib/metadata'
 import { AdSensePlacement } from '@/components/ads/adsense-placement'
 import { RelatedContent } from '@/components/tesla/related-content'
+import { VehicleImage } from '@/components/tesla/vehicle-image'
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>
@@ -94,6 +95,18 @@ export default async function VehicleDetailPage({ params }: Props) {
             <span className="font-semibold">{formatPrice(vehicle.effectivePrice)}</span>
           </p>
         )}
+        <div className="mt-8 overflow-hidden rounded-2xl bg-[#F5F5F7]">
+          <VehicleImage
+            src={`/images/vehicles/${vehicle.slug}.png`}
+            alt={vehicle.title}
+            width={1000}
+            height={500}
+            className="h-auto w-full object-contain p-6"
+            fallbackClassName="flex h-[280px] w-full items-center justify-center"
+            fallbackLabel={String(vehicle.year)}
+            priority
+          />
+        </div>
       </header>
 
       {/* Key Specs */}
