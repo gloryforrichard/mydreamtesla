@@ -6,6 +6,7 @@ import { useNavbarLinks } from '@/config/navbar-config';
 import { useScroll } from '@/hooks/use-scroll';
 import { LocaleLink, useLocalePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface NavBarProps {
   scroll?: boolean;
@@ -29,11 +30,16 @@ export function Navbar({ scroll }: NavBarProps) {
     >
       <nav className="mx-auto hidden h-12 max-w-[1024px] items-center justify-between px-[22px] lg:flex">
         {/* Logo */}
-        <LocaleLink
-          href="/"
-          className="text-[16px] font-bold tracking-[-0.3px] text-[#1D1D1F]"
-        >
-          MyDreamTesla
+        <LocaleLink href="/" className="flex items-center">
+          <Image
+            src="/navbar-logo.png"
+            alt="MyDreamTesla"
+            width={140}
+            height={32}
+            className="h-7 w-auto"
+            style={{ mixBlendMode: 'multiply' }}
+            priority
+          />
         </LocaleLink>
 
         <div className="flex items-center gap-3">
