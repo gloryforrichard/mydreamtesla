@@ -2,13 +2,13 @@
  * Send a message to Feishu via webhook. Generic method that accepts any valid Feishu webhook payload.
  * @param body Message body (e.g. { msg_type: 'text', content: { text: '...' } })
  */
-export async function sendMessage(body: Record<string, unknown>): Promise<void> {
+export async function sendMessage(
+  body: Record<string, unknown>
+): Promise<void> {
   const webhookUrl = process.env.FEISHU_WEBHOOK_URL;
 
   if (!webhookUrl) {
-    console.warn(
-      'FEISHU_WEBHOOK_URL is not set, skipping Feishu notification'
-    );
+    console.warn('FEISHU_WEBHOOK_URL is not set, skipping Feishu notification');
     return;
   }
 

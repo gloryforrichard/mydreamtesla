@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 
 export type OptionValue = string | number;
 
@@ -11,7 +11,7 @@ export interface OptionObject {
 export type OptionType = OptionValue | OptionObject;
 
 export interface CustomSwitchProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   value?: OptionValue;
   onChange?: (value: OptionValue) => void;
   options: OptionType[];
@@ -31,8 +31,8 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
   (
     {
       options,
-      valueKey = "value",
-      labelKey = "label",
+      valueKey = 'value',
+      labelKey = 'label',
       value,
       onChange,
       radioClassName,
@@ -41,26 +41,26 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
       highlighterStyle: customHighlighterStyle,
       ...props
     },
-    ref,
+    ref
   ) => {
     const getOptionValue = React.useCallback(
       (option: OptionType): OptionValue => {
-        if (typeof option === "string" || typeof option === "number") {
+        if (typeof option === 'string' || typeof option === 'number') {
           return option;
         }
         return (option as OptionObject)[valueKey] as OptionValue;
       },
-      [valueKey],
+      [valueKey]
     );
 
     const getOptionLabel = React.useCallback(
       (option: OptionType): string => {
-        if (typeof option === "string" || typeof option === "number") {
+        if (typeof option === 'string' || typeof option === 'number') {
           return String(option);
         }
         return String((option as OptionObject)[labelKey]);
       },
-      [labelKey],
+      [labelKey]
     );
 
     const memoizedOptions = React.useMemo(
@@ -69,16 +69,16 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
           label: getOptionLabel(option),
           value: getOptionValue(option),
         })),
-      [options, getOptionValue, getOptionLabel],
+      [options, getOptionValue, getOptionLabel]
     );
 
     const [activeIndex, setActiveIndex] = React.useState(() => {
       const index = memoizedOptions.findIndex(
-        (option) => option.value === value,
+        (option) => option.value === value
       );
       if (index === -1) {
         console.warn(
-          `FancySwitch: No option found for value "${value}". Defaulting to first option.`,
+          `FancySwitch: No option found for value "${value}". Defaulting to first option.`
         );
         return 0;
       }
@@ -87,7 +87,7 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
 
     React.useEffect(() => {
       const newIndex = memoizedOptions.findIndex(
-        (option) => option.value === value,
+        (option) => option.value === value
       );
       if (newIndex !== -1 && newIndex !== activeIndex) {
         setActiveIndex(newIndex);
@@ -97,7 +97,7 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
     const [highlighterStyle, setHighlighterStyle] = React.useState({
       height: 0,
       width: 0,
-      transform: "translate(0, 0)",
+      transform: 'translate(0, 0)',
     });
 
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -159,14 +159,14 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
       (currentIndex: number) => {
         return (currentIndex + 1) % options.length;
       },
-      [options.length],
+      [options.length]
     );
 
     const getPreviousOption = React.useCallback(
       (currentIndex: number) => {
         return (currentIndex - 1 + options.length) % options.length;
       },
-      [options.length],
+      [options.length]
     );
 
     const handleChange = React.useCallback(
@@ -175,7 +175,7 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
         setActiveIndex(index);
         onChange?.(memoizedOptions[index].value);
       },
-      [memoizedOptions, onChange],
+      [memoizedOptions, onChange]
     );
 
     const goToNext = React.useCallback(() => {
@@ -191,7 +191,7 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
     React.useImperativeHandle(
       ref,
       () => containerRef.current as HTMLDivElement,
-      [],
+      []
     );
 
     React.useEffect(() => {
@@ -208,19 +208,19 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
           props.onKeyDown?.(e);
 
           const currentIndex = radioRefs.current.findIndex(
-            (ref) => ref === document.activeElement,
+            (ref) => ref === document.activeElement
           );
           if (currentIndex === -1) return;
 
           if (!e.defaultPrevented) {
             switch (e.key) {
-              case "ArrowDown":
-              case "ArrowRight":
+              case 'ArrowDown':
+              case 'ArrowRight':
                 e.preventDefault();
                 goToNext();
                 break;
-              case "ArrowUp":
-              case "ArrowLeft":
+              case 'ArrowUp':
+              case 'ArrowLeft':
                 e.preventDefault();
                 goToPrevious();
                 break;
@@ -233,10 +233,10 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
         <div
           className={highlighterClassName}
           style={{
-            position: "absolute",
-            transitionProperty: "all",
-            transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-            transitionDuration: "300ms",
+            position: 'absolute',
+            transitionProperty: 'all',
+            transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            transitionDuration: '300ms',
             ...highlighterStyle,
             ...customHighlighterStyle,
           }}
@@ -257,7 +257,7 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
             tabIndex={index === activeIndex ? 0 : -1}
             onClick={() => handleChange(index)}
             className={radioClassName}
-            {...(index === activeIndex ? { "data-checked": true } : {})}
+            {...(index === activeIndex ? { 'data-checked': true } : {})}
             aria-label={`${option.label} option`}
           >
             {option.label}
@@ -267,14 +267,14 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
         <div
           aria-live="polite"
           style={{
-            position: "absolute",
-            width: "1px",
-            height: "1px",
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
             padding: 0,
-            margin: "-1px",
-            overflow: "hidden",
-            clip: "rect(0, 0, 0, 0)",
-            whiteSpace: "nowrap",
+            margin: '-1px',
+            overflow: 'hidden',
+            clip: 'rect(0, 0, 0, 0)',
+            whiteSpace: 'nowrap',
             borderWidth: 0,
           }}
         >
@@ -282,9 +282,9 @@ export const CustomSwitch = React.forwardRef<HTMLDivElement, CustomSwitchProps>(
         </div>
       </div>
     );
-  },
+  }
 );
 
-CustomSwitch.displayName = "CustomSwitch";
+CustomSwitch.displayName = 'CustomSwitch';
 
 export default CustomSwitch;

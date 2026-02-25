@@ -8,14 +8,14 @@
  * Usage: <JsonLd data={buildCarJsonLd(vehicle, modelName)} />
  */
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
-	// JSON.stringify is inherently safe for script[type=application/ld+json]
-	// because JSON encoding escapes all special characters (< > & etc.)
-	const jsonString = JSON.stringify(data)
+  // JSON.stringify is inherently safe for script[type=application/ld+json]
+  // because JSON encoding escapes all special characters (< > & etc.)
+  const jsonString = JSON.stringify(data);
 
-	return (
-		<script
-			type="application/ld+json"
-			dangerouslySetInnerHTML={{ __html: jsonString }}
-		/>
-	)
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: jsonString }}
+    />
+  );
 }

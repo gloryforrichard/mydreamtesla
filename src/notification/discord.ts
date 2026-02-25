@@ -6,7 +6,9 @@ import { getBaseUrl } from '@/lib/urls/urls';
  * Send a message to Discord via webhook. Generic method that accepts any valid Discord webhook payload.
  * @param body Message body (Discord webhook payload, e.g. { content }, or { embeds }, etc.)
  */
-export async function sendMessage(body: Record<string, unknown>): Promise<void> {
+export async function sendMessage(
+  body: Record<string, unknown>
+): Promise<void> {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 
   if (!webhookUrl) {
@@ -90,28 +92,32 @@ export async function sendCreditDistributionMessage(
   processedCount: number,
   errorCount: number
 ): Promise<void> {
-    try {
-      const message = {
-        username: `${defaultMessages.Metadata.name} Bot`,
-        avatar_url: `${getBaseUrl()}${websiteConfig.metadata?.images?.logoLight}`,
-        embeds: [
-          {
-            title: '🎉 Credit Distribution',
-            color: 0x4caf50, // Green color
-            fields: [
-              { name: 'Users', value: usersCount.toString(), inline: true },
-              { name: 'Processed', value: processedCount.toString(), inline: true },
-              { name: 'Errors', value: errorCount.toString(), inline: true },
-            ],
-            timestamp: new Date().toISOString(),
-          },
-        ],
-      };
-      await sendMessage(message);
-      console.log(
-        `<< Successfully sent Discord notification for credit distribution`
-      );
-    } catch (error) {
-      console.error('<< Failed to send Discord notification:', error);
-    }
+  try {
+    const message = {
+      username: `${defaultMessages.Metadata.name} Bot`,
+      avatar_url: `${getBaseUrl()}${websiteConfig.metadata?.images?.logoLight}`,
+      embeds: [
+        {
+          title: '🎉 Credit Distribution',
+          color: 0x4caf50, // Green color
+          fields: [
+            { name: 'Users', value: usersCount.toString(), inline: true },
+            {
+              name: 'Processed',
+              value: processedCount.toString(),
+              inline: true,
+            },
+            { name: 'Errors', value: errorCount.toString(), inline: true },
+          ],
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    };
+    await sendMessage(message);
+    console.log(
+      `<< Successfully sent Discord notification for credit distribution`
+    );
+  } catch (error) {
+    console.error('<< Failed to send Discord notification:', error);
+  }
 }

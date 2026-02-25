@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export function Logo({ className }: { className?: string }) {
   const { theme } = useTheme();
@@ -14,7 +14,7 @@ export function Logo({ className }: { className?: string }) {
 
   // During server-side rendering and initial client render, always use logoLight
   // This prevents hydration mismatch
-  const logo = mounted && theme === "dark" ? logoDark : logoLight;
+  const logo = mounted && theme === 'dark' ? logoDark : logoLight;
 
   // Only show theme-dependent UI after hydration to prevent mismatch
   useEffect(() => {
@@ -28,7 +28,7 @@ export function Logo({ className }: { className?: string }) {
       title="Logo"
       width={96}
       height={96}
-      className={cn("size-8 rounded-md", className)}
+      className={cn('size-8 rounded-md', className)}
     />
   );
 }

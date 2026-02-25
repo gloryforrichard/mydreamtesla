@@ -1,5 +1,5 @@
 // @ts-nocheck
-"use client";
+'use client';
 
 import {
   Select,
@@ -7,11 +7,11 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { DEFAULT_SORT, type SortFilterItem } from "@/lib/constants";
-import { createUrl } from "@/lib/utils";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+} from '@/components/ui/select';
+import { DEFAULT_SORT, type SortFilterItem } from '@/lib/constants';
+import { createUrl } from '@/lib/utils';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export type SortListProps = {
   sortList: SortFilterItem[];
@@ -21,12 +21,12 @@ export function SortListDesktop({ sortList }: SortListProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState('');
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const activeItem = sortList.find(
-      (item) => searchParams.get("sort") === item.slug,
+      (item) => searchParams.get('sort') === item.slug
     );
     if (activeItem) {
       setActive(activeItem.slug);
@@ -34,13 +34,13 @@ export function SortListDesktop({ sortList }: SortListProps) {
   }, [pathname, sortList, searchParams]);
 
   const generateUrl = (slug: string) => {
-    const q = searchParams.get("q");
+    const q = searchParams.get('q');
     return createUrl(
       pathname,
       new URLSearchParams({
         ...(q && { q }),
         ...(slug && { sort: slug }),
-      }),
+      })
     );
   };
 

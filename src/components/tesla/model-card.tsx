@@ -1,10 +1,10 @@
-import Link from 'next/link'
-import type { TeslaModel } from '@/lib/vehicle-utils'
-import { VehicleImage } from './vehicle-image'
+import Link from 'next/link';
+import type { TeslaModel } from '@/lib/vehicle-utils';
+import { VehicleImage } from './vehicle-image';
 
 interface ModelCardProps {
-  model: TeslaModel
-  vehicleCount?: number
+  model: TeslaModel;
+  vehicleCount?: number;
 }
 
 export function ModelCard({ model, vehicleCount }: ModelCardProps) {
@@ -47,5 +47,5 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
         </div>
       </div>
     </Link>
-  )
+  );
 }

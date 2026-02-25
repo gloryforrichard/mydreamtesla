@@ -215,11 +215,14 @@ export interface AuthConfig {
 
 export interface I18nConfig {
   defaultLocale: string;
-  locales: Record<string, {
-    flag?: string;
-    name: string;
-    hreflang?: string;
-  }>;
+  locales: Record<
+    string,
+    {
+      flag?: string;
+      name: string;
+      hreflang?: string;
+    }
+  >;
 }
 
 export interface BlogConfig {

@@ -1,26 +1,26 @@
 // @ts-nocheck
-"use client";
+'use client';
 
-import { useTheme } from "next-themes";
-import { useMemo } from "react";
-import React from "react";
+import { useTheme } from 'next-themes';
+import { useMemo } from 'react';
+import React from 'react';
 
 // if directly import, frontend error: document is not defined
 // import { SimpleMdeReact } from "react-simplemde-editor";
 // but if dynamic import, no error reported
-import dynamic from "next/dynamic";
-const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), {
+import dynamic from 'next/dynamic';
+const SimpleMdeReact = dynamic(() => import('react-simplemde-editor'), {
   ssr: false,
 });
 
 // if import SimpleMDE from react-simplemde-editor, SimpleMDE.Options can't be found
 // import SimpleMDE from "react-simplemde-editor";
 // but import type SimpleMDE from "easymde" is ok
-import type SimpleMDE from "easymde";
+import type SimpleMDE from 'easymde';
 
 // import this css to style the editor
-import "@/styles/mde.css";
-import "easymde/dist/easymde.min.css";
+import '@/styles/mde.css';
+import 'easymde/dist/easymde.min.css';
 
 interface CustomMdeProps {
   value: string;
@@ -48,32 +48,32 @@ const CustomMde = React.forwardRef<HTMLDivElement, CustomMdeProps>(
         status: false,
         autofocus: false,
         spellChecker: false,
-        placeholder: "Enter your content here...",
+        placeholder: 'Enter your content here...',
         toolbar: [
-          "heading",
-          "bold",
-          "italic",
-          "strikethrough",
-          "code",
-          "quote",
-          "unordered-list",
-          "ordered-list",
-          "link",
-          "preview",
-          "guide",
+          'heading',
+          'bold',
+          'italic',
+          'strikethrough',
+          'code',
+          'quote',
+          'unordered-list',
+          'ordered-list',
+          'link',
+          'preview',
+          'guide',
         ],
         previewClass: [
-          "prose",
-          "prose-slate",
-          "dark:prose-invert",
-          "bg-background",
-          "text-foreground",
+          'prose',
+          'prose-slate',
+          'dark:prose-invert',
+          'bg-background',
+          'text-foreground',
         ],
       } as SimpleMDE.Options;
     }, []);
 
     return (
-      <div ref={ref} data-theme={theme} style={{ maxWidth: "none" }}>
+      <div ref={ref} data-theme={theme} style={{ maxWidth: 'none' }}>
         <SimpleMdeReact
           options={mdeOptions}
           value={value}
@@ -85,6 +85,6 @@ const CustomMde = React.forwardRef<HTMLDivElement, CustomMdeProps>(
   }
 );
 
-CustomMde.displayName = "CustomMde";
+CustomMde.displayName = 'CustomMde';
 
 export default CustomMde;

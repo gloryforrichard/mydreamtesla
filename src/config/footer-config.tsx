@@ -21,7 +21,10 @@ export function useFooterLinks(): NestedMenuItem[] {
     {
       title: 'Compare',
       items: [
-        { title: 'Model 3 vs Y', href: '/compare/model-3-2025-long-range-awd-vs-model-3-2025-performance-awd' },
+        {
+          title: 'Model 3 vs Y',
+          href: '/compare/model-3-2025-long-range-awd-vs-model-3-2025-performance-awd',
+        },
         { title: 'All Comparisons', href: Routes.Compare },
       ],
     },
@@ -29,7 +32,10 @@ export function useFooterLinks(): NestedMenuItem[] {
       title: 'Resources',
       items: [
         { title: 'Blog', href: Routes.Blog },
-        { title: 'Tax Credit Guide', href: '/blog/tesla-federal-tax-credit-guide-2025' },
+        {
+          title: 'Tax Credit Guide',
+          href: '/blog/tesla-federal-tax-credit-guide-2025',
+        },
       ],
     },
     {

@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export interface FilterItemDesktopProps {
   title: string;
@@ -19,7 +19,7 @@ export default function FilterItemDesktop({
       {/* show in desktop, wrapped in Link and Button and show as Button */}
       <Button
         asChild
-        variant={active ? "default" : "outline"}
+        variant={active ? 'default' : 'outline'}
         size="sm"
         className="px-3 py-3"
       >

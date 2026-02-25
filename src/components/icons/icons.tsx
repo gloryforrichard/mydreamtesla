@@ -12,13 +12,13 @@ import {
   SearchIcon,
   SettingsIcon,
   TagsIcon,
-  UploadIcon
-} from "lucide-react";
-import { GitHubIcon } from "../icons/github";
-import { GoogleIcon } from "../icons/google";
-import { ProductHuntIcon } from "../icons/product-hunt";
-import { TwitterIcon } from "../icons/twitter";
-import { YouTubeIcon } from "./youtube";
+  UploadIcon,
+} from 'lucide-react';
+import { GitHubIcon } from '../icons/github';
+import { GoogleIcon } from '../icons/google';
+import { ProductHuntIcon } from '../icons/product-hunt';
+import { TwitterIcon } from '../icons/twitter';
+import { YouTubeIcon } from './youtube';
 
 export type Icon = LucideIcon;
 

@@ -10,15 +10,15 @@ import { getBaseUrl, getImageUrl, getUrlWithLocale } from './urls/urls';
  * Build OG image URL using the /api/og route
  */
 export function getOgImageUrl(params: {
-  title: string
-  subtitle?: string
-  type?: 'vehicle' | 'model' | 'compare' | 'blog' | 'default'
+  title: string;
+  subtitle?: string;
+  type?: 'vehicle' | 'model' | 'compare' | 'blog' | 'default';
 }): string {
-  const url = new URL('/api/og', getBaseUrl())
-  url.searchParams.set('title', params.title)
-  if (params.subtitle) url.searchParams.set('subtitle', params.subtitle)
-  if (params.type) url.searchParams.set('type', params.type)
-  return url.toString()
+  const url = new URL('/api/og', getBaseUrl());
+  url.searchParams.set('title', params.title);
+  if (params.subtitle) url.searchParams.set('subtitle', params.subtitle);
+  if (params.type) url.searchParams.set('type', params.type);
+  return url.toString();
 }
 
 /**
