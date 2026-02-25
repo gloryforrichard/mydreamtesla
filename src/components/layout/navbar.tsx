@@ -17,6 +17,9 @@ export function Navbar({ scroll }: NavBarProps) {
   const menuLinks = useNavbarLinks();
   const localePathname = useLocalePathname();
 
+  // 透明导航栏 = 深色背景（首页 Hero）→ Logo 和文字需要变白
+  const isDark = scroll && !scrolled;
+
   return (
     <section
       className={cn(
@@ -36,8 +39,10 @@ export function Navbar({ scroll }: NavBarProps) {
             alt="MyDreamTesla"
             width={200}
             height={52}
-            className="h-8 w-auto"
-            style={{ mixBlendMode: 'multiply' }}
+            className={cn(
+              'h-8 w-auto transition-all duration-300',
+              isDark ? 'brightness-0 invert' : ''
+            )}
             priority
           />
         </LocaleLink>
@@ -57,7 +62,8 @@ export function Navbar({ scroll }: NavBarProps) {
                   <LocaleLink
                     href={item.href || '#'}
                     className={cn(
-                      'text-[12px] font-normal text-[#1D1D1F] transition-opacity',
+                      'text-[12px] font-normal transition-all duration-300',
+                      isDark ? 'text-white' : 'text-[#1D1D1F]',
                       isActive ? 'opacity-100' : 'opacity-80 hover:opacity-100'
                     )}
                   >
@@ -72,7 +78,7 @@ export function Navbar({ scroll }: NavBarProps) {
       </nav>
 
       {/* Mobile navbar */}
-      <NavbarMobile className="lg:hidden" />
+      <NavbarMobile className="lg:hidden" dark={isDark} />
     </section>
   );
 }
