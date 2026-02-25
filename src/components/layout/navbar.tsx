@@ -17,20 +17,20 @@ export function Navbar({ scroll }: NavBarProps) {
   const menuLinks = useNavbarLinks();
   const localePathname = useLocalePathname();
 
-  // 只有实际有深色 Hero 的页面才反色：首页 + 模型详情页
+  // 有深色 Hero 的路由：首页 + 模型详情页
   const hasDarkHero =
     localePathname === '/' ||
     (localePathname.startsWith('/models/') && localePathname !== '/models');
-  const isDark = scroll && !scrolled && hasDarkHero;
+
+  // 深色导航：深色页面且尚未滚动过 Hero
+  const isDark = hasDarkHero && !scrolled;
 
   return (
     <section
       className={cn(
         'sticky inset-x-0 top-0 z-40 transition-all duration-300',
-        scroll
-          ? scrolled
-            ? 'border-b border-black/[0.06] bg-[rgba(251,251,253,0.72)] backdrop-blur-[20px] backdrop-saturate-[180%]'
-            : 'bg-transparent'
+        isDark
+          ? 'bg-[#1D1D1F]'
           : 'border-b border-black/[0.06] bg-[rgba(251,251,253,0.72)] backdrop-blur-[20px] backdrop-saturate-[180%]'
       )}
     >
