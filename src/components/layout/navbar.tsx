@@ -17,8 +17,11 @@ export function Navbar({ scroll }: NavBarProps) {
   const menuLinks = useNavbarLinks();
   const localePathname = useLocalePathname();
 
-  // 透明导航栏 = 深色背景（首页 Hero）→ Logo 和文字需要变白
-  const isDark = scroll && !scrolled;
+  // 只有实际有深色 Hero 的页面才反色：首页 + 模型详情页
+  const hasDarkHero =
+    localePathname === '/' ||
+    (localePathname.startsWith('/models/') && localePathname !== '/models');
+  const isDark = scroll && !scrolled && hasDarkHero;
 
   return (
     <section
