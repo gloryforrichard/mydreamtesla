@@ -1,6 +1,7 @@
 'use client';
 
 import { NavbarMobile } from '@/components/layout/navbar-mobile';
+import { RegionToggle } from '@/components/layout/region-toggle';
 import { useNavbarLinks } from '@/config/navbar-config';
 import { useScroll } from '@/hooks/use-scroll';
 import { LocaleLink, useLocalePathname } from '@/i18n/navigation';
@@ -35,30 +36,33 @@ export function Navbar({ scroll }: NavBarProps) {
           MyDreamTesla
         </LocaleLink>
 
-        {/* Nav links */}
-        <ul className="flex items-center gap-7">
-          {menuLinks?.map((item) => {
-            const isActive = item.href
-              ? item.href === '/'
-                ? localePathname === '/'
-                : localePathname.startsWith(item.href)
-              : false;
+        <div className="flex items-center gap-3">
+          {/* Nav links */}
+          <ul className="flex items-center gap-7">
+            {menuLinks?.map((item) => {
+              const isActive = item.href
+                ? item.href === '/'
+                  ? localePathname === '/'
+                  : localePathname.startsWith(item.href)
+                : false;
 
-            return (
-              <li key={item.href}>
-                <LocaleLink
-                  href={item.href || '#'}
-                  className={cn(
-                    'text-[12px] font-normal text-[#1D1D1F] transition-opacity',
-                    isActive ? 'opacity-100' : 'opacity-80 hover:opacity-100'
-                  )}
-                >
-                  {item.title}
-                </LocaleLink>
-              </li>
-            );
-          })}
-        </ul>
+              return (
+                <li key={item.href}>
+                  <LocaleLink
+                    href={item.href || '#'}
+                    className={cn(
+                      'text-[12px] font-normal text-[#1D1D1F] transition-opacity',
+                      isActive ? 'opacity-100' : 'opacity-80 hover:opacity-100'
+                    )}
+                  >
+                    {item.title}
+                  </LocaleLink>
+                </li>
+              );
+            })}
+          </ul>
+          <RegionToggle />
+        </div>
       </nav>
 
       {/* Mobile navbar */}

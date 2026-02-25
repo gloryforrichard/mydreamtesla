@@ -3,6 +3,7 @@
 import LocaleSelector from '@/components/layout/locale-selector';
 import { Logo } from '@/components/layout/logo';
 import { ModeSwitcherHorizontal } from '@/components/layout/mode-switcher-horizontal';
+import { RegionToggle } from '@/components/layout/region-toggle';
 import { Button, buttonVariants } from '@/components/ui/button';
 import {
   Collapsible,
@@ -148,6 +149,13 @@ function MainMobileMenu({ userLoggedIn, onLinkClicked }: MainMobileMenuProps) {
   const t = useTranslations();
   const menuLinks = useNavbarLinks();
   const localePathname = useLocalePathname();
+  const showRegionToggle =
+    localePathname === '/models' ||
+    localePathname.startsWith('/models/') ||
+    localePathname === '/vehicles' ||
+    localePathname.startsWith('/vehicles/') ||
+    localePathname === '/compare' ||
+    localePathname.startsWith('/compare/');
 
   return (
     <div
@@ -184,6 +192,12 @@ function MainMobileMenu({ userLoggedIn, onLinkClicked }: MainMobileMenuProps) {
             >
               {t('Common.signUp')}
             </LocaleLink>
+          </div>
+        )}
+
+        {showRegionToggle && (
+          <div className="w-full px-4">
+            <RegionToggle className="bg-background" />
           </div>
         )}
 

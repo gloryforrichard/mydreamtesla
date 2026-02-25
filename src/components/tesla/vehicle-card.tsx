@@ -1,13 +1,22 @@
-import Link from 'next/link'
-import { formatPrice, formatSpec, formatAcceleration } from '@/lib/vehicle-utils'
-import type { Vehicle } from '@/lib/vehicle-utils'
-import { VehicleImage } from './vehicle-image'
+'use client';
+
+import Link from 'next/link';
+import { useRegion } from '@/contexts/region-context';
+import {
+  formatRegionSpecValue,
+  getDisplayTrimName,
+} from '@/lib/vehicle-region';
+import { formatPrice } from '@/lib/vehicle-utils';
+import type { Vehicle } from '@/lib/vehicle-utils';
+import { VehicleImage } from './vehicle-image';
 
 interface VehicleCardProps {
-  vehicle: Vehicle
+  vehicle: Vehicle;
 }
 
 export function VehicleCard({ vehicle }: VehicleCardProps) {
+  const { region } = useRegion();
+
   return (
     <Link
       href={`/vehicles/${vehicle.slug}`}
@@ -29,23 +38,23 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
           {vehicle.year} · {vehicle.driveType}
         </p>
         <h3 className="mt-1 text-lg font-semibold text-[#1D1D1F]">
-          {vehicle.trimName}
+          {getDisplayTrimName(vehicle, region)}
         </h3>
         <p className="mt-2 font-mono text-xl font-bold text-[#1D1D1F]">
           {formatPrice(vehicle.basePriceMSRP)}
         </p>
         <div className="mt-4 flex items-center gap-6 border-t border-black/[0.06] pt-4 text-xs text-[#86868B]">
           <span className="font-mono font-medium text-[#1D1D1F]">
-            {formatSpec(vehicle.rangeEPA, 'mi')}
+            {formatRegionSpecValue(vehicle, 'rangeEPA', region)}
           </span>
           <span className="font-mono font-medium text-[#1D1D1F]">
-            {formatAcceleration(vehicle.acceleration060)}
+            {formatRegionSpecValue(vehicle, 'acceleration', region)}
           </span>
           <span className="font-mono font-medium text-[#1D1D1F]">
-            {formatSpec(vehicle.horsepower, 'hp')}
+            {formatRegionSpecValue(vehicle, 'horsepower', region)}
           </span>
         </div>
       </div>
     </Link>
-  )
+  );
 }

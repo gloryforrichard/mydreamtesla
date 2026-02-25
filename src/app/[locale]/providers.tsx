@@ -4,6 +4,7 @@ import { PostHogProvider } from '@/analytics/posthog-analytics';
 import { QueryProvider } from '@/components/providers/query-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { websiteConfig } from '@/config/website';
+import { RegionProvider } from '@/contexts/region-context';
 import { ThemeProvider } from 'next-themes';
 import type { ReactNode } from 'react';
 
@@ -28,14 +29,16 @@ export function Providers({ children }: ProvidersProps) {
   return (
     <PostHogProvider>
       <QueryProvider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme={defaultMode}
-          enableSystem={true}
-          disableTransitionOnChange
-        >
-          <TooltipProvider>{children}</TooltipProvider>
-        </ThemeProvider>
+        <RegionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme={defaultMode}
+            enableSystem={true}
+            disableTransitionOnChange
+          >
+            <TooltipProvider>{children}</TooltipProvider>
+          </ThemeProvider>
+        </RegionProvider>
       </QueryProvider>
     </PostHogProvider>
   );
