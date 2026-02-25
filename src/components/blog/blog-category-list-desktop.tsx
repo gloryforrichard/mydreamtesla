@@ -1,6 +1,5 @@
 'use client';
 
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { LocaleLink } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import type { BlogCategory } from '@/types';
@@ -19,48 +18,33 @@ export function BlogCategoryListDesktop({
 
   return (
     <div className="flex items-center justify-center">
-      <ToggleGroup
-        size="sm"
-        type="single"
-        value={slug || 'All'}
-        aria-label="Toggle blog category"
-        className="h-9 overflow-hidden rounded-md space-x-1 border bg-background p-1 *:h-7 *:text-muted-foreground"
-      >
-        <ToggleGroupItem
-          key="All"
-          value="All"
+      <div className="inline-flex items-center rounded-full border border-black/[0.08] bg-white/80 p-0.5 gap-0.5">
+        <LocaleLink
+          href="/blog"
           className={cn(
-            'rounded-sm px-2 cursor-pointer',
-            'data-[state=on]:bg-primary data-[state=on]:text-primary-foreground',
-            'hover:bg-accent hover:text-accent-foreground'
+            'rounded-full px-4 py-1.5 text-[12px] font-semibold transition-colors',
+            !slug
+              ? 'bg-[#1D1D1F] text-white'
+              : 'text-[#6E6E73] hover:text-[#1D1D1F]'
           )}
-          aria-label={'Toggle all blog categories'}
         >
-          <LocaleLink href={'/blog'} className="px-4">
-            <h2>{t('all')}</h2>
-          </LocaleLink>
-        </ToggleGroupItem>
-
+          {t('all')}
+        </LocaleLink>
         {categoryList.map((category) => (
-          <ToggleGroupItem
+          <LocaleLink
             key={category.slug}
-            value={category.slug}
+            href={`/blog/category/${category.slug}`}
             className={cn(
-              'rounded-sm px-2 cursor-pointer',
-              'data-[state=on]:bg-primary data-[state=on]:text-primary-foreground',
-              'hover:bg-accent hover:text-accent-foreground'
+              'rounded-full px-4 py-1.5 text-[12px] font-semibold transition-colors',
+              slug === category.slug
+                ? 'bg-[#1D1D1F] text-white'
+                : 'text-[#6E6E73] hover:text-[#1D1D1F]'
             )}
-            aria-label={`Toggle blog category of ${category.name}`}
           >
-            <LocaleLink
-              href={`/blog/category/${category.slug}`}
-              className="px-4"
-            >
-              <h2>{category.name}</h2>
-            </LocaleLink>
-          </ToggleGroupItem>
+            {category.name}
+          </LocaleLink>
         ))}
-      </ToggleGroup>
+      </div>
     </div>
   );
 }

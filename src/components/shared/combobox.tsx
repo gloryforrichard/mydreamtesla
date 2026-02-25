@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -8,17 +8,22 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+} from '@/components/ui/command';
+import {
+  Drawer,
+  DrawerContent,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { cn } from "@/lib/utils";
-import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
-import * as React from "react";
+} from '@/components/ui/popover';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { cn } from '@/lib/utils';
+import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react';
+import * as React from 'react';
 
 type FilterItem = {
   value: string;
@@ -29,7 +34,7 @@ type FilterItem = {
 // otherwise the combobox will not work
 // 2. DEFAULT_FILTER_VALUE can't be empty string,
 // otherwise the combobox doesn't show hover effect when the value is empty
-export const DEFAULT_FILTER_VALUE = "%DEFAULT_FILTER_VALUE%";
+export const DEFAULT_FILTER_VALUE = '%DEFAULT_FILTER_VALUE%';
 
 export type ResponsiveComboBoxProps = {
   filterItemList: FilterItem[];
@@ -49,12 +54,12 @@ export function ResponsiveComboBox({
   const { isDesktop } = useMediaQuery();
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState<FilterItem | null>(
-    filterItemList.find((item) => item.value === selectedValue) || null,
+    filterItemList.find((item) => item.value === selectedValue) || null
   );
 
   React.useEffect(() => {
     setSelected(
-      filterItemList.find((item) => item.value === selectedValue) || null,
+      filterItemList.find((item) => item.value === selectedValue) || null
     );
   }, [selectedValue, filterItemList]);
 
@@ -156,8 +161,8 @@ function FilterList({
             >
               <CheckIcon
                 className={cn(
-                  "mr-2 h-4 w-4",
-                  item.value === selectedValue ? "opacity-100" : "opacity-0",
+                  'mr-2 h-4 w-4',
+                  item.value === selectedValue ? 'opacity-100' : 'opacity-0'
                 )}
               />
               {item.label}

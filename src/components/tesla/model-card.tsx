@@ -1,10 +1,10 @@
-import Link from 'next/link'
-import type { TeslaModel } from '@/lib/vehicle-utils'
-import { VehicleImage } from './vehicle-image'
+import Link from 'next/link';
+import type { TeslaModel } from '@/lib/vehicle-utils';
+import { VehicleImage } from './vehicle-image';
 
 interface ModelCardProps {
-  model: TeslaModel
-  vehicleCount?: number
+  model: TeslaModel;
+  vehicleCount?: number;
 }
 
 export function ModelCard({ model, vehicleCount }: ModelCardProps) {
@@ -15,7 +15,7 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
     >
       <div className="flex aspect-[16/9] items-center justify-center overflow-hidden">
         <VehicleImage
-          src={`/images/vehicles/${model.slug}-detail.png`}
+          src={`/images/vehicles/${model.slug}-detail.jpg`}
           alt={`Tesla ${model.name}`}
           width={1200}
           height={600}
@@ -47,5 +47,5 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
         </div>
       </div>
     </Link>
-  )
+  );
 }

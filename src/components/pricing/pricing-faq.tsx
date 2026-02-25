@@ -3,8 +3,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { faqConfig } from "@/config/faq";
+} from '@/components/ui/accordion';
+import { faqConfig } from '@/config/faq';
 
 export function PricingFaq() {
   return (

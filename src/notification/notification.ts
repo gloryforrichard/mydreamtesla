@@ -16,7 +16,13 @@ export async function sendPaymentNotification(
   userName: string,
   amount: number
 ): Promise<void> {
-  console.log('sendPaymentNotification', sessionId, customerId, userName, amount);
+  console.log(
+    'sendPaymentNotification',
+    sessionId,
+    customerId,
+    userName,
+    amount
+  );
 
   // Send message to Discord channel
   await sendPaymentMessageToDiscord(sessionId, customerId, userName, amount);
@@ -36,11 +42,24 @@ export async function sendCreditDistributionNotification(
   processedCount: number,
   errorCount: number
 ): Promise<void> {
-  console.log('sendCreditDistributionNotification', usersCount, processedCount, errorCount);
+  console.log(
+    'sendCreditDistributionNotification',
+    usersCount,
+    processedCount,
+    errorCount
+  );
 
   // Send message to Discord channel
-  await sendCreditDistributionMessageToDiscord(usersCount, processedCount, errorCount);
+  await sendCreditDistributionMessageToDiscord(
+    usersCount,
+    processedCount,
+    errorCount
+  );
 
   // Send message to Feishu group
-  await sendCreditDistributionMessageToFeishu(usersCount, processedCount, errorCount);
+  await sendCreditDistributionMessageToFeishu(
+    usersCount,
+    processedCount,
+    errorCount
+  );
 }

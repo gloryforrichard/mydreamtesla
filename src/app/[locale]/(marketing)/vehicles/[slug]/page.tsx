@@ -1,59 +1,65 @@
-import { notFound } from 'next/navigation'
-import type { Metadata } from 'next'
-import { getVehicleBySlug, getAllModels, getVehiclesForModel } from '@/lib/db/queries'
-import { KeySpecsGrid } from '@/components/tesla/key-specs-grid'
-import { SpecTable } from '@/components/tesla/spec-table'
-import { ProsAndCons } from '@/components/tesla/pros-and-cons'
-import { DataDisclaimer } from '@/components/tesla/data-disclaimer'
-import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav'
-import { JsonLd } from '@/components/seo/json-ld'
-import { buildCarJsonLd } from '@/lib/seo/structured-data'
-import { formatPrice, generateCompareSlug } from '@/lib/vehicle-utils'
-import { getOgImageUrl } from '@/lib/metadata'
-import { AdSensePlacement } from '@/components/ads/adsense-placement'
-import { RelatedContent } from '@/components/tesla/related-content'
-import { VehicleImage } from '@/components/tesla/vehicle-image'
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import {
+  getVehicleBySlug,
+  getAllModels,
+  getVehiclesForModel,
+} from '@/lib/db/queries';
+import { KeySpecsGrid } from '@/components/tesla/key-specs-grid';
+import { SpecTable } from '@/components/tesla/spec-table';
+import { ProsAndCons } from '@/components/tesla/pros-and-cons';
+import { DataDisclaimer } from '@/components/tesla/data-disclaimer';
+import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav';
+import { JsonLd } from '@/components/seo/json-ld';
+import { buildCarJsonLd } from '@/lib/seo/structured-data';
+import { formatPrice, generateCompareSlug } from '@/lib/vehicle-utils';
+import { getOgImageUrl } from '@/lib/metadata';
+import { AdSensePlacement } from '@/components/ads/adsense-placement';
+import { RelatedContent } from '@/components/tesla/related-content';
+import { VehicleImage } from '@/components/tesla/vehicle-image';
+import { VehicleRegionNotice } from '@/components/tesla/vehicle-region-notice';
 
 interface Props {
-  params: Promise<{ slug: string; locale: string }>
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const vehicle = await getVehicleBySlug(slug)
-  if (!vehicle) return {}
+  const { slug } = await params;
+  const vehicle = await getVehicleBySlug(slug);
+  if (!vehicle) return {};
 
-  const title = vehicle.seoTitle ?? `${vehicle.title} Specs & Review | MyDreamTesla`
+  const title =
+    vehicle.seoTitle ?? `${vehicle.title} Specs & Review | MyDreamTesla`;
   const description =
     vehicle.seoDescription ??
-    `Complete specifications for the ${vehicle.title}. Range: ${vehicle.rangeEPA ?? 'N/A'} mi, 0-60: ${vehicle.acceleration060 ?? 'N/A'}s, Price: ${formatPrice(vehicle.basePriceMSRP)}.`
+    `Complete specifications for the ${vehicle.title}. Range: ${vehicle.rangeEPA ?? 'N/A'} mi, 0-60: ${vehicle.acceleration060 ?? 'N/A'}s, Price: ${formatPrice(vehicle.basePriceMSRP)}.`;
 
   const ogImage = getOgImageUrl({
     title: vehicle.title,
     subtitle: `Range: ${vehicle.rangeEPA ?? 'N/A'} mi · ${formatPrice(vehicle.basePriceMSRP)}`,
     type: 'vehicle',
-  })
+  });
 
   return {
     title,
     description,
     openGraph: { images: [ogImage] },
     twitter: { card: 'summary_large_image', images: [ogImage] },
-  }
+  };
 }
 
 export default async function VehicleDetailPage({ params }: Props) {
-  const { slug } = await params
-  const vehicle = await getVehicleBySlug(slug)
+  const { slug } = await params;
+  const vehicle = await getVehicleBySlug(slug);
 
-  if (!vehicle) notFound()
+  if (!vehicle) notFound();
 
-  const allModels = await getAllModels()
-  const model = allModels.find((m) => m.id === vehicle.modelId)
-  const modelName = model?.name ?? 'Tesla'
+  const allModels = await getAllModels();
+  const model = allModels.find((m) => m.id === vehicle.modelId);
+  const modelName = model?.name ?? 'Tesla';
 
-  const siblings = model ? await getVehiclesForModel(model.id) : []
-  const otherTrims = siblings.filter((v) => v.id !== vehicle.id).slice(0, 4)
+  const siblings = model ? await getVehiclesForModel(model.id) : [];
+  const otherTrims = siblings.filter((v) => v.id !== vehicle.id).slice(0, 4);
 
   const relatedItems = [
     ...otherTrims.map((other) => ({
@@ -64,7 +70,7 @@ export default async function VehicleDetailPage({ params }: Props) {
       label: `View ${other.title}`,
       href: `/vehicles/${other.slug}`,
     })),
-  ]
+  ];
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
@@ -73,7 +79,9 @@ export default async function VehicleDetailPage({ params }: Props) {
         items={[
           { label: 'Home', href: '/' },
           { label: 'Models', href: '/models' },
-          ...(model ? [{ label: `Tesla ${model.name}`, href: `/models/${model.slug}` }] : []),
+          ...(model
+            ? [{ label: `Tesla ${model.name}`, href: `/models/${model.slug}` }]
+            : []),
           { label: vehicle.title },
         ]}
       />
@@ -91,13 +99,17 @@ export default async function VehicleDetailPage({ params }: Props) {
         </p>
         {vehicle.federalTaxCredit && (
           <p className="mt-1 text-[14px] text-[#2D8A39]">
-            After ${vehicle.federalTaxCredit.toLocaleString()} federal tax credit:{' '}
-            <span className="font-semibold">{formatPrice(vehicle.effectivePrice)}</span>
+            After ${vehicle.federalTaxCredit.toLocaleString()} federal tax
+            credit:{' '}
+            <span className="font-semibold">
+              {formatPrice(vehicle.effectivePrice)}
+            </span>
           </p>
         )}
+        <VehicleRegionNotice vehicle={vehicle} />
         <div className="mt-8 overflow-hidden rounded-2xl bg-[#F5F5F7]">
           <VehicleImage
-            src={`/images/vehicles/${vehicle.slug}.png`}
+            src={`/images/vehicles/${vehicle.slug}.jpg`}
             alt={vehicle.title}
             width={1000}
             height={500}
@@ -149,7 +161,11 @@ export default async function VehicleDetailPage({ params }: Props) {
         </section>
       )}
 
-      <AdSensePlacement format="leaderboard" slot="vehicle-detail-1" className="my-8" />
+      <AdSensePlacement
+        format="leaderboard"
+        slot="vehicle-detail-1"
+        className="my-8"
+      />
 
       <DataDisclaimer lastUpdated={vehicle.lastUpdated} />
 
@@ -161,5 +177,5 @@ export default async function VehicleDetailPage({ params }: Props) {
         />
       )}
     </main>
-  )
+  );
 }

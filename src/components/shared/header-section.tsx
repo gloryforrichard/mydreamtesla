@@ -1,13 +1,13 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 interface HeaderSectionProps {
   id?: string;
   label?: string;
-  labelAs?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+  labelAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
   title?: string;
-  titleAs?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
   subtitle?: string;
-  subtitleAs?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+  subtitleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
   className?: string;
 }
 
@@ -17,11 +17,11 @@ interface HeaderSectionProps {
 export function HeaderSection({
   id,
   label,
-  labelAs = "p",
+  labelAs = 'p',
   title,
-  titleAs = "p",
+  titleAs = 'p',
   subtitle,
-  subtitleAs = "p",
+  subtitleAs = 'p',
   className,
 }: HeaderSectionProps) {
   const LabelComponent = labelAs;
@@ -30,7 +30,7 @@ export function HeaderSection({
   return (
     <div
       id={id}
-      className={cn("flex flex-col items-center text-center", className)}
+      className={cn('flex flex-col items-center text-center', className)}
     >
       {label ? (
         <LabelComponent className="uppercase tracking-wider text-[#86868B] font-semibold">

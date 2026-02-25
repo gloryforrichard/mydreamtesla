@@ -43,7 +43,8 @@ export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
       <div className="border-t border-[#D2D2D7]">
         <div className="mx-auto flex max-w-[1024px] items-center justify-between px-[22px] py-4">
           <span className="text-[12px] text-[#86868B]">
-            &copy; {new Date().getFullYear()} MyDreamTesla. Not affiliated with Tesla, Inc.
+            &copy; {new Date().getFullYear()} MyDreamTesla. Not affiliated with
+            Tesla, Inc.
           </span>
           <span className="text-[12px] text-[#86868B]">
             Data from Tesla.com and public records.

@@ -1,7 +1,7 @@
-import { InfoIcon } from 'lucide-react'
+import { InfoIcon } from 'lucide-react';
 
 interface DataDisclaimerProps {
-  lastUpdated?: Date | null
+  lastUpdated?: Date | null;
 }
 
 export function DataDisclaimer({ lastUpdated }: DataDisclaimerProps) {
@@ -11,7 +11,7 @@ export function DataDisclaimer({ lastUpdated }: DataDisclaimerProps) {
         month: 'long',
         day: 'numeric',
       }).format(lastUpdated)
-    : null
+    : null;
 
   return (
     <div className="rounded-lg border border-amber-200 bg-amber-50/50 px-4 py-3">
@@ -19,8 +19,8 @@ export function DataDisclaimer({ lastUpdated }: DataDisclaimerProps) {
         <InfoIcon className="mt-0.5 size-4 shrink-0" />
         <div>
           <p>
-            Data is for reference only. Specifications, pricing, and availability
-            may vary. Please verify with{' '}
+            Data is for reference only. Specifications, pricing, and
+            availability may vary. Please verify with{' '}
             <a
               href="https://www.tesla.com"
               target="_blank"
@@ -39,5 +39,5 @@ export function DataDisclaimer({ lastUpdated }: DataDisclaimerProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

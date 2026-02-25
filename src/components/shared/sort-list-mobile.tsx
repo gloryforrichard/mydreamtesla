@@ -1,13 +1,13 @@
 // @ts-nocheck
-"use client";
+'use client';
 
-import { DEFAULT_SORT, type SortFilterItem } from "@/lib/constants";
-import { createUrl } from "@/lib/utils";
-import { ListChecksIcon } from "lucide-react";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Drawer } from "vaul";
-import FilterItemMobile from "./filter-item-mobile";
+import { DEFAULT_SORT, type SortFilterItem } from '@/lib/constants';
+import { createUrl } from '@/lib/utils';
+import { ListChecksIcon } from 'lucide-react';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { Drawer } from 'vaul';
+import FilterItemMobile from './filter-item-mobile';
 
 export type SortListMobileProps = {
   sortList: SortFilterItem[];
@@ -17,12 +17,12 @@ export function SortListMobile({ sortList }: SortListMobileProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState('');
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const activeItem = sortList.find(
-      (item) => searchParams.get("sort") === item.slug,
+      (item) => searchParams.get('sort') === item.slug
     );
     if (activeItem) {
       setActive(activeItem.slug);
@@ -32,13 +32,13 @@ export function SortListMobile({ sortList }: SortListMobileProps) {
   const closeDrawer = () => setOpen(false);
 
   const generateUrl = (slug: string) => {
-    const q = searchParams.get("q");
+    const q = searchParams.get('q');
     return createUrl(
       pathname,
       new URLSearchParams({
         ...(q && { q }),
         ...(slug && { sort: slug }),
-      }),
+      })
     );
   };
 

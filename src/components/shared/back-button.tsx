@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { ArrowLeftIcon } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { ArrowLeftIcon } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface BackButtonProps {
   className?: string;
@@ -21,7 +21,7 @@ export default function BackButton({ className }: BackButtonProps) {
     <Button
       size="lg"
       variant="outline"
-      className={cn("inline-flex items-center gap-2 group", className)}
+      className={cn('inline-flex items-center gap-2 group', className)}
       asChild
     >
       <Link href="#" onClick={handleBack}>

@@ -55,7 +55,10 @@ export default async function LocaleLayout({
         <PromotekitScript />
         <AdSenseScript />
         {process.env.NODE_ENV === 'development' && (
-          <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async />
+          <script
+            src="https://mcp.figma.com/mcp/html-to-design/capture.js"
+            async
+          />
         )}
       </head>
       <body

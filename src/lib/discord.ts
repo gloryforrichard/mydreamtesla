@@ -9,14 +9,14 @@ export async function sendMessageToDiscord(
   sessionId: string,
   customerId: string,
   userName: string,
-  amount: number,
+  amount: number
 ): Promise<void> {
   try {
     const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 
     if (!webhookUrl) {
       console.info(
-        "DISCORD_WEBHOOK_URL is not set, skipping Discord notification",
+        'DISCORD_WEBHOOK_URL is not set, skipping Discord notification'
       );
       return;
     }
@@ -24,30 +24,30 @@ export async function sendMessageToDiscord(
     // Format the message
     const message = {
       // You can customize these values later
-      username: "MkDirs Bot",
-      avatar_url: "https://mkdirs.com/logo.png",
+      username: 'MkDirs Bot',
+      avatar_url: 'https://mkdirs.com/logo.png',
       embeds: [
         {
-          title: "🎉 New Purchase",
+          title: '🎉 New Purchase',
           color: 0x4caf50, // Green color
           fields: [
             {
-              name: "Username",
+              name: 'Username',
               value: userName,
               inline: true,
             },
             {
-              name: "Amount",
+              name: 'Amount',
               value: `$${amount.toFixed(2)}`,
               inline: true,
             },
             {
-              name: "Customer ID",
+              name: 'Customer ID',
               value: `\`${customerId}\``,
               inline: false,
             },
             {
-              name: "Session ID",
+              name: 'Session ID',
               value: `\`${sessionId}\``,
               inline: false,
             },
@@ -59,9 +59,9 @@ export async function sendMessageToDiscord(
 
     // Send the webhook request
     const response = await fetch(webhookUrl, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(message),
     });
@@ -70,15 +70,15 @@ export async function sendMessageToDiscord(
       // throw new Error(`Discord webhook request failed with status ${response.status}`);
       console.error(
         `<< Failed to send Discord notification for user ${userName}:`,
-        response,
+        response
       );
     }
 
     console.log(
-      `<< Successfully sent Discord notification for user ${userName}`,
+      `<< Successfully sent Discord notification for user ${userName}`
     );
   } catch (error) {
-    console.error("<< Failed to send Discord notification:", error);
+    console.error('<< Failed to send Discord notification:', error);
     // Don't rethrow the error to avoid interrupting the payment flow
   }
 }

@@ -1,9 +1,9 @@
 // @ts-nocheck
-"use client";
+'use client';
 
-import { SortListDesktop } from "@/components/shared/sort-list-desktop";
-import { SortListMobile } from "@/components/shared/sort-list-mobile";
-import type { SortFilterItem } from "@/lib/constants";
+import { SortListDesktop } from '@/components/shared/sort-list-desktop';
+import { SortListMobile } from '@/components/shared/sort-list-mobile';
+import type { SortFilterItem } from '@/lib/constants';
 
 export type SortFilterProps = {
   sortList: SortFilterItem[];

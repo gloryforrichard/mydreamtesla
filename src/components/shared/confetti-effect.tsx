@@ -1,14 +1,12 @@
-"use client";
+'use client';
 
-import confetti from "canvas-confetti";
-import { useEffect } from "react";
+import confetti from 'canvas-confetti';
+import { useEffect } from 'react';
 
 /**
  * https://www.kirilv.com/canvas-confetti/
  */
-export function triggerConfetti(options?: {
-  duration?: number;
-}) {
+export function triggerConfetti(options?: { duration?: number }) {
   const duration = options?.duration || 3 * 1000;
   const animationEnd = Date.now() + duration;
   const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };

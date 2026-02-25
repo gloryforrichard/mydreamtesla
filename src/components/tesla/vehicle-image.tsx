@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import { useState } from 'react'
+import Image from 'next/image';
+import { useState } from 'react';
 
 interface VehicleImageProps {
-  src: string
-  alt: string
-  width: number
-  height: number
-  fallbackLabel?: string
-  className?: string
-  fallbackClassName?: string
-  priority?: boolean
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  fallbackLabel?: string;
+  className?: string;
+  fallbackClassName?: string;
+  priority?: boolean;
 }
 
 export function VehicleImage({
@@ -24,7 +24,7 @@ export function VehicleImage({
   fallbackClassName,
   priority = false,
 }: VehicleImageProps) {
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   if (error) {
     return (
@@ -40,7 +40,7 @@ export function VehicleImage({
           </span>
         )}
       </div>
-    )
+    );
   }
 
   return (
@@ -53,5 +53,5 @@ export function VehicleImage({
       priority={priority}
       onError={() => setError(true)}
     />
-  )
+  );
 }

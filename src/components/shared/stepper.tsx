@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
-import * as React from "react";
+import { cn } from '@/lib/utils';
+import { Check } from 'lucide-react';
+import * as React from 'react';
 
 const Stepper = React.forwardRef<
   HTMLDivElement,
@@ -8,19 +8,19 @@ const Stepper = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center space-x-4", className)}
+    className={cn('flex items-center space-x-4', className)}
     {...props}
   />
 ));
-Stepper.displayName = "Stepper";
+Stepper.displayName = 'Stepper';
 
 const StepperItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & { step: number }
 >(({ className, step, ...props }, ref) => (
-  <div ref={ref} className={cn("flex items-center", className)} {...props} />
+  <div ref={ref} className={cn('flex items-center', className)} {...props} />
 ));
-StepperItem.displayName = "StepperItem";
+StepperItem.displayName = 'StepperItem';
 
 const StepperTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -29,16 +29,16 @@ const StepperTrigger = React.forwardRef<
   <button
     ref={ref}
     className={cn(
-      "flex flex-col items-center gap-4 py-4 px-4 rounded-md transition-colors",
+      'flex flex-col items-center gap-4 py-4 px-4 rounded-md transition-colors',
       active
-        ? "text-foreground"
-        : "text-muted-foreground hover:text-foreground",
-      className,
+        ? 'text-foreground'
+        : 'text-muted-foreground hover:text-foreground',
+      className
     )}
     {...props}
   />
 ));
-StepperTrigger.displayName = "StepperTrigger";
+StepperTrigger.displayName = 'StepperTrigger';
 
 const StepperIndicator = React.forwardRef<
   HTMLDivElement,
@@ -50,20 +50,20 @@ const StepperIndicator = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex items-center justify-center w-8 h-8 rounded-full transition-colors",
+      'flex items-center justify-center w-8 h-8 rounded-full transition-colors',
       completed
-        ? "text-muted-foreground bg-muted"
+        ? 'text-muted-foreground bg-muted'
         : active
-          ? "text-primary-foreground bg-primary"
-          : "text-muted-foreground bg-muted",
-      className,
+          ? 'text-primary-foreground bg-primary'
+          : 'text-muted-foreground bg-muted',
+      className
     )}
     {...props}
   >
     {completed ? <Check className="h-4 w-4" /> : children}
   </div>
 ));
-StepperIndicator.displayName = "StepperIndicator";
+StepperIndicator.displayName = 'StepperIndicator';
 
 const StepperTitle = React.forwardRef<
   HTMLParagraphElement,
@@ -71,11 +71,11 @@ const StepperTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-base font-medium leading-none", className)}
+    className={cn('text-base font-medium leading-none', className)}
     {...props}
   />
 ));
-StepperTitle.displayName = "StepperTitle";
+StepperTitle.displayName = 'StepperTitle';
 
 const StepperDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -83,11 +83,11 @@ const StepperDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("mt-1 text-sm text-muted-foreground", className)}
+    className={cn('mt-1 text-sm text-muted-foreground', className)}
     {...props}
   />
 ));
-StepperDescription.displayName = "StepperDescription";
+StepperDescription.displayName = 'StepperDescription';
 
 const StepperSeparator = React.forwardRef<
   HTMLDivElement,
@@ -96,14 +96,14 @@ const StepperSeparator = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex-1 h-[2px]",
-      completed ? "bg-primary/20" : "bg-muted",
-      className,
+      'flex-1 h-[2px]',
+      completed ? 'bg-primary/20' : 'bg-muted',
+      className
     )}
     {...props}
   />
 ));
-StepperSeparator.displayName = "StepperSeparator";
+StepperSeparator.displayName = 'StepperSeparator';
 
 export {
   Stepper,

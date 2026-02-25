@@ -321,6 +321,15 @@
   },
   "Marketing": {
     "navbar": {
+      "models": {
+        "title": "车型"
+      },
+      "compare": {
+        "title": "对比"
+      },
+      "about": {
+        "title": "支持我们"
+      },
       "features": {
         "title": "功能"
       },

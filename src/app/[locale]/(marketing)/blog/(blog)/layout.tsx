@@ -30,17 +30,20 @@ export default async function BlogListLayout({
 
   return (
     <div className="mb-16">
-      <div className="mt-8 w-full flex flex-col items-center justify-center gap-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <h1 className="text-center text-3xl font-bold tracking-tight">
+      {/* Hero header */}
+      <div className="bg-[#1D1D1F] py-16 text-center text-white">
+        <div className="mx-auto max-w-[1024px] px-[22px]">
+          <h1 className="text-[40px] font-bold leading-[1.05] tracking-[-1.5px] sm:text-[48px]">
             {t('title')}
           </h1>
-          <h2 className="text-center text-lg text-muted-foreground">
+          <p className="mt-4 text-[21px] font-light text-white/70">
             {t('subtitle')}
-          </h2>
+          </p>
         </div>
+      </div>
 
+      {/* Category filter */}
+      <div className="mt-8">
         <BlogCategoryFilter categoryList={categoryList} />
       </div>
 

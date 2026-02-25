@@ -1,21 +1,21 @@
-import type { UserButtonConfig } from "@/types";
+import type { UserButtonConfig } from '@/types';
 
 export const userButtonConfig: UserButtonConfig = {
   menus: [
     {
-      title: "Dashboard",
-      href: "/dashboard",
-      icon: "dashboard",
+      title: 'Dashboard',
+      href: '/dashboard',
+      icon: 'dashboard',
     },
     {
-      title: "Settings",
-      href: "/settings",
-      icon: "settings",
+      title: 'Settings',
+      href: '/settings',
+      icon: 'settings',
     },
     {
-      title: "Submit",
-      href: "/submit",
-      icon: "submit",
+      title: 'Submit',
+      href: '/submit',
+      icon: 'submit',
     },
   ],
 };

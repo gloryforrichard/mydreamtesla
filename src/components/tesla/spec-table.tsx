@@ -1,97 +1,225 @@
-import { formatPrice, formatSpec, formatAcceleration } from '@/lib/vehicle-utils'
-import type { Vehicle } from '@/lib/vehicle-utils'
+'use client';
+
+import { useRegion } from '@/contexts/region-context';
+import { formatRegionSpecValue, getRegionSpecMeta } from '@/lib/vehicle-region';
+import { formatPrice, formatSpec } from '@/lib/vehicle-utils';
+import type { Vehicle } from '@/lib/vehicle-utils';
 
 interface SpecTableProps {
-  vehicle: Vehicle
+  vehicle: Vehicle;
 }
 
 interface SpecRow {
-  label: string
-  value: string
+  label: string;
+  value: string;
 }
 
 interface SpecSection {
-  title: string
-  rows: SpecRow[]
+  title: string;
+  rows: SpecRow[];
 }
 
-function getSpecSections(vehicle: Vehicle): SpecSection[] {
+function getSpecSections(vehicle: Vehicle, region: 'US' | 'CA'): SpecSection[] {
+  const perfRange = getRegionSpecMeta(vehicle, 'rangeEPA', region);
+  const perfAccel = getRegionSpecMeta(vehicle, 'acceleration', region);
+  const perfTopSpeed = getRegionSpecMeta(vehicle, 'topSpeed', region);
+  const perfHp = getRegionSpecMeta(vehicle, 'horsepower', region);
+  const supercharger = getRegionSpecMeta(
+    vehicle,
+    'superchargerRateMax',
+    region
+  );
+
+  const length = getRegionSpecMeta(vehicle, 'length', region);
+  const width = getRegionSpecMeta(vehicle, 'width', region);
+  const height = getRegionSpecMeta(vehicle, 'height', region);
+  const wheelbase = getRegionSpecMeta(vehicle, 'wheelbase', region);
+  const curbWeight = getRegionSpecMeta(vehicle, 'curbWeight', region);
+  const groundClearance = getRegionSpecMeta(vehicle, 'groundClearance', region);
+  const cargoVolume = getRegionSpecMeta(vehicle, 'cargoVolume', region);
+  const frunkVolume = getRegionSpecMeta(vehicle, 'frunkVolume', region);
+  const towingCapacity = getRegionSpecMeta(vehicle, 'towingCapacity', region);
+
+  const basePrice = getRegionSpecMeta(vehicle, 'basePriceMSRP', region);
+  const destinationFee = getRegionSpecMeta(vehicle, 'destinationFee', region);
+  const taxCredit = getRegionSpecMeta(vehicle, 'federalTaxCredit', region);
+  const effectivePrice = getRegionSpecMeta(vehicle, 'effectivePrice', region);
+  const energy = getRegionSpecMeta(vehicle, 'energyConsumption', region);
+
   return [
     {
       title: 'Performance',
       rows: [
-        { label: 'EPA Range', value: formatSpec(vehicle.rangeEPA, 'mi') },
-        { label: '0-60 mph', value: formatAcceleration(vehicle.acceleration060) },
-        { label: 'Top Speed', value: formatSpec(vehicle.topSpeed, 'mph') },
-        { label: 'Horsepower', value: formatSpec(vehicle.horsepower, 'hp') },
+        {
+          label: perfRange.label,
+          value: formatRegionSpecValue(vehicle, 'rangeEPA', region),
+        },
+        {
+          label: perfAccel.label,
+          value: formatRegionSpecValue(vehicle, 'acceleration', region),
+        },
+        {
+          label: perfTopSpeed.label,
+          value: formatRegionSpecValue(vehicle, 'topSpeed', region),
+        },
+        {
+          label: perfHp.label,
+          value: formatRegionSpecValue(vehicle, 'horsepower', region),
+        },
         { label: 'Torque', value: formatSpec(vehicle.torque, 'lb-ft') },
-        { label: 'Quarter Mile', value: vehicle.quarterMile ? `${vehicle.quarterMile}s` : 'N/A' },
+        {
+          label: 'Quarter Mile',
+          value: vehicle.quarterMile ? `${vehicle.quarterMile}s` : 'N/A',
+        },
       ],
     },
     {
       title: 'Battery & Charging',
       rows: [
-        { label: 'Battery Capacity', value: vehicle.batteryCapacity ? `${vehicle.batteryCapacity} kWh` : 'N/A' },
+        {
+          label: 'Battery Capacity',
+          value: vehicle.batteryCapacity
+            ? `${vehicle.batteryCapacity} kWh`
+            : 'N/A',
+        },
         { label: 'Battery Type', value: vehicle.batteryType ?? 'N/A' },
-        { label: 'Supercharger Max', value: formatSpec(vehicle.superchargerRateMax, 'kW') },
-        { label: 'Charge Time (10-50%)', value: vehicle.chargingTime1050 ?? 'N/A' },
-        { label: 'Onboard Charger', value: vehicle.onboardCharger ? `${vehicle.onboardCharger} kW` : 'N/A' },
+        {
+          label: supercharger.label,
+          value: formatRegionSpecValue(vehicle, 'superchargerRateMax', region),
+        },
+        {
+          label: 'Charge Time (10-50%)',
+          value: vehicle.chargingTime1050 ?? 'N/A',
+        },
+        {
+          label: 'Onboard Charger',
+          value: vehicle.onboardCharger
+            ? `${vehicle.onboardCharger} kW`
+            : 'N/A',
+        },
         { label: 'Charge Port', value: vehicle.chargePort ?? 'N/A' },
       ],
     },
     {
       title: 'Dimensions & Weight',
       rows: [
-        { label: 'Length', value: vehicle.length ? `${vehicle.length} in` : 'N/A' },
-        { label: 'Width', value: vehicle.width ? `${vehicle.width} in` : 'N/A' },
-        { label: 'Height', value: vehicle.height ? `${vehicle.height} in` : 'N/A' },
-        { label: 'Wheelbase', value: vehicle.wheelbase ? `${vehicle.wheelbase} in` : 'N/A' },
-        { label: 'Curb Weight', value: formatSpec(vehicle.curbWeight, 'lbs') },
-        { label: 'Ground Clearance', value: vehicle.groundClearance ? `${vehicle.groundClearance} in` : 'N/A' },
-        { label: 'Cargo Volume', value: vehicle.cargoVolume ? `${vehicle.cargoVolume} cu ft` : 'N/A' },
-        { label: 'Frunk Volume', value: vehicle.frunkVolume ? `${vehicle.frunkVolume} cu ft` : 'N/A' },
-        { label: 'Towing Capacity', value: formatSpec(vehicle.towingCapacity, 'lbs') },
+        {
+          label: length.label,
+          value: formatRegionSpecValue(vehicle, 'length', region),
+        },
+        {
+          label: width.label,
+          value: formatRegionSpecValue(vehicle, 'width', region),
+        },
+        {
+          label: height.label,
+          value: formatRegionSpecValue(vehicle, 'height', region),
+        },
+        {
+          label: wheelbase.label,
+          value: formatRegionSpecValue(vehicle, 'wheelbase', region),
+        },
+        {
+          label: curbWeight.label,
+          value: formatRegionSpecValue(vehicle, 'curbWeight', region),
+        },
+        {
+          label: groundClearance.label,
+          value: formatRegionSpecValue(vehicle, 'groundClearance', region),
+        },
+        {
+          label: cargoVolume.label,
+          value: formatRegionSpecValue(vehicle, 'cargoVolume', region),
+        },
+        {
+          label: frunkVolume.label,
+          value: formatRegionSpecValue(vehicle, 'frunkVolume', region),
+        },
+        {
+          label: towingCapacity.label,
+          value: formatRegionSpecValue(vehicle, 'towingCapacity', region),
+        },
       ],
     },
     {
       title: 'Pricing',
       rows: [
-        { label: 'Base Price (MSRP)', value: formatPrice(vehicle.basePriceMSRP) },
-        { label: 'Destination Fee', value: formatPrice(vehicle.destinationFee) },
-        { label: 'Federal Tax Credit', value: vehicle.federalTaxCredit ? `-${formatPrice(vehicle.federalTaxCredit)}` : 'N/A' },
-        { label: 'Effective Price', value: formatPrice(vehicle.effectivePrice) },
+        {
+          label: basePrice.label,
+          value: formatRegionSpecValue(vehicle, 'basePriceMSRP', region),
+        },
+        {
+          label: destinationFee.label,
+          value: formatRegionSpecValue(vehicle, 'destinationFee', region),
+        },
+        {
+          label: taxCredit.label,
+          value: vehicle.federalTaxCredit
+            ? `-${formatRegionSpecValue(vehicle, 'federalTaxCredit', region)}`
+            : 'N/A',
+        },
+        {
+          label: effectivePrice.label,
+          value: formatRegionSpecValue(vehicle, 'effectivePrice', region),
+        },
       ],
     },
     {
       title: 'Interior & Comfort',
       rows: [
-        { label: 'Seating Capacity', value: formatSpec(vehicle.seatingCapacity) },
+        {
+          label: 'Seating Capacity',
+          value: formatSpec(vehicle.seatingCapacity),
+        },
         { label: 'Display Size', value: vehicle.displaySize ?? 'N/A' },
-        { label: 'Rear Display', value: vehicle.hasRearDisplay == null ? 'N/A' : vehicle.hasRearDisplay ? 'Yes' : 'No' },
+        {
+          label: 'Rear Display',
+          value:
+            vehicle.hasRearDisplay == null
+              ? 'N/A'
+              : vehicle.hasRearDisplay
+                ? 'Yes'
+                : 'No',
+        },
         { label: 'Sound System', value: vehicle.soundSystem ?? 'N/A' },
       ],
     },
     {
       title: 'Safety & Autopilot',
       rows: [
-        { label: 'NCAP Rating', value: vehicle.ncapRating ? `${vehicle.ncapRating}/5` : 'N/A' },
+        {
+          label: 'NCAP Rating',
+          value: vehicle.ncapRating ? `${vehicle.ncapRating}/5` : 'N/A',
+        },
         { label: 'Autopilot', value: vehicle.autopilotStandard ?? 'N/A' },
-        { label: 'FSD Available', value: vehicle.fsdAvailable == null ? 'N/A' : vehicle.fsdAvailable ? 'Yes' : 'No' },
+        {
+          label: 'FSD Available',
+          value:
+            vehicle.fsdAvailable == null
+              ? 'N/A'
+              : vehicle.fsdAvailable
+                ? 'Yes'
+                : 'No',
+        },
         { label: 'FSD Price', value: formatPrice(vehicle.fsdPrice) },
       ],
     },
     {
       title: 'Efficiency',
       rows: [
-        { label: 'Energy Consumption', value: formatSpec(vehicle.energyConsumption, 'Wh/mi') },
+        {
+          label: energy.label,
+          value: formatRegionSpecValue(vehicle, 'energyConsumption', region),
+        },
         { label: 'MPGe', value: formatSpec(vehicle.mpge) },
       ],
     },
-  ]
+  ];
 }
 
 export function SpecTable({ vehicle }: SpecTableProps) {
-  const sections = getSpecSections(vehicle)
+  const { region } = useRegion();
+  const sections = getSpecSections(vehicle, region);
 
   return (
     <div className="space-y-8">
@@ -106,7 +234,9 @@ export function SpecTable({ vehicle }: SpecTableProps) {
                   i % 2 === 0 ? 'bg-background' : 'bg-muted/30'
                 }`}
               >
-                <span className="text-sm text-muted-foreground">{row.label}</span>
+                <span className="text-sm text-muted-foreground">
+                  {row.label}
+                </span>
                 <span className="text-sm font-medium">{row.value}</span>
               </div>
             ))}
@@ -114,5 +244,5 @@ export function SpecTable({ vehicle }: SpecTableProps) {
         </div>
       ))}
     </div>
-  )
+  );
 }
