@@ -85,7 +85,7 @@ export default async function HomePage() {
         {/* Hero image */}
         <div className="mx-auto mt-14 max-w-[800px]">
           <VehicleImage
-            src="/images/vehicles/hero-lineup.png"
+            src="/images/vehicles/hero-lineup.jpg"
             alt="Tesla Model 3, Model Y, Model S, Model X lineup"
             width={1600}
             height={800}
@@ -195,7 +195,7 @@ export default async function HomePage() {
               {/* Model tile image */}
               <div className="mt-auto w-full max-w-[400px]">
                 <VehicleImage
-                  src={`/images/vehicles/${item.model.slug}-tile.png`}
+                  src={`/images/vehicles/${item.model.slug}-tile.jpg`}
                   alt={`Tesla ${item.model.name}`}
                   width={800}
                   height={480}

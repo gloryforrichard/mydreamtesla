@@ -109,7 +109,7 @@ export default async function VehicleDetailPage({ params }: Props) {
         <VehicleRegionNotice vehicle={vehicle} />
         <div className="mt-8 overflow-hidden rounded-2xl bg-[#F5F5F7]">
           <VehicleImage
-            src={`/images/vehicles/${vehicle.slug}.png`}
+            src={`/images/vehicles/${vehicle.slug}.jpg`}
             alt={vehicle.title}
             width={1000}
             height={500}
