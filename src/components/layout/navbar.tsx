@@ -34,9 +34,9 @@ export function Navbar({ scroll }: NavBarProps) {
           <Image
             src="/navbar-logo.png"
             alt="MyDreamTesla"
-            width={140}
-            height={32}
-            className="h-7 w-auto"
+            width={200}
+            height={52}
+            className="h-8 w-auto"
             style={{ mixBlendMode: 'multiply' }}
             priority
           />
