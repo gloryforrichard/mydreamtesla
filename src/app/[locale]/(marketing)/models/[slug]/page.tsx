@@ -117,7 +117,7 @@ export default async function ModelDetailPage({ params }: Props) {
           {/* Vehicle image on dark background */}
           <div className="mt-10 overflow-hidden rounded-2xl bg-white/[0.04]">
             <VehicleImage
-              src={`/images/vehicles/${model.slug}-detail.jpg`}
+              src={`/images/vehicles/${model.slug}-detail.png`}
               alt={`Tesla ${model.name}`}
               width={1200}
               height={600}

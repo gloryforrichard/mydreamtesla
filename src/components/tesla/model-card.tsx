@@ -15,7 +15,7 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
     >
       <div className="flex aspect-[16/9] items-center justify-center overflow-hidden">
         <VehicleImage
-          src={`/images/vehicles/${model.slug}-detail.jpg`}
+          src={`/images/vehicles/${model.slug}-detail.png`}
           alt={`Tesla ${model.name}`}
           width={1200}
           height={600}

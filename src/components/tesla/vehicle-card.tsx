@@ -24,7 +24,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
     >
       <div className="flex aspect-[16/10] items-center justify-center overflow-hidden">
         <VehicleImage
-          src={`/images/vehicles/${vehicle.slug}.jpg`}
+          src={`/images/vehicles/${vehicle.slug}.png`}
           alt={vehicle.title}
           width={1000}
           height={500}
