@@ -14,10 +14,10 @@ export default async function ModelsPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <header className="mb-12 text-center">
-        <h1 className="text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1D1D1F] sm:text-[48px]">
+        <h1 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1A1A1A] sm:text-[48px]">
           Tesla Models
         </h1>
-        <p className="mt-4 text-[21px] font-light text-[#6E6E73]">
+        <p className="mt-4 text-[21px] font-light text-[#777777]">
           Explore every Tesla vehicle. Compare specs across all model years and
           trims.
         </p>
@@ -26,7 +26,7 @@ export default async function ModelsPage() {
       <ModelsListClient models={models} vehicles={vehicles} />
 
       {models.length === 0 && (
-        <div className="py-20 text-center text-[#86868B]">
+        <div className="py-20 text-center text-[#999999]">
           <p>No models available yet. Check back soon.</p>
         </div>
       )}

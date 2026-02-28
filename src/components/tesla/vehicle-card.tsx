@@ -20,7 +20,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
   return (
     <Link
       href={`/vehicles/${vehicle.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl bg-[#F5F5F7] transition-transform hover:scale-[1.02]"
+      className="group flex flex-col overflow-hidden rounded-sm bg-[#F5F2ED] transition-colors hover:bg-[#EDEAE4]"
     >
       <div className="flex aspect-[16/10] items-center justify-center overflow-hidden">
         <VehicleImage
@@ -34,23 +34,23 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
         />
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-xs font-medium uppercase tracking-wider text-[#86868B]">
+        <p className="text-xs font-medium uppercase tracking-wider text-[#999999]">
           {vehicle.year} · {vehicle.driveType}
         </p>
-        <h3 className="mt-1 text-lg font-semibold text-[#1D1D1F]">
+        <h3 className="mt-1 text-lg font-semibold text-[#1A1A1A]">
           {getDisplayTrimName(vehicle, region)}
         </h3>
-        <p className="mt-2 font-mono text-xl font-bold text-[#1D1D1F]">
+        <p className="mt-2 font-mono text-xl font-bold text-[#1A1A1A]">
           {formatPrice(vehicle.basePriceMSRP)}
         </p>
-        <div className="mt-4 flex items-center gap-6 border-t border-black/[0.06] pt-4 text-xs text-[#86868B]">
-          <span className="font-mono font-medium text-[#1D1D1F]">
+        <div className="mt-4 flex items-center gap-6 border-t border-[#E5E2DC] pt-4 text-xs text-[#999999]">
+          <span className="font-mono font-medium text-[#1A1A1A]">
             {formatRegionSpecValue(vehicle, 'rangeEPA', region)}
           </span>
-          <span className="font-mono font-medium text-[#1D1D1F]">
+          <span className="font-mono font-medium text-[#1A1A1A]">
             {formatRegionSpecValue(vehicle, 'acceleration', region)}
           </span>
-          <span className="font-mono font-medium text-[#1D1D1F]">
+          <span className="font-mono font-medium text-[#1A1A1A]">
             {formatRegionSpecValue(vehicle, 'horsepower', region)}
           </span>
         </div>

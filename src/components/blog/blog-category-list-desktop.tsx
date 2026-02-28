@@ -24,8 +24,8 @@ export function BlogCategoryListDesktop({
           className={cn(
             'rounded-full px-4 py-1.5 text-[12px] font-semibold transition-colors',
             !slug
-              ? 'bg-[#1D1D1F] text-white'
-              : 'text-[#6E6E73] hover:text-[#1D1D1F]'
+              ? 'bg-[#1A1A1A] text-white'
+              : 'text-[#999999] hover:text-[#1A1A1A]'
           )}
         >
           {t('all')}
@@ -37,8 +37,8 @@ export function BlogCategoryListDesktop({
             className={cn(
               'rounded-full px-4 py-1.5 text-[12px] font-semibold transition-colors',
               slug === category.slug
-                ? 'bg-[#1D1D1F] text-white'
-                : 'text-[#6E6E73] hover:text-[#1D1D1F]'
+                ? 'bg-[#1A1A1A] text-white'
+                : 'text-[#999999] hover:text-[#1A1A1A]'
             )}
           >
             {category.name}

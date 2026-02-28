@@ -71,51 +71,51 @@ export default async function ModelDetailPage({ params }: Props) {
       )}
       <JsonLd data={buildBreadcrumbJsonLd(breadcrumbItems)} />
 
-      {/* Dark Hero — 与首页保持一致，触发 navbar 白色 Logo */}
-      <section className="bg-[#1D1D1F] pb-16 pt-8">
+      {/* Hero — warm white, consistent with homepage */}
+      <section className="bg-[#FDFCF9] pb-16 pt-8">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="mb-6 text-sm">
-            <ol className="flex items-center gap-1.5 text-white/40">
+            <ol className="flex items-center gap-1.5 text-[#999999]">
               <li className="flex items-center gap-1.5">
-                <Link href="/" className="transition-colors hover:text-white/80">
+                <Link href="/" className="transition-colors hover:text-[#1A1A1A]">
                   Home
                 </Link>
               </li>
               <li className="flex items-center gap-1.5">
-                <span aria-hidden="true" className="text-white/25">›</span>
-                <Link href="/models" className="transition-colors hover:text-white/80">
+                <span aria-hidden="true" className="text-[#CCCCCC]">›</span>
+                <Link href="/models" className="transition-colors hover:text-[#1A1A1A]">
                   Models
                 </Link>
               </li>
               <li className="flex items-center gap-1.5">
-                <span aria-hidden="true" className="text-white/25">›</span>
-                <span className="text-white/60">Tesla {model.name}</span>
+                <span aria-hidden="true" className="text-[#CCCCCC]">›</span>
+                <span className="text-[#777777]">Tesla {model.name}</span>
               </li>
             </ol>
           </nav>
 
           {/* Title */}
-          <p className="text-[13px] font-medium uppercase tracking-[0.5px] text-white/40">
+          <p className="text-[13px] font-medium uppercase tracking-[0.5px] text-[#999999]">
             {model.bodyType}
             {model.productionStart && ` · Since ${model.productionStart}`}
           </p>
-          <h1 className="mt-2 text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-white sm:text-[56px]">
+          <h1 className="mt-2 font-display text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1A1A1A] sm:text-[56px]">
             Tesla {model.name}
           </h1>
           {model.tagline && (
-            <p className="mt-3 text-[21px] font-light text-white/70">
+            <p className="mt-3 text-[21px] font-light text-[#777777]">
               {model.tagline}
             </p>
           )}
           {model.description && (
-            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-white/50">
+            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#999999]">
               {model.description}
             </p>
           )}
 
-          {/* Vehicle image on dark background */}
-          <div className="mt-10 overflow-hidden rounded-2xl bg-white/[0.04]">
+          {/* Vehicle image */}
+          <div className="mt-10 overflow-hidden rounded-sm bg-[#F5F2ED]">
             <VehicleImage
               src={`/images/vehicles/${model.slug}-detail.png`}
               alt={`Tesla ${model.name}`}

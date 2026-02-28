@@ -12,7 +12,7 @@ interface ComparisonTableProps {
 }
 
 /**
- * Apple-style side-by-side comparison table
+ * Editorial-style side-by-side comparison table
  * Groups specs into sections with green dot for best values
  */
 export function ComparisonTable({ vehicles }: ComparisonTableProps) {
@@ -35,7 +35,7 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
           className="mb-8"
           aria-label={`${groupName} specifications`}
         >
-          <h2 className="border-b border-[#D2D2D7] pb-2.5 text-[11px] font-semibold uppercase tracking-[1px] text-[#86868B]">
+          <h2 className="border-b border-[#E5E2DC] pb-2.5 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
             {groupName}
           </h2>
           {specs.map((spec) => {
@@ -58,32 +58,25 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
             return (
               <div
                 key={spec.id}
-                className="grid border-b border-black/[0.04]"
+                className="grid border-b border-[#E5E2DC]/50"
                 style={{
                   gridTemplateColumns: `180px repeat(${vehicles.length}, 1fr)`,
                 }}
               >
-                <div className="flex items-center py-3 text-[13px] font-normal text-[#6E6E73]">
+                <div className="flex items-center py-3 text-[13px] font-normal text-[#777777]">
                   {spec.label}
                 </div>
                 {vehicles.map((v, i) => {
                   const isBest = bestIdx === i;
-
                   const displayValue = spec.formatValue(v);
-
                   const isTextVal = spec.higherIsBetter == null;
 
                   return (
                     <div
                       key={v.id}
-                      className={`flex items-center justify-center gap-1.5 px-4 py-3 text-center text-[14px] font-semibold ${
-                        isBest ? 'text-[#2D8A39]' : 'text-[#1D1D1F]'
-                      } ${isTextVal ? 'font-medium' : ''}`}
-                      style={
-                        isTextVal
-                          ? { fontFamily: "'Inter', sans-serif" }
-                          : { fontFamily: "'JetBrains Mono', monospace" }
-                      }
+                      className={`flex items-center justify-center gap-1.5 px-4 py-3 text-center text-[14px] ${
+                        isTextVal ? 'font-medium' : 'font-mono font-semibold'
+                      } ${isBest ? 'text-[#2D8A39]' : 'text-[#1A1A1A]'}`}
                     >
                       {displayValue}
                       {isBest && (

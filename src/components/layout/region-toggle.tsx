@@ -39,7 +39,7 @@ export function RegionToggle({ className }: RegionToggleProps) {
         aria-pressed={region === 'US'}
         className={cn(
           'rounded-full px-2.5 py-1 text-[11px] font-semibold transition-colors',
-          region === 'US' ? 'bg-[#1D1D1F] text-white' : 'text-[#6E6E73]'
+          region === 'US' ? 'bg-[#1A1A1A] text-white' : 'text-[#999999]'
         )}
       >
         US
@@ -50,7 +50,7 @@ export function RegionToggle({ className }: RegionToggleProps) {
         aria-pressed={region === 'CA'}
         className={cn(
           'rounded-full px-2.5 py-1 text-[11px] font-semibold transition-colors',
-          region === 'CA' ? 'bg-[#1D1D1F] text-white' : 'text-[#6E6E73]'
+          region === 'CA' ? 'bg-[#1A1A1A] text-white' : 'text-[#999999]'
         )}
       >
         CA

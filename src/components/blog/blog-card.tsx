@@ -21,9 +21,9 @@ export default function BlogCard({ locale, post }: BlogCardProps) {
 
   return (
     <LocaleLink href={`/blog/${post.slugs}`} className="block h-full">
-      <div className="group flex flex-col overflow-hidden rounded-2xl bg-[#F5F5F7] h-full transition-transform duration-300 hover:scale-[1.02]">
+      <div className="group flex flex-col overflow-hidden rounded-sm bg-[#F5F2ED] h-full transition-colors duration-300 hover:bg-[#EDEAE4]">
         {/* Image container */}
-        <div className="overflow-hidden relative aspect-16/9 w-full rounded-t-2xl">
+        <div className="overflow-hidden relative aspect-16/9 w-full rounded-t-sm">
           <div className="relative w-full h-full">
             <BlogImage
               src={image}
@@ -59,18 +59,18 @@ export default function BlogCard({ locale, post }: BlogCardProps) {
         {/* Post info */}
         <div className="flex flex-col justify-between p-5 flex-1">
           <div>
-            <h3 className="text-[17px] font-semibold leading-snug text-[#1D1D1F] line-clamp-2">
+            <h3 className="text-[17px] font-semibold leading-snug text-[#1A1A1A] line-clamp-2">
               {title}
             </h3>
             {description && (
-              <p className="mt-2 line-clamp-2 text-[14px] text-[#6E6E73] leading-relaxed">
+              <p className="mt-2 line-clamp-2 text-[14px] text-[#777777] leading-relaxed">
                 {description}
               </p>
             )}
           </div>
 
           {/* Author and date */}
-          <div className="mt-4 pt-4 border-t border-black/[0.06] flex items-center justify-between gap-2">
+          <div className="mt-4 pt-4 border-t border-[#E5E2DC] flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <div className="relative h-7 w-7 shrink-0">
                 {blogAuthor?.data.avatar && (
@@ -82,11 +82,11 @@ export default function BlogCard({ locale, post }: BlogCardProps) {
                   />
                 )}
               </div>
-              <span className="truncate text-[12px] text-[#6E6E73]">
+              <span className="truncate text-[12px] text-[#777777]">
                 {blogAuthor?.data.name}
               </span>
             </div>
-            <time className="truncate text-[12px] text-[#86868B]" dateTime={date}>
+            <time className="truncate text-[12px] text-[#999999]" dateTime={date}>
               {publishDate}
             </time>
           </div>

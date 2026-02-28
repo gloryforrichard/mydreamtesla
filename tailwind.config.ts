@@ -66,10 +66,8 @@ const config = {
     			sm: 'calc(var(--radius) - 4px)'
     		},
     		fontFamily: {
-    			bricolage: ['var(--font-bricolage)', ...fontFamily.sans],
-    			sourceSans: ['var(--font-source-sans)', ...fontFamily.sans],
-    			sourceSerif: ['var(--font-source-serif)', ...fontFamily.serif],
-    			workSans: ['var(--font-work-sans)', ...fontFamily.sans]
+    			display: ['var(--font-space-grotesk)', ...fontFamily.sans],
+    			mono: ['var(--font-space-mono)', ...fontFamily.mono],
     		},
     		keyframes: {
     			'accordion-down': {

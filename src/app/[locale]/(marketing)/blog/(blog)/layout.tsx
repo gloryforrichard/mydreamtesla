@@ -31,12 +31,12 @@ export default async function BlogListLayout({
   return (
     <div className="mb-16">
       {/* Hero header */}
-      <div className="bg-[#1D1D1F] py-16 text-center text-white">
+      <div className="bg-[#FDFCF9] py-16 text-center">
         <div className="mx-auto max-w-[1024px] px-[22px]">
-          <h1 className="text-[40px] font-bold leading-[1.05] tracking-[-1.5px] sm:text-[48px]">
+          <h1 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1A1A1A] sm:text-[48px]">
             {t('title')}
           </h1>
-          <p className="mt-4 text-[21px] font-light text-white/70">
+          <p className="mt-4 text-[21px] font-light text-[#777777]">
             {t('subtitle')}
           </p>
         </div>

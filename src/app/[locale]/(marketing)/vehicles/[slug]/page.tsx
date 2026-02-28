@@ -88,13 +88,13 @@ export default async function VehicleDetailPage({ params }: Props) {
 
       {/* Hero */}
       <header className="mb-12 mt-4">
-        <p className="text-[14px] font-medium uppercase tracking-[0.5px] text-[#86868B]">
+        <p className="text-[14px] font-medium uppercase tracking-[0.5px] text-[#999999]">
           {vehicle.year} · {vehicle.driveType}
         </p>
-        <h1 className="mt-2 text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1D1D1F] sm:text-[48px]">
+        <h1 className="mt-2 font-display text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1A1A1A] sm:text-[48px]">
           {vehicle.title}
         </h1>
-        <p className="mt-4 font-mono text-[32px] font-bold tracking-[-1px] text-[#1D1D1F]">
+        <p className="mt-4 font-mono text-[32px] font-bold tracking-[-1px] text-[#1A1A1A]">
           {formatPrice(vehicle.basePriceMSRP)}
         </p>
         {vehicle.federalTaxCredit && (
@@ -107,7 +107,7 @@ export default async function VehicleDetailPage({ params }: Props) {
           </p>
         )}
         <VehicleRegionNotice vehicle={vehicle} />
-        <div className="mt-8 overflow-hidden rounded-2xl bg-[#F5F5F7]">
+        <div className="mt-8 overflow-hidden rounded-sm bg-[#F5F2ED]">
           <VehicleImage
             src={`/images/vehicles/${vehicle.slug}.png`}
             alt={vehicle.title}
@@ -123,7 +123,7 @@ export default async function VehicleDetailPage({ params }: Props) {
 
       {/* Key Specs */}
       <section className="mb-12">
-        <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1D1D1F]">
+        <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
           Key Specifications
         </h2>
         <KeySpecsGrid vehicle={vehicle} />
@@ -132,11 +132,11 @@ export default async function VehicleDetailPage({ params }: Props) {
       {/* What's New */}
       {vehicle.keyChangesFromPriorYear && (
         <section className="mb-12">
-          <h2 className="mb-4 text-[28px] font-bold tracking-[-0.5px] text-[#1D1D1F]">
+          <h2 className="mb-4 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
             What&apos;s New
           </h2>
-          <div className="rounded-2xl bg-[#F5F5F7] p-6">
-            <p className="text-[15px] leading-relaxed text-[#1D1D1F]">
+          <div className="rounded-sm bg-[#F5F2ED] p-6">
+            <p className="text-[15px] leading-relaxed text-[#1A1A1A]">
               {vehicle.keyChangesFromPriorYear}
             </p>
           </div>
@@ -145,7 +145,7 @@ export default async function VehicleDetailPage({ params }: Props) {
 
       {/* Full Specs */}
       <section className="mb-12">
-        <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1D1D1F]">
+        <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
           Full Specifications
         </h2>
         <SpecTable vehicle={vehicle} />
@@ -154,7 +154,7 @@ export default async function VehicleDetailPage({ params }: Props) {
       {/* Pros & Cons */}
       {vehicle.prosAndCons && (
         <section className="mb-12">
-          <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1D1D1F]">
+          <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
             Pros & Cons
           </h2>
           <ProsAndCons prosAndCons={vehicle.prosAndCons} />

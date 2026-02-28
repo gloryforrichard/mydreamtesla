@@ -40,12 +40,12 @@ export function KeySpecsGrid({ vehicle }: KeySpecsGridProps) {
       {specs.map((spec) => (
         <div
           key={spec.label}
-          className="flex flex-col items-center rounded-2xl bg-[#F5F5F7] p-6 text-center"
+          className="flex flex-col items-center rounded-sm bg-[#F5F2ED] p-6 text-center"
         >
-          <p className="font-mono text-[28px] font-bold tracking-tight text-[#1D1D1F]">
+          <p className="font-display text-[36px] font-bold tracking-tight text-[#1A1A1A]">
             {spec.value}
           </p>
-          <p className="mt-1 text-[13px] text-[#86868B]">{spec.label}</p>
+          <p className="mt-1 text-[13px] text-[#999999]">{spec.label}</p>
         </div>
       ))}
     </div>

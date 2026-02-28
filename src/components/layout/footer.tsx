@@ -9,13 +9,13 @@ export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
   const footerLinks = useFooterLinks();
 
   return (
-    <footer className={cn('border-t border-[#D2D2D7]', className)}>
+    <footer className={cn('border-t border-[#E5E2DC]', className)}>
       <div className="mx-auto max-w-[1024px] px-[22px]">
         {/* Link columns */}
         <div className="grid grid-cols-2 gap-6 py-8 sm:grid-cols-4">
           {footerLinks?.map((section) => (
             <div key={section.title}>
-              <h4 className="text-[12px] font-semibold text-[#1D1D1F]">
+              <h4 className="text-[12px] font-semibold text-[#1A1A1A]">
                 {section.title}
               </h4>
               <ul className="mt-3 flex flex-col gap-2">
@@ -26,7 +26,7 @@ export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
                         <LocaleLink
                           href={item.href || '#'}
                           target={item.external ? '_blank' : undefined}
-                          className="text-[12px] text-[#6E6E73] hover:text-[#1D1D1F] hover:underline"
+                          className="text-[12px] text-[#999999] hover:text-[#1A1A1A] hover:underline"
                         >
                           {item.title}
                         </LocaleLink>
@@ -40,13 +40,13 @@ export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#D2D2D7]">
+      <div className="border-t border-[#E5E2DC]">
         <div className="mx-auto flex max-w-[1024px] items-center justify-between px-[22px] py-4">
-          <span className="text-[12px] text-[#86868B]">
+          <span className="text-[12px] text-[#CCCCCC]">
             &copy; {new Date().getFullYear()} MyDreamTesla. Not affiliated with
             Tesla, Inc.
           </span>
-          <span className="text-[12px] text-[#86868B]">
+          <span className="text-[12px] text-[#CCCCCC]">
             Data from Tesla.com and public records.
           </span>
         </div>

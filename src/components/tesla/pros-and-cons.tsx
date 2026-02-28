@@ -9,7 +9,7 @@ export function ProsAndCons({ prosAndCons }: ProsAndConsProps) {
 
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      <div className="rounded-xl border border-green-200 bg-green-50/50 p-6">
+      <div className="rounded-sm border border-green-200/60 bg-green-50/30 p-6">
         <h3 className="mb-4 flex items-center gap-2 font-semibold text-green-700">
           <CheckCircle2Icon className="size-5" />
           Pros
@@ -26,7 +26,7 @@ export function ProsAndCons({ prosAndCons }: ProsAndConsProps) {
           ))}
         </ul>
       </div>
-      <div className="rounded-xl border border-red-200 bg-red-50/50 p-6">
+      <div className="rounded-sm border border-red-200/60 bg-red-50/30 p-6">
         <h3 className="mb-4 flex items-center gap-2 font-semibold text-red-700">
           <XCircleIcon className="size-5" />
           Cons

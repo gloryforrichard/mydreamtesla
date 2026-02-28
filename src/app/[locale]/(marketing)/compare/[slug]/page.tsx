@@ -71,18 +71,18 @@ export default async function ComparePage({ params }: Props) {
 
       {/* Hero */}
       <header className="mx-auto max-w-[980px] px-5 pb-12 text-center">
-        <h1 className="text-[48px] font-bold leading-[1.08] tracking-[-2.5px] text-[#1D1D1F]">
+        <h1 className="font-display text-[48px] font-bold leading-[1.08] tracking-[-2.5px] text-[#1A1A1A]">
           {vehicles.map((v, i) => (
             <span key={v.id}>
               {v.title}
               {i < vehicles.length - 1 && <br />}
               {i < vehicles.length - 1 && (
-                <span className="text-[#86868B]">vs </span>
+                <span className="text-[#999999]">vs </span>
               )}
             </span>
           ))}
         </h1>
-        <p className="mx-auto mt-3 max-w-[560px] text-[19px] font-light leading-[1.4] text-[#6E6E73]">
+        <p className="mx-auto mt-3 max-w-[560px] text-[19px] font-light leading-[1.4] text-[#777777]">
           Side-by-side specs, pricing, and range compared — find the Tesla that
           fits your life.
         </p>
@@ -98,10 +98,10 @@ export default async function ComparePage({ params }: Props) {
         className="mx-auto max-w-[980px] px-5 py-20"
         aria-label="Related comparisons"
       >
-        <h2 className="text-[32px] font-bold tracking-[-1.5px]">
+        <h2 className="font-display text-[32px] font-bold tracking-[-1.5px] text-[#1A1A1A]">
           More comparisons.
         </h2>
-        <p className="mt-2 text-[17px] font-light text-[#6E6E73]">
+        <p className="mt-2 text-[17px] font-light text-[#777777]">
           Explore other head-to-head matchups across the Tesla lineup.
         </p>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -109,10 +109,10 @@ export default async function ComparePage({ params }: Props) {
             <Link
               key={v.id}
               href={`/vehicles/${v.slug}`}
-              className="flex items-center justify-between rounded-2xl bg-[#F5F5F7] px-6 py-5 text-[14px] font-medium transition-colors hover:bg-[#EBEBED]"
+              className="flex items-center justify-between rounded-sm bg-[#F5F2ED] px-6 py-5 text-[14px] font-medium transition-colors hover:bg-[#EDEAE4]"
             >
               <span>View {v.title} details</span>
-              <span className="text-[#86868B]">›</span>
+              <span className="text-[#999999]">›</span>
             </Link>
           ))}
         </div>

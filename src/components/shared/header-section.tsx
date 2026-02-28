@@ -33,7 +33,7 @@ export function HeaderSection({
       className={cn('flex flex-col items-center text-center', className)}
     >
       {label ? (
-        <LabelComponent className="uppercase tracking-wider text-[#86868B] font-semibold">
+        <LabelComponent className="uppercase tracking-wider text-[#999999] font-semibold font-mono">
           {label}
         </LabelComponent>
       ) : null}

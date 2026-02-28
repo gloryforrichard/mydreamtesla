@@ -39,11 +39,11 @@ export function ComparePageClient({
   if (visibleVehicles.length < 2) {
     return (
       <div className="mx-auto max-w-[980px] px-5 py-8">
-        <div className="rounded-2xl border border-[#D2D2D7] bg-[#F5F5F7] p-6 text-center">
-          <h2 className="text-[20px] font-semibold tracking-[-0.3px] text-[#1D1D1F]">
+        <div className="rounded-sm border border-[#E5E2DC] bg-[#F5F2ED] p-6 text-center">
+          <h2 className="text-[20px] font-semibold tracking-[-0.3px] text-[#1A1A1A]">
             Comparison unavailable in {region}
           </h2>
-          <p className="mt-2 text-[14px] text-[#6E6E73]">
+          <p className="mt-2 text-[14px] text-[#777777]">
             One or more selected trims are not currently sold in this region.
             Switch back to US to view the full comparison.
           </p>
@@ -72,7 +72,7 @@ export function ComparePageClient({
 
   return (
     <>
-      <div className="sticky top-12 z-40 border-b border-black/[0.06] bg-[rgba(251,251,253,0.88)] backdrop-blur-[20px] backdrop-saturate-[180%]">
+      <div className="sticky top-12 z-40 border-b border-[#E5E2DC] bg-[#FDFCF9]/90 backdrop-blur-[20px]">
         <div
           className="mx-auto max-w-[980px] px-5 py-4"
           style={{
@@ -85,7 +85,7 @@ export function ComparePageClient({
             const model = models.find((m) => m.id === vehicle.modelId);
             return (
               <div key={vehicle.id} className="px-4 text-center">
-                <div className="mx-auto mb-2.5 flex h-16 w-24 items-center justify-center rounded-xl bg-[#F5F5F7] text-2xl font-bold text-[#D2D2D7]">
+                <div className="mx-auto mb-2.5 flex h-16 w-24 items-center justify-center rounded-sm bg-[#F5F2ED] text-2xl font-bold text-[#CCCCCC]">
                   {model?.name.replace('Model ', '') ?? '?'}
                 </div>
                 <div className="text-[15px] font-semibold tracking-[-0.3px]">
@@ -104,46 +104,46 @@ export function ComparePageClient({
         <ComparisonTable vehicles={visibleVehicles} />
       </div>
 
-      <section className="bg-[#F5F5F7] py-20" aria-label="Comparison verdict">
+      <section className="bg-[#F5F2ED] py-20" aria-label="Comparison verdict">
         <div className="mx-auto max-w-[980px] px-5 text-center">
-          <h2 className="text-[40px] font-bold tracking-[-2px]">
+          <h2 className="font-display text-[40px] font-bold tracking-[-2px] text-[#1A1A1A]">
             Which should you buy?
           </h2>
-          <p className="mt-2 text-[17px] font-light text-[#6E6E73]">
+          <p className="mt-2 text-[17px] font-light text-[#777777]">
             How they compare on the dimensions that matter most.
           </p>
 
           <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-3">
-            <div className="rounded-[20px] bg-white p-8 text-center">
-              <div className="mb-3 text-[11px] font-semibold uppercase tracking-[1px] text-[#86868B]">
+            <div className="rounded-sm bg-white p-8 text-center">
+              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
                 Best Range
               </div>
-              <div className="text-[20px] font-bold tracking-[-0.5px]">
+              <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
                 {getDisplayTitle(bestRange, region)}
               </div>
-              <div className="mt-1 text-[13px] text-[#6E6E73]">
+              <div className="mt-1 text-[13px] text-[#777777]">
                 {formatRegionSpecValue(bestRange, 'rangeEPA', region)} EPA
               </div>
             </div>
-            <div className="rounded-[20px] bg-white p-8 text-center">
-              <div className="mb-3 text-[11px] font-semibold uppercase tracking-[1px] text-[#86868B]">
+            <div className="rounded-sm bg-white p-8 text-center">
+              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
                 Most Powerful
               </div>
-              <div className="text-[20px] font-bold tracking-[-0.5px]">
+              <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
                 {getDisplayTitle(bestPower, region)}
               </div>
-              <div className="mt-1 text-[13px] text-[#6E6E73]">
+              <div className="mt-1 text-[13px] text-[#777777]">
                 {formatRegionSpecValue(bestPower, 'horsepower', region)}
               </div>
             </div>
-            <div className="rounded-[20px] bg-white p-8 text-center">
-              <div className="mb-3 text-[11px] font-semibold uppercase tracking-[1px] text-[#86868B]">
+            <div className="rounded-sm bg-white p-8 text-center">
+              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
                 Best Value
               </div>
-              <div className="text-[20px] font-bold tracking-[-0.5px]">
+              <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
                 {getDisplayTitle(bestValue, region)}
               </div>
-              <div className="mt-1 text-[13px] text-[#6E6E73]">
+              <div className="mt-1 text-[13px] text-[#777777]">
                 {formatPrice(bestValue.effectivePrice)} after credit
               </div>
             </div>

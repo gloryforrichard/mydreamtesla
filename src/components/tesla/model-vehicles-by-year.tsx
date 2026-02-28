@@ -29,7 +29,7 @@ export function ModelVehiclesByYear({ vehicles }: ModelVehiclesByYearProps) {
 
   if (visibleVehicles.length === 0) {
     return (
-      <div className="py-20 text-center text-[#86868B]">
+      <div className="py-20 text-center text-[#999999]">
         <p>No vehicles available in the selected region yet.</p>
       </div>
     );
@@ -39,7 +39,7 @@ export function ModelVehiclesByYear({ vehicles }: ModelVehiclesByYearProps) {
     <>
       {years.map((year) => (
         <section key={year} className="mb-12">
-          <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1D1D1F]">
+          <h2 className="mb-6 font-display text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
             {year} Lineup
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

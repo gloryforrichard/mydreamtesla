@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#1D1D1F',
+        backgroundColor: '#FDFCF9',
         fontFamily: 'Inter, system-ui, sans-serif',
       }}
     >
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
           style={{
             fontSize: 16,
             fontWeight: 600,
-            color: '#86868B',
+            color: '#999999',
             letterSpacing: '0.5px',
             textTransform: 'uppercase',
           }}
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
         style={{
           fontSize: isCompare ? 52 : 60,
           fontWeight: 700,
-          color: '#FBFBFD',
+          color: '#1A1A1A',
           textAlign: 'center',
           lineHeight: 1.1,
           letterSpacing: '-2px',
@@ -72,7 +72,7 @@ export async function GET(request: NextRequest) {
         style={{
           fontSize: 24,
           fontWeight: 300,
-          color: '#86868B',
+          color: '#999999',
           marginTop: 16,
           textAlign: 'center',
           maxWidth: '70%',
@@ -95,7 +95,7 @@ export async function GET(request: NextRequest) {
           style={{
             fontSize: 18,
             fontWeight: 700,
-            color: '#FBFBFD',
+            color: '#1A1A1A',
           }}
         >
           MyDreamTesla
@@ -103,7 +103,7 @@ export async function GET(request: NextRequest) {
         <div
           style={{
             fontSize: 14,
-            color: '#86868B',
+            color: '#999999',
             marginLeft: 8,
           }}
         >

@@ -31,7 +31,7 @@ export function VehicleImage({
       <div
         className={
           fallbackClassName ??
-          'flex aspect-[2/1] w-full items-center justify-center bg-gradient-to-br from-[#E8E8ED] to-[#D2D2D7]'
+          'flex aspect-[2/1] w-full items-center justify-center bg-gradient-to-br from-[#E8E5DF] to-[#D6D3CD]'
         }
       >
         {fallbackLabel && (

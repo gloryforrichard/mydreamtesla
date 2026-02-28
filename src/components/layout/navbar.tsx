@@ -17,21 +17,11 @@ export function Navbar({ scroll }: NavBarProps) {
   const menuLinks = useNavbarLinks();
   const localePathname = useLocalePathname();
 
-  // 有深色 Hero 的路由：首页 + 模型详情页
-  const hasDarkHero =
-    localePathname === '/' ||
-    (localePathname.startsWith('/models/') && localePathname !== '/models');
-
-  // 深色导航：深色页面且尚未滚动过 Hero
-  const isDark = hasDarkHero && !scrolled;
-
   return (
     <section
       className={cn(
         'sticky inset-x-0 top-0 z-40 transition-all duration-300',
-        isDark
-          ? 'bg-[#1D1D1F]'
-          : 'border-b border-black/[0.06] bg-[rgba(251,251,253,0.72)] backdrop-blur-[20px] backdrop-saturate-[180%]'
+        'border-b border-[#E5E2DC] bg-[#FDFCF9]/90 backdrop-blur-[20px]'
       )}
     >
       <nav className="mx-auto hidden h-12 max-w-[1024px] items-center justify-between px-[22px] lg:flex">
@@ -42,10 +32,7 @@ export function Navbar({ scroll }: NavBarProps) {
             alt="MyDreamTesla"
             width={200}
             height={52}
-            className={cn(
-              'h-8 w-auto transition-all duration-300',
-              isDark ? 'brightness-0 invert' : ''
-            )}
+            className="h-8 w-auto"
             priority
           />
         </LocaleLink>
@@ -65,9 +52,8 @@ export function Navbar({ scroll }: NavBarProps) {
                   <LocaleLink
                     href={item.href || '#'}
                     className={cn(
-                      'text-[12px] font-normal transition-all duration-300',
-                      isDark ? 'text-white' : 'text-[#1D1D1F]',
-                      isActive ? 'opacity-100' : 'opacity-80 hover:opacity-100'
+                      'text-[12px] font-normal text-[#1A1A1A] transition-all duration-300',
+                      isActive ? 'opacity-100' : 'opacity-60 hover:opacity-100'
                     )}
                   >
                     {item.title}
@@ -81,7 +67,7 @@ export function Navbar({ scroll }: NavBarProps) {
       </nav>
 
       {/* Mobile navbar */}
-      <NavbarMobile className="lg:hidden" dark={isDark} />
+      <NavbarMobile className="lg:hidden" />
     </section>
   );
 }

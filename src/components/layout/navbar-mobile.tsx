@@ -30,15 +30,10 @@ import { RemoveScroll } from 'react-remove-scroll';
 import { Skeleton } from '../ui/skeleton';
 import { UserButtonMobile } from './user-button-mobile';
 
-interface NavbarMobileProps extends React.HTMLAttributes<HTMLDivElement> {
-  dark?: boolean;
-}
-
 export function NavbarMobile({
   className,
-  dark,
   ...other
-}: NavbarMobileProps) {
+}: React.HTMLAttributes<HTMLDivElement>) {
   const t = useTranslations();
   const [open, setOpen] = React.useState<boolean>(false);
   const localePathname = useLocalePathname();
@@ -95,10 +90,7 @@ export function NavbarMobile({
             alt="MyDreamTesla"
             width={200}
             height={52}
-            className={cn(
-              'h-8 w-auto transition-all duration-300',
-              dark ? 'brightness-0 invert' : ''
-            )}
+            className="h-8 w-auto"
             priority
           />
         </LocaleLink>

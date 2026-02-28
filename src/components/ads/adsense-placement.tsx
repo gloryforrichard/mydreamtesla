@@ -46,7 +46,7 @@ export function AdSensePlacement({
     return (
       <aside
         aria-label="Advertisement"
-        className={`mx-auto flex items-center justify-center border border-dashed border-[#D2D2D7] text-[11px] text-[#D2D2D7] ${className}`}
+        className={`mx-auto flex items-center justify-center border border-dashed border-[#E5E2DC] text-[11px] text-[#E5E2DC] ${className}`}
         style={{ maxWidth: size.width, height: size.height }}
       >
         Ad — {format} {size.width}×{size.height}
