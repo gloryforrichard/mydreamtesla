@@ -160,27 +160,6 @@
     "description": "探索我们的未来计划和即将推出的功能",
     "subtitle": "探索我们的未来计划和即将推出的功能"
   },
-  "ContactPage": {
-    "title": "联系我们",
-    "description": "我们帮助您找到合适的计划",
-    "subtitle": "我们帮助您找到合适的计划",
-    "form": {
-      "title": "联系我们",
-      "description": "如果您有任何问题或反馈，请随时联系我们的团队",
-      "name": "姓名",
-      "email": "邮箱",
-      "message": "消息",
-      "submit": "提交",
-      "submitting": "提交中...",
-      "success": "消息发送成功",
-      "fail": "消息发送失败",
-      "nameMinLength": "姓名必须至少包含 3 个字符",
-      "nameMaxLength": "姓名必须不超过 30 个字符",
-      "emailValidation": "请输入有效的邮箱地址",
-      "messageMinLength": "消息必须至少包含 10 个字符",
-      "messageMaxLength": "消息必须不超过 500 个字符"
-    }
-  },
   "WaitlistPage": {
     "title": "等待队列",
     "description": "加入等待队列，及时获取最新消息和更新",
