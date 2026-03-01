@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getModelBySlug, getVehiclesForModel } from '@/lib/db/queries';
-import { ModelVehiclesByYear } from '@/components/tesla/model-vehicles-by-year';
+import { ModelVehiclesByGeneration } from '@/components/tesla/model-vehicles-by-generation';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { JsonLd } from '@/components/seo/json-ld';
 import { buildItemListJsonLd, buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
@@ -132,7 +132,7 @@ export default async function ModelDetailPage({ params }: Props) {
 
       {/* Trim listings — light background */}
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <ModelVehiclesByYear vehicles={vehicles} />
+        <ModelVehiclesByGeneration vehicles={vehicles} modelSlug={model.slug} />
       </main>
     </>
   );
