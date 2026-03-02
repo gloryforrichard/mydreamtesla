@@ -5,6 +5,7 @@ export interface GenerationDef {
   yearStart: number;
   yearEnd: number;
   description: string;
+  image: string;
 }
 
 type GenerationConfig = Record<string, GenerationDef[]>;
@@ -21,6 +22,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2099,
       description:
         'All-new interior with yoke steering, 17" horizontal touchscreen, rear passenger display, 22-speaker audio system, and tri-motor Plaid powertrain.',
+      image: '/images/vehicles/generations/model-s-refresh.png',
     },
     {
       name: 'Facelift',
@@ -28,6 +30,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2020,
       description:
         'Nosecone removed with redesigned front fascia. 2019 update brought revised headlights and refreshed rear end.',
+      image: '/images/vehicles/generations/model-s-facelift.png',
     },
     {
       name: 'Original',
@@ -35,6 +38,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2016,
       description:
         'Iconic nosecone design, started as RWD with later addition of AWD and Ludicrous Mode.',
+      image: '/images/vehicles/generations/model-s-original.png',
     },
   ],
   'model-x': [
@@ -44,6 +48,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2099,
       description:
         'All-new interior with yoke steering, horizontal touchscreen, rear passenger display, 22-speaker audio system, and tri-motor Plaid powertrain.',
+      image: '/images/vehicles/generations/model-x-refresh.png',
     },
     {
       name: 'Original',
@@ -51,6 +56,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2020,
       description:
         'Falcon Wing doors, portrait-oriented touchscreen, traditional steering wheel.',
+      image: '/images/vehicles/generations/model-x-original.png',
     },
   ],
   'model-3': [
@@ -60,6 +66,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2099,
       description:
         'Complete exterior redesign with new front and rear fascia, full-width light bar, ventilated seats, and rear passenger display.',
+      image: '/images/vehicles/generations/model-3-highland.png',
     },
     {
       name: 'Original',
@@ -67,6 +74,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2023,
       description:
         'Original design with minimalist interior centered around a 15" touchscreen. Minor interior refresh in 2022.',
+      image: '/images/vehicles/generations/model-3-original.png',
     },
   ],
   'model-y': [
@@ -76,12 +84,14 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2099,
       description:
         'Complete exterior redesign with new front and rear fascia, full-width light bar, ventilated seats, and rear passenger display.',
+      image: '/images/vehicles/generations/model-y-juniper.png',
     },
     {
       name: 'Original',
       yearStart: 2020,
       yearEnd: 2024,
       description: 'Original design based on Model 3 platform.',
+      image: '/images/vehicles/generations/model-y-original.png',
     },
   ],
 };
@@ -119,6 +129,7 @@ export function groupVehiclesByGeneration(
           yearStart: 0,
           yearEnd: 2099,
           description: '',
+          image: '',
         },
         vehicles: [...vehicles].sort(
           (a, b) => b.year - a.year || a.trimName.localeCompare(b.trimName),

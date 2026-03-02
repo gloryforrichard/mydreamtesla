@@ -132,7 +132,7 @@ export default async function ModelDetailPage({ params }: Props) {
 
       {/* Trim listings — light background */}
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <ModelVehiclesByGeneration vehicles={vehicles} modelSlug={model.slug} />
+        <ModelVehiclesByGeneration vehicles={vehicles} modelSlug={model.slug} modelName={model.name} />
       </main>
     </>
   );
