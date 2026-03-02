@@ -15,65 +15,29 @@ type GenerationConfig = Record<string, GenerationDef[]>;
  * yearEnd uses 2099 as sentinel for "current / ongoing".
  */
 const GENERATION_CONFIG: GenerationConfig = {
-  'model-s': [
-    {
-      name: 'Refresh (Plaid)',
-      yearStart: 2021,
-      yearEnd: 2099,
-      description:
-        'All-new interior with yoke steering, 17" horizontal touchscreen, rear passenger display, 22-speaker audio system, and tri-motor Plaid powertrain.',
-      image: '/images/vehicles/generations/model-s-refresh.png',
-    },
-    {
-      name: 'Facelift',
-      yearStart: 2017,
-      yearEnd: 2020,
-      description:
-        'Nosecone removed with redesigned front fascia. 2019 update brought revised headlights and refreshed rear end.',
-      image: '/images/vehicles/generations/model-s-facelift.png',
-    },
-    {
-      name: 'Original',
-      yearStart: 2012,
-      yearEnd: 2016,
-      description:
-        'Iconic nosecone design, started as RWD with later addition of AWD and Ludicrous Mode.',
-      image: '/images/vehicles/generations/model-s-original.png',
-    },
-  ],
-  'model-x': [
-    {
-      name: 'Refresh (Plaid)',
-      yearStart: 2021,
-      yearEnd: 2099,
-      description:
-        'All-new interior with yoke steering, horizontal touchscreen, rear passenger display, 22-speaker audio system, and tri-motor Plaid powertrain.',
-      image: '/images/vehicles/generations/model-x-refresh.png',
-    },
-    {
-      name: 'Original',
-      yearStart: 2016,
-      yearEnd: 2020,
-      description:
-        'Falcon Wing doors, portrait-oriented touchscreen, traditional steering wheel.',
-      image: '/images/vehicles/generations/model-x-original.png',
-    },
-  ],
   'model-3': [
     {
       name: 'Highland',
       yearStart: 2024,
       yearEnd: 2099,
       description:
-        'Complete exterior redesign with new front and rear fascia, full-width light bar, ventilated seats, and rear passenger display.',
+        'Slimmer, sharper headlights and a lower, more angular front fascia. Completely redesigned taillights and rear bumper with a cleaner, sharper rear look. Overall body surfacing looks more flat and crisp versus the rounder earlier cars.',
       image: '/images/vehicles/generations/model-3-highland.png',
     },
     {
-      name: 'Original',
-      yearStart: 2017,
+      name: 'Refresh / Chrome Delete',
+      yearStart: 2021,
       yearEnd: 2023,
       description:
-        'Original design with minimalist interior centered around a 15" touchscreen. Minor interior refresh in 2022.',
+        'Exterior trim (window surround, door handles, etc.) switched from chrome to black. Updated wheel designs with a more blacked-out, sporty look. Same overall front/rear silhouette as the earlier Model 3.',
+      image: '/images/vehicles/generations/model-3-refresh.png',
+    },
+    {
+      name: 'Original / Chrome Trim',
+      yearStart: 2017,
+      yearEnd: 2020,
+      description:
+        'Bright chrome window trim and chrome door handles. Rounder, softer front-end look with the classic Model 3 face. Thicker-looking taillights and a generally softer, less sharp appearance.',
       image: '/images/vehicles/generations/model-3-original.png',
     },
   ],
@@ -83,15 +47,78 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearStart: 2025,
       yearEnd: 2099,
       description:
-        'Complete exterior redesign with new front and rear fascia, full-width light bar, ventilated seats, and rear passenger display.',
+        'New front lighting signature with thin headlights and a more modern, horizontal look. Front bumper/fascia redesigned to look smoother and wider. Rear lighting design updated with a more distinctive appearance.',
       image: '/images/vehicles/generations/model-y-juniper.png',
     },
     {
       name: 'Original',
       yearStart: 2020,
       yearEnd: 2024,
-      description: 'Original design based on Model 3 platform.',
+      description:
+        'No new front lighting signature; front end looks more bulbous/rounded. Headlights look more traditional and less slit-like. Overall appearance closely matches the pre-Highland Model 3 design language.',
       image: '/images/vehicles/generations/model-y-original.png',
+    },
+  ],
+  'model-s': [
+    {
+      name: 'Refresh',
+      yearStart: 2021,
+      yearEnd: 2099,
+      description:
+        'Cleaner, more modern lighting and sharper bumper detailing. More blacked-out exterior trim look compared to earlier years. Wheels/diffuser details skew more performance-focused, especially Plaid.',
+      image: '/images/vehicles/generations/model-s-refresh.png',
+    },
+    {
+      name: 'Facelift / No Nose Cone',
+      yearStart: 2016,
+      yearEnd: 2020,
+      description:
+        'Front end loses the older nose cone look and becomes smoother/cleaner. Design reads closer to modern Tesla styling with a more minimal front. Overall silhouette remains very similar; mostly a new face.',
+      image: '/images/vehicles/generations/model-s-facelift.png',
+    },
+    {
+      name: 'Original / Nose Cone',
+      yearStart: 2012,
+      yearEnd: 2015,
+      description:
+        'A distinct black nose cone panel on the front bumper. Front looks more traditional/early-Tesla with a less clean, more grille-like appearance. More early-era detailing overall.',
+      image: '/images/vehicles/generations/model-s-original.png',
+    },
+  ],
+  'model-x': [
+    {
+      name: 'Refresh',
+      yearStart: 2021,
+      yearEnd: 2099,
+      description:
+        'More blacked-out trim overall with less chrome. Subtle front/rear bumper detailing changes with the silhouette largely unchanged. Newer wheel styles are often the easiest giveaway.',
+      image: '/images/vehicles/generations/model-x-refresh.png',
+    },
+    {
+      name: 'Facelift / No Nose Cone',
+      yearStart: 2016,
+      yearEnd: 2020,
+      description:
+        'Cleaner, smoother front end compared to the earliest X. Major cue is the front fascia; Falcon Wing doors silhouette stays the same. Looks more aligned with the modern S/3 design language.',
+      image: '/images/vehicles/generations/model-x-facelift.png',
+    },
+    {
+      name: 'Original / Nose Cone',
+      yearStart: 2015,
+      yearEnd: 2015,
+      description:
+        'Early front fascia with the older nose cone look. Rounder, more early-Tesla styling cues. Short production window: if you see it, it\'s almost certainly an early car.',
+      image: '/images/vehicles/generations/model-x-original.png',
+    },
+  ],
+  cybertruck: [
+    {
+      name: 'Production',
+      yearStart: 2023,
+      yearEnd: 2099,
+      description:
+        'Stainless-steel, sharp-edged body panels with the iconic wedge shape. Real-world details include large single wiper, full mirrors, and bulkier lower cladding. Looks slightly more filled out and production-ready vs the reveal prototype.',
+      image: '/images/vehicles/generations/cybertruck-production.png',
     },
   ],
 };
