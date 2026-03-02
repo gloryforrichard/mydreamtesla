@@ -15,6 +15,7 @@ export function useFooterLinks(): NestedMenuItem[] {
         { title: 'Model Y', href: '/models/model-y' },
         { title: 'Model S', href: '/models/model-s' },
         { title: 'Model X', href: '/models/model-x' },
+        { title: 'Cybertruck', href: '/models/cybertruck' },
         { title: 'All Models', href: Routes.Models },
       ],
     },
@@ -22,10 +23,28 @@ export function useFooterLinks(): NestedMenuItem[] {
       title: 'Compare',
       items: [
         {
-          title: 'Model 3 vs Y',
+          title: 'Model 3 LR vs Performance',
           href: '/compare/model-3-2025-long-range-awd-vs-model-3-2025-performance-awd',
         },
+        {
+          title: 'Model Y SR vs LR',
+          href: '/compare/model-y-2025-standard-range-rwd-vs-model-y-2025-long-range-awd',
+        },
+        {
+          title: '2024 vs 2025 Model Y',
+          href: '/compare/model-y-2024-long-range-awd-vs-model-y-2025-long-range-awd',
+        },
         { title: 'All Comparisons', href: Routes.Compare },
+      ],
+    },
+    {
+      title: 'Resources',
+      items: [
+        { title: 'Blog', href: Routes.Blog },
+        {
+          title: 'Tax Credit Guide',
+          href: '/blog/tesla-federal-tax-credit-guide-2025',
+        },
       ],
     },
     {

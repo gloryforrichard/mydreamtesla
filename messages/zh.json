@@ -1,8 +1,8 @@
 {
   "Metadata": {
-    "name": "MkSaaS Demo",
-    "title": "MkSaaS - 最好的 AI SaaS 模板",
-    "description": "MkSaaS 是构建 AI SaaS 的最佳模板，使用 MkSaaS 可以在几天内轻松构建您的 AI SaaS，简单且毫不费力。"
+    "name": "MyDreamTesla",
+    "title": "MyDreamTesla — 每款特斯拉，每个年份，一键对比。",
+    "description": "最全面的特斯拉车型数据库。按年份、配置和参数对比每款 Model 3、Y、S、X 和 Cybertruck。"
   },
   "Common": {
     "premium": "付费文章",
@@ -143,10 +143,10 @@
   },
   "AboutPage": {
     "title": "关于我们",
-    "description": "MkSaaS 是一个使用最先进的技术栈构建的 AI SaaS 模板，它可以帮助你更快更好地构建你的 SaaS。如果你有任何问题，欢迎联系我。",
-    "authorName": "MkSaaS",
-    "authorBio": "最好的 AI SaaS 模板",
-    "introduction": "👋 你好，这里是 MkSaaS，一个使用最先进的技术栈构建的 AI SaaS 模板，它可以帮助你更快更好地构建你的 SaaS。如果你有任何问题，欢迎联系我。",
+    "description": "MyDreamTesla 是最全面的特斯拉车型对比工具。我们通过详细的参数规格、并排对比和专业分析，帮助购车者做出明智的决策。",
+    "authorName": "MyDreamTesla",
+    "authorBio": "特斯拉车型对比工具",
+    "introduction": "MyDreamTesla 是最全面的特斯拉车型对比工具。我们通过详细的参数规格、并排对比和专业分析，帮助购车者做出明智的决策。",
     "talkWithMe": "联系我",
     "followMe": "关注我"
   },
@@ -275,7 +275,7 @@
     "previousPage": "上一页",
     "nextPage": "下一页",
     "chooseLanguage": "选择语言",
-    "title": "MkSaaS文档",
+    "title": "MyDreamTesla 文档",
     "homepage": "首页",
     "PageActions": {
       "copyMarkdown": "复制 Markdown",
@@ -360,7 +360,7 @@
       }
     },
     "footer": {
-      "tagline": "使用 MkSaaS 在几天内轻松构建您的 AI SaaS",
+      "tagline": "每款特斯拉，每个年份，一键对比。",
       "product": {
         "title": "产品",
         "items": {
@@ -741,12 +741,12 @@
     }
   },
   "HomePage": {
-    "title": "MkSaaS",
-    "description": "使用 MkSaaS 在几天内轻松构建您的 AI SaaS 产品",
+    "title": "MyDreamTesla",
+    "description": "每款特斯拉，每个年份，一键对比。",
     "hero": {
-      "title": "使用 MkSaaS 轻松构建您的 AI SaaS 产品",
-      "description": "MkSaaS 是构建 AI SaaS 的最佳模板，内置 AI、身份验证、全球支付、博客、文档、邮件订阅、SEO、多彩主题、丰富组件等。",
-      "introduction": "介绍 MkSaaS 模板",
+      "title": "每款特斯拉，每个年份，一键对比。",
+      "description": "最全面的特斯拉车型数据库。对比每款 Model 3、Y、S、X 和 Cybertruck 的参数、价格和配置——从第一代到最新款。",
+      "introduction": "欢迎使用 MyDreamTesla",
       "primary": "开始使用",
       "secondary": "查看演示"
     },
@@ -754,103 +754,103 @@
       "title": "您最爱公司都是我们的合作伙伴"
     },
     "integration": {
-      "title": "集成",
-      "subtitle": "与您最喜欢的工具集成",
-      "description": "无缝连接流行的平台和服务，以增强您的工作流程。",
+      "title": "特斯拉生态",
+      "subtitle": "连接特斯拉世界",
+      "description": "全面覆盖整个特斯拉车型系列和生态系统的数据。",
       "learnMore": "了解更多",
       "items": {
         "item-1": {
-          "title": "Google Gemini",
-          "description": "这里是Google Gemini的描述，详细介绍Google Gemini的功能和优势。"
+          "title": "Model 3",
+          "description": "每款 Model 3 配置的完整参数——标准版、长续航版和性能版。"
         },
         "item-2": {
-          "title": "Replit",
-          "description": "这里是Replit的描述，详细介绍Replit的功能和优势。"
+          "title": "Model Y",
+          "description": "全球最畅销电动车的详细数据，包括 Juniper 焕新版。"
         },
         "item-3": {
-          "title": "MagicUI",
-          "description": "这里是MagicUI的描述，详细介绍MagicUI的功能和优势。"
+          "title": "Model S",
+          "description": "特斯拉旗舰轿车的完整参数，从初代到 Plaid 版。"
         },
         "item-4": {
-          "title": "VSCodium",
-          "description": "这里是VSCodium的描述，详细介绍VSCodium的功能和优势。"
+          "title": "Model X",
+          "description": "鹰翼门豪华 SUV 的每个配置和代次。"
         },
         "item-5": {
-          "title": "MediaWiki",
-          "description": "这里是MediaWiki的描述，详细介绍MediaWiki的功能和优势。"
+          "title": "Cybertruck",
+          "description": "所有 Cybertruck 版本的完整参数、价格和供货信息。"
         },
         "item-6": {
-          "title": "Google PaLM",
-          "description": "这里是Google PaLM的描述，详细介绍Google PaLM的功能和优势。"
+          "title": "超级充电网络",
+          "description": "特斯拉全球超级充电网络的充电速度和兼容性数据。"
         }
       }
     },
     "integration2": {
-      "title": "与您最喜欢的工具集成",
-      "description": "无缝连接流行的平台和服务，以增强您的工作流程。",
-      "primaryButton": "开始使用",
-      "secondaryButton": "查看演示"
+      "title": "每款特斯拉车型，详细覆盖",
+      "description": "从 Model 3 到 Cybertruck——对比整个特斯拉产品线的参数、价格和配置。",
+      "primaryButton": "浏览车型",
+      "secondaryButton": "立即对比"
     },
     "features": {
       "title": "功能",
-      "subtitle": "您的 SaaS 产品功能",
-      "description": "请在这里介绍您的 SaaS 产品的特色功能的信息",
+      "subtitle": "对比特斯拉所需的一切",
+      "description": "最强大的特斯拉对比工具",
       "items": {
         "item-1": {
-          "title": "产品特色功能一",
-          "description": "请在这里详细描述您的产品特色功能一，尽可能详细，使其更吸引用户，提高落地页的转化率"
+          "title": "详细参数",
+          "description": "每款特斯拉配置的所有参数，从续航和加速到载货空间和价格。"
         },
         "item-2": {
-          "title": "产品特色功能二",
-          "description": "请在这里详细描述您的产品特色功能二，尽可能详细，使其更吸引用户，提高落地页的转化率"
+          "title": "并排对比",
+          "description": "使用我们强大的对比工具，将任意两款特斯拉车型进行面对面对比。"
         },
         "item-3": {
-          "title": "产品特色功能三",
-          "description": "请在这里详细描述您的产品特色功能三，尽可能详细，使其更吸引用户，提高落地页的转化率"
+          "title": "逐年追踪",
+          "description": "查看特斯拉车型在各代和各年份中的演变。"
         },
         "item-4": {
-          "title": "产品特色功能四",
-          "description": "请在这里详细描述您的产品特色功能四，尽可能详细，使其更吸引用户，提高落地页的转化率"
+          "title": "智能推荐",
+          "description": "根据您的需求和预算获取个性化的特斯拉推荐。"
         }
       }
     },
     "features2": {
-      "title": "功能2",
-      "subtitle": "您的 SaaS 产品功能",
-      "description": "请在这里介绍您的 SaaS 产品的特色功能的信息",
-      "feature-1": "特色功能特点一",
-      "feature-2": "特色功能特点二",
-      "feature-3": "特色功能特点三",
-      "feature-4": "特色功能特点四"
+      "title": "对比工具",
+      "subtitle": "对比特斯拉所需的一切",
+      "description": "帮你找到完美特斯拉的强大工具",
+      "feature-1": "详细参数",
+      "feature-2": "并排对比",
+      "feature-3": "逐年追踪",
+      "feature-4": "智能推荐"
     },
     "features3": {
-      "title": "功能3",
-      "subtitle": "您的 SaaS 产品功能",
-      "description": "请在这里介绍您的 SaaS 产品的特色功能的信息",
+      "title": "为什么选择 MyDreamTesla",
+      "subtitle": "最全面的特斯拉资源",
+      "description": "做出明智的特斯拉购买决策所需的一切",
       "items": {
         "item-1": {
-          "title": "产品特色功能一",
-          "description": "请在这里详细描述您的产品特色功能一，尽可能详细，使其更吸引用户"
+          "title": "完整车型数据库",
+          "description": "从2017年至今的每款特斯拉车型、配置和代次——全部集中在一个地方。"
         },
         "item-2": {
-          "title": "产品特色功能二",
-          "description": "请在这里详细描述您的产品特色功能二，尽可能详细，使其更吸引用户"
+          "title": "准确的参数规格",
+          "description": "续航、加速、价格、尺寸等——经过验证且保持最新。"
         },
         "item-3": {
-          "title": "产品特色功能三",
-          "description": "请在这里详细描述您的产品特色功能三，尽可能详细，使其更吸引用户"
+          "title": "直观的可视化对比",
+          "description": "清晰直观的并排布局，让差异一目了然。"
         },
         "item-4": {
-          "title": "产品特色功能四",
-          "description": "请在这里详细描述您的产品特色功能四，尽可能详细，使其更吸引用户"
+          "title": "代次追踪",
+          "description": "追踪每款特斯拉车型通过改款和更新的演变历程。"
         },
         "item-5": {
-          "title": "产品特色功能五",
-          "description": "请在这里详细描述您的产品特色功能五，尽可能详细，使其更吸引用户"
+          "title": "区域化数据",
+          "description": "针对您所在地区定制的参数和可用性信息，包括美国和加拿大。"
         },
         "item-6": {
-          "title": "产品特色功能六",
-          "description": "请在这里详细描述您的产品特色功能六，尽可能详细，使其更吸引用户"
+          "title": "免费开放",
+          "description": "免费使用所有对比功能——无需注册账号。"
         }
       }
     },
@@ -881,107 +881,110 @@
         },
         "item-5": {
           "question": "找不到您想问的问题？",
-          "answer": "请联系我们的客户支持团队，邮箱地址：support@mksaas.com"
+          "answer": "请联系我们的客户支持团队，邮箱地址：support@mydreamtesla.com"
         }
       }
     },
     "testimonials": {
-      "title": "客户评价",
-      "subtitle": "我们的客户对我们的评价",
+      "title": "用户评价",
+      "subtitle": "看看用户怎么说",
       "items": {
         "item-1": {
-          "name": "Jonathan Yombo",
-          "role": "软件工程师",
-          "image": "https://randomuser.me/api/portraits/men/1.jpg",
-          "quote": "MkSaaS 非常出色且实用，无需费心，一个真正的金矿。"
+          "name": "Sarah Chen",
+          "role": "Model 3 车主",
+          "image": "https://randomuser.me/api/portraits/women/1.jpg",
+          "quote": "MyDreamTesla 让对比 Model 3 各配置变得超级简单。最终我选了长续航版，非常满意。"
         },
         "item-2": {
-          "name": "Yves Kalume",
-          "role": "Android GDE",
+          "name": "Marcus Johnson",
+          "role": "电动车爱好者",
           "image": "https://randomuser.me/api/portraits/men/6.jpg",
-          "quote": "没有网页设计经验，我只需几分钟就可以用 Tailwindcss 重新设计我的整个网站，感谢 MkSaaS。"
+          "quote": "终于有一个网站能把每年每款特斯拉都展示在一个地方了。对比工具帮我省了好几个小时的研究时间。"
         },
         "item-3": {
-          "name": "Yucel Faruksahan",
-          "role": "Tailkits 创建者",
-          "image": "https://randomuser.me/api/portraits/men/7.jpg",
-          "quote": "MkSaaS 模板做得很好，这是我见过最好的 SaaS 模板，没有之一 :)"
+          "name": "Emily Rodriguez",
+          "role": "Model Y 车主",
+          "image": "https://randomuser.me/api/portraits/women/7.jpg",
+          "quote": "我在 Model Y 和 Model 3 之间犹豫不决，MyDreamTesla 的并排对比让我几分钟就做出了决定。"
         },
         "item-4": {
-          "name": "Anonymous author",
-          "role": "产品经理",
+          "name": "David Park",
+          "role": "科技评测人",
           "image": "https://randomuser.me/api/portraits/men/8.jpg",
-          "quote": "我不熟悉 Tailwind，我想自己做一些页面，我在网上搜索了很多英雄页面和区块。然而，大多数都没有给我一个清晰的想法，或者需要一些 HTML/CSS 编码背景来从原始文件中做一些更改，或者太贵了。我下载了其中一个 MkSaaS 模板，它非常容易理解，你可以在开始时修改代码/区块以完美地适应你的页面目的。"
+          "quote": "作为一个评测电动车的人，MyDreamTesla 是我的首选参考工具。逐年参数追踪功能非常实用。"
         },
         "item-5": {
-          "name": "Shekinah Tshiokufila",
-          "role": "高级软件工程师",
-          "image": "https://randomuser.me/api/portraits/men/4.jpg",
-          "quote": "MkSaaS 正在重新定义网页设计标准，这些区块为那些喜欢美丽但可能缺乏时间实现它的人提供了简单且高效的方式。我只能推荐这个不可思议的奇迹。"
+          "name": "Lisa Thompson",
+          "role": "Model S 车主",
+          "image": "https://randomuser.me/api/portraits/women/4.jpg",
+          "quote": "我用 MyDreamTesla 对比了 Model S Plaid 和长续航版，详细的参数让我的决定变得轻松多了。"
         },
         "item-6": {
-          "name": "Oketa Fred",
-          "role": "全栈开发工程师",
+          "name": "James Wilson",
+          "role": "Cybertruck 预订者",
           "image": "https://randomuser.me/api/portraits/men/2.jpg",
-          "quote": "我绝对喜欢 MkSaaS！这些组件区块设计精美且易于使用，使创建一个出色的网站变得轻而易举。"
+          "quote": "很棒的资源，可以追踪特斯拉多年来的参数变化。帮我清楚了解 Cybertruck 的具体配置。"
         },
         "item-7": {
-          "name": "Zeki",
-          "role": "ChatExtend 创始人",
-          "image": "https://randomuser.me/api/portraits/men/5.jpg",
-          "quote": "使用 MkSaaS 就像解锁了一个秘密的设计超能力。它是简单性和多功能性的完美融合，使我们能够创建既令人惊叹又用户友好的界面。"
+          "name": "Priya Patel",
+          "role": "首次购买电动车",
+          "image": "https://randomuser.me/api/portraits/women/5.jpg",
+          "quote": "作为第一次买电动车的人，MyDreamTesla 给了我选择特斯拉所需的全部信息，真的太有价值了。"
         },
         "item-8": {
-          "name": "Joseph Kitheka",
-          "role": "全栈开发工程师",
+          "name": "Robert Kim",
+          "role": "Model X 车主",
           "image": "https://randomuser.me/api/portraits/men/9.jpg",
-          "quote": "MkSaaS 改变了我的网页开发方式。他们的 UI 组件、区块和模板极大地加速了我的工作流程。定制每个方面的灵活性使我能够创建独特的用户体验。MkSaaS 是现代网页开发的游戏规则改变者！"
+          "quote": "对比功能非常棒。我在购买前对比了 2020 到 2025 年的每款 Model X 配置。强烈推荐这个工具。"
         },
         "item-9": {
-          "name": "Khatab Wedaa",
-          "role": "MerakiUI 创建者",
-          "image": "https://randomuser.me/api/portraits/men/10.jpg",
-          "quote": "MkSaaS 是一个优雅、干净且响应式的 SaaS 模板，它非常有助于快速开始您的项目。"
+          "name": "Amanda Foster",
+          "role": "汽车记者",
+          "image": "https://randomuser.me/api/portraits/women/10.jpg",
+          "quote": "MyDreamTesla 是我见过最全面的特斯拉数据库。我写文章时经常使用它，数据准确性令人印象深刻。"
         },
         "item-10": {
-          "name": "Rodrigo Aguilar",
-          "role": "TailwindAwesome 创建者",
+          "name": "Carlos Mendez",
+          "role": "Model 3 焕新版车主",
           "image": "https://randomuser.me/api/portraits/men/11.jpg",
-          "quote": "我爱 MkSaaS ❤️。这些组件区块结构良好，易于使用，设计精美。它使创建一个出色的网站变得非常容易。"
+          "quote": "能把原版 Model 3 和焕新版并排对比，正是我需要的。MyDreamTesla 做到了。"
         },
         "item-11": {
-          "name": "Eric Ampire",
-          "role": "Google 开发者专家",
-          "image": "https://randomuser.me/api/portraits/men/12.jpg",
-          "quote": "MkSaaS 模板是任何想要创建一个美丽且功能齐全的网站但没有网页设计经验的人的完美解决方案。这些模板易于使用，可定制，并且响应迅速。我强烈推荐 MkSaaS 模板给任何想要创建网站的人。"
+          "name": "Michelle Wang",
+          "role": "特斯拉车队管理",
+          "image": "https://randomuser.me/api/portraits/women/12.jpg",
+          "quote": "管理一个特斯拉车队意味着我需要每个年款的准确参数。MyDreamTesla 是唯一把所有数据集中在一起的工具。"
         },
         "item-12": {
-          "name": "Roland Tubonge",
-          "role": "软件工程师",
+          "name": "Alex Turner",
+          "role": "电动车博主",
           "image": "https://randomuser.me/api/portraits/men/13.jpg",
-          "quote": "MkSaaS 设计得如此出色，即使没有网页设计经验，您也可以创造奇迹。让自己被吸引！"
+          "quote": "我向每个考虑买特斯拉的人推荐 MyDreamTesla。详细的配置对比和价格历史是无与伦比的。"
         }
       }
     },
     "stats": {
       "title": "统计",
-      "subtitle": "MkSaaS 相关的数字",
-      "description": "MkSaaS 可让您在几天内轻松构建您的 AI SaaS",
+      "subtitle": "MyDreamTesla 数据一览",
+      "description": "最全面的特斯拉车型数据，触手可及",
       "items": {
         "item-1": {
-          "title": "GitHub 上的星星"
+          "title": "特斯拉车型"
         },
         "item-2": {
-          "title": "使用 MkSaaS 的活跃用户"
+          "title": "车型配置"
         },
         "item-3": {
-          "title": "使用 MkSaaS 启动的应用"
+          "title": "并排对比"
+        },
+        "item-4": {
+          "title": "年份数据（自2017年起）"
         }
       }
     },
     "calltoaction": {
-      "title": "开始构建",
-      "description": "MkSaaS 可让您在几天内轻松构建您的 AI SaaS",
+      "title": "找到你的理想特斯拉",
+      "description": "找到你的理想特斯拉。通过详细的参数和价格对比，轻松选择心仪车型。",
       "primaryButton": "开始使用",
       "secondaryButton": "查看演示"
     }

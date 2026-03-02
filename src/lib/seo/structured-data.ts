@@ -147,6 +147,24 @@ export function buildBreadcrumbJsonLd(
 }
 
 /**
+ * schema.org/FAQPage — for FAQ sections
+ */
+export function buildFAQPageJsonLd(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+}
+
+/**
  * schema.org/BlogPosting — for blog posts
  */
 export function buildBlogPostingJsonLd(post: {

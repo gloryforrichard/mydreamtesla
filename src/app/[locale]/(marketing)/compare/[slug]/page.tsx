@@ -8,6 +8,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { buildItemListJsonLd } from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
 import { getOgImageUrl } from '@/lib/metadata';
+import { generateAlternates } from '@/lib/hreflang';
 import Link from 'next/link';
 
 interface Props {
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${names} — Side-by-Side Comparison | MyDreamTesla`,
     description: `Compare ${names} specs, range, performance, and pricing side by side. Find which Tesla is right for you.`,
+    alternates: generateAlternates(`/compare/${slug}`),
     openGraph: { images: [ogImage] },
     twitter: { card: 'summary_large_image', images: [ogImage] },
   };

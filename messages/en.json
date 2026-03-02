@@ -143,10 +143,10 @@
   },
   "AboutPage": {
     "title": "About",
-    "description": "This is MkSaaS, an AI SaaS template built with modern technologies, helping you build your SaaS faster and better.",
-    "authorName": "MkSaaS",
-    "authorBio": "AI SaaS Boilerplate",
-    "introduction": "👋 Hi there! This is MkSaaS, an AI SaaS template built with modern technologies, helping you build your SaaS faster and better. If you have any questions, welcome to contact me.",
+    "description": "MyDreamTesla is the most comprehensive Tesla vehicle comparison tool. We help buyers make informed decisions by providing detailed specs, side-by-side comparisons, and expert analysis for every Tesla model and trim.",
+    "authorName": "MyDreamTesla",
+    "authorBio": "Tesla Vehicle Comparison Tool",
+    "introduction": "MyDreamTesla is the most comprehensive Tesla vehicle comparison tool. We help buyers make informed decisions by providing detailed specs, side-by-side comparisons, and expert analysis for every Tesla model and trim.",
     "talkWithMe": "Talk with me",
     "followMe": "Follow me on X"
   },
@@ -275,7 +275,7 @@
     "previousPage": "Previous",
     "nextPage": "Next",
     "chooseLanguage": "Select language",
-    "title": "MkSaaS Docs",
+    "title": "MyDreamTesla Docs",
     "homepage": "Homepage",
     "PageActions": {
       "copyMarkdown": "Copy Markdown",
@@ -360,7 +360,7 @@
       }
     },
     "footer": {
-      "tagline": "Make AI SaaS in days, simply and effortlessly",
+      "tagline": "Every Tesla. Every Year. Compared.",
       "product": {
         "title": "Product",
         "items": {
@@ -741,12 +741,12 @@
     }
   },
   "HomePage": {
-    "title": "MkSaaS",
-    "description": "Make AI SaaS in days, simply and effortlessly",
+    "title": "MyDreamTesla",
+    "description": "Every Tesla. Every Year. Compared.",
     "hero": {
-      "title": "Make AI SaaS in days, simply and effortlessly",
-      "description": "The is a demo website built with MkSaaS, a Next.js SaaS boilerplate to help you build your AI SaaS faster and better.",
-      "introduction": "Introducing MkSaaS Boilerplate",
+      "title": "Every Tesla. Every Year. Compared.",
+      "description": "The most comprehensive Tesla vehicle database. Compare specs, prices, and features across every Model 3, Y, S, X, and Cybertruck — from the first generation to the latest refresh.",
+      "introduction": "Introducing MyDreamTesla",
       "primary": "Get Started",
       "secondary": "See Demo"
     },
@@ -754,103 +754,103 @@
       "title": "Your favorite companies are our partners"
     },
     "integration": {
-      "title": "Integrations",
-      "subtitle": "Integrate with your favorite tools",
-      "description": "Connect seamlessly with popular platforms and services to enhance your workflow.",
+      "title": "Tesla Ecosystem",
+      "subtitle": "Connected to the Tesla world",
+      "description": "Comprehensive data coverage across the entire Tesla vehicle lineup and ecosystem.",
       "learnMore": "Learn More",
       "items": {
         "item-1": {
-          "title": "Google Gemini",
-          "description": "Amet praesentium deserunt ex commodi tempore fuga voluptatem."
+          "title": "Model 3",
+          "description": "Complete specs for every Model 3 trim — Standard, Long Range, and Performance."
         },
         "item-2": {
-          "title": "Replit",
-          "description": "Amet praesentium deserunt ex commodi tempore fuga voluptatem."
+          "title": "Model Y",
+          "description": "Detailed data for the world's best-selling EV, including Juniper refresh."
         },
         "item-3": {
-          "title": "MagicUI",
-          "description": "Amet praesentium deserunt ex commodi tempore fuga voluptatem."
+          "title": "Model S",
+          "description": "Full specifications for Tesla's flagship sedan, from original to Plaid."
         },
         "item-4": {
-          "title": "VSCodium",
-          "description": "Amet praesentium deserunt ex commodi tempore fuga voluptatem."
+          "title": "Model X",
+          "description": "Every trim and generation of Tesla's premium SUV with falcon wing doors."
         },
         "item-5": {
-          "title": "MediaWiki",
-          "description": "Amet praesentium deserunt ex commodi tempore fuga voluptatem."
+          "title": "Cybertruck",
+          "description": "All Cybertruck variants with complete specs, pricing, and availability info."
         },
         "item-6": {
-          "title": "Google PaLM",
-          "description": "Amet praesentium deserunt ex commodi tempore fuga voluptatem."
+          "title": "Supercharger Network",
+          "description": "Charging speed and compatibility data across Tesla's global Supercharger network."
         }
       }
     },
     "integration2": {
-      "title": "Integrate with your favorite tools",
-      "description": "Connect seamlessly with popular platforms and services to enhance your workflow.",
-      "primaryButton": "Get Started",
-      "secondaryButton": "See Demo"
+      "title": "Every Tesla model covered in detail",
+      "description": "From Model 3 to Cybertruck — compare specs, pricing, and features across the entire Tesla lineup.",
+      "primaryButton": "Browse Models",
+      "secondaryButton": "Compare Now"
     },
     "features": {
       "title": "Features",
-      "subtitle": "The features of your product",
-      "description": "Write the description of your product here",
+      "subtitle": "Everything you need to compare Teslas",
+      "description": "The most powerful Tesla comparison tool available",
       "items": {
         "item-1": {
-          "title": "Product Feature One",
-          "description": "Please write the detailed description of feature one here, make it as detailed as possible, make it more attractive to users"
+          "title": "Detailed Specs",
+          "description": "Every specification for every Tesla trim, from range and acceleration to cargo capacity and pricing."
         },
         "item-2": {
-          "title": "Product Feature Two",
-          "description": "Please write the detailed description of feature two here, make it as detailed as possible, make it more attractive to users"
+          "title": "Side-by-Side Comparison",
+          "description": "Compare any two Tesla vehicles head-to-head with our powerful comparison tool."
         },
         "item-3": {
-          "title": "Product Feature Three",
-          "description": "Please write the detailed description of feature three here, make it as detailed as possible, make it more attractive to users"
+          "title": "Year-over-Year Tracking",
+          "description": "See how Tesla models have evolved across generations and model years."
         },
         "item-4": {
-          "title": "Product Feature Four",
-          "description": "Please write the detailed description of feature four here, make it as detailed as possible, make it more attractive to users"
+          "title": "Smart Recommendations",
+          "description": "Get personalized Tesla recommendations based on your needs and budget."
         }
       }
     },
     "features2": {
-      "title": "Features2",
-      "subtitle": "The features of your product",
-      "description": "Write the description of your product here",
-      "feature-1": "Product Feature One",
-      "feature-2": "Product Feature Two",
-      "feature-3": "Product Feature Three",
-      "feature-4": "Product Feature Four"
+      "title": "Compare Tools",
+      "subtitle": "Everything you need to compare Teslas",
+      "description": "Powerful tools to help you find the perfect Tesla",
+      "feature-1": "Detailed Specs",
+      "feature-2": "Side-by-Side Comparison",
+      "feature-3": "Year-over-Year Tracking",
+      "feature-4": "Smart Recommendations"
     },
     "features3": {
-      "title": "Features3",
-      "subtitle": "The features of your product",
-      "description": "Write the description of your product here",
+      "title": "Why MyDreamTesla",
+      "subtitle": "The most comprehensive Tesla resource",
+      "description": "Everything you need to make an informed Tesla purchase",
       "items": {
         "item-1": {
-          "title": "Product Feature One",
-          "description": "Please write the detailed description of feature one here"
+          "title": "Complete Model Database",
+          "description": "Every Tesla model, trim, and generation from 2017 to today — all in one place."
         },
         "item-2": {
-          "title": "Product Feature Two",
-          "description": "Please write the detailed description of feature two here"
+          "title": "Accurate Specifications",
+          "description": "Range, acceleration, price, dimensions, and more — verified and up to date."
         },
         "item-3": {
-          "title": "Product Feature Three",
-          "description": "Please write the detailed description of feature three here"
+          "title": "Visual Comparisons",
+          "description": "Clean, intuitive side-by-side layouts that make differences easy to spot."
         },
         "item-4": {
-          "title": "Product Feature Four",
-          "description": "Please write the detailed description of feature four here"
+          "title": "Generation Tracking",
+          "description": "Track how each Tesla model has evolved through refreshes and updates."
         },
         "item-5": {
-          "title": "Product Feature Five",
-          "description": "Please write the detailed description of feature five here"
+          "title": "Region-Aware Data",
+          "description": "Specs and availability tailored to your region, including US and Canada."
         },
         "item-6": {
-          "title": "Product Feature Six",
-          "description": "Please write the detailed description of feature six here"
+          "title": "Free and Open",
+          "description": "Access all comparison features for free — no account required."
         }
       }
     },
@@ -881,107 +881,110 @@
         },
         "item-5": {
           "question": "Can't find what you're looking for?",
-          "answer": "Please contact our customer support team at support@mksaas.com"
+          "answer": "Please contact our customer support team at support@mydreamtesla.com"
         }
       }
     },
     "testimonials": {
       "title": "Testimonials",
-      "subtitle": "What our customers are saying",
+      "subtitle": "What our users are saying",
       "items": {
         "item-1": {
-          "name": "Jonathan Yombo",
-          "role": "Software Engineer",
-          "image": "https://randomuser.me/api/portraits/men/1.jpg",
-          "quote": "MkSaaS is really extraordinary and very practical, no need to break your head. A real gold mine."
+          "name": "Sarah Chen",
+          "role": "Model 3 Owner",
+          "image": "https://randomuser.me/api/portraits/women/1.jpg",
+          "quote": "MyDreamTesla made it so easy to compare the Model 3 trims. I ended up choosing the Long Range and couldn't be happier."
         },
         "item-2": {
-          "name": "Yves Kalume",
-          "role": "GDE - Android",
+          "name": "Marcus Johnson",
+          "role": "EV Enthusiast",
           "image": "https://randomuser.me/api/portraits/men/6.jpg",
-          "quote": "With no experience in webdesign I just redesigned my entire website in a few minutes with tailwindcss thanks to MkSaaS."
+          "quote": "Finally a site that shows every Tesla year and trim in one place. The comparison tool saved me hours of research."
         },
         "item-3": {
-          "name": "Yucel Faruksahan",
-          "role": "Tailkits Creator",
-          "image": "https://randomuser.me/api/portraits/men/7.jpg",
-          "quote": "Great work on MkSaaS template. This is one of the best personal website that I have seen so far :)"
+          "name": "Emily Rodriguez",
+          "role": "Model Y Owner",
+          "image": "https://randomuser.me/api/portraits/women/7.jpg",
+          "quote": "I was torn between Model Y and Model 3. The side-by-side comparison on MyDreamTesla helped me decide in minutes."
         },
         "item-4": {
-          "name": "Anonymous author",
-          "role": "Product Manager",
+          "name": "David Park",
+          "role": "Tech Reviewer",
           "image": "https://randomuser.me/api/portraits/men/8.jpg",
-          "quote": "I downloaded the one of MkSaaS template which is very clear to understand at the start and you could modify the codes/blocks to fit perfectly on your purpose of the page."
+          "quote": "As someone who reviews EVs, MyDreamTesla is my go-to reference. The year-over-year spec tracking is incredibly useful."
         },
         "item-5": {
-          "name": "Shekinah Tshiokufila",
-          "role": "Senior Software Engineer",
-          "image": "https://randomuser.me/api/portraits/men/4.jpg",
-          "quote": "MkSaaS is redefining the standard of web design, with these blocks it provides an easy and efficient way for those who love beauty but may lack the time to implement it."
+          "name": "Lisa Thompson",
+          "role": "Model S Owner",
+          "image": "https://randomuser.me/api/portraits/women/4.jpg",
+          "quote": "I used MyDreamTesla to compare the Model S Plaid vs Long Range. The detailed specs made my decision so much easier."
         },
         "item-6": {
-          "name": "Oketa Fred",
-          "role": "Fullstack Developer",
+          "name": "James Wilson",
+          "role": "Cybertruck Reservation Holder",
           "image": "https://randomuser.me/api/portraits/men/2.jpg",
-          "quote": "I absolutely love MkSaaS! The component blocks are beautifully designed and easy to use, which makes creating a great-looking website a breeze."
+          "quote": "Great resource for tracking how Tesla specs have changed over the years. Helped me understand exactly what I'm getting with the Cybertruck."
         },
         "item-7": {
-          "name": "Zeki",
-          "role": "Founder of ChatExtend",
-          "image": "https://randomuser.me/api/portraits/men/5.jpg",
-          "quote": "MkSaaS is the perfect fusion of simplicity and versatility, enabling us to create UIs that are as stunning as they are user-friendly."
+          "name": "Priya Patel",
+          "role": "First-Time EV Buyer",
+          "image": "https://randomuser.me/api/portraits/women/5.jpg",
+          "quote": "As a first-time EV buyer, MyDreamTesla gave me all the information I needed to choose between Tesla models. Absolutely invaluable."
         },
         "item-8": {
-          "name": "Joseph Kitheka",
-          "role": "Fullstack Developer",
+          "name": "Robert Kim",
+          "role": "Model X Owner",
           "image": "https://randomuser.me/api/portraits/men/9.jpg",
-          "quote": "MkSaaS has transformed the way I develop web applications. Their extensive collection of UI components, blocks, and templates has significantly accelerated my workflow."
+          "quote": "The comparison feature is fantastic. I compared every Model X trim from 2020 to 2025 before making my purchase. Highly recommend this tool."
         },
         "item-9": {
-          "name": "Khatab Wedaa",
-          "role": "MerakiUI Creator",
-          "image": "https://randomuser.me/api/portraits/men/10.jpg",
-          "quote": "MkSaaS is an elegant, clean, and responsive tailwind css components it's very helpful to start fast with your project."
+          "name": "Amanda Foster",
+          "role": "Auto Journalist",
+          "image": "https://randomuser.me/api/portraits/women/10.jpg",
+          "quote": "MyDreamTesla is the most comprehensive Tesla database I've found. I use it regularly for my articles. The data accuracy is impressive."
         },
         "item-10": {
-          "name": "Rodrigo Aguilar",
-          "role": "TailwindAwesome Creator",
+          "name": "Carlos Mendez",
+          "role": "Model 3 Highland Owner",
           "image": "https://randomuser.me/api/portraits/men/11.jpg",
-          "quote": "I love MkSaaS ❤️. The component blocks are well-structured, simple to use, and beautifully designed. It makes it really easy to have a good-looking website in no time."
+          "quote": "Being able to compare the original Model 3 with the Highland refresh side by side was exactly what I needed. MyDreamTesla nailed it."
         },
         "item-11": {
-          "name": "Eric Ampire",
-          "role": "@GoogleDevExpert for Android",
-          "image": "https://randomuser.me/api/portraits/men/12.jpg",
-          "quote": "MkSaaS templates are the perfect solution for anyone who wants to create a beautiful and functional website without any web design experience."
+          "name": "Michelle Wang",
+          "role": "Tesla Fleet Manager",
+          "image": "https://randomuser.me/api/portraits/women/12.jpg",
+          "quote": "Managing a fleet of Teslas means I need accurate specs for every model year. MyDreamTesla is the only tool that has it all in one place."
         },
         "item-12": {
-          "name": "Roland Tubonge",
-          "role": "Software Engineer",
+          "name": "Alex Turner",
+          "role": "EV Blogger",
           "image": "https://randomuser.me/api/portraits/men/13.jpg",
-          "quote": "MkSaaS is so well designed that even with a very poor knowledge of web design you can do miracles. Let yourself be seduced!"
+          "quote": "I recommend MyDreamTesla to everyone considering a Tesla. The detailed trim comparisons and pricing history are unmatched."
         }
       }
     },
     "stats": {
       "title": "Stats",
-      "subtitle": "MkSaaS in numbers",
-      "description": "MkSaaS lets you make AI SaaS in days, simply and effortlessly",
+      "subtitle": "MyDreamTesla in Numbers",
+      "description": "Comprehensive Tesla vehicle data at your fingertips",
       "items": {
         "item-1": {
-          "title": "Stars on GitHub"
+          "title": "Tesla Models"
         },
         "item-2": {
-          "title": "Active Users"
+          "title": "Vehicle Trims"
         },
         "item-3": {
-          "title": "Powered Apps"
+          "title": "Side-by-Side Comparisons"
+        },
+        "item-4": {
+          "title": "Years of Data Since 2017"
         }
       }
     },
     "calltoaction": {
-      "title": "Start Building",
-      "description": "MkSaaS lets you make AI SaaS in days, simply and effortlessly",
+      "title": "Find Your Dream Tesla",
+      "description": "Find your perfect Tesla. Compare every model, trim, and year with detailed specs and pricing.",
       "primaryButton": "Get Started",
       "secondaryButton": "See Demo"
     }

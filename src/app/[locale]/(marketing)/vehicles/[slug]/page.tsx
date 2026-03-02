@@ -14,6 +14,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { buildCarJsonLd } from '@/lib/seo/structured-data';
 import { formatPrice, generateCompareSlug } from '@/lib/vehicle-utils';
 import { getOgImageUrl } from '@/lib/metadata';
+import { generateAlternates } from '@/lib/hreflang';
 import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { VehicleRegionNotice } from '@/components/tesla/vehicle-region-notice';
@@ -43,6 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    alternates: generateAlternates(`/vehicles/${slug}`),
     openGraph: { images: [ogImage] },
     twitter: { card: 'summary_large_image', images: [ogImage] },
   };

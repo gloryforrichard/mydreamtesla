@@ -4,10 +4,12 @@ import { getModelBySlug, getVehiclesForModel } from '@/lib/db/queries';
 import { ModelVehiclesByGeneration } from '@/components/tesla/model-vehicles-by-generation';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { JsonLd } from '@/components/seo/json-ld';
-import { buildItemListJsonLd, buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
+import { buildItemListJsonLd, buildBreadcrumbJsonLd, buildFAQPageJsonLd } from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
 import { getOgImageUrl } from '@/lib/metadata';
 import { getModelDetailImage } from '@/lib/vehicle-images';
+import { generateAlternates } from '@/lib/hreflang';
+import { MODEL_FAQS } from '@/config/model-faqs';
 import Link from 'next/link';
 
 interface Props {
@@ -34,6 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    alternates: generateAlternates(`/models/${slug}`),
     openGraph: { images: [ogImage] },
     twitter: { card: 'summary_large_image', images: [ogImage] },
   };
@@ -60,6 +63,8 @@ export default async function ModelDetailPage({ params }: Props) {
     { name: `Tesla ${model.name}` },
   ];
 
+  const faqs = MODEL_FAQS[model.slug];
+
   return (
     <>
       {vehicles.length > 0 && (
@@ -71,6 +76,9 @@ export default async function ModelDetailPage({ params }: Props) {
         />
       )}
       <JsonLd data={buildBreadcrumbJsonLd(breadcrumbItems)} />
+      {faqs && faqs.length > 0 && (
+        <JsonLd data={buildFAQPageJsonLd(faqs)} />
+      )}
 
       {/* Hero — warm white, consistent with homepage */}
       <section className="bg-[#FDFCF9] pb-16 pt-8">
@@ -134,6 +142,28 @@ export default async function ModelDetailPage({ params }: Props) {
       {/* Trim listings — light background */}
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <ModelVehiclesByGeneration vehicles={vehicles} modelSlug={model.slug} modelName={model.name} />
+
+        {/* FAQ Section */}
+        {faqs && faqs.length > 0 && (
+          <section className="mt-16">
+            <h2 className="text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A] mb-6">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-3">
+              {faqs.map((faq, i) => (
+                <details key={i} className="group rounded-sm border border-[#E5E2DC]">
+                  <summary className="flex cursor-pointer items-center justify-between p-5 text-[15px] font-medium text-[#1A1A1A] [&::-webkit-details-marker]:hidden">
+                    <span>{faq.question}</span>
+                    <span className="ml-4 text-[#999999] transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <div className="px-5 pb-5 text-[15px] leading-relaxed text-[#777777]">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
     </>
   );

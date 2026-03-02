@@ -16,6 +16,8 @@ import {
 } from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
 import { getModelCardImage } from '@/lib/vehicle-images';
+import { blogSource } from '@/lib/source';
+import { formatDate } from '@/lib/formatter';
 
 export const metadata: Metadata = {
   title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
@@ -25,11 +27,23 @@ export const metadata: Metadata = {
 
 const TOP_COMPARISONS = POPULAR_COMPARISONS.slice(0, 6);
 
-export default async function HomePage() {
+interface HomePageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
   const [modelData, counts] = await Promise.all([
     getRepresentativeVehicles(),
     getSiteCounts(),
   ]);
+
+  // Get latest blog posts
+  const blogPosts = blogSource
+    .getPages(locale)
+    .filter((post) => post.data.published)
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .slice(0, 3);
 
   const baseUrl = getBaseUrl();
   const modelListItems = modelData.map((m, i) => ({
@@ -198,6 +212,80 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Latest from Blog */}
+      {blogPosts.length > 0 && (
+        <section className="px-4 py-20">
+          <div className="mx-auto max-w-5xl">
+            <div className="flex items-end justify-between">
+              <div>
+                <h2 className="font-display text-[36px] font-bold tracking-[-1.5px] text-[#1A1A1A] sm:text-[42px]">
+                  Latest from Our Blog
+                </h2>
+                <p className="mt-2 text-[17px] font-light text-[#777777]">
+                  Guides, comparisons, and Tesla news.
+                </p>
+              </div>
+              <Link
+                href="/blog"
+                className="hidden text-[14px] font-medium text-[#999999] transition-colors hover:text-[#1A1A1A] sm:block"
+              >
+                View All &rarr;
+              </Link>
+            </div>
+            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {blogPosts.map((post) => (
+                <Link
+                  key={post.url}
+                  href={`/blog/${post.slugs}`}
+                  className="group flex flex-col overflow-hidden rounded-sm bg-[#F5F2ED] transition-colors hover:bg-[#EDEAE4]"
+                >
+                  {post.data.image && (
+                    <div className="aspect-video w-full overflow-hidden">
+                      <Image
+                        src={post.data.image}
+                        alt={post.data.title}
+                        width={600}
+                        height={338}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="text-[17px] font-semibold leading-snug text-[#1A1A1A] line-clamp-2">
+                      {post.data.title}
+                    </h3>
+                    {post.data.description && (
+                      <p className="mt-2 line-clamp-2 text-[14px] leading-relaxed text-[#777777]">
+                        {post.data.description}
+                      </p>
+                    )}
+                    <div className="mt-auto flex items-center justify-between pt-4">
+                      <time
+                        className="text-[12px] text-[#999999]"
+                        dateTime={post.data.date}
+                      >
+                        {formatDate(new Date(post.data.date))}
+                      </time>
+                      <span className="text-[13px] font-medium text-[#777777] group-hover:text-[#1A1A1A]">
+                        Read More &rsaquo;
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-8 text-center sm:hidden">
+              <Link
+                href="/blog"
+                className="text-[14px] font-medium text-[#999999] transition-colors hover:text-[#1A1A1A]"
+              >
+                View all posts &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Stats — compact inline strip */}
       <section className="border-y border-[#E5E2DC] bg-[#FDFCF9]">

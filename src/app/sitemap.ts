@@ -1,3 +1,4 @@
+import { POPULAR_COMPARISONS } from '@/config/comparisons';
 import { websiteConfig } from '@/config/website';
 import { getLocalePathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
@@ -15,17 +16,12 @@ type Href = Parameters<typeof getLocalePathname>[0]['href'];
  */
 const staticRoutes = [
   '/',
-  '/pricing',
+  '/models',
+  '/compare',
   '/about',
-  '/waitlist',
-  '/changelog',
   '/privacy',
   '/terms',
-  '/cookie',
-  '/auth/login',
-  '/auth/register',
   ...(websiteConfig.blog.enable ? ['/blog'] : []),
-  ...(websiteConfig.docs.enable ? ['/docs'] : []),
 ];
 
 /**
@@ -38,11 +34,24 @@ const staticRoutes = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemapList: MetadataRoute.Sitemap = []; // final result
 
+  // priority map for static routes
+  const priorityMap: Record<string, number> = {
+    '/': 1.0,
+    '/models': 0.8,
+    '/compare': 0.8,
+    '/about': 0.5,
+    '/blog': 0.6,
+    '/privacy': 0.3,
+    '/terms': 0.3,
+  };
+
   // add static routes
   sitemapList.push(
     ...staticRoutes.flatMap((route) => {
       return routing.locales.map((locale) => ({
         url: getUrl(route, locale),
+        lastModified: new Date(),
+        priority: priorityMap[route] ?? 0.5,
         alternates: {
           languages: generateHreflangUrls(route),
         },
@@ -152,6 +161,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         routing.locales.map((locale) => ({
           url: getUrl(`/models/${m.slug}`, locale),
           lastModified: m.updatedAt ?? undefined,
+          priority: 0.7,
           alternates: {
             languages: generateHreflangUrls(`/models/${m.slug}`),
           },
@@ -170,6 +180,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         routing.locales.map((locale) => ({
           url: getUrl(`/vehicles/${v.slug}`, locale),
           lastModified: v.lastUpdated ?? undefined,
+          priority: 0.7,
           alternates: {
             languages: generateHreflangUrls(`/vehicles/${v.slug}`),
           },
@@ -179,6 +190,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   } catch {
     // DB may not be available during build in some environments
   }
+
+  // add popular comparison pages
+  sitemapList.push(
+    ...POPULAR_COMPARISONS.flatMap((comparison) =>
+      routing.locales.map((locale) => ({
+        url: getUrl(`/compare/${comparison.slug}`, locale),
+        lastModified: new Date(),
+        priority: 0.7,
+        alternates: {
+          languages: generateHreflangUrls(`/compare/${comparison.slug}`),
+        },
+      }))
+    )
+  );
 
   return sitemapList;
 }
