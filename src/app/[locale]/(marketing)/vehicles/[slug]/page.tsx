@@ -4,6 +4,7 @@ import {
   getVehicleBySlug,
   getAllModels,
   getVehiclesForModel,
+  getAllVehicleSlugs,
 } from '@/lib/db/queries';
 import { KeySpecsGrid } from '@/components/tesla/key-specs-grid';
 import { SpecTable } from '@/components/tesla/spec-table';
@@ -15,10 +16,19 @@ import { buildCarJsonLd } from '@/lib/seo/structured-data';
 import { formatPrice, generateCompareSlug } from '@/lib/vehicle-utils';
 import { getOgImageUrl } from '@/lib/metadata';
 import { generateAlternates } from '@/lib/hreflang';
+import { websiteConfig } from '@/config/website';
 import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { VehicleRegionNotice } from '@/components/tesla/vehicle-region-notice';
 import { getVehicleGeneration } from '@/lib/vehicle-generations';
+
+export async function generateStaticParams() {
+  const vehicles = await getAllVehicleSlugs();
+  const locales = Object.keys(websiteConfig.i18n.locales);
+  return vehicles.flatMap((v) =>
+    locales.map((locale) => ({ locale, slug: v.slug }))
+  );
+}
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;

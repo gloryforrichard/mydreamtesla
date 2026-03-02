@@ -9,7 +9,16 @@ import { buildItemListJsonLd } from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
 import { getOgImageUrl } from '@/lib/metadata';
 import { generateAlternates } from '@/lib/hreflang';
+import { POPULAR_COMPARISONS } from '@/config/comparisons';
+import { websiteConfig } from '@/config/website';
 import Link from 'next/link';
+
+export async function generateStaticParams() {
+  const locales = Object.keys(websiteConfig.i18n.locales);
+  return POPULAR_COMPARISONS.flatMap((c) =>
+    locales.map((locale) => ({ locale, slug: c.slug }))
+  );
+}
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;

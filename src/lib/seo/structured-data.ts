@@ -211,3 +211,30 @@ export function buildBlogPostingJsonLd(post: {
     },
   };
 }
+
+/**
+ * schema.org/HowTo — for how-to blog posts
+ */
+export function buildHowToJsonLd(howTo: {
+  name: string;
+  description: string;
+  slug: string;
+  steps: Array<{ name: string; text: string }>;
+  totalTime?: string; // ISO 8601 duration e.g. "PT2H"
+}) {
+  const baseUrl = getBaseUrl();
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: howTo.name,
+    description: howTo.description,
+    url: `${baseUrl}/blog/${howTo.slug}`,
+    ...(howTo.totalTime && { totalTime: howTo.totalTime }),
+    step: howTo.steps.map((step, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
+}

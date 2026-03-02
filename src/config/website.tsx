@@ -79,7 +79,7 @@ export const websiteConfig: WebsiteConfig = {
     supportEmail: 'MyDreamTesla <support@mydreamtesla.com>',
   },
   newsletter: {
-    enable: false,
+    enable: true,
     provider: 'resend',
     autoSubscribeAfterSignUp: false,
   },

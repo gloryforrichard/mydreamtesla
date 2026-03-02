@@ -15,7 +15,10 @@ import {
   categorySource,
 } from '@/lib/source';
 import { JsonLd } from '@/components/seo/json-ld';
-import { buildBlogPostingJsonLd } from '@/lib/seo/structured-data';
+import {
+  buildBlogPostingJsonLd,
+  buildHowToJsonLd,
+} from '@/lib/seo/structured-data';
 import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
 import { CalendarIcon, FileTextIcon } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -110,17 +113,58 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
   // get related posts
   const relatedPosts = await getRelatedPosts(post);
 
+  // HowTo structured data for the charging guide
+  const slugStr = slug.join('/');
+  const chargingGuideHowTo =
+    slugStr === 'tesla-home-charging-guide'
+      ? buildHowToJsonLd({
+          name: title ?? 'Tesla Home Charging Setup Guide',
+          description:
+            description ??
+            'Complete guide to charging your Tesla at home.',
+          slug: slugStr,
+          totalTime: 'PT2H',
+          steps: [
+            {
+              name: 'Understand charging levels',
+              text: 'Learn the differences between Level 1 (120V), Level 2 NEMA 14-50 (240V), and Tesla Wall Connector charging options and their speeds.',
+            },
+            {
+              name: 'Choose your charging equipment',
+              text: 'Decide between a NEMA 14-50 outlet with the included Mobile Connector ($200-$800 installation) or a Tesla Wall Connector ($975-$2,475 total).',
+            },
+            {
+              name: 'Get installation quotes',
+              text: 'Contact 2-3 licensed electricians experienced with EV charger installations. Request itemized quotes covering panel capacity, wire run distance, and permits.',
+            },
+            {
+              name: 'Install the charging equipment',
+              text: 'Have a licensed electrician install the NEMA 14-50 outlet or hardwire the Tesla Wall Connector to a dedicated 60A circuit breaker.',
+            },
+            {
+              name: 'Configure charging schedule',
+              text: 'In the Tesla app, go to Charging > Schedule and set charging to begin during off-peak electricity hours (typically 9 PM to 6 AM) to minimize costs.',
+            },
+            {
+              name: 'Set daily charge limit',
+              text: 'Set your daily charge limit to 80% for optimal battery health. Only charge to 100% before road trips.',
+            },
+          ],
+        })
+      : null;
+
   return (
     <div className="flex flex-col gap-8">
       <JsonLd
         data={buildBlogPostingJsonLd({
           title: title ?? '',
           description: description ?? '',
-          slug: slug.join('/'),
+          slug: slugStr,
           datePublished: date,
           image,
         })}
       />
+      {chargingGuideHowTo && <JsonLd data={chargingGuideHowTo} />}
       {/* content section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* left column (blog post content) */}

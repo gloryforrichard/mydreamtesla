@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getModelBySlug, getVehiclesForModel } from '@/lib/db/queries';
+import { getModelBySlug, getVehiclesForModel, getAllModelSlugs } from '@/lib/db/queries';
 import { ModelVehiclesByGeneration } from '@/components/tesla/model-vehicles-by-generation';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -14,7 +14,16 @@ import { getOgImageUrl } from '@/lib/metadata';
 import { getModelDetailImage } from '@/lib/vehicle-images';
 import { generateAlternates } from '@/lib/hreflang';
 import { MODEL_FAQS } from '@/config/model-faqs';
+import { websiteConfig } from '@/config/website';
 import Link from 'next/link';
+
+export async function generateStaticParams() {
+  const models = await getAllModelSlugs();
+  const locales = Object.keys(websiteConfig.i18n.locales);
+  return models.flatMap((m) =>
+    locales.map((locale) => ({ locale, slug: m.slug }))
+  );
+}
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
