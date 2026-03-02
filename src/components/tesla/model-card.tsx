@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { TeslaModel } from '@/lib/vehicle-utils';
 import { VehicleImage } from './vehicle-image';
-import { getModelDetailImage } from '@/lib/vehicle-images';
+import { getModelCardImage } from '@/lib/vehicle-images';
 
 interface ModelCardProps {
   model: TeslaModel;
@@ -16,7 +16,7 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
     >
       <div className="flex aspect-[16/9] items-center justify-center overflow-hidden">
         <VehicleImage
-          src={getModelDetailImage(model.slug)}
+          src={getModelCardImage(model.slug)}
           alt={`Tesla ${model.name}`}
           width={1200}
           height={600}

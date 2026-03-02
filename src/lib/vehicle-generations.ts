@@ -48,7 +48,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2099,
       description:
         'New front lighting signature with thin headlights and a more modern, horizontal look. Front bumper/fascia redesigned to look smoother and wider. Rear lighting design updated with a more distinctive appearance.',
-      image: '/images/vehicles/generations/model-y-juniper.png',
+      image: '/images/vehicles/generations/model-y-juniper.webp',
     },
     {
       name: 'Original',
@@ -56,7 +56,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2024,
       description:
         'No new front lighting signature; front end looks more bulbous/rounded. Headlights look more traditional and less slit-like. Overall appearance closely matches the pre-Highland Model 3 design language.',
-      image: '/images/vehicles/generations/model-y-original.png',
+      image: '/images/vehicles/generations/model-y-original.webp',
     },
   ],
   'model-s': [
