@@ -1,4 +1,5 @@
 import { Footer } from '@/components/layout/footer';
+import { LaunchNotifyPopup } from '@/components/launch-notify-popup';
 import { Navbar } from '@/components/layout/navbar';
 import type { ReactNode } from 'react';
 
@@ -8,6 +9,7 @@ export default function MarketingLayout({ children }: { children: ReactNode }) {
       <Navbar scroll={true} />
       <main className="flex-1">{children}</main>
       <Footer />
+      <LaunchNotifyPopup />
     </div>
   );
 }

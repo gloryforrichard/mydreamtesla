@@ -154,6 +154,14 @@ export const creditTransaction = pgTable("credit_transaction", {
 	creditTransactionTypeIdx: index("credit_transaction_type_idx").on(table.type),
 }));
 
+// Launch notification email collection
+export const launchNotifyEmail = pgTable('launch_notify_email', {
+	id: serial('id').primaryKey(),
+	email: varchar('email', { length: 255 }).notNull().unique(),
+	locale: varchar('locale', { length: 10 }),
+	createdAt: timestamp('created_at').defaultNow(),
+});
+
 // Tesla vehicle data tables
 
 export const teslaModel = pgTable('tesla_model', {

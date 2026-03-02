@@ -728,6 +728,18 @@
       "subject": "来自网站的联系消息"
     }
   },
+  "LaunchPopup": {
+    "title": "网站建设中",
+    "description": "我们正在努力建设中，留下您的邮箱，网站上线后第一时间通知您！",
+    "bookmarkHint": "您也可以先收藏本页，稍后再来看看。",
+    "form": {
+      "email": "请输入邮箱地址",
+      "submit": "通知我",
+      "submitting": "提交中...",
+      "success": "已记录！网站上线后会通知您。",
+      "fail": "提交失败，请重试。"
+    }
+  },
   "HomePage": {
     "title": "MkSaaS",
     "description": "使用 MkSaaS 在几天内轻松构建您的 AI SaaS 产品",

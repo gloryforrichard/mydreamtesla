@@ -728,6 +728,18 @@
       "subject": "Contact Message from Website"
     }
   },
+  "LaunchPopup": {
+    "title": "Site Under Construction",
+    "description": "We're still building this site. Leave your email and we'll notify you when it's ready!",
+    "bookmarkHint": "Feel free to bookmark this page and come back later.",
+    "form": {
+      "email": "Your email address",
+      "submit": "Notify Me",
+      "submitting": "Submitting...",
+      "success": "You're on the list! We'll notify you when the site launches.",
+      "fail": "Something went wrong. Please try again."
+    }
+  },
   "HomePage": {
     "title": "MkSaaS",
     "description": "Make AI SaaS in days, simply and effortlessly",
