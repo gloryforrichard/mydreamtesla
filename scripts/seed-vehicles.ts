@@ -1685,9 +1685,9 @@ const VEHICLES = [
   // ── 2024 Model Y ─────────────────────────────────────────────────────────
   {
     title: '2024 Tesla Model Y Standard Range RWD',
-    seoTitle: '2024 Tesla Model Y SR RWD Specs & Price | MyDreamTesla',
+    seoTitle: '2024 Tesla Model Y SR RWD — Range, 0-60, Price | MyDreamTesla',
     seoDescription:
-      '2024 Model Y Standard Range RWD — 283-mile range, $44,990, $7,500 credit. Full specs, pricing, and comparison.',
+      '2024 Tesla Model Y Standard Range RWD — 283-mile range, 6.5s 0-60, $44,990. Specs, $7,500 credit, and comparison.',
     slug: 'model-y-2024-standard-range-rwd',
     modelSlug: 'model-y',
     year: 2024,
@@ -1734,9 +1734,9 @@ const VEHICLES = [
   },
   {
     title: '2024 Tesla Model Y Long Range AWD',
-    seoTitle: '2024 Tesla Model Y LR AWD Specs & Price | MyDreamTesla',
+    seoTitle: '2024 Tesla Model Y Long Range AWD — 0-60, Price | MyDreamTesla',
     seoDescription:
-      '2024 Model Y Long Range AWD — 310-mile range, 4.8s 0-60, $49,990. Full specs, pricing, and comparison.',
+      '2024 Tesla Model Y Long Range AWD — 310-mile range, 4.8s 0-60, $49,990. Full specs, pricing, and comparison.',
     slug: 'model-y-2024-long-range-awd',
     modelSlug: 'model-y',
     year: 2024,
@@ -1784,9 +1784,9 @@ const VEHICLES = [
   },
   {
     title: '2024 Tesla Model Y Performance AWD',
-    seoTitle: '2024 Tesla Model Y Performance Specs & Price | MyDreamTesla',
+    seoTitle: '2024 Tesla Model Y Performance — 0-60, Range | MyDreamTesla',
     seoDescription:
-      '2024 Model Y Performance AWD — 430 hp, 3.5s 0-60, 303-mile range. Full specs, pricing, and comparison.',
+      '2024 Tesla Model Y Performance AWD — 430 hp, 3.5s 0-60, 303-mile range. Full specs, pricing, and comparison.',
     slug: 'model-y-2024-performance-awd',
     modelSlug: 'model-y',
     year: 2024,
@@ -1836,9 +1836,9 @@ const VEHICLES = [
   // ── 2025 Model Y — JUNIPER REFRESH (CURRENT) ────────────────────────────
   {
     title: '2025 Tesla Model Y Rear-Wheel Drive',
-    seoTitle: '2025 Tesla Model Y RWD Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Model Y RWD — Range, 0-60, Price | MyDreamTesla',
     seoDescription:
-      '2025 Model Y Juniper RWD — 321-mile range, $44,990, $7,500 credit. Full specs, pricing, and comparison.',
+      '2025 Tesla Model Y Juniper RWD — 321-mile range, 6.8s 0-60, $44,990. Specs, $7,500 tax credit, and comparison.',
     slug: 'model-y-2025-standard-range-rwd',
     modelSlug: 'model-y',
     year: 2025,
@@ -1892,9 +1892,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model Y AWD',
-    seoTitle: '2025 Tesla Model Y AWD Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Model Y AWD — Range, 0-60, Price | MyDreamTesla',
     seoDescription:
-      '2025 Model Y Juniper AWD — 294-mile range, 4.6s 0-60. Dual-motor specs, pricing, and comparison.',
+      '2025 Tesla Model Y Juniper AWD — 294-mile range, 4.6s 0-60. Dual-motor specs, pricing, and comparison.',
     slug: 'model-y-2025-awd',
     modelSlug: 'model-y',
     year: 2025,
@@ -1910,9 +1910,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model Y Premium RWD',
-    seoTitle: '2025 Tesla Model Y Premium RWD Specs | MyDreamTesla',
+    seoTitle: '2025 Tesla Model Y Premium RWD — Range, 0-60 | MyDreamTesla',
     seoDescription:
-      '2025 Model Y Juniper Premium RWD — 357-mile range, 5.4s 0-60. Long-range single-motor specs and comparison.',
+      '2025 Tesla Model Y Juniper Premium RWD — 357-mile range, 5.4s 0-60. Long-range single-motor specs and comparison.',
     slug: 'model-y-2025-premium-rwd',
     modelSlug: 'model-y',
     year: 2025,
@@ -1928,9 +1928,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model Y Premium AWD',
-    seoTitle: '2025 Tesla Model Y LR AWD Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Model Y Long Range AWD — 0-60, Price | MyDreamTesla',
     seoDescription:
-      '2025 Model Y Juniper Premium AWD — 327-mile range, 4.6s 0-60, 3,500 lb towing. Full specs and pricing.',
+      '2025 Tesla Model Y Juniper Long Range AWD — 327-mile range, 4.6s 0-60, 3,500 lb towing. Specs and pricing.',
     slug: 'model-y-2025-long-range-awd',
     modelSlug: 'model-y',
     year: 2025,
@@ -1984,9 +1984,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model Y Performance AWD',
-    seoTitle: '2025 Tesla Model Y Performance Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Model Y Performance — 0-60, Range | MyDreamTesla',
     seoDescription:
-      '2025 Model Y Performance — 510 hp, 3.3s 0-60, 306-mile range. Juniper performance specs and comparison.',
+      '2025 Tesla Model Y Performance — 510 hp, 3.3s 0-60, 306-mile range, $55,990. Juniper specs and comparison.',
     slug: 'model-y-2025-performance-awd',
     modelSlug: 'model-y',
     year: 2025,
@@ -3539,9 +3539,9 @@ const VEHICLES = [
     fsdPrice: 8000,
     ncapRating: 5,
     isCurrentModel: true,
-    seoTitle: '2025 Tesla Model S AWD Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Model S AWD — Range, 0-60, Price | MyDreamTesla',
     seoDescription:
-      '2025 Tesla Model S AWD — 402 miles range, 670 hp, 3.1s 0-60. Full specs, pricing, and comparison.',
+      '2025 Tesla Model S AWD — 402-mile range, 670 hp, 3.1s 0-60, $74,990. Full specs, pricing, and comparison.',
     prosAndCons: {
       pros: [
         '402-mile EPA range — best in class',
@@ -3608,7 +3608,7 @@ const VEHICLES = [
     fsdPrice: 8000,
     ncapRating: 5,
     isCurrentModel: true,
-    seoTitle: '2025 Tesla Model S Plaid Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Model S Plaid — 0-60, Top Speed | MyDreamTesla',
     seoDescription:
       '2025 Tesla Model S Plaid — 1,020 hp, 1.99s 0-60, 9.23s quarter mile. The fastest production sedan.',
     keyChangesFromPriorYear:
@@ -4699,9 +4699,9 @@ const VEHICLES = [
     fsdPrice: 8000,
     ncapRating: 5,
     isCurrentModel: true,
-    seoTitle: '2025 Tesla Model X AWD Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Model X AWD — Range, Towing, Price | MyDreamTesla',
     seoDescription:
-      '2025 Tesla Model X AWD — 329 miles range, 670 hp, falcon wing doors, 5,000 lbs towing. Full specs and pricing.',
+      '2025 Tesla Model X AWD — 329-mile range, 670 hp, falcon wing doors, 5,000 lbs towing. Full specs and pricing.',
     prosAndCons: {
       pros: [
         'Falcon wing doors — iconic design',
@@ -4769,7 +4769,7 @@ const VEHICLES = [
     fsdPrice: 8000,
     ncapRating: 5,
     isCurrentModel: true,
-    seoTitle: '2025 Tesla Model X Plaid Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Model X Plaid — 0-60, Range, Price | MyDreamTesla',
     seoDescription:
       '2025 Tesla Model X Plaid — 1,020 hp tri-motor SUV, 2.5s 0-60, 9.9s quarter mile. Fastest SUV you can buy.',
     keyChangesFromPriorYear:
@@ -4840,9 +4840,9 @@ const VEHICLES = [
     fsdAvailable: true,
     fsdPrice: 0,
     isCurrentModel: false,
-    seoTitle: '2024 Tesla Cybertruck Foundation Series AWD | MyDreamTesla',
+    seoTitle: '2024 Cybertruck Foundation AWD — Range, Towing | MyDreamTesla',
     seoDescription:
-      '2024 Cybertruck Foundation Series AWD — 600 hp, 318-mile range, 11,000 lbs towing. Limited edition with FSD included.',
+      '2024 Tesla Cybertruck Foundation AWD — 600 hp, 318-mile range, 11,000 lbs towing. Limited edition with FSD included.',
     keyChangesFromPriorYear:
       'First production year. Foundation Series includes FSD, Powershare, all-terrain tires, and unique badging.',
     prosAndCons: {
@@ -4904,9 +4904,9 @@ const VEHICLES = [
     fsdAvailable: true,
     fsdPrice: 0,
     isCurrentModel: false,
-    seoTitle: '2024 Tesla Cybertruck Foundation Cyberbeast | MyDreamTesla',
+    seoTitle: '2024 Cybertruck Foundation Cyberbeast — 0-60 | MyDreamTesla',
     seoDescription:
-      '2024 Cybertruck Foundation Cyberbeast — 845 hp tri-motor, 2.6s 0-60, 11.0s quarter mile. The ultimate electric truck.',
+      '2024 Tesla Cybertruck Cyberbeast — 845 hp tri-motor, 2.6s 0-60, 11.0s quarter mile. The ultimate electric truck.',
     keyChangesFromPriorYear:
       'First production year. Tri-motor Cyberbeast with 845 hp. Foundation Series includes FSD, Powershare, and unique badging.',
     prosAndCons: {
@@ -4971,7 +4971,7 @@ const VEHICLES = [
     fsdAvailable: true,
     fsdPrice: 8000,
     isCurrentModel: true,
-    seoTitle: '2025 Tesla Cybertruck AWD Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Cybertruck AWD — Range, Towing, Price | MyDreamTesla',
     seoDescription:
       '2025 Cybertruck AWD — 600 hp, 325-mile range, 11,000 lbs towing. Eligible for $7,500 federal tax credit.',
     keyChangesFromPriorYear:
@@ -5035,7 +5035,7 @@ const VEHICLES = [
     fsdAvailable: true,
     fsdPrice: 8000,
     isCurrentModel: true,
-    seoTitle: '2025 Tesla Cybertruck Cyberbeast Specs & Price | MyDreamTesla',
+    seoTitle: '2025 Tesla Cybertruck Cyberbeast — 0-60, Range | MyDreamTesla',
     seoDescription:
       '2025 Cybertruck Cyberbeast — 845 hp tri-motor, 2.6s 0-60, 320-mile range. $20,000 less than Foundation Series.',
     keyChangesFromPriorYear:
@@ -5098,7 +5098,7 @@ const VEHICLES = [
     fsdPrice: 8000,
     isCurrentModel: false,
     discontinuedDate: '2025-09',
-    seoTitle: '2025 Tesla Cybertruck Long Range RWD | MyDreamTesla',
+    seoTitle: '2025 Tesla Cybertruck LR RWD — Range, Price | MyDreamTesla',
     seoDescription:
       '2025 Cybertruck Long Range RWD — 315 hp, 350-mile range, $69,990. Most affordable Cybertruck. Discontinued Sept 2025.',
     keyChangesFromPriorYear:
