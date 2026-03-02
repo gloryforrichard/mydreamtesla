@@ -17,6 +17,7 @@ import { getOgImageUrl } from '@/lib/metadata';
 import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { VehicleRegionNotice } from '@/components/tesla/vehicle-region-notice';
+import { getVehicleGeneration } from '@/lib/vehicle-generations';
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
@@ -60,6 +61,12 @@ export default async function VehicleDetailPage({ params }: Props) {
   const siblings = model ? await getVehiclesForModel(model.id) : [];
   const otherTrims = siblings.filter((v) => v.id !== vehicle.id).slice(0, 4);
 
+  const generation = model
+    ? getVehicleGeneration(model.slug, vehicle.year)
+    : null;
+  const vehicleImage =
+    generation?.image ?? `/images/vehicles/${vehicle.slug}.png`;
+
   const relatedItems = [
     ...otherTrims.map((other) => ({
       label: `${vehicle.title} vs ${other.title}`,
@@ -97,11 +104,11 @@ export default async function VehicleDetailPage({ params }: Props) {
         <VehicleRegionNotice vehicle={vehicle} />
         <div className="mt-8 overflow-hidden rounded-sm bg-[#F5F2ED]">
           <VehicleImage
-            src={`/images/vehicles/${vehicle.slug}.png`}
+            src={vehicleImage}
             alt={vehicle.title}
             width={1000}
             height={500}
-            className="h-auto w-full object-contain p-6"
+            className="h-auto w-full mix-blend-multiply object-contain p-6"
             fallbackClassName="flex h-[280px] w-full items-center justify-center"
             fallbackLabel={String(vehicle.year)}
             priority
