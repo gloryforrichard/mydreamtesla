@@ -3,6 +3,7 @@ const MODEL_DETAIL_IMAGES: Record<string, string> = {
   'model-y': '/images/vehicles/model-y-detail.jpg',
   'model-s': '/images/vehicles/model-s-detail.jpg',
   'model-x': '/images/vehicles/model-x-detail.jpg',
+  cybertruck: '/images/vehicles/cybertruck-detail.jpg',
 };
 
 export function getModelDetailImage(slug: string): string {
@@ -18,6 +19,7 @@ const MODEL_CARD_IMAGES: Record<string, string> = {
   'model-y': '/images/vehicles/generations/model-y-original.webp',
   'model-s': '/images/vehicles/generations/model-s-original.png',
   'model-x': '/images/vehicles/generations/model-x-original.png',
+  cybertruck: '/images/vehicles/generations/cybertruck-production.avif',
 };
 
 export function getModelCardImage(slug: string): string {
