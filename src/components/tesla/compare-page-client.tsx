@@ -91,9 +91,7 @@ export function ComparePageClient({
                 <div className="text-[15px] font-semibold tracking-[-0.3px]">
                   {getDisplayTitle(vehicle, region)}
                 </div>
-                <div className="font-mono text-[13px] font-semibold">
-                  {formatPrice(vehicle.basePriceMSRP)}
-                </div>
+                {/* Price hidden for now */}
               </div>
             );
           })}
@@ -143,9 +141,7 @@ export function ComparePageClient({
               <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
                 {getDisplayTitle(bestValue, region)}
               </div>
-              <div className="mt-1 text-[13px] text-[#777777]">
-                {formatPrice(bestValue.effectivePrice)} after credit
-              </div>
+              {/* Price hidden for now */}
             </div>
           </div>
         </div>

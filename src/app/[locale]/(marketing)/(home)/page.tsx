@@ -138,16 +138,7 @@ export default async function HomePage() {
                       </div>
                     </div>
                   )}
-                  {v.basePriceMSRP && (
-                    <div>
-                      <div className="font-mono text-[16px] font-semibold text-[#1A1A1A]">
-                        {formatPrice(v.basePriceMSRP)}
-                      </div>
-                      <div className="mt-0.5 text-[11px] text-[#999999]">
-                        From
-                      </div>
-                    </div>
-                  )}
+                  {/* Price hidden for now */}
                 </div>
               )}
 

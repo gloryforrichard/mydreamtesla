@@ -198,7 +198,7 @@ export function GenerationSection({
                     {isCA ? '0-100' : '0-60'}
                   </th>
                   <th className="hidden px-3 py-3 font-medium lg:table-cell">HP</th>
-                  <th className="px-3 py-3 font-medium">Price</th>
+                  {/* Price column hidden for now */}
                   <th className="w-8 py-3 pl-3">
                     <span className="sr-only">Details</span>
                   </th>
@@ -240,9 +240,7 @@ export function GenerationSection({
                     <td className="hidden px-3 py-3 font-mono text-[13px] text-[#1A1A1A] lg:table-cell">
                       {formatRegionSpecValue(vehicle, 'horsepower', region)}
                     </td>
-                    <td className="px-3 py-3 font-mono text-[13px] font-semibold text-[#1A1A1A]">
-                      {formatPrice(vehicle.basePriceMSRP)}
-                    </td>
+                    {/* Price cell hidden for now */}
                     <td className="py-3 pl-3">
                       <Link
                         href={`/vehicles/${vehicle.slug}`}

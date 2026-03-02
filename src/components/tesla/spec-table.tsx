@@ -141,29 +141,7 @@ function getSpecSections(vehicle: Vehicle, region: 'US' | 'CA'): SpecSection[] {
         },
       ],
     },
-    {
-      title: 'Pricing',
-      rows: [
-        {
-          label: basePrice.label,
-          value: formatRegionSpecValue(vehicle, 'basePriceMSRP', region),
-        },
-        {
-          label: destinationFee.label,
-          value: formatRegionSpecValue(vehicle, 'destinationFee', region),
-        },
-        {
-          label: taxCredit.label,
-          value: vehicle.federalTaxCredit
-            ? `-${formatRegionSpecValue(vehicle, 'federalTaxCredit', region)}`
-            : 'N/A',
-        },
-        {
-          label: effectivePrice.label,
-          value: formatRegionSpecValue(vehicle, 'effectivePrice', region),
-        },
-      ],
-    },
+    /* Pricing section hidden for now */
     {
       title: 'Interior & Comfort',
       rows: [
@@ -201,7 +179,7 @@ function getSpecSections(vehicle: Vehicle, region: 'US' | 'CA'): SpecSection[] {
                 ? 'Yes'
                 : 'No',
         },
-        { label: 'FSD Price', value: formatPrice(vehicle.fsdPrice) },
+        /* FSD Price hidden for now */
       ],
     },
     {

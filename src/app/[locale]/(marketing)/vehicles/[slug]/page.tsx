@@ -32,11 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     vehicle.seoTitle ?? `${vehicle.title} Specs & Review | MyDreamTesla`;
   const description =
     vehicle.seoDescription ??
-    `Complete specifications for the ${vehicle.title}. Range: ${vehicle.rangeEPA ?? 'N/A'} mi, 0-60: ${vehicle.acceleration060 ?? 'N/A'}s, Price: ${formatPrice(vehicle.basePriceMSRP)}.`;
+    `Complete specifications for the ${vehicle.title}. Range: ${vehicle.rangeEPA ?? 'N/A'} mi, 0-60: ${vehicle.acceleration060 ?? 'N/A'}s.`;
 
   const ogImage = getOgImageUrl({
     title: vehicle.title,
-    subtitle: `Range: ${vehicle.rangeEPA ?? 'N/A'} mi · ${formatPrice(vehicle.basePriceMSRP)}`,
+    subtitle: `Range: ${vehicle.rangeEPA ?? 'N/A'} mi · 0-60: ${vehicle.acceleration060 ?? 'N/A'}s`,
     type: 'vehicle',
   });
 
@@ -94,18 +94,7 @@ export default async function VehicleDetailPage({ params }: Props) {
         <h1 className="mt-2 font-display text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1A1A1A] sm:text-[48px]">
           {vehicle.title}
         </h1>
-        <p className="mt-4 font-mono text-[32px] font-bold tracking-[-1px] text-[#1A1A1A]">
-          {formatPrice(vehicle.basePriceMSRP)}
-        </p>
-        {vehicle.federalTaxCredit && (
-          <p className="mt-1 text-[14px] text-[#2D8A39]">
-            After ${vehicle.federalTaxCredit.toLocaleString()} federal tax
-            credit:{' '}
-            <span className="font-semibold">
-              {formatPrice(vehicle.effectivePrice)}
-            </span>
-          </p>
-        )}
+        {/* Price hidden for now */}
         <VehicleRegionNotice vehicle={vehicle} />
         <div className="mt-8 overflow-hidden rounded-sm bg-[#F5F2ED]">
           <VehicleImage

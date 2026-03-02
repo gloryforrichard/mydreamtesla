@@ -40,9 +40,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
         <h3 className="mt-1 text-lg font-semibold text-[#1A1A1A]">
           {getDisplayTrimName(vehicle, region)}
         </h3>
-        <p className="mt-2 font-mono text-xl font-bold text-[#1A1A1A]">
-          {formatPrice(vehicle.basePriceMSRP)}
-        </p>
+        {/* Price hidden for now */}
         <div className="mt-4 flex items-center gap-6 border-t border-[#E5E2DC] pt-4 text-xs text-[#999999]">
           <span className="font-mono font-medium text-[#1A1A1A]">
             {formatRegionSpecValue(vehicle, 'rangeEPA', region)}
