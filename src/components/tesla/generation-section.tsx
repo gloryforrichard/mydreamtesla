@@ -71,6 +71,11 @@ function getTrimFamily(trimName: string): string {
   // AWD mid-tier (Model S/X "AWD", Model Y "AWD", "Premium AWD")
   if (lower === 'awd' || lower === 'premium awd') return 'AWD';
 
+  // Cybertruck tiers
+  if (lower === 'cyberbeast' || lower === 'foundation series cyberbeast')
+    return 'Cyberbeast';
+  if (lower === 'foundation series awd') return 'AWD';
+
   return trimName;
 }
 

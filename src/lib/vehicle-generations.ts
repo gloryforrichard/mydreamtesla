@@ -91,23 +91,15 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearStart: 2021,
       yearEnd: 2099,
       description:
-        'More blacked-out trim overall with less chrome. Subtle front/rear bumper detailing changes with the silhouette largely unchanged. Newer wheel styles are often the easiest giveaway.',
-      image: '/images/vehicles/generations/model-x-refresh.png',
+        'More blacked-out trim overall with less chrome. Subtle front/rear bumper detailing changes. Newer wheel styles and updated interior with yoke steering.',
+      image: '/images/vehicles/generations/model-x-original.png',
     },
     {
-      name: 'Facelift / No Nose Cone',
-      yearStart: 2016,
+      name: 'Original',
+      yearStart: 2015,
       yearEnd: 2020,
       description:
-        'Cleaner, smoother front end compared to the earliest X. Major cue is the front fascia; Falcon Wing doors silhouette stays the same. Looks more aligned with the modern S/3 design language.',
-      image: '/images/vehicles/generations/model-x-facelift.png',
-    },
-    {
-      name: 'Original / Nose Cone',
-      yearStart: 2015,
-      yearEnd: 2015,
-      description:
-        'Early front fascia with the older nose cone look. Rounder, more early-Tesla styling cues. Short production window: if you see it, it\'s almost certainly an early car.',
+        'Iconic Falcon Wing doors with the original Model X design language. Exterior changes across these years were subtle — the silhouette, doors, and overall proportions remained largely the same.',
       image: '/images/vehicles/generations/model-x-original.png',
     },
   ],

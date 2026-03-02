@@ -1,6 +1,8 @@
 const MODEL_DETAIL_IMAGES: Record<string, string> = {
   'model-3': '/images/vehicles/model-3-detail.jpg',
   'model-y': '/images/vehicles/model-y-detail.jpg',
+  'model-s': '/images/vehicles/model-s-detail.jpg',
+  'model-x': '/images/vehicles/model-x-detail.jpg',
 };
 
 export function getModelDetailImage(slug: string): string {
@@ -14,6 +16,8 @@ export function getModelDetailImage(slug: string): string {
 const MODEL_CARD_IMAGES: Record<string, string> = {
   'model-3': '/images/vehicles/generations/model-3-original.webp',
   'model-y': '/images/vehicles/generations/model-y-original.webp',
+  'model-s': '/images/vehicles/generations/model-s-original.png',
+  'model-x': '/images/vehicles/generations/model-x-original.png',
 };
 
 export function getModelCardImage(slug: string): string {
