@@ -22,7 +22,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2099,
       description:
         'Slimmer, sharper headlights and a lower, more angular front fascia. Completely redesigned taillights and rear bumper with a cleaner, sharper rear look. Overall body surfacing looks more flat and crisp versus the rounder earlier cars.',
-      image: '/images/vehicles/generations/model-3-highland.png',
+      image: '/images/vehicles/generations/model-3-highland.jpg',
     },
     {
       name: 'Refresh / Chrome Delete',
@@ -30,7 +30,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2023,
       description:
         'Exterior trim (window surround, door handles, etc.) switched from chrome to black. Updated wheel designs with a more blacked-out, sporty look. Same overall front/rear silhouette as the earlier Model 3.',
-      image: '/images/vehicles/generations/model-3-refresh.png',
+      image: '/images/vehicles/generations/model-3-refresh.jpg',
     },
     {
       name: 'Original / Chrome Trim',
@@ -38,7 +38,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2020,
       description:
         'Bright chrome window trim and chrome door handles. Rounder, softer front-end look with the classic Model 3 face. Thicker-looking taillights and a generally softer, less sharp appearance.',
-      image: '/images/vehicles/generations/model-3-original.png',
+      image: '/images/vehicles/generations/model-3-original.webp',
     },
   ],
   'model-y': [

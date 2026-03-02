@@ -7,6 +7,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { buildItemListJsonLd, buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
 import { getOgImageUrl } from '@/lib/metadata';
+import { getModelDetailImage } from '@/lib/vehicle-images';
 import Link from 'next/link';
 
 interface Props {
@@ -117,7 +118,7 @@ export default async function ModelDetailPage({ params }: Props) {
           {/* Vehicle image */}
           <div className="mt-10 overflow-hidden rounded-sm bg-[#F5F2ED]">
             <VehicleImage
-              src={`/images/vehicles/${model.slug}-detail.png`}
+              src={getModelDetailImage(model.slug)}
               alt={`Tesla ${model.name}`}
               width={1200}
               height={600}
