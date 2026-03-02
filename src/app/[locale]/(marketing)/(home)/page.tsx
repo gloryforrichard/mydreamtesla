@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { blogSource } from '@/lib/source';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { getRepresentativeVehicles, getSiteCounts } from '@/lib/db/queries';
 import {
-  formatPrice,
   formatAcceleration,
   formatSpec,
 } from '@/lib/vehicle-utils';
@@ -17,6 +15,7 @@ import {
   buildItemListJsonLd,
 } from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
+import { getModelCardImage } from '@/lib/vehicle-images';
 
 export const metadata: Metadata = {
   title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
@@ -24,20 +23,13 @@ export const metadata: Metadata = {
     'The most comprehensive Tesla vehicle database. Compare specs, pricing, and performance across every model year and trim — all in one place.',
 };
 
+const TOP_COMPARISONS = POPULAR_COMPARISONS.slice(0, 6);
+
 export default async function HomePage() {
   const [modelData, counts] = await Promise.all([
     getRepresentativeVehicles(),
     getSiteCounts(),
   ]);
-
-  const latestPosts = blogSource
-    .getPages('en')
-    .filter((p) => p.data.published)
-    .sort(
-      (a, b) =>
-        new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-    )
-    .slice(0, 3);
 
   const baseUrl = getBaseUrl();
   const modelListItems = modelData.map((m, i) => ({
@@ -138,7 +130,6 @@ export default async function HomePage() {
                       </div>
                     </div>
                   )}
-                  {/* Price hidden for now */}
                 </div>
               )}
 
@@ -153,11 +144,11 @@ export default async function HomePage() {
               {/* Model tile image */}
               <div className="mt-auto w-full max-w-[400px]">
                 <VehicleImage
-                  src={`/images/vehicles/${item.model.slug}-tile.png`}
+                  src={getModelCardImage(item.model.slug)}
                   alt={`Tesla ${item.model.name}`}
                   width={800}
                   height={480}
-                  className="h-auto w-full rounded-t-sm object-contain"
+                  className="h-auto w-full mix-blend-multiply rounded-t-sm object-contain"
                   fallbackClassName="flex h-[240px] w-full items-center justify-center rounded-t-sm bg-gradient-to-br from-[#E8E5DF] to-[#D6D3CD]"
                   fallbackLabel={item.model.name.replace('Model ', '')}
                 />
@@ -167,138 +158,92 @@ export default async function HomePage() {
         })}
       </section>
 
-      {/* Compare Section */}
-      <section className="px-4 py-24 text-center">
-        <h2 className="font-display text-[48px] font-bold tracking-[-2px] text-[#1A1A1A]">
-          Compare head to head.
-        </h2>
-        <p className="mt-2 text-[21px] font-light text-[#777777]">
-          The matchups people search for most.
-        </p>
-        <div className="mx-auto mt-12 grid max-w-[1024px] grid-cols-1 gap-4 px-4 sm:grid-cols-2 lg:grid-cols-3">
-          {POPULAR_COMPARISONS.map((comp) => (
+      {/* Compare Section — clean text-based cards */}
+      <section className="px-4 py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center">
+            <h2 className="font-display text-[36px] font-bold tracking-[-1.5px] text-[#1A1A1A] sm:text-[42px]">
+              Head-to-head comparisons
+            </h2>
+            <p className="mt-2 text-[17px] font-light text-[#777777]">
+              The matchups people search for most.
+            </p>
+          </div>
+          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {TOP_COMPARISONS.map((comp) => (
+              <Link
+                key={comp.slug}
+                href={getCompareUrl(comp.slug)}
+                className="group rounded-sm border border-[#E5E2DC] px-6 py-5 transition-colors hover:border-[#CCCCCC] hover:bg-[#FDFCF9]"
+              >
+                <p className="text-[14px] font-semibold text-[#1A1A1A] group-hover:text-[#555555]">
+                  {comp.label}
+                </p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-[#999999]">
+                  {comp.description}
+                </p>
+                <p className="mt-3 text-[13px] font-medium text-[#777777] group-hover:text-[#1A1A1A]">
+                  Compare ›
+                </p>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
             <Link
-              key={comp.slug}
-              href={getCompareUrl(comp.slug)}
-              className="rounded-sm bg-[#F5F2ED] p-8 text-left transition-colors hover:bg-[#EDEAE4]"
+              href="/compare"
+              className="text-[14px] font-medium text-[#999999] transition-colors hover:text-[#1A1A1A]"
             >
-              <div className="flex items-center justify-center gap-3">
-                <div className="flex h-[52px] w-[80px] items-center justify-center rounded-sm bg-[#E5E2DC]">
-                  <span className="text-[20px] font-extrabold text-[#CCCCCC]">
-                    {comp.shortLabel.split(' vs ')[0]}
-                  </span>
-                </div>
-                <span className="text-[11px] font-semibold tracking-[1px] text-[#999999]">
-                  VS
-                </span>
-                <div className="flex h-[52px] w-[80px] items-center justify-center rounded-sm bg-[#E5E2DC]">
-                  <span className="text-[20px] font-extrabold text-[#CCCCCC]">
-                    {comp.shortLabel.split(' vs ')[1]}
-                  </span>
-                </div>
-              </div>
-              <p className="mt-4 text-center text-[13px] font-semibold text-[#1A1A1A]">
-                {comp.label}
-              </p>
-              <p className="mt-5 text-center text-[14px] text-[#1A1A1A]">
-                Full comparison ›
-              </p>
+              View all comparisons ›
             </Link>
-          ))}
+          </div>
         </div>
       </section>
 
-      {/* Stats — warm card */}
-      <section className="bg-[#F5F2ED] px-4 py-24 text-center">
-        <h2 className="font-display text-[48px] font-bold tracking-[-2px] text-[#1A1A1A]">
-          Tesla by the numbers.
-        </h2>
-        <p className="mt-2 text-[21px] font-light text-[#777777]">
-          Every specification, every trim, every year.
-        </p>
-        <div className="mx-auto mt-16 grid max-w-[900px] grid-cols-2 gap-0 sm:grid-cols-4">
+      {/* Stats — compact inline strip */}
+      <section className="border-y border-[#E5E2DC] bg-[#FDFCF9]">
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center divide-x divide-[#E5E2DC] px-4">
           {[
-            { num: `${counts.modelCount}+`, label: 'Models' },
+            { num: `${counts.modelCount}`, label: 'Models' },
             { num: `${counts.vehicleCount}+`, label: 'Trims' },
-            { num: '150+', label: 'Specs' },
+            { num: '150+', label: 'Data points' },
             { num: `${counts.yearCount}`, label: 'Model years' },
-          ].map((stat, i) => (
+          ].map((stat) => (
             <div
               key={stat.label}
-              className={`px-6 py-8 ${
-                i < 3 ? 'border-r border-[#E5E2DC] sm:border-r' : ''
-              } ${i === 1 ? 'sm:border-r' : ''}`}
+              className="flex items-baseline gap-2 px-6 py-6 sm:px-8 sm:py-8"
             >
-              <div className="font-display text-[56px] font-bold leading-none tracking-[-3px] text-[#1A1A1A]">
+              <span className="font-display text-[28px] font-bold tracking-[-1px] text-[#1A1A1A] sm:text-[32px]">
                 {stat.num}
-              </div>
-              <div className="mt-2 text-[14px] text-[#999999]">
-                {stat.label}
-              </div>
+              </span>
+              <span className="text-[13px] text-[#999999]">{stat.label}</span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Latest from the Blog */}
-      {latestPosts.length > 0 && (
-        <section className="px-4 py-24 text-center">
-          <h2 className="font-display text-[48px] font-bold tracking-[-2px] text-[#1A1A1A]">
-            Latest insights.
-          </h2>
-          <p className="mt-2 text-[21px] font-light text-[#777777]">
-            Guides, comparisons, and news for Tesla buyers.
-          </p>
-          <div className="mx-auto mt-12 grid max-w-[1024px] grid-cols-1 gap-6 px-4 sm:grid-cols-3">
-            {latestPosts.map((post) => (
-              <Link
-                key={post.slugs.join('/')}
-                href={`/blog/${post.slugs.join('/')}`}
-                className="group overflow-hidden rounded-sm bg-[#F5F2ED] p-0 text-left transition-colors hover:bg-[#EDEAE4]"
-              >
-                {post.data.image && (
-                  <div className="aspect-[16/9] w-full bg-gradient-to-br from-[#E8E5DF] to-[#D6D3CD]" />
-                )}
-                <div className="p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
-                    {post.data.categories?.[0] ?? 'Article'}
-                  </p>
-                  <h3 className="mt-2 text-[17px] font-semibold leading-snug text-[#1A1A1A] line-clamp-2">
-                    {post.data.title}
-                  </h3>
-                  <p className="mt-2 text-[14px] text-[#777777] line-clamp-2">
-                    {post.data.description}
-                  </p>
-                  <p className="mt-4 text-[14px] text-[#1A1A1A]">
-                    Read more ›
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <Link
-            href="/blog"
-            className="mt-10 inline-flex text-[17px] font-normal text-[#1A1A1A] transition-colors hover:text-[#777777]"
-          >
-            View all articles ›
-          </Link>
-        </section>
-      )}
-
-      {/* CTA */}
-      <section className="bg-[#F5F2ED] px-4 py-24 text-center">
-        <h2 className="font-display text-[48px] font-bold tracking-[-2px] text-[#1A1A1A]">
-          Ready to compare?
+      {/* CTA — dark section */}
+      <section className="bg-[#1A1A1A] px-4 py-20 text-center">
+        <h2 className="font-display text-[36px] font-bold tracking-[-1.5px] text-white sm:text-[42px]">
+          Ready to find yours?
         </h2>
-        <p className="mt-3 text-[21px] font-light text-[#777777]">
-          Find the Tesla that fits your life.
+        <p className="mx-auto mt-3 max-w-md text-[17px] font-light text-white/50">
+          Browse every Tesla model, compare specs side by side, and find the one
+          that fits your life.
         </p>
-        <Link
-          href="/models"
-          className="mt-7 inline-flex items-center rounded-sm bg-[#1A1A1A] px-6 py-3 text-[15px] font-normal text-white transition-colors hover:bg-[#333333]"
-        >
-          Start comparing
-        </Link>
+        <div className="mt-8 flex items-center justify-center gap-4">
+          <Link
+            href="/models"
+            className="rounded-full bg-white px-7 py-3 text-[15px] font-medium text-[#1A1A1A] transition-colors hover:bg-white/90"
+          >
+            Browse Models
+          </Link>
+          <Link
+            href="/compare"
+            className="rounded-full border border-white/30 px-7 py-3 text-[15px] font-medium text-white transition-colors hover:border-white/60 hover:bg-white/10"
+          >
+            Compare ›
+          </Link>
+        </div>
       </section>
     </main>
   );

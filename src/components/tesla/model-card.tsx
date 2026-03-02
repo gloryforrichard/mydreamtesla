@@ -20,7 +20,7 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
           alt={`Tesla ${model.name}`}
           width={1200}
           height={600}
-          className="h-full w-full object-contain p-4"
+          className="h-full w-full mix-blend-multiply object-contain p-4"
           fallbackClassName="flex h-full w-full items-center justify-center"
           fallbackLabel={model.name}
         />

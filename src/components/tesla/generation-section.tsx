@@ -147,7 +147,7 @@ export function GenerationSection({
               alt={`Tesla ${modelName} ${generation.name}`}
               width={800}
               height={400}
-              className="h-auto w-full object-contain p-6"
+              className="h-auto w-full mix-blend-multiply object-contain p-6"
               fallbackClassName="flex aspect-[2/1] w-full items-center justify-center bg-gradient-to-br from-[#E8E5DF] to-[#D6D3CD]"
               fallbackLabel={modelName}
             />

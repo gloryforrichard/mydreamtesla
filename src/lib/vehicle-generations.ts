@@ -69,19 +69,11 @@ const GENERATION_CONFIG: GenerationConfig = {
       image: '/images/vehicles/generations/model-s-refresh.png',
     },
     {
-      name: 'Facelift / No Nose Cone',
-      yearStart: 2016,
+      name: 'Original',
+      yearStart: 2012,
       yearEnd: 2020,
       description:
-        'Front end loses the older nose cone look and becomes smoother/cleaner. Design reads closer to modern Tesla styling with a more minimal front. Overall silhouette remains very similar; mostly a new face.',
-      image: '/images/vehicles/generations/model-s-facelift.png',
-    },
-    {
-      name: 'Original / Nose Cone',
-      yearStart: 2012,
-      yearEnd: 2015,
-      description:
-        'A distinct black nose cone panel on the front bumper. Front looks more traditional/early-Tesla with a less clean, more grille-like appearance. More early-era detailing overall.',
+        'The classic Model S design spanning the original nose cone era through the mid-cycle facelift. Early models featured a distinct black nose cone panel, while 2016+ adopted a smoother, cleaner front end.',
       image: '/images/vehicles/generations/model-s-original.png',
     },
   ],
