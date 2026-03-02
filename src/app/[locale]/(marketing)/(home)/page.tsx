@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { blogSource } from '@/lib/source';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
@@ -55,45 +56,42 @@ export default async function HomePage() {
         />
       )}
 
-      {/* Hero — warm white */}
-      <section className="bg-[#FDFCF9] px-4 pb-24 pt-36 text-center sm:pb-28 sm:pt-40">
-        <p className="text-[17px] font-normal text-[#999999]">MyDreamTesla</p>
-        <h1 className="mt-2 font-display text-5xl font-bold leading-[1.05] tracking-[-3px] text-[#1A1A1A] sm:text-[64px]">
-          Find Your
-          <br />
-          Perfect Tesla.
-        </h1>
-        <p className="mx-auto mt-4 max-w-[500px] text-[21px] font-light leading-relaxed text-[#999999]">
-          Every model. Every year. Every spec.
-          <br />
-          Compared side by side.
-        </p>
-        <div className="mt-8 flex items-center justify-center gap-8">
-          <Link
-            href="/models"
-            className="text-[17px] font-normal text-[#1A1A1A] underline underline-offset-4 transition-colors hover:text-[#777777]"
-          >
-            Browse models ›
-          </Link>
-          <Link
-            href={getCompareUrl(POPULAR_COMPARISONS[0].slug)}
-            className="text-[17px] font-normal text-[#1A1A1A] underline underline-offset-4 transition-colors hover:text-[#777777]"
-          >
-            Compare now ›
-          </Link>
-        </div>
-        {/* Hero image */}
-        <div className="mx-auto mt-14 max-w-[800px]">
-          <VehicleImage
-            src="/images/vehicles/hero-lineup.png"
-            alt="Tesla Model 3, Model Y, Model S, Model X lineup"
-            width={1600}
-            height={800}
-            className="h-auto w-full rounded-sm"
-            fallbackClassName="flex h-[400px] w-full items-center justify-center rounded-sm bg-gradient-to-br from-[#E8E5DF] to-[#D6D3CD]"
-            fallbackLabel="TESLA"
-            priority
-          />
+      {/* Hero — full-screen background image */}
+      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden text-center">
+        <Image
+          src="/images/landing.jpg"
+          alt="Tesla on a forest road"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+        <div className="relative z-10 px-4 py-36 sm:py-40">
+          <p className="text-[17px] font-normal text-white/60">MyDreamTesla</p>
+          <h1 className="mt-2 font-display text-5xl font-bold leading-[1.05] tracking-[-3px] text-white sm:text-[64px]">
+            Find Your
+            <br />
+            Perfect Tesla.
+          </h1>
+          <p className="mx-auto mt-4 max-w-[500px] text-[21px] font-light leading-relaxed text-white/70">
+            Every model. Every year. Every spec.
+            <br />
+            Compared side by side.
+          </p>
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <Link
+              href="/models"
+              className="rounded-full bg-white px-7 py-3 text-[15px] font-medium text-[#1A1A1A] transition-colors hover:bg-white/90"
+            >
+              Browse Models
+            </Link>
+            <Link
+              href={getCompareUrl(POPULAR_COMPARISONS[0].slug)}
+              className="rounded-full border border-white/60 px-7 py-3 text-[15px] font-medium text-white transition-colors hover:border-white hover:bg-white/10"
+            >
+              Compare Now
+            </Link>
+          </div>
         </div>
       </section>
 
