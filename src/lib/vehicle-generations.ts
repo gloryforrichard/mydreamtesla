@@ -102,7 +102,7 @@ const GENERATION_CONFIG: GenerationConfig = {
       yearEnd: 2099,
       description:
         'Stainless-steel, sharp-edged body panels with the iconic wedge shape. Real-world details include large single wiper, full mirrors, and bulkier lower cladding. Looks slightly more filled out and production-ready vs the reveal prototype.',
-      image: '/images/vehicles/generations/cybertruck-production.avif',
+      image: '/images/vehicles/generations/cybertruck-production.png',
     },
   ],
 };

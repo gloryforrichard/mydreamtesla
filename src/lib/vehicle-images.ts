@@ -19,7 +19,7 @@ const MODEL_CARD_IMAGES: Record<string, string> = {
   'model-y': '/images/vehicles/generations/model-y-original.webp',
   'model-s': '/images/vehicles/generations/model-s-original.png',
   'model-x': '/images/vehicles/generations/model-x-original.png',
-  cybertruck: '/images/vehicles/generations/cybertruck-production.avif',
+  cybertruck: '/images/vehicles/generations/cybertruck-production.png',
 };
 
 export function getModelCardImage(slug: string): string {

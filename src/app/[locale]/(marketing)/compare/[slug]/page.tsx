@@ -9,7 +9,6 @@ import { buildItemListJsonLd } from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
 import { getOgImageUrl } from '@/lib/metadata';
 import Link from 'next/link';
-import { AdSensePlacement } from '@/components/ads/adsense-placement';
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
@@ -89,9 +88,6 @@ export default async function ComparePage({ params }: Props) {
       </header>
 
       <ComparePageClient vehicles={vehicles} models={allModels} />
-
-      {/* Ad placement */}
-      <AdSensePlacement format="in-article" slot="compare-1" className="my-4" />
 
       {/* Related comparisons (internal linking for SEO) */}
       <section

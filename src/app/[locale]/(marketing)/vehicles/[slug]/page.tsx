@@ -14,7 +14,6 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { buildCarJsonLd } from '@/lib/seo/structured-data';
 import { formatPrice, generateCompareSlug } from '@/lib/vehicle-utils';
 import { getOgImageUrl } from '@/lib/metadata';
-import { AdSensePlacement } from '@/components/ads/adsense-placement';
 import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { VehicleRegionNotice } from '@/components/tesla/vehicle-region-notice';
@@ -149,12 +148,6 @@ export default async function VehicleDetailPage({ params }: Props) {
           <ProsAndCons prosAndCons={vehicle.prosAndCons} />
         </section>
       )}
-
-      <AdSensePlacement
-        format="leaderboard"
-        slot="vehicle-detail-1"
-        className="my-8"
-      />
 
       <DataDisclaimer lastUpdated={vehicle.lastUpdated} />
 
