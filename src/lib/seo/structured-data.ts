@@ -149,7 +149,9 @@ export function buildBreadcrumbJsonLd(
 /**
  * schema.org/FAQPage — for FAQ sections
  */
-export function buildFAQPageJsonLd(faqs: { question: string; answer: string }[]) {
+export function buildFAQPageJsonLd(
+  faqs: { question: string; answer: string }[]
+) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -161,7 +163,7 @@ export function buildFAQPageJsonLd(faqs: { question: string; answer: string }[])
         text: faq.answer,
       },
     })),
-  }
+  };
 }
 
 /**

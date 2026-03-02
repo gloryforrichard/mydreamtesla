@@ -888,6 +888,9 @@ const VEHICLES = [
   // ── 2024 — HIGHLAND FACELIFT ──────────────────────────────────────────────
   {
     title: '2024 Tesla Model 3 Standard Range Plus RWD',
+    seoTitle: '2024 Tesla Model 3 SR+ — Range, 0-60, Price | MyDreamTesla',
+    seoDescription:
+      '2024 Tesla Model 3 Highland SR+ RWD — 272-mile range, 5.8s 0-60, $38,990 MSRP. Specs, price, and comparison.',
     slug: 'model-3-2024-standard-range-plus-rwd',
     modelSlug: 'model-3',
     year: 2024,
@@ -935,6 +938,9 @@ const VEHICLES = [
   },
   {
     title: '2024 Tesla Model 3 Long Range AWD',
+    seoTitle: '2024 Tesla Model 3 Long Range AWD — 0-60, Price | MyDreamTesla',
+    seoDescription:
+      '2024 Tesla Model 3 Long Range AWD — 341-mile range, 4.4s 0-60, $45,990. Highland specs, price, and comparison.',
     slug: 'model-3-2024-long-range-awd',
     modelSlug: 'model-3',
     year: 2024,
@@ -982,6 +988,9 @@ const VEHICLES = [
   },
   {
     title: '2024 Tesla Model 3 Performance AWD',
+    seoTitle: '2024 Tesla Model 3 Performance — 0-60, Range | MyDreamTesla',
+    seoDescription:
+      '2024 Tesla Model 3 Performance AWD — 510 hp, 3.1s 0-60, 303-mile range, $52,990. Specs and comparison.',
     slug: 'model-3-2024-performance-awd',
     modelSlug: 'model-3',
     year: 2024,
@@ -1031,6 +1040,9 @@ const VEHICLES = [
   // ── 2025 — HIGHLAND (CURRENT) ─────────────────────────────────────────────
   {
     title: '2025 Tesla Model 3 Rear-Wheel Drive',
+    seoTitle: '2025 Tesla Model 3 RWD — Range, 0-60, Price | MyDreamTesla',
+    seoDescription:
+      '2025 Tesla Model 3 RWD — 321-mile range, 5.8s 0-60, $38,990. Highland specs, $7,500 tax credit, and comparison.',
     slug: 'model-3-2025-standard-range-plus-rwd',
     modelSlug: 'model-3',
     year: 2025,
@@ -1079,6 +1091,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model 3 Premium RWD',
+    seoTitle: '2025 Tesla Model 3 Premium RWD — Range, 0-60 | MyDreamTesla',
+    seoDescription:
+      '2025 Tesla Model 3 Premium RWD — 363-mile range, 4.9s 0-60. Highland long-range single-motor specs and comparison.',
     slug: 'model-3-2025-premium-rwd',
     modelSlug: 'model-3',
     year: 2025,
@@ -1096,6 +1111,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model 3 Premium AWD',
+    seoTitle: '2025 Tesla Model 3 Long Range AWD — 0-60, Price | MyDreamTesla',
+    seoDescription:
+      '2025 Tesla Model 3 Long Range AWD — 346-mile range, 4.2s 0-60, $42,990. Highland dual-motor specs and comparison.',
     slug: 'model-3-2025-long-range-awd',
     modelSlug: 'model-3',
     year: 2025,
@@ -1145,6 +1163,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model 3 Performance AWD',
+    seoTitle: '2025 Tesla Model 3 Performance — 0-60, Range | MyDreamTesla',
+    seoDescription:
+      '2025 Tesla Model 3 Performance — 510 hp, 2.9s 0-60, 309-mile range, 163 mph. Highland specs, price, and comparison.',
     slug: 'model-3-2025-performance-awd',
     modelSlug: 'model-3',
     year: 2025,
@@ -1664,6 +1685,9 @@ const VEHICLES = [
   // ── 2024 Model Y ─────────────────────────────────────────────────────────
   {
     title: '2024 Tesla Model Y Standard Range RWD',
+    seoTitle: '2024 Tesla Model Y SR RWD Specs & Price | MyDreamTesla',
+    seoDescription:
+      '2024 Model Y Standard Range RWD — 283-mile range, $44,990, $7,500 credit. Full specs, pricing, and comparison.',
     slug: 'model-y-2024-standard-range-rwd',
     modelSlug: 'model-y',
     year: 2024,
@@ -1710,6 +1734,9 @@ const VEHICLES = [
   },
   {
     title: '2024 Tesla Model Y Long Range AWD',
+    seoTitle: '2024 Tesla Model Y LR AWD Specs & Price | MyDreamTesla',
+    seoDescription:
+      '2024 Model Y Long Range AWD — 310-mile range, 4.8s 0-60, $49,990. Full specs, pricing, and comparison.',
     slug: 'model-y-2024-long-range-awd',
     modelSlug: 'model-y',
     year: 2024,
@@ -1757,6 +1784,9 @@ const VEHICLES = [
   },
   {
     title: '2024 Tesla Model Y Performance AWD',
+    seoTitle: '2024 Tesla Model Y Performance Specs & Price | MyDreamTesla',
+    seoDescription:
+      '2024 Model Y Performance AWD — 430 hp, 3.5s 0-60, 303-mile range. Full specs, pricing, and comparison.',
     slug: 'model-y-2024-performance-awd',
     modelSlug: 'model-y',
     year: 2024,
@@ -1806,6 +1836,9 @@ const VEHICLES = [
   // ── 2025 Model Y — JUNIPER REFRESH (CURRENT) ────────────────────────────
   {
     title: '2025 Tesla Model Y Rear-Wheel Drive',
+    seoTitle: '2025 Tesla Model Y RWD Specs & Price | MyDreamTesla',
+    seoDescription:
+      '2025 Model Y Juniper RWD — 321-mile range, $44,990, $7,500 credit. Full specs, pricing, and comparison.',
     slug: 'model-y-2025-standard-range-rwd',
     modelSlug: 'model-y',
     year: 2025,
@@ -1859,6 +1892,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model Y AWD',
+    seoTitle: '2025 Tesla Model Y AWD Specs & Price | MyDreamTesla',
+    seoDescription:
+      '2025 Model Y Juniper AWD — 294-mile range, 4.6s 0-60. Dual-motor specs, pricing, and comparison.',
     slug: 'model-y-2025-awd',
     modelSlug: 'model-y',
     year: 2025,
@@ -1874,6 +1910,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model Y Premium RWD',
+    seoTitle: '2025 Tesla Model Y Premium RWD Specs | MyDreamTesla',
+    seoDescription:
+      '2025 Model Y Juniper Premium RWD — 357-mile range, 5.4s 0-60. Long-range single-motor specs and comparison.',
     slug: 'model-y-2025-premium-rwd',
     modelSlug: 'model-y',
     year: 2025,
@@ -1889,6 +1928,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model Y Premium AWD',
+    seoTitle: '2025 Tesla Model Y LR AWD Specs & Price | MyDreamTesla',
+    seoDescription:
+      '2025 Model Y Juniper Premium AWD — 327-mile range, 4.6s 0-60, 3,500 lb towing. Full specs and pricing.',
     slug: 'model-y-2025-long-range-awd',
     modelSlug: 'model-y',
     year: 2025,
@@ -1942,6 +1984,9 @@ const VEHICLES = [
   },
   {
     title: '2025 Tesla Model Y Performance AWD',
+    seoTitle: '2025 Tesla Model Y Performance Specs & Price | MyDreamTesla',
+    seoDescription:
+      '2025 Model Y Performance — 510 hp, 3.3s 0-60, 306-mile range. Juniper performance specs and comparison.',
     slug: 'model-y-2025-performance-awd',
     modelSlug: 'model-y',
     year: 2025,
@@ -2000,7 +2045,7 @@ const VEHICLES = [
   //          InsideEVs, KBB, NHTSA, evkx.net
   // ─────────────────────────────────────────────────────────────────────────────
 
-// ── 2012 ──────────────────────────────────────────────────────────────────
+  // ── 2012 ──────────────────────────────────────────────────────────────────
   // First production year. RWD only. 60 kWh and 85 kWh battery options.
   {
     title: '2012 Tesla Model S 60',
@@ -3441,7 +3486,7 @@ const VEHICLES = [
         'Platform sharing with 2021 architecture',
       ],
     },
- },
+  },
 
   // ── 2025 Model S (current) ───────────────────────────────────────────────────
 
@@ -3590,7 +3635,7 @@ const VEHICLES = [
   // Sources: Tesla press releases, EPA ratings, Motortrend, Car and Driver tests
   // ─────────────────────────────────────────────────────────────────────────────
 
-// ── 2016 ──────────────────────────────────────────────────────────────────
+  // ── 2016 ──────────────────────────────────────────────────────────────────
   // First full production year. All AWD with falcon wing doors.
   {
     title: '2016 Tesla Model X 75D',
@@ -4600,7 +4645,7 @@ const VEHICLES = [
         'Competition catching up from Rivian and BMW',
       ],
     },
- },
+  },
 
   // ── 2025 Model X (current) ───────────────────────────────────────────────────
 
@@ -5206,6 +5251,12 @@ async function seedVehicles() {
             : undefined,
         isCurrentModel: v.isCurrentModel,
         caAvailable: ('caAvailable' in v ? v.caAvailable : true) as boolean,
+        seoTitle: ('seoTitle' in v ? v.seoTitle : undefined) as
+          | string
+          | undefined,
+        seoDescription: ('seoDescription' in v
+          ? v.seoDescription
+          : undefined) as string | undefined,
       };
 
       if (existing.length > 0) {

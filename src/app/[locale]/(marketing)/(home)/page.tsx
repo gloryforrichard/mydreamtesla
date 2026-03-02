@@ -3,10 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { getRepresentativeVehicles, getSiteCounts } from '@/lib/db/queries';
-import {
-  formatAcceleration,
-  formatSpec,
-} from '@/lib/vehicle-utils';
+import { formatAcceleration, formatSpec } from '@/lib/vehicle-utils';
 import { POPULAR_COMPARISONS, getCompareUrl } from '@/config/comparisons';
 import { JsonLd } from '@/components/seo/json-ld';
 import {
@@ -42,7 +39,10 @@ export default async function HomePage({ params }: HomePageProps) {
   const blogPosts = blogSource
     .getPages(locale)
     .filter((post) => post.data.published)
-    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+    )
     .slice(0, 3);
 
   const baseUrl = getBaseUrl();

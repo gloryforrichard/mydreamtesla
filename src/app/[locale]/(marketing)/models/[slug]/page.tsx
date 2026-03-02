@@ -4,7 +4,11 @@ import { getModelBySlug, getVehiclesForModel } from '@/lib/db/queries';
 import { ModelVehiclesByGeneration } from '@/components/tesla/model-vehicles-by-generation';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { JsonLd } from '@/components/seo/json-ld';
-import { buildItemListJsonLd, buildBreadcrumbJsonLd, buildFAQPageJsonLd } from '@/lib/seo/structured-data';
+import {
+  buildItemListJsonLd,
+  buildBreadcrumbJsonLd,
+  buildFAQPageJsonLd,
+} from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
 import { getOgImageUrl } from '@/lib/metadata';
 import { getModelDetailImage } from '@/lib/vehicle-images';
@@ -76,9 +80,7 @@ export default async function ModelDetailPage({ params }: Props) {
         />
       )}
       <JsonLd data={buildBreadcrumbJsonLd(breadcrumbItems)} />
-      {faqs && faqs.length > 0 && (
-        <JsonLd data={buildFAQPageJsonLd(faqs)} />
-      )}
+      {faqs && faqs.length > 0 && <JsonLd data={buildFAQPageJsonLd(faqs)} />}
 
       {/* Hero — warm white, consistent with homepage */}
       <section className="bg-[#FDFCF9] pb-16 pt-8">
@@ -87,18 +89,28 @@ export default async function ModelDetailPage({ params }: Props) {
           <nav aria-label="Breadcrumb" className="mb-6 text-sm">
             <ol className="flex items-center gap-1.5 text-[#999999]">
               <li className="flex items-center gap-1.5">
-                <Link href="/" className="transition-colors hover:text-[#1A1A1A]">
+                <Link
+                  href="/"
+                  className="transition-colors hover:text-[#1A1A1A]"
+                >
                   Home
                 </Link>
               </li>
               <li className="flex items-center gap-1.5">
-                <span aria-hidden="true" className="text-[#CCCCCC]">›</span>
-                <Link href="/models" className="transition-colors hover:text-[#1A1A1A]">
+                <span aria-hidden="true" className="text-[#CCCCCC]">
+                  ›
+                </span>
+                <Link
+                  href="/models"
+                  className="transition-colors hover:text-[#1A1A1A]"
+                >
                   Models
                 </Link>
               </li>
               <li className="flex items-center gap-1.5">
-                <span aria-hidden="true" className="text-[#CCCCCC]">›</span>
+                <span aria-hidden="true" className="text-[#CCCCCC]">
+                  ›
+                </span>
                 <span className="text-[#777777]">Tesla {model.name}</span>
               </li>
             </ol>
@@ -141,7 +153,11 @@ export default async function ModelDetailPage({ params }: Props) {
 
       {/* Trim listings — light background */}
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <ModelVehiclesByGeneration vehicles={vehicles} modelSlug={model.slug} modelName={model.name} />
+        <ModelVehiclesByGeneration
+          vehicles={vehicles}
+          modelSlug={model.slug}
+          modelName={model.name}
+        />
 
         {/* FAQ Section */}
         {faqs && faqs.length > 0 && (
@@ -151,10 +167,15 @@ export default async function ModelDetailPage({ params }: Props) {
             </h2>
             <div className="space-y-3">
               {faqs.map((faq, i) => (
-                <details key={i} className="group rounded-sm border border-[#E5E2DC]">
+                <details
+                  key={i}
+                  className="group rounded-sm border border-[#E5E2DC]"
+                >
                   <summary className="flex cursor-pointer items-center justify-between p-5 text-[15px] font-medium text-[#1A1A1A] [&::-webkit-details-marker]:hidden">
                     <span>{faq.question}</span>
-                    <span className="ml-4 text-[#999999] transition-transform group-open:rotate-45">+</span>
+                    <span className="ml-4 text-[#999999] transition-transform group-open:rotate-45">
+                      +
+                    </span>
                   </summary>
                   <div className="px-5 pb-5 text-[15px] leading-relaxed text-[#777777]">
                     {faq.answer}
