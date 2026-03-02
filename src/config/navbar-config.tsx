@@ -35,10 +35,5 @@ export function useNavbarLinks(): NestedMenuItem[] {
           },
         ]
       : []),
-    {
-      title: t('about.title'),
-      href: Routes.About,
-      external: false,
-    },
   ];
 }

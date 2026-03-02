@@ -41,7 +41,6 @@ export function useFooterLinks(): NestedMenuItem[] {
     {
       title: 'Legal',
       items: [
-        { title: 'Support', href: Routes.About },
         { title: 'Privacy', href: Routes.PrivacyPolicy },
         { title: 'Terms', href: Routes.TermsOfService },
       ],
