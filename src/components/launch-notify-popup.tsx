@@ -63,12 +63,12 @@ export function LaunchNotifyPopup() {
     <Dialog open={open} onOpenChange={(v) => !v && handleDismiss()}>
       <DialogContent className="sm:max-w-md overflow-hidden p-0">
         {/* Illustration header */}
-        <div className="relative flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 px-6 pt-8 pb-6">
+        <div className="relative flex items-center justify-center bg-[#F5F2ED] dark:bg-[#1A1A1A] px-6 pt-8 pb-6">
           {/* Decorative dots */}
           <div className="absolute top-3 left-4 flex gap-1.5">
-            <div className="size-2 rounded-full bg-amber-300/60 dark:bg-amber-500/30" />
-            <div className="size-2 rounded-full bg-orange-300/60 dark:bg-orange-500/30" />
-            <div className="size-2 rounded-full bg-yellow-300/60 dark:bg-yellow-500/30" />
+            <div className="size-2 rounded-full bg-[#D6D3CD] dark:bg-[#333]" />
+            <div className="size-2 rounded-full bg-[#E5E2DC] dark:bg-[#444]" />
+            <div className="size-2 rounded-full bg-[#D6D3CD] dark:bg-[#333]" />
           </div>
 
           <div className="flex items-center gap-5">
@@ -77,7 +77,7 @@ export function LaunchNotifyPopup() {
               animate={{ rotate: [0, -15, 15, -10, 0] }}
               transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY, repeatDelay: 3 }}
             >
-              <WrenchIcon className="size-8 text-amber-500 dark:text-amber-400" />
+              <WrenchIcon className="size-8 text-[#999999] dark:text-[#777]" />
             </motion.div>
 
             {/* Central hard hat */}
@@ -87,8 +87,8 @@ export function LaunchNotifyPopup() {
               transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
               className="relative"
             >
-              <div className="flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg shadow-amber-200/50 dark:shadow-amber-900/30">
-                <HardHatIcon className="size-9 text-white" />
+              <div className="flex size-16 items-center justify-center rounded-2xl bg-[#1A1A1A] dark:bg-[#F5F2ED] shadow-lg shadow-black/10 dark:shadow-white/5">
+                <HardHatIcon className="size-9 text-[#F5F2ED] dark:text-[#1A1A1A]" />
               </div>
             </motion.div>
 
@@ -97,7 +97,7 @@ export function LaunchNotifyPopup() {
               animate={{ rotate: [0, 10, -10, 8, -8, 0] }}
               transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, repeatDelay: 4 }}
             >
-              <BellRingIcon className="size-8 text-amber-500 dark:text-amber-400" />
+              <BellRingIcon className="size-8 text-[#999999] dark:text-[#777]" />
             </motion.div>
           </div>
         </div>
@@ -132,7 +132,7 @@ export function LaunchNotifyPopup() {
             <Button
               type="submit"
               disabled={isPending}
-              className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-md"
+              className="w-full bg-[#1A1A1A] hover:bg-[#333] dark:bg-[#F5F2ED] dark:hover:bg-[#E5E2DC] dark:text-[#1A1A1A] text-white"
             >
               <BellRingIcon className="mr-2 size-4" />
               {isPending ? t('form.submitting') : t('form.submit')}
