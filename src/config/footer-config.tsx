@@ -29,16 +29,6 @@ export function useFooterLinks(): NestedMenuItem[] {
       ],
     },
     {
-      title: 'Resources',
-      items: [
-        { title: 'Blog', href: Routes.Blog },
-        {
-          title: 'Tax Credit Guide',
-          href: '/blog/tesla-federal-tax-credit-guide-2025',
-        },
-      ],
-    },
-    {
       title: 'Legal',
       items: [
         { title: 'Privacy', href: Routes.PrivacyPolicy },

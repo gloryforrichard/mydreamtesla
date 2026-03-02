@@ -26,14 +26,5 @@ export function useNavbarLinks(): NestedMenuItem[] {
       href: Routes.Compare,
       external: false,
     },
-    ...(websiteConfig.blog.enable
-      ? [
-          {
-            title: t('blog.title'),
-            href: Routes.Blog,
-            external: false,
-          },
-        ]
-      : []),
   ];
 }
