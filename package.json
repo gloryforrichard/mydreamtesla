@@ -23,7 +23,8 @@
     "distribute-credits": "tsx scripts/distribute-credits.ts",
     "content": "fumadocs-mdx",
     "email": "email dev --dir src/mail/templates --port 3333",
-    "knip": "knip"
+    "knip": "knip",
+    "generate:blog-images": "tsx scripts/generate-blog-images.ts"
   },
   "dependencies": {
     "@base-ui/react": "1.0.0",
@@ -135,6 +136,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.12",
     "@react-email/preview-server": "5.2.5",
+    "@resvg/resvg-js": "^2.6.2",
     "@swc/helpers": "^0.5.18",
     "@tailwindcss/postcss": "^4.1.18",
     "@tanstack/eslint-plugin-query": "^5.91.3",
@@ -146,9 +148,11 @@
     "knip": "^5.82.1",
     "postcss": "^8.5.6",
     "react-email": "5.2.5",
+    "satori": "^0.24.1",
     "tailwindcss": "^4.1.18",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "xlsx": "^0.18.5"
   }
 }

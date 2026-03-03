@@ -1,25 +1,22 @@
-'use client';
-
-import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { useRegion } from '@/contexts/region-context';
 import type { GenerationDef } from '@/lib/vehicle-generations';
 import {
   formatRegionSpecValue,
   getDisplayTrimName,
 } from '@/lib/vehicle-region';
+import type { Region } from '@/lib/vehicle-region';
 import { formatPrice } from '@/lib/vehicle-utils';
 import type { Vehicle } from '@/lib/vehicle-utils';
-import { cn } from '@/lib/utils';
 import { VehicleImage } from './vehicle-image';
 import { ChevronRight } from 'lucide-react';
-
-const ALL_TRIMS = '__all__';
 
 interface GenerationSectionProps {
   generation: GenerationDef;
   vehicles: Vehicle[];
   modelName: string;
+  region: Region;
+  /** Trim family filter — undefined or '__all__' means show all */
+  activeTrimFamily?: string;
 }
 
 function formatYearRange(yearStart: number, yearEnd: number): string {
@@ -31,10 +28,9 @@ function formatYearRange(yearStart: number, yearEnd: number): string {
  * Map a trim name to a broader family so that year-over-year renames
  * (e.g. "Standard Range Plus" → "Rear-Wheel Drive") share one filter pill.
  */
-function getTrimFamily(trimName: string): string {
+export function getTrimFamily(trimName: string): string {
   const lower = trimName.toLowerCase();
 
-  // Performance tier
   if (
     lower === 'performance' ||
     lower === 'plaid' ||
@@ -44,7 +40,6 @@ function getTrimFamily(trimName: string): string {
   )
     return 'Performance';
 
-  // Long Range tier
   if (
     lower === 'long range' ||
     lower === 'long range plus' ||
@@ -56,7 +51,6 @@ function getTrimFamily(trimName: string): string {
   )
     return 'Long Range';
 
-  // Standard / base tier
   if (
     lower === 'standard range' ||
     lower === 'standard range plus' ||
@@ -68,10 +62,8 @@ function getTrimFamily(trimName: string): string {
   )
     return 'Standard';
 
-  // AWD mid-tier (Model S/X "AWD", Model Y "AWD", "Premium AWD")
   if (lower === 'awd' || lower === 'premium awd') return 'AWD';
 
-  // Cybertruck tiers
   if (lower === 'cyberbeast' || lower === 'foundation series cyberbeast')
     return 'Cyberbeast';
   if (lower === 'foundation series awd') return 'AWD';
@@ -83,44 +75,31 @@ export function GenerationSection({
   generation,
   vehicles,
   modelName,
+  region,
+  activeTrimFamily,
 }: GenerationSectionProps) {
-  const { region } = useRegion();
   const isCA = region === 'CA';
-  const [activeTrim, setActiveTrim] = useState(ALL_TRIMS);
 
   // Build ordered list of unique trim families present in this generation
-  const trimFamilies = useMemo(() => {
-    const seen = new Set<string>();
-    const families: string[] = [];
-    for (const v of vehicles) {
-      const display = getDisplayTrimName(v, region);
-      const family = getTrimFamily(display);
-      if (!seen.has(family)) {
-        seen.add(family);
-        families.push(family);
-      }
+  const trimFamilies: string[] = [];
+  const seen = new Set<string>();
+  for (const v of vehicles) {
+    const display = getDisplayTrimName(v, region);
+    const family = getTrimFamily(display);
+    if (!seen.has(family)) {
+      seen.add(family);
+      trimFamilies.push(family);
     }
-    return families;
-  }, [vehicles, region]);
-
-  // Filter vehicles by selected trim family
-  const filteredVehicles = useMemo(() => {
-    if (activeTrim === ALL_TRIMS) return vehicles;
-    return vehicles.filter((v) => {
-      const display = getDisplayTrimName(v, region);
-      return getTrimFamily(display) === activeTrim;
-    });
-  }, [vehicles, activeTrim, region]);
-
-  // Reset filter if the active trim family no longer exists (e.g. region switch)
-  const validTrim =
-    activeTrim === ALL_TRIMS || trimFamilies.includes(activeTrim);
-  if (!validTrim && activeTrim !== ALL_TRIMS) {
-    // will settle on next render
-    setActiveTrim(ALL_TRIMS);
   }
 
-  const showFilter = trimFamilies.length > 1;
+  // Filter vehicles by selected trim family
+  const showAll = !activeTrimFamily || activeTrimFamily === '__all__';
+  const filteredVehicles = showAll
+    ? vehicles
+    : vehicles.filter((v) => {
+        const display = getDisplayTrimName(v, region);
+        return getTrimFamily(display) === activeTrimFamily;
+      });
 
   return (
     <section className="mb-12">
@@ -156,39 +135,6 @@ export function GenerationSection({
 
         {/* Table */}
         <div className="min-w-0 flex-1">
-          {/* Trim filter pills */}
-          {showFilter && (
-            <div className="mb-4 flex flex-wrap gap-1.5">
-              <button
-                type="button"
-                onClick={() => setActiveTrim(ALL_TRIMS)}
-                className={cn(
-                  'rounded-full px-3 py-1 text-[12px] font-semibold transition-colors',
-                  activeTrim === ALL_TRIMS
-                    ? 'bg-[#1A1A1A] text-white'
-                    : 'border border-black/[0.08] bg-white/80 text-[#999999] hover:text-[#555555]',
-                )}
-              >
-                All
-              </button>
-              {trimFamilies.map((family) => (
-                <button
-                  key={family}
-                  type="button"
-                  onClick={() => setActiveTrim(family)}
-                  className={cn(
-                    'rounded-full px-3 py-1 text-[12px] font-semibold transition-colors',
-                    activeTrim === family
-                      ? 'bg-[#1A1A1A] text-white'
-                      : 'border border-black/[0.08] bg-white/80 text-[#999999] hover:text-[#555555]',
-                  )}
-                >
-                  {family}
-                </button>
-              ))}
-            </div>
-          )}
-
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
@@ -203,7 +149,6 @@ export function GenerationSection({
                     {isCA ? '0-100' : '0-60'}
                   </th>
                   <th className="hidden px-3 py-3 font-medium lg:table-cell">HP</th>
-                  {/* Price column hidden for now */}
                   <th className="w-8 py-3 pl-3">
                     <span className="sr-only">Details</span>
                   </th>
@@ -245,7 +190,6 @@ export function GenerationSection({
                     <td className="hidden px-3 py-3 font-mono text-[13px] text-[#1A1A1A] lg:table-cell">
                       {formatRegionSpecValue(vehicle, 'horsepower', region)}
                     </td>
-                    {/* Price cell hidden for now */}
                     <td className="py-3 pl-3">
                       <Link
                         href={`/vehicles/${vehicle.slug}`}

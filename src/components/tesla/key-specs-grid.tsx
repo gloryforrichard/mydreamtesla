@@ -1,15 +1,13 @@
-'use client';
-
-import { useRegion } from '@/contexts/region-context';
 import { getRegionSpecMeta, formatRegionSpecValue } from '@/lib/vehicle-region';
+import type { Region } from '@/lib/vehicle-region';
 import type { Vehicle } from '@/lib/vehicle-utils';
 
 interface KeySpecsGridProps {
   vehicle: Vehicle;
+  region: Region;
 }
 
-export function KeySpecsGrid({ vehicle }: KeySpecsGridProps) {
-  const { region } = useRegion();
+export function KeySpecsGrid({ vehicle, region }: KeySpecsGridProps) {
 
   const rangeMeta = getRegionSpecMeta(vehicle, 'rangeEPA', region);
   const accelMeta = getRegionSpecMeta(vehicle, 'acceleration', region);

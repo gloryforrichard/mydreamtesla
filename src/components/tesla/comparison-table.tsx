@@ -1,22 +1,20 @@
-'use client';
-
-import { useRegion } from '@/contexts/region-context';
 import {
   type ComparisonSpecEntry,
+  type Region,
   getRegionAwareComparisonSpecConfig,
 } from '@/lib/vehicle-region';
 import { type Vehicle, getBestValueIndex } from '@/lib/vehicle-utils';
 
 interface ComparisonTableProps {
   vehicles: Vehicle[];
+  region: Region;
 }
 
 /**
  * Editorial-style side-by-side comparison table
  * Groups specs into sections with green dot for best values
  */
-export function ComparisonTable({ vehicles }: ComparisonTableProps) {
-  const { region } = useRegion();
+export function ComparisonTable({ vehicles, region }: ComparisonTableProps) {
   const comparisonSpecConfig = getRegionAwareComparisonSpecConfig(region);
 
   // Group specs by category

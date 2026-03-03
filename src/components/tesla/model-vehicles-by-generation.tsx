@@ -1,27 +1,24 @@
-'use client';
-
-import { useState } from 'react';
-import { useRegion } from '@/contexts/region-context';
 import { groupVehiclesByGeneration } from '@/lib/vehicle-generations';
 import { isVehicleAvailableInRegion } from '@/lib/vehicle-region';
+import type { Region } from '@/lib/vehicle-region';
 import type { Vehicle } from '@/lib/vehicle-utils';
 import { GenerationSection } from './generation-section';
-import { ArrowUpDown } from 'lucide-react';
 
 interface ModelVehiclesByGenerationProps {
   vehicles: Vehicle[];
   modelSlug: string;
   modelName: string;
+  region: Region;
+  sortOrder?: 'desc' | 'asc';
 }
 
 export function ModelVehiclesByGeneration({
   vehicles,
   modelSlug,
   modelName,
+  region,
+  sortOrder = 'desc',
 }: ModelVehiclesByGenerationProps) {
-  const { region } = useRegion();
-  const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
-
   const visibleVehicles = vehicles.filter((vehicle) =>
     isVehicleAvailableInRegion(vehicle, region),
   );
@@ -36,7 +33,6 @@ export function ModelVehiclesByGeneration({
 
   let groups = groupVehiclesByGeneration(visibleVehicles, modelSlug);
 
-  // When asc, reverse generation order and vehicle order within each generation
   if (sortOrder === 'asc') {
     groups = [...groups].reverse().map((g) => ({
       ...g,
@@ -46,8 +42,8 @@ export function ModelVehiclesByGeneration({
 
   return (
     <>
-      {/* Stats + sort toggle */}
-      <div className="mb-8 flex items-center justify-between">
+      {/* Stats */}
+      <div className="mb-8">
         <p className="text-sm text-[#999999]">
           <span className="font-mono font-semibold text-[#1A1A1A]">
             {visibleVehicles.length}
@@ -58,16 +54,6 @@ export function ModelVehiclesByGeneration({
           </span>{' '}
           generations
         </p>
-        <button
-          type="button"
-          onClick={() =>
-            setSortOrder((prev) => (prev === 'desc' ? 'asc' : 'desc'))
-          }
-          className="inline-flex items-center gap-1.5 rounded-sm border border-[#E5E2DC] px-3 py-1.5 text-xs font-medium text-[#777777] transition-colors hover:border-[#CCCCCC] hover:text-[#1A1A1A]"
-        >
-          <ArrowUpDown className="h-3.5 w-3.5" />
-          {sortOrder === 'desc' ? 'Newest first' : 'Oldest first'}
-        </button>
       </div>
 
       {groups.map(({ generation, vehicles: genVehicles }) => (
@@ -76,6 +62,7 @@ export function ModelVehiclesByGeneration({
           generation={generation}
           vehicles={genVehicles}
           modelName={modelName}
+          region={region}
         />
       ))}
     </>

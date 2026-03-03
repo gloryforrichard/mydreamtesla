@@ -7,7 +7,9 @@ import {
   getAllVehicleSlugs,
 } from '@/lib/db/queries';
 import { KeySpecsGrid } from '@/components/tesla/key-specs-grid';
+import { KeySpecsGridRegion } from '@/components/tesla/key-specs-grid-region';
 import { SpecTable } from '@/components/tesla/spec-table';
+import { SpecTableRegion } from '@/components/tesla/spec-table-region';
 import { ProsAndCons } from '@/components/tesla/pros-and-cons';
 import { DataDisclaimer } from '@/components/tesla/data-disclaimer';
 import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav';
@@ -133,7 +135,9 @@ export default async function VehicleDetailPage({ params }: Props) {
         <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
           Key Specifications
         </h2>
-        <KeySpecsGrid vehicle={vehicle} />
+        <KeySpecsGridRegion vehicle={vehicle}>
+          <KeySpecsGrid vehicle={vehicle} region="US" />
+        </KeySpecsGridRegion>
       </section>
 
       {/* What's New */}
@@ -155,7 +159,9 @@ export default async function VehicleDetailPage({ params }: Props) {
         <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
           Full Specifications
         </h2>
-        <SpecTable vehicle={vehicle} />
+        <SpecTableRegion vehicle={vehicle}>
+          <SpecTable vehicle={vehicle} region="US" />
+        </SpecTableRegion>
       </section>
 
       {/* Pros & Cons */}

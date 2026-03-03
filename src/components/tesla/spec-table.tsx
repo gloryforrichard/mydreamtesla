@@ -1,12 +1,11 @@
-'use client';
-
-import { useRegion } from '@/contexts/region-context';
 import { formatRegionSpecValue, getRegionSpecMeta } from '@/lib/vehicle-region';
+import type { Region } from '@/lib/vehicle-region';
 import { formatPrice, formatSpec } from '@/lib/vehicle-utils';
 import type { Vehicle } from '@/lib/vehicle-utils';
 
 interface SpecTableProps {
   vehicle: Vehicle;
+  region: Region;
 }
 
 interface SpecRow {
@@ -195,8 +194,7 @@ function getSpecSections(vehicle: Vehicle, region: 'US' | 'CA'): SpecSection[] {
   ];
 }
 
-export function SpecTable({ vehicle }: SpecTableProps) {
-  const { region } = useRegion();
+export function SpecTable({ vehicle, region }: SpecTableProps) {
   const sections = getSpecSections(vehicle, region);
 
   return (

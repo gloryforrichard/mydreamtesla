@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getAllVehicles } from '@/lib/db/queries';
-import { ModelsListClient } from '@/components/tesla/models-list-client';
+import { ModelsList } from '@/components/tesla/models-list';
+import { ModelsListRegion } from '@/components/tesla/models-list-region';
 import { JsonLd } from '@/components/seo/json-ld';
 import { buildItemListJsonLd } from '@/lib/seo/structured-data';
 import { generateAlternates } from '@/lib/hreflang';
@@ -41,7 +42,9 @@ export default async function ModelsPage() {
         </p>
       </header>
 
-      <ModelsListClient models={models} vehicles={vehicles} />
+      <ModelsListRegion models={models} vehicles={vehicles}>
+        <ModelsList models={models} vehicles={vehicles} region="US" />
+      </ModelsListRegion>
 
       {models.length === 0 && (
         <div className="py-20 text-center text-[#999999]">

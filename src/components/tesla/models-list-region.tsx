@@ -4,14 +4,24 @@ import { useRegion } from '@/contexts/region-context';
 import { isVehicleAvailableInRegion } from '@/lib/vehicle-region';
 import type { TeslaModel, Vehicle } from '@/lib/vehicle-utils';
 import { ModelCard } from './model-card';
+import type { ReactNode } from 'react';
 
-interface ModelsListClientProps {
+interface ModelsListRegionProps {
   models: TeslaModel[];
   vehicles: Vehicle[];
+  children: ReactNode;
 }
 
-export function ModelsListClient({ models, vehicles }: ModelsListClientProps) {
+export function ModelsListRegion({
+  models,
+  vehicles,
+  children,
+}: ModelsListRegionProps) {
   const { region } = useRegion();
+
+  if (region === 'US') {
+    return <>{children}</>;
+  }
 
   const vehicleCountByModel: Record<number, number> = {};
   for (const v of vehicles) {

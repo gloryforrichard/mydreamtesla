@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getModelBySlug, getVehiclesForModel, getAllModelSlugs } from '@/lib/db/queries';
 import { ModelVehiclesByGeneration } from '@/components/tesla/model-vehicles-by-generation';
+import { ModelVehiclesByGenerationInteractive } from '@/components/tesla/model-vehicles-by-generation-interactive';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { JsonLd } from '@/components/seo/json-ld';
 import {
@@ -162,11 +163,18 @@ export default async function ModelDetailPage({ params }: Props) {
 
       {/* Trim listings — light background */}
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <ModelVehiclesByGeneration
+        <ModelVehiclesByGenerationInteractive
           vehicles={vehicles}
           modelSlug={model.slug}
           modelName={model.name}
-        />
+        >
+          <ModelVehiclesByGeneration
+            vehicles={vehicles}
+            modelSlug={model.slug}
+            modelName={model.name}
+            region="US"
+          />
+        </ModelVehiclesByGenerationInteractive>
 
         {/* FAQ Section */}
         {faqs && faqs.length > 0 && (

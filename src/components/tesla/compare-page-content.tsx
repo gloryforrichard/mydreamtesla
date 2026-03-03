@@ -1,12 +1,10 @@
-'use client';
-
-import { useRegion } from '@/contexts/region-context';
 import {
   formatRegionSpecValue,
   getDisplayTitle,
   getRegionSpecMeta,
   isVehicleAvailableInRegion,
 } from '@/lib/vehicle-region';
+import type { Region } from '@/lib/vehicle-region';
 import {
   formatPrice,
   type TeslaModel,
@@ -16,9 +14,10 @@ import { getVehicleGeneration } from '@/lib/vehicle-generations';
 import { VehicleImage } from './vehicle-image';
 import { ComparisonTable } from './comparison-table';
 
-interface ComparePageClientProps {
+interface ComparePageContentProps {
   vehicles: Vehicle[];
   models: TeslaModel[];
+  region: Region;
 }
 
 function toNumber(value: number | string | null | undefined) {
@@ -28,12 +27,11 @@ function toNumber(value: number | string | null | undefined) {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-export function ComparePageClient({
+export function ComparePageContent({
   vehicles,
   models,
-}: ComparePageClientProps) {
-  const { region } = useRegion();
-
+  region,
+}: ComparePageContentProps) {
   const visibleVehicles = vehicles.filter((vehicle) =>
     isVehicleAvailableInRegion(vehicle, region)
   );
@@ -118,7 +116,7 @@ export function ComparePageClient({
       </div>
 
       <div className="py-8">
-        <ComparisonTable vehicles={visibleVehicles} />
+        <ComparisonTable vehicles={visibleVehicles} region={region} />
       </div>
 
       <section className="bg-[#F5F2ED] py-20" aria-label="Comparison verdict">
