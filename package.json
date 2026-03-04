@@ -20,7 +20,6 @@
     "fix-payments": "tsx scripts/fix-payments.ts",
     "fix-payments-scene": "tsx scripts/fix-payments-scene.ts",
     "seed:vehicles": "tsx scripts/seed-vehicles.ts",
-    "distribute-credits": "tsx scripts/distribute-credits.ts",
     "content": "fumadocs-mdx",
     "email": "email dev --dir src/mail/templates --port 3333",
     "knip": "knip",
