@@ -24,7 +24,7 @@ export const MODEL_FAQS: Record<string, FAQItem[]> = {
     {
       question: 'How fast is the Tesla Model 3?',
       answer:
-        'The Model 3 Performance can accelerate from 0-60 mph in just 2.9 seconds, making it one of the fastest sedans in its price range. The Long Range does it in 4.2 seconds, and the Standard Range in 5.8 seconds.',
+        'The Model 3 Performance can accelerate from 0-60 mph in just 2.9 seconds, making it one of the fastest sedans in its price range. The Long Range does it in 4.2 seconds, and the Standard Range does 0-60 in 5.8 seconds (2024+ Highland) or 6.1 seconds (2023 and earlier).',
     },
     {
       question: 'What is the Tesla Model 3 Highland refresh?',

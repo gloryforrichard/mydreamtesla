@@ -23,6 +23,8 @@ import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { VehicleRegionNotice } from '@/components/tesla/vehicle-region-notice';
 import { getVehicleGeneration } from '@/lib/vehicle-generations';
+import { VEHICLE_FAQS } from '@/config/vehicle-faqs';
+import { buildFAQPageJsonLd } from '@/lib/seo/structured-data';
 
 export async function generateStaticParams() {
   const vehicles = await getAllVehicleSlugs();
@@ -45,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     vehicle.seoTitle ?? `${vehicle.title} Specs & Review | MyDreamTesla`;
   const description =
     vehicle.seoDescription ??
-    `Complete specifications for the ${vehicle.title}. Range: ${vehicle.rangeEPA ?? 'N/A'} mi, 0-60: ${vehicle.acceleration060 ?? 'N/A'}s.`;
+    `${vehicle.title} full specs — ${vehicle.rangeEPA ?? 'N/A'}-mile EPA range, ${vehicle.acceleration060 ?? 'N/A'}s 0-60${vehicle.horsepower ? `, ${vehicle.horsepower} hp` : ''}${vehicle.curbWeight ? `, ${Number(vehicle.curbWeight).toLocaleString()} lbs` : ''}${vehicle.basePriceMSRP ? `. Starting at $${Number(vehicle.basePriceMSRP).toLocaleString()}` : ''}.`;
 
   const ogImage = getOgImageUrl({
     title: vehicle.title,
@@ -92,9 +94,12 @@ export default async function VehicleDetailPage({ params }: Props) {
     })),
   ];
 
+  const faqs = VEHICLE_FAQS[vehicle.slug];
+
   return (
     <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <JsonLd data={buildCarJsonLd(vehicle, modelName)} />
+      {faqs && faqs.length > 0 && <JsonLd data={buildFAQPageJsonLd(faqs)} />}
       <BreadcrumbNav
         items={[
           { label: 'Home', href: '/' },
@@ -175,6 +180,33 @@ export default async function VehicleDetailPage({ params }: Props) {
       )}
 
       <DataDisclaimer lastUpdated={vehicle.lastUpdated} />
+
+      {/* FAQ Section */}
+      {faqs && faqs.length > 0 && (
+        <section className="mb-12">
+          <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <details
+                key={i}
+                className="group rounded-sm border border-[#E5E2DC]"
+              >
+                <summary className="flex cursor-pointer items-center justify-between p-5 text-[15px] font-medium text-[#1A1A1A] [&::-webkit-details-marker]:hidden">
+                  <span>{faq.question}</span>
+                  <span className="ml-4 text-[#999999] transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <div className="px-5 pb-5 text-[15px] leading-relaxed text-[#777777]">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
 
       {relatedItems.length > 0 && (
         <RelatedContent

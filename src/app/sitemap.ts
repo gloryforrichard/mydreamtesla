@@ -17,6 +17,7 @@ type Href = Parameters<typeof getLocalePathname>[0]['href'];
 const staticRoutes = [
   '/',
   '/models',
+  '/models/compare-all',
   '/compare',
   '/about',
   '/privacy',
@@ -38,6 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const priorityMap: Record<string, number> = {
     '/': 1.0,
     '/models': 0.8,
+    '/models/compare-all': 0.7,
     '/compare': 0.8,
     '/about': 0.5,
     '/blog': 0.6,

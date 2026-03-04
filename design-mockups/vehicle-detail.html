@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 Tesla Model 3 Long Range AWD Specs &amp; Review | MyDreamTesla</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --white: #FBFBFD;
+      --black: #1D1D1F;
+      --gray-dark: #6E6E73;
+      --gray-mid: #86868B;
+      --gray-light: #D2D2D7;
+      --gray-bg: #F5F5F7;
+      --green: #2D8A39;
+      --green-light: #F0FDF4;
+    }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(251,251,253,0.72); backdrop-filter: saturate(180%) blur(20px); height: 48px; display: flex; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .nav-inner { max-width: 1024px; margin: 0 auto; width: 100%; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 16px; font-weight: 700; color: var(--black); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 400; color: var(--black); text-decoration: none; opacity: 0.8; }
+
+    /* Breadcrumb - SEO critical */
+    .breadcrumb-wrap { max-width: 820px; margin: 0 auto; padding: 68px 22px 0; }
+    .breadcrumb { list-style: none; display: flex; align-items: center; gap: 6px; font-size: 12px; }
+    .breadcrumb a { color: var(--gray-mid); text-decoration: none; font-weight: 400; }
+    .breadcrumb a:hover { color: var(--black); text-decoration: underline; }
+    .breadcrumb .sep { color: var(--gray-light); }
+    .breadcrumb .current { color: var(--gray-dark); }
+
+    /* Article header */
+    main { max-width: 820px; margin: 0 auto; padding: 0 22px; }
+    .vehicle-header { padding: 24px 0 40px; }
+    .vehicle-badges { display: flex; gap: 8px; margin-bottom: 12px; }
+    .badge { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 980px; }
+    .badge-dark { background: var(--black); color: white; }
+    .badge-light { background: var(--gray-bg); color: var(--gray-dark); }
+    .vehicle-header h1 { font-size: 40px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 8px; }
+    .vehicle-price { font-size: 28px; font-weight: 600; font-family: 'JetBrains Mono', monospace; margin-bottom: 8px; }
+    .vehicle-credit { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--green); font-weight: 500; background: var(--green-light); padding: 6px 14px; border-radius: 980px; }
+
+    /* Key specs - hero metrics */
+    .key-specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-bottom: 48px; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .key-spec { text-align: center; padding: 28px 16px; border-right: 1px solid rgba(0,0,0,0.06); }
+    .key-spec:last-child { border-right: none; }
+    .key-spec-value { font-size: 28px; font-weight: 700; font-family: 'JetBrains Mono', monospace; margin-bottom: 4px; }
+    .key-spec-label { font-size: 12px; color: var(--gray-mid); font-weight: 400; }
+
+    /* Ad */
+    .ad { background: var(--gray-bg); border-radius: 12px; padding: 20px; text-align: center; color: var(--gray-mid); font-size: 12px; margin: 40px 0; }
+
+    /* What's New */
+    .whats-new { background: var(--gray-bg); border-radius: 16px; padding: 28px; margin-bottom: 48px; }
+    .whats-new h2 { font-size: 19px; font-weight: 700; margin-bottom: 16px; }
+    .whats-new ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .whats-new li { font-size: 14px; color: var(--gray-dark); line-height: 1.5; padding-left: 16px; position: relative; font-weight: 300; }
+    .whats-new li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; background: var(--gray-mid); border-radius: 50%; }
+
+    /* Spec sections */
+    .spec-group { margin-bottom: 40px; }
+    .spec-group h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; padding-bottom: 12px; border-bottom: 1px solid var(--black); margin-bottom: 0; }
+    .spec-table { width: 100%; border-collapse: collapse; }
+    .spec-table tr { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .spec-table td { padding: 14px 0; font-size: 14px; }
+    .spec-table td:first-child { color: var(--gray-dark); font-weight: 400; width: 45%; }
+    .spec-table td:last-child { font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: right; }
+
+    /* Pros & Cons */
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 48px 0; }
+    .pros, .cons { border-radius: 16px; padding: 28px; }
+    .pros { background: #F0FDF4; }
+    .cons { background: #FEF2F2; }
+    .pros h3 { font-size: 17px; font-weight: 700; color: #15803D; margin-bottom: 16px; }
+    .cons h3 { font-size: 17px; font-weight: 700; color: #B91C1C; margin-bottom: 16px; }
+    .pros ul, .cons ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .pros li, .cons li { font-size: 14px; color: var(--gray-dark); font-weight: 300; line-height: 1.4; padding-left: 20px; position: relative; }
+    .pros li::before { content: '✓'; position: absolute; left: 0; color: #15803D; font-weight: 600; }
+    .cons li::before { content: '✕'; position: absolute; left: 0; color: #B91C1C; font-weight: 600; }
+
+    /* Compare links - internal linking for SEO */
+    .compare-section { margin: 48px 0; }
+    .compare-section h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .compare-section > p { font-size: 14px; color: var(--gray-dark); font-weight: 300; margin-bottom: 20px; }
+    .compare-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .compare-link { display: flex; align-items: center; justify-content: space-between; background: var(--gray-bg); border-radius: 12px; padding: 16px 20px; text-decoration: none; color: var(--black); transition: background 0.15s; }
+    .compare-link:hover { background: #EDEDF0; }
+    .compare-link-left { display: flex; align-items: center; gap: 10px; }
+    .compare-link-vs { font-size: 10px; font-weight: 600; color: var(--gray-mid); background: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .compare-link-name { font-size: 14px; font-weight: 500; }
+    .compare-link-arrow { color: var(--gray-mid); font-size: 16px; }
+
+    /* Disclaimer */
+    .disclaimer { background: #FFFBEB; border-radius: 12px; padding: 16px 20px; display: flex; gap: 12px; margin: 48px 0; align-items: flex-start; }
+    .disclaimer-icon { flex-shrink: 0; font-size: 16px; }
+    .disclaimer p { font-size: 12px; color: #92400E; line-height: 1.5; font-weight: 300; }
+    .disclaimer a { color: #92400E; font-weight: 500; }
+
+    /* Footer */
+    footer { max-width: 1024px; margin: 0 auto; padding: 20px 22px; border-top: 1px solid var(--gray-light); }
+    .footer-bottom { font-size: 12px; color: var(--gray-mid); display: flex; justify-content: space-between; padding: 16px 0; }
+  </style>
+</head>
+<body>
+  <nav><div class="nav-inner">
+    <a class="nav-logo" href="#">MyDreamTesla</a>
+    <ul class="nav-links"><li><a href="#">Models</a></li><li><a href="#">Compare</a></li><li><a href="#">Blog</a></li><li><a href="#">About</a></li></ul>
+  </div></nav>
+
+  <!-- Breadcrumb (SEO: BreadcrumbList JSON-LD injected here) -->
+  <div class="breadcrumb-wrap">
+    <ol class="breadcrumb" aria-label="Breadcrumb">
+      <li><a href="#">Home</a></li><li class="sep">/</li>
+      <li><a href="#">Models</a></li><li class="sep">/</li>
+      <li><a href="#">Model 3</a></li><li class="sep">/</li>
+      <li class="current" aria-current="page">2025 Long Range AWD</li>
+    </ol>
+  </div>
+
+  <main>
+    <!-- Article (SEO: schema.org/Car JSON-LD) -->
+    <article>
+      <header class="vehicle-header">
+        <div class="vehicle-badges">
+          <span class="badge badge-dark">2025</span>
+          <span class="badge badge-light">AWD</span>
+          <span class="badge badge-light">Sedan</span>
+        </div>
+        <h1>2025 Tesla Model 3 Long Range AWD</h1>
+        <div class="vehicle-price">$42,490</div>
+        <div class="vehicle-credit">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          $7,500 Federal Tax Credit Eligible
+        </div>
+      </header>
+
+      <section class="key-specs" aria-label="Key specifications">
+        <div class="key-spec"><div class="key-spec-value">363</div><div class="key-spec-label">EPA Range (mi)</div></div>
+        <div class="key-spec"><div class="key-spec-value">4.8s</div><div class="key-spec-label">0-60 mph</div></div>
+        <div class="key-spec"><div class="key-spec-value">271</div><div class="key-spec-label">Horsepower</div></div>
+        <div class="key-spec"><div class="key-spec-value">125</div><div class="key-spec-label">Top Speed (mph)</div></div>
+      </section>
+
+      <div class="ad">Advertisement — 728×90</div>
+
+      <section class="whats-new">
+        <h2>What's new for 2025</h2>
+        <ul>
+          <li>Highland refresh with redesigned front fascia and headlights</li>
+          <li>New interior with ambient lighting and larger rear screen</li>
+          <li>Improved noise insulation and ride quality</li>
+          <li>Updated Autopilot hardware with HW4 computer</li>
+        </ul>
+      </section>
+
+      <section class="spec-group">
+        <h2>Performance</h2>
+        <table class="spec-table">
+          <tr><td>0-60 mph</td><td>4.8 s</td></tr>
+          <tr><td>Top Speed</td><td>125 mph</td></tr>
+          <tr><td>Horsepower</td><td>271 hp</td></tr>
+          <tr><td>Torque</td><td>317 lb-ft</td></tr>
+          <tr><td>Drive Type</td><td>All-Wheel Drive</td></tr>
+        </table>
+      </section>
+
+      <section class="spec-group">
+        <h2>Battery & Charging</h2>
+        <table class="spec-table">
+          <tr><td>EPA Range</td><td>363 miles</td></tr>
+          <tr><td>Battery Capacity</td><td>75 kWh</td></tr>
+          <tr><td>Supercharger Max</td><td>250 kW</td></tr>
+          <tr><td>Charge Time (10-80%)</td><td>25 min</td></tr>
+          <tr><td>Charge Port</td><td>NACS</td></tr>
+        </table>
+      </section>
+
+      <div class="ad">Advertisement — 300×250</div>
+
+      <section class="spec-group">
+        <h2>Dimensions & Weight</h2>
+        <table class="spec-table">
+          <tr><td>Length</td><td>184.8 in</td></tr>
+          <tr><td>Width</td><td>72.8 in</td></tr>
+          <tr><td>Height</td><td>56.8 in</td></tr>
+          <tr><td>Wheelbase</td><td>113.2 in</td></tr>
+          <tr><td>Curb Weight</td><td>3,862 lbs</td></tr>
+          <tr><td>Cargo Volume</td><td>23 cu ft</td></tr>
+        </table>
+      </section>
+
+      <section class="spec-group">
+        <h2>Pricing</h2>
+        <table class="spec-table">
+          <tr><td>Base MSRP</td><td>$42,490</td></tr>
+          <tr><td>Destination Fee</td><td>$1,640</td></tr>
+          <tr><td>Federal Tax Credit</td><td style="color: var(--green);">−$7,500</td></tr>
+          <tr><td>Effective Price</td><td style="font-weight: 700;">$36,630</td></tr>
+        </table>
+      </section>
+
+      <section class="pros-cons" aria-label="Pros and cons">
+        <div class="pros"><h3>Pros</h3><ul>
+          <li>Excellent range at 363 miles EPA</li>
+          <li>Highland refresh adds premium interior</li>
+          <li>Full $7,500 federal tax credit eligible</li>
+          <li>Industry-leading Supercharger network</li>
+          <li>Strong resale value</li>
+        </ul></div>
+        <div class="cons"><h3>Cons</h3><ul>
+          <li>No physical buttons for key controls</li>
+          <li>Rear visibility could be better</li>
+          <li>Service center availability varies</li>
+          <li>Paint quality inconsistencies reported</li>
+        </ul></div>
+      </section>
+    </article>
+
+    <!-- Internal links (SEO: cross-linking) -->
+    <section class="compare-section">
+      <h2>Compare with other trims</h2>
+      <p>See how this configuration stacks up.</p>
+      <div class="compare-links">
+        <a class="compare-link" href="#"><div class="compare-link-left"><div class="compare-link-vs">VS</div><span class="compare-link-name">Model 3 Standard Range RWD</span></div><span class="compare-link-arrow">›</span></a>
+        <a class="compare-link" href="#"><div class="compare-link-left"><div class="compare-link-vs">VS</div><span class="compare-link-name">Model 3 Performance AWD</span></div><span class="compare-link-arrow">›</span></a>
+        <a class="compare-link" href="#"><div class="compare-link-left"><div class="compare-link-vs">VS</div><span class="compare-link-name">Model Y Long Range AWD</span></div><span class="compare-link-arrow">›</span></a>
+        <a class="compare-link" href="#"><div class="compare-link-left"><div class="compare-link-vs">VS</div><span class="compare-link-name">Model S Standard Range</span></div><span class="compare-link-arrow">›</span></a>
+      </div>
+    </section>
+
+    <aside class="disclaimer">
+      <span class="disclaimer-icon">⚠️</span>
+      <p>Specifications sourced from <a href="https://tesla.com">Tesla.com</a> and public records. Actual performance may vary. Prices are base MSRP before options. Last verified: February 2025.</p>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="footer-bottom">
+      <span>&copy; 2025 MyDreamTesla. Not affiliated with Tesla, Inc.</span>
+      <span>Data from Tesla.com and public records.</span>
+    </div>
+  </footer>
+</body>
+</html>

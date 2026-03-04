@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyDreamTesla - Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --white: #FBFBFD;
+      --black: #1D1D1F;
+      --gray-dark: #6E6E73;
+      --gray-mid: #86868B;
+      --gray-light: #D2D2D7;
+      --gray-bg: #F5F5F7;
+      --link: #1D1D1F;
+      --green: #2D8A39;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(251,251,253,0.72);
+      backdrop-filter: saturate(180%) blur(20px);
+      height: 48px;
+      display: flex; align-items: center;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1024px; margin: 0 auto; width: 100%; padding: 0 22px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 16px; font-weight: 700; color: var(--black); text-decoration: none; letter-spacing: -0.3px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 400; color: var(--black); text-decoration: none; opacity: 0.8; }
+    .nav-links a:hover { opacity: 1; }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 140px 0 100px;
+      text-align: center;
+      background: var(--black);
+      color: white;
+      overflow: hidden;
+    }
+    .hero-overline {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--gray-mid);
+      margin-bottom: 8px;
+    }
+    .hero h1 {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -3px;
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-size: 21px;
+      font-weight: 300;
+      color: var(--gray-mid);
+      max-width: 500px;
+      margin: 0 auto 32px;
+      line-height: 1.4;
+    }
+    .hero-links {
+      display: flex; gap: 32px; justify-content: center;
+    }
+    .link-arrow {
+      font-size: 17px;
+      font-weight: 400;
+      color: #2997FF;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .link-arrow:hover { text-decoration: underline; }
+    .link-arrow::after { content: ' ›'; font-size: 20px; }
+    .link-arrow-white { color: white; }
+    .link-arrow-white:hover { color: #D2D2D7; }
+    .hero-image {
+      margin-top: 56px;
+      height: 400px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-image-placeholder {
+      width: 800px; height: 400px;
+      background: linear-gradient(135deg, #2A2A2D 0%, #3A3A3D 100%);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 120px; font-weight: 800; color: rgba(255,255,255,0.06);
+      letter-spacing: -4px;
+    }
+
+    /* ===== MODEL TILES ===== */
+    .tiles { padding: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 1440px; margin: 0 auto; }
+    .tile {
+      background: var(--gray-bg);
+      border-radius: 20px;
+      text-align: center;
+      padding: 56px 40px 0;
+      min-height: 520px;
+      display: flex; flex-direction: column; align-items: center;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+    .tile-dark { background: var(--black); color: white; }
+    .tile-overline {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .tile-dark .tile-overline { color: var(--gray-mid); }
+    .tile h2 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+    .tile-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--gray-dark);
+      margin-bottom: 16px;
+    }
+    .tile-dark .tile-sub { color: var(--gray-mid); }
+    .tile-links {
+      display: flex; gap: 24px; margin-bottom: 32px;
+    }
+    .tile-link {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--link);
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 2px;
+    }
+    .tile-link::after { content: ' ›'; font-size: 16px; }
+    .tile-link:hover { text-decoration: underline; }
+    .tile-dark .tile-link { color: #2997FF; }
+    .tile-image {
+      width: 400px; height: 240px;
+      background: linear-gradient(135deg, #E8E8ED 0%, #D2D2D7 100%);
+      border-radius: 12px 12px 0 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: auto;
+    }
+    .tile-dark .tile-image { background: linear-gradient(135deg, #2A2A2D 0%, #3A3A3D 100%); }
+    .tile-image-text { font-size: 80px; font-weight: 800; color: rgba(0,0,0,0.06); letter-spacing: -3px; }
+    .tile-dark .tile-image-text { color: rgba(255,255,255,0.06); }
+    .tile-specs {
+      display: flex; gap: 32px; margin-bottom: 24px;
+    }
+    .tile-spec-value {
+      font-size: 16px; font-weight: 600; font-family: 'JetBrains Mono', monospace; color: var(--black);
+    }
+    .tile-dark .tile-spec-value { color: white; }
+    .tile-spec-label {
+      font-size: 11px; font-weight: 400; color: var(--gray-mid); margin-top: 2px;
+    }
+
+    /* ===== COMPARE SECTION ===== */
+    .compare-section {
+      padding: 100px 0;
+      text-align: center;
+    }
+    .compare-section h2 {
+      font-size: 48px; font-weight: 700; letter-spacing: -2px; margin-bottom: 8px;
+    }
+    .compare-section-sub {
+      font-size: 21px; font-weight: 300; color: var(--gray-dark); margin-bottom: 48px;
+    }
+    .compare-grid {
+      max-width: 1024px; margin: 0 auto; padding: 0 22px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .compare-card {
+      background: var(--gray-bg); border-radius: 20px; padding: 32px 24px;
+      text-decoration: none; color: inherit;
+      transition: transform 0.2s;
+    }
+    .compare-card:hover { transform: scale(1.02); }
+    .compare-card-vs {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 24px; justify-content: center;
+    }
+    .compare-car-thumb {
+      width: 80px; height: 52px; background: #E8E8ED; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .compare-car-thumb span { font-size: 20px; font-weight: 800; color: #C4C4C9; }
+    .compare-vs { font-size: 11px; font-weight: 600; color: var(--gray-mid); letter-spacing: 1px; }
+    .compare-card-names {
+      display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 13px; font-weight: 600;
+    }
+    .compare-rows { display: flex; flex-direction: column; gap: 0; }
+    .compare-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0; border-top: 1px solid rgba(0,0,0,0.06); font-size: 13px;
+    }
+    .compare-label { color: var(--gray-mid); font-weight: 400; }
+    .compare-vals { display: flex; gap: 32px; }
+    .compare-val { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 12px; min-width: 60px; text-align: right; }
+    .compare-val.win { color: var(--green); }
+    .compare-card-cta {
+      margin-top: 20px;
+      font-size: 14px; font-weight: 400; color: var(--link);
+      display: inline-flex; align-items: center; gap: 2px;
+    }
+    .compare-card-cta::after { content: ' ›'; font-size: 16px; }
+
+    /* ===== STATS ===== */
+    .stats {
+      background: var(--black); padding: 100px 0; text-align: center;
+    }
+    .stats h2 {
+      font-size: 48px; font-weight: 700; letter-spacing: -2px; color: white; margin-bottom: 8px;
+    }
+    .stats-sub {
+      font-size: 21px; font-weight: 300; color: var(--gray-mid); margin-bottom: 64px;
+    }
+    .stats-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    }
+    .stat {
+      padding: 0 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 56px; font-weight: 700; color: white; font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -3px; line-height: 1; margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 14px; font-weight: 400; color: var(--gray-mid);
+    }
+
+    /* ===== BLOG ===== */
+    .blog-section {
+      padding: 100px 0; text-align: center;
+    }
+    .blog-section h2 {
+      font-size: 48px; font-weight: 700; letter-spacing: -2px; margin-bottom: 8px;
+    }
+    .blog-section-sub {
+      font-size: 21px; font-weight: 300; color: var(--gray-dark); margin-bottom: 48px;
+    }
+    .blog-grid {
+      max-width: 1024px; margin: 0 auto; padding: 0 22px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .blog-card {
+      background: var(--gray-bg); border-radius: 20px; overflow: hidden;
+      text-decoration: none; color: inherit; text-align: left;
+      transition: transform 0.2s;
+    }
+    .blog-card:hover { transform: scale(1.02); }
+    .blog-card-img {
+      height: 200px; background: #E8E8ED;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+    }
+    .blog-card-body { padding: 24px; }
+    .blog-card-tag {
+      font-size: 11px; font-weight: 500; color: var(--gray-mid);
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .blog-card-title {
+      font-size: 19px; font-weight: 700; line-height: 1.3; letter-spacing: -0.3px; margin-bottom: 8px;
+    }
+    .blog-card-excerpt {
+      font-size: 14px; font-weight: 300; color: var(--gray-dark); line-height: 1.5; margin-bottom: 16px;
+    }
+    .blog-card-meta {
+      font-size: 12px; color: var(--gray-mid); font-weight: 400;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      padding: 100px 0; text-align: center;
+      background: var(--gray-bg);
+    }
+    .cta-section h2 {
+      font-size: 48px; font-weight: 700; letter-spacing: -2px; margin-bottom: 12px;
+    }
+    .cta-section p {
+      font-size: 21px; font-weight: 300; color: var(--gray-dark); margin-bottom: 28px;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center;
+      background: var(--black); color: white;
+      padding: 12px 24px; border-radius: 980px; /* Apple's pill shape */
+      font-size: 15px; font-weight: 400;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-dark:hover { background: #424245; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 20px 22px;
+      max-width: 1024px; margin: 0 auto;
+      border-top: 1px solid var(--gray-light);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      padding: 32px 0;
+    }
+    .footer-col-title { font-size: 12px; font-weight: 600; color: var(--black); margin-bottom: 12px; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col-links a { font-size: 12px; color: var(--gray-dark); text-decoration: none; font-weight: 400; }
+    .footer-col-links a:hover { color: var(--black); text-decoration: underline; }
+    .footer-bottom {
+      padding-top: 16px; border-top: 1px solid var(--gray-light);
+      font-size: 12px; color: var(--gray-mid); font-weight: 400;
+      display: flex; justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">MyDreamTesla</a>
+      <ul class="nav-links">
+        <li><a href="#">Models</a></li>
+        <li><a href="#">Compare</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-overline">MyDreamTesla</div>
+    <h1>Find Your<br>Perfect Tesla.</h1>
+    <p class="hero-sub">Every model. Every year. Every spec.<br>Compared side by side.</p>
+    <div class="hero-links">
+      <a class="link-arrow link-arrow-white" href="#">Browse models</a>
+      <a class="link-arrow" href="#" style="color: #2997FF;">Compare now</a>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-placeholder">TESLA</div>
+    </div>
+  </section>
+
+  <!-- MODEL TILES -->
+  <section class="tiles">
+    <a class="tile" href="#">
+      <p class="tile-overline">Sedan</p>
+      <h2>Model 3</h2>
+      <p class="tile-sub">The gateway to Tesla.</p>
+      <div class="tile-specs">
+        <div><div class="tile-spec-value">363 mi</div><div class="tile-spec-label">Range</div></div>
+        <div><div class="tile-spec-value">4.8s</div><div class="tile-spec-label">0-60 mph</div></div>
+        <div><div class="tile-spec-value">$38,990</div><div class="tile-spec-label">From</div></div>
+      </div>
+      <div class="tile-links">
+        <a class="tile-link" href="#">Explore</a>
+        <a class="tile-link" href="#">Compare trims</a>
+      </div>
+      <div class="tile-image"><span class="tile-image-text">3</span></div>
+    </a>
+
+    <a class="tile tile-dark" href="#">
+      <p class="tile-overline">SUV</p>
+      <h2>Model Y</h2>
+      <p class="tile-sub">Room for everything.</p>
+      <div class="tile-specs">
+        <div><div class="tile-spec-value">310 mi</div><div class="tile-spec-label">Range</div></div>
+        <div><div class="tile-spec-value">4.8s</div><div class="tile-spec-label">0-60 mph</div></div>
+        <div><div class="tile-spec-value">$44,990</div><div class="tile-spec-label">From</div></div>
+      </div>
+      <div class="tile-links">
+        <a class="tile-link" href="#">Explore</a>
+        <a class="tile-link" href="#">Compare trims</a>
+      </div>
+      <div class="tile-image"><span class="tile-image-text">Y</span></div>
+    </a>
+
+    <a class="tile tile-dark" href="#">
+      <p class="tile-overline">Sedan</p>
+      <h2>Model S</h2>
+      <p class="tile-sub">Unmatched performance.</p>
+      <div class="tile-specs">
+        <div><div class="tile-spec-value">405 mi</div><div class="tile-spec-label">Range</div></div>
+        <div><div class="tile-spec-value">3.1s</div><div class="tile-spec-label">0-60 mph</div></div>
+        <div><div class="tile-spec-value">$74,990</div><div class="tile-spec-label">From</div></div>
+      </div>
+      <div class="tile-links">
+        <a class="tile-link" href="#">Explore</a>
+        <a class="tile-link" href="#">Compare trims</a>
+      </div>
+      <div class="tile-image"><span class="tile-image-text">S</span></div>
+    </a>
+
+    <a class="tile" href="#">
+      <p class="tile-overline">SUV</p>
+      <h2>Model X</h2>
+      <p class="tile-sub">The ultimate SUV.</p>
+      <div class="tile-specs">
+        <div><div class="tile-spec-value">348 mi</div><div class="tile-spec-label">Range</div></div>
+        <div><div class="tile-spec-value">3.8s</div><div class="tile-spec-label">0-60 mph</div></div>
+        <div><div class="tile-spec-value">$79,990</div><div class="tile-spec-label">From</div></div>
+      </div>
+      <div class="tile-links">
+        <a class="tile-link" href="#">Explore</a>
+        <a class="tile-link" href="#">Compare trims</a>
+      </div>
+      <div class="tile-image"><span class="tile-image-text">X</span></div>
+    </a>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="compare-section">
+    <h2>Compare head to head.</h2>
+    <p class="compare-section-sub">The matchups people search for most.</p>
+    <div class="compare-grid">
+      <a class="compare-card" href="#">
+        <div class="compare-card-vs">
+          <div class="compare-car-thumb"><span>3</span></div>
+          <span class="compare-vs">VS</span>
+          <div class="compare-car-thumb"><span>Y</span></div>
+        </div>
+        <div class="compare-card-names"><span>Model 3 LR</span><span>Model Y LR</span></div>
+        <div class="compare-rows">
+          <div class="compare-row"><span class="compare-label">Range</span><div class="compare-vals"><span class="compare-val win">363 mi</span><span class="compare-val">310 mi</span></div></div>
+          <div class="compare-row"><span class="compare-label">0-60</span><div class="compare-vals"><span class="compare-val">4.8s</span><span class="compare-val">4.8s</span></div></div>
+          <div class="compare-row"><span class="compare-label">Price</span><div class="compare-vals"><span class="compare-val win">$42,490</span><span class="compare-val">$49,990</span></div></div>
+        </div>
+        <div class="compare-card-cta">Full comparison</div>
+      </a>
+
+      <a class="compare-card" href="#">
+        <div class="compare-card-vs">
+          <div class="compare-car-thumb"><span>S</span></div>
+          <span class="compare-vs">VS</span>
+          <div class="compare-car-thumb"><span>X</span></div>
+        </div>
+        <div class="compare-card-names"><span>Model S</span><span>Model X</span></div>
+        <div class="compare-rows">
+          <div class="compare-row"><span class="compare-label">Range</span><div class="compare-vals"><span class="compare-val win">405 mi</span><span class="compare-val">348 mi</span></div></div>
+          <div class="compare-row"><span class="compare-label">0-60</span><div class="compare-vals"><span class="compare-val win">3.1s</span><span class="compare-val">3.8s</span></div></div>
+          <div class="compare-row"><span class="compare-label">Price</span><div class="compare-vals"><span class="compare-val win">$74,990</span><span class="compare-val">$79,990</span></div></div>
+        </div>
+        <div class="compare-card-cta">Full comparison</div>
+      </a>
+
+      <a class="compare-card" href="#">
+        <div class="compare-card-vs">
+          <div class="compare-car-thumb"><span>3P</span></div>
+          <span class="compare-vs">VS</span>
+          <div class="compare-car-thumb"><span>YP</span></div>
+        </div>
+        <div class="compare-card-names"><span>Model 3 Perf.</span><span>Model Y Perf.</span></div>
+        <div class="compare-rows">
+          <div class="compare-row"><span class="compare-label">Range</span><div class="compare-vals"><span class="compare-val win">303 mi</span><span class="compare-val">285 mi</span></div></div>
+          <div class="compare-row"><span class="compare-label">0-60</span><div class="compare-vals"><span class="compare-val win">2.9s</span><span class="compare-val">3.5s</span></div></div>
+          <div class="compare-row"><span class="compare-label">Price</span><div class="compare-vals"><span class="compare-val win">$50,990</span><span class="compare-val">$54,990</span></div></div>
+        </div>
+        <div class="compare-card-cta">Full comparison</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <h2>Tesla by the numbers.</h2>
+    <p class="stats-sub">Every specification, every trim, every year.</p>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-num">7+</div><div class="stat-label">Models</div></div>
+      <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Trims</div></div>
+      <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Specs</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Model years</div></div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog-section">
+    <h2>Latest insights.</h2>
+    <p class="blog-section-sub">Guides and analysis for every Tesla buyer.</p>
+    <div class="blog-grid">
+      <a class="blog-card" href="#">
+        <div class="blog-card-img">⚡</div>
+        <div class="blog-card-body">
+          <p class="blog-card-tag">Comparison</p>
+          <h3 class="blog-card-title">Model 3 vs Model Y: Which Is Right for You?</h3>
+          <p class="blog-card-excerpt">Range, space, performance, and value — broken down completely.</p>
+          <p class="blog-card-meta">8 min read</p>
+        </div>
+      </a>
+      <a class="blog-card" href="#">
+        <div class="blog-card-img">🔋</div>
+        <div class="blog-card-body">
+          <p class="blog-card-tag">Deep Dive</p>
+          <h3 class="blog-card-title">Model 3 Highland: Everything That Changed</h3>
+          <p class="blog-card-excerpt">New tech, better range, redesigned interior. Every detail covered.</p>
+          <p class="blog-card-meta">6 min read</p>
+        </div>
+      </a>
+      <a class="blog-card" href="#">
+        <div class="blog-card-img">💰</div>
+        <div class="blog-card-body">
+          <p class="blog-card-tag">Buying Guide</p>
+          <h3 class="blog-card-title">Federal Tax Credit Guide: Save $7,500</h3>
+          <p class="blog-card-excerpt">Which Teslas qualify, income limits, and how to claim it.</p>
+          <p class="blog-card-meta">5 min read</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to compare?</h2>
+    <p>Find the Tesla that fits your life.</p>
+    <a class="btn-dark" href="#">Start comparing</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4 class="footer-col-title">Models</h4>
+        <ul class="footer-col-links">
+          <li><a href="#">Model 3</a></li><li><a href="#">Model Y</a></li><li><a href="#">Model S</a></li><li><a href="#">Model X</a></li><li><a href="#">Cybertruck</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Compare</h4>
+        <ul class="footer-col-links">
+          <li><a href="#">Model 3 vs Y</a></li><li><a href="#">Model S vs X</a></li><li><a href="#">All comparisons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Resources</h4>
+        <ul class="footer-col-links">
+          <li><a href="#">Blog</a></li><li><a href="#">Tax Credit Guide</a></li><li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Legal</h4>
+        <ul class="footer-col-links">
+          <li><a href="#">About</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 MyDreamTesla. Not affiliated with Tesla, Inc.</span>
+      <span>Data from Tesla.com and public records.</span>
+    </div>
+  </footer>
+
+</body>
+</html>

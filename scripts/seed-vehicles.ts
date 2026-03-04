@@ -783,8 +783,15 @@ const VEHICLES = [
     seatingCapacity: 5,
     displaySize: '15.4"',
     wheelbase: '113.2',
-    curbWeight: 3582,
+    length: '184.8',
+    width: '72.8',
+    height: '56.8',
+    groundClearance: '5.5',
+    curbWeight: 3862,
     mpge: 141,
+    seoTitle: '2023 Tesla Model 3 Standard Range Plus RWD — Specs | MyDreamTesla',
+    seoDescription:
+      '2023 Model 3 SR+ RWD — 272-mile EPA range, 6.1s 0-60, 283 hp, 3,862 lbs curb weight. $40,240 MSRP ($32,740 after tax credit). Full specs & features.',
     isCurrentModel: false,
     keyChangesFromPriorYear:
       'IRA Inflation Reduction Act reinstated $7,500 federal tax credit for US buyers. Tesla cut prices dramatically — Model 3 RWD dropped from $47k to $40k. Effective price under $33k with credit.',
@@ -1548,6 +1555,9 @@ const VEHICLES = [
     year: 2023,
     trimName: 'Standard Range',
     driveType: 'RWD',
+    seoTitle: '2023 Tesla Model Y Standard Range RWD — HP & Specs | MyDreamTesla',
+    seoDescription:
+      '2023 Model Y Standard Range RWD — 260-mile EPA range, 5.0s 0-60, 283 horsepower, 4,100 lbs curb weight, $43,990 MSRP. Full specifications & comparison.',
     basePriceMSRP: 43990,
     destinationFee: 1390,
     federalTaxCredit: 7500,
@@ -3449,6 +3459,9 @@ const VEHICLES = [
     year: 2024,
     trimName: 'Plaid',
     driveType: 'AWD',
+    seoTitle: '2024 Tesla Model S Plaid — 1,020 HP, 1.99s 0-60 | MyDreamTesla',
+    seoDescription:
+      '2024 Model S Plaid tri-motor AWD — 1,020 hp, 1.99s 0-60, 348-mile range, 9.23s quarter mile, $89,990. The fastest production sedan ever made.',
     basePriceMSRP: 89990,
     rangeEPA: 348,
     acceleration060: '1.99',

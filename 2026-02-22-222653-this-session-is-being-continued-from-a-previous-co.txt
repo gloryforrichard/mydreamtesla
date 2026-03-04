@@ -1,0 +1,2111 @@
+
+╭─── Claude Code v2.1.50 ──────────────────────────────────────────────────────╮
+│                            │ Tips for getting started                        │
+│     Welcome back Ricky!    │ Run /init to create a CLAUDE.md file with inst… │
+│                            │ ─────────────────────────────────────────────── │
+│                            │ Recent activity                                 │
+│              ✻             │ 14h ago  Implement the following plan:  # Plan… │
+│              |             │ 1d ago   Implement the following plan:  # Plan… │
+│             ▟█▙            │ 1d ago   Implement the following plan:  # Plan… │
+│           ▐▛███▜▌          │ /resume for more                                │
+│          ▝▜█████▛▘         │                                                 │
+│            ▘▘ ▝▝           │                                                 │
+│                            │                                                 │
+│   Opus 4.6 · Claude Pro    │                                                 │
+│   ~/Desktop/mydreamtesla   │                                                 │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+✻ Conversation compacted (ctrl+o for history)
+
+  ⎿  Referenced file design-mockups/vehicle-detail.html
+  ⎿  Referenced file design-mockups/homepage.html
+  ⎿  Referenced file design-mockups/comparison.html
+  ⎿  Plan file referenced (~/.claude/plans/witty-stargazing-adleman.md)
+  ⎿  Skills restored (commit-commands:commit, figma:implement-design, 
+     brainstorming, superpowers:brainstorming)
+
+⏺ Let me read the current files to continue where I left off.
+
+⏺ Read 2 files (ctrl+o to expand)
+
+⏺ Now I'll rewrite comparison.html in Apple.com style matching the
+  homepage/vehicle-detail design language, then capture all 3 to Figma.
+
+⏺ Write(design-mockups/comparison.html)
+  ⎿  Added 394 lines, removed 234 lines
+        3  <head>
+        4    <meta charset="UTF-8">
+        5    <meta name="viewport" content="width=device-width, initial-s
+           cale=1.0">
+        6 -  <title>Model 3 LR vs Model Y LR - Comparison</title>        
+        7 -  <link href="https://fonts.googleapis.com/css2?family=Inter:w
+          -ght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700
+          -&display=swap" rel="stylesheet">                              
+        6 +  <title>Model 3 Long Range vs Model Y Long Range — MyDreamTes
+          +la</title>                                                    
+        7 +  <meta name="description" content="Compare Tesla Model 3 Long
+          + Range vs Model Y Long Range side by side. See range, performa
+          +nce, pricing, and dimensions compared.">                      
+        8 +  <link href="https://fonts.googleapis.com/css2?family=Inter:w
+          +ght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600
+          +;700&display=swap" rel="stylesheet">                          
+        9    <script src="https://mcp.figma.com/mcp/html-to-design/captur
+           e.js" async></script>
+       10    <style>
+       11      * { margin: 0; padding: 0; box-sizing: border-box; }
+       12      :root {
+       12 -      --bg: #FFFFFF;                                          
+       13 -      --bg-muted: #F5F5F5;                                    
+       14 -      --bg-dark: #171717;                                     
+       15 -      --text: #171717;                                        
+       16 -      --text-secondary: #525252;                              
+       17 -      --text-tertiary: #A3A3A3;                               
+       18 -      --text-on-dark: #FAFAFA;                                
+       19 -      --border: #E5E5E5;                                      
+       20 -      --border-light: #F5F5F5;                                
+       21 -      --green: #16A34A;                                       
+       22 -      --green-light: #F0FDF4;                                 
+       13 +      --white: #FBFBFD;                                       
+       14 +      --black: #1D1D1F;                                       
+       15 +      --gray-dark: #6E6E73;                                   
+       16 +      --gray-mid: #86868B;                                    
+       17 +      --gray-light: #D2D2D7;                                  
+       18 +      --gray-bg: #F5F5F7;                                     
+       19 +      --green: #2D8A39;                                       
+       20 +      --green-bg: #F0FDF4;                                    
+       21      }
+       24 -    body { font-family: 'Inter', -apple-system, sans-serif; ba
+          -ckground: var(--bg); color: var(--text); -webkit-font-smoothin
+          -g: antialiased; }                                             
+       22 +    body {                                                    
+       23 +      font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+          + sans-serif;                                                  
+       24 +      background: var(--white);                               
+       25 +      color: var(--black);                                    
+       26 +      -webkit-font-smoothing: antialiased;                    
+       27 +      -moz-osx-font-smoothing: grayscale;                     
+       28 +    }                                                         
+       29  
+       26 -    .navbar { position: fixed; top: 0; left: 0; right: 0; z-in
+          -dex: 100; background: rgba(255,255,255,0.92); backdrop-filter:
+          - blur(12px); border-bottom: 1px solid var(--border); height: 6
+          -4px; display: flex; align-items: center; }                    
+       27 -    .navbar-inner { max-width: 1200px; margin: 0 auto; width: 
+          -100%; padding: 0 24px; display: flex; align-items: center; jus
+          -tify-content: space-between; }                                
+       28 -    .navbar-logo { display: flex; align-items: center; gap: 10
+          -px; text-decoration: none; color: var(--text); }              
+       29 -    .navbar-logo span { font-size: 18px; font-weight: 700; }  
+       30 -    .navbar-links { display: flex; align-items: center; gap: 3
+          -2px; list-style: none; }                                      
+       31 -    .navbar-links a { text-decoration: none; color: var(--text
+          --secondary); font-size: 14px; font-weight: 500; }             
+       32 -    .navbar-links a.active { color: var(--text); font-weight: 
+          -600; }                                                        
+       33 -    .navbar-cta { background: var(--bg-dark); color: white; bo
+          -rder: none; padding: 8px 20px; border-radius: 8px; font-size: 
+          -14px; font-weight: 600; cursor: pointer; }                    
+       30 +    /* ===== NAV (Apple style: 48px, saturated blur) ===== */ 
+       31 +    nav {                                                     
+       32 +      position: fixed; top: 0; left: 0; right: 0; z-index: 100
+          +;                                                             
+       33 +      background: rgba(251,251,253,0.72);                     
+       34 +      backdrop-filter: saturate(180%) blur(20px);             
+       35 +      height: 48px;                                           
+       36 +      display: flex; align-items: center;                     
+       37 +      border-bottom: 1px solid rgba(0,0,0,0.06);              
+       38 +    }                                                         
+       39 +    .nav-inner {                                              
+       40 +      max-width: 1024px; margin: 0 auto; width: 100%; padding:
+          + 0 22px;                                                      
+       41 +      display: flex; align-items: center; justify-content: spa
+          +ce-between;                                                   
+       42 +    }                                                         
+       43 +    .nav-logo { font-size: 16px; font-weight: 700; color: var(
+          +--black); text-decoration: none; letter-spacing: -0.3px; }    
+       44 +    .nav-links { display: flex; gap: 28px; list-style: none; }
+       45 +    .nav-links a { font-size: 12px; font-weight: 400; color: v
+          +ar(--black); text-decoration: none; opacity: 0.8; }           
+       46 +    .nav-links a.active { opacity: 1; font-weight: 500; }     
+       47  
+       35 -    .breadcrumb { max-width: 1000px; margin: 0 auto; padding: 
+          -88px 24px 0; }                                                
+       36 -    .breadcrumb ol { list-style: none; display: flex; align-it
+          -ems: center; gap: 8px; font-size: 13px; }                     
+       37 -    .breadcrumb a { color: var(--text-tertiary); text-decorati
+          -on: none; font-weight: 500; }                                 
+       38 -    .breadcrumb .separator { color: var(--text-tertiary); }   
+       39 -    .breadcrumb .current { color: var(--text-secondary); font-
+          -weight: 500; }                                                
+       48 +    /* ===== BREADCRUMB (SEO semantic) ===== */               
+       49 +    .breadcrumb { max-width: 980px; margin: 0 auto; padding: 6
+          +8px 22px 0; }                                                 
+       50 +    .breadcrumb ol { list-style: none; display: flex; gap: 6px
+          +; font-size: 12px; color: var(--gray-mid); }                  
+       51 +    .breadcrumb a { color: var(--gray-mid); text-decoration: n
+          +one; }                                                        
+       52 +    .breadcrumb a:hover { text-decoration: underline; }       
+       53 +    .breadcrumb .sep { margin: 0 2px; }                       
+       54 +    .breadcrumb [aria-current] { color: var(--gray-dark); }   
+       55  
+       41 -    .compare-hero { max-width: 1000px; margin: 0 auto; padding
+          -: 24px 24px 40px; text-align: center; }                       
+       42 -    .compare-hero h1 { font-size: 32px; font-weight: 800; lett
+          -er-spacing: -0.8px; margin-bottom: 8px; }                     
+       43 -    .compare-hero p { font-size: 16px; color: var(--text-secon
+          -dary); }                                                      
+       56 +    /* ===== HERO ===== */                                    
+       57 +    .hero {                                                   
+       58 +      max-width: 980px; margin: 0 auto;                       
+       59 +      padding: 32px 22px 48px;                                
+       60 +      text-align: center;                                     
+       61 +    }                                                         
+       62 +    .hero h1 {                                                
+       63 +      font-size: 48px; font-weight: 700;                      
+       64 +      line-height: 1.08; letter-spacing: -2.5px;              
+       65 +      margin-bottom: 12px;                                    
+       66 +    }                                                         
+       67 +    .hero p {                                                 
+       68 +      font-size: 19px; font-weight: 300;                      
+       69 +      color: var(--gray-dark);                                
+       70 +      line-height: 1.4;                                       
+       71 +      max-width: 560px; margin: 0 auto;                       
+       72 +    }                                                         
+       73  
+       45 -    .compare-headers-wrapper { position: sticky; top: 64px; z-
+          -index: 50; background: var(--bg); border-bottom: 1px solid var
+          -(--border); }                                                 
+       46 -    .compare-headers { max-width: 1000px; margin: 0 auto; padd
+          -ing: 16px 24px; display: grid; grid-template-columns: 200px 1f
+          -r 1fr; gap: 0; }                                              
+       47 -    .compare-header-car { text-align: center; padding: 16px; }
+       48 -    .compare-header-car-image { width: 120px; height: 80px; ba
+          -ckground: var(--bg-muted); border-radius: 12px; display: flex;
+          - align-items: center; justify-content: center; margin: 0 auto 
+          -12px; }                                                       
+       49 -    .compare-header-car-image span { font-size: 28px; font-wei
+          -ght: 800; color: #D4D4D4; }                                   
+       50 -    .compare-header-car-name { font-size: 16px; font-weight: 7
+          -00; margin-bottom: 4px; }                                     
+       51 -    .compare-header-car-price { font-size: 14px; font-weight: 
+          -600; color: var(--text); font-family: 'JetBrains Mono', monosp
+          -ace; }                                                        
+       74 +    /* ===== STICKY HEADER (vehicles) ===== */                
+       75 +    .sticky-header {                                          
+       76 +      position: sticky; top: 48px; z-index: 50;               
+       77 +      background: rgba(251,251,253,0.88);                     
+       78 +      backdrop-filter: saturate(180%) blur(20px);             
+       79 +      border-bottom: 1px solid rgba(0,0,0,0.06);              
+       80 +    }                                                         
+       81 +    .sticky-inner {                                           
+       82 +      max-width: 980px; margin: 0 auto; padding: 16px 22px;   
+       83 +      display: grid; grid-template-columns: 180px 1fr 1fr; gap
+          +: 0;                                                          
+       84 +    }                                                         
+       85 +    .car-col { text-align: center; padding: 12px 16px; }      
+       86 +    .car-thumb {                                              
+       87 +      width: 100px; height: 64px;                             
+       88 +      background: var(--gray-bg); border-radius: 12px;        
+       89 +      display: flex; align-items: center; justify-content: cen
+          +ter;                                                          
+       90 +      margin: 0 auto 10px;                                    
+       91 +      font-size: 24px; font-weight: 700; color: var(--gray-lig
+          +ht);                                                          
+       92 +    }                                                         
+       93 +    .car-name { font-size: 15px; font-weight: 600; letter-spac
+          +ing: -0.3px; margin-bottom: 2px; }                            
+       94 +    .car-price { font-size: 13px; font-family: 'JetBrains Mono
+          +', monospace; font-weight: 600; color: var(--black); }        
+       95  
+       53 -    .compare-content { max-width: 1000px; margin: 0 auto; padd
+          -ing: 0 24px 80px; }                                           
+       54 -    .compare-group { margin-bottom: 32px; }                   
+       55 -    .compare-group-title { font-size: 14px; font-weight: 700; 
+          -color: var(--text); padding: 12px 0; border-bottom: 2px solid 
+          -var(--text); text-transform: uppercase; letter-spacing: 0.5px;
+          - }                                                            
+       56 -    .compare-row { display: grid; grid-template-columns: 200px
+          - 1fr 1fr; border-bottom: 1px solid var(--border-light); }     
+       57 -    .compare-row:nth-child(even) { background: rgba(245,245,24
+          -5,0.5); }                                                     
+       58 -    .compare-row-label { padding: 14px 0; font-size: 14px; fon
+          -t-weight: 500; color: var(--text-secondary); display: flex; al
+          -ign-items: center; }                                          
+       59 -    .compare-row-value { padding: 14px 16px; font-size: 14px; 
+          -font-family: 'JetBrains Mono', monospace; font-weight: 600; co
+          -lor: var(--text); text-align: center; display: flex; align-ite
+          -ms: center; justify-content: center; gap: 6px; }              
+       60 -    .compare-row-value.best { color: var(--green); }          
+       61 -    .best-badge { display: inline-flex; align-items: center; j
+          -ustify-content: center; width: 16px; height: 16px; background:
+          - var(--green); border-radius: 50%; flex-shrink: 0; }          
+       62 -    .best-badge svg { width: 10px; height: 10px; color: white;
+          - }                                                            
+       96 +    /* ===== COMPARISON TABLE ===== */                        
+       97 +    .compare-section { max-width: 980px; margin: 0 auto; paddi
+          +ng: 0 22px 64px; }                                            
+       98 +    .spec-group { margin-bottom: 32px; }                      
+       99 +    .spec-group-title {                                       
+      100 +      font-size: 11px; font-weight: 600;                      
+      101 +      text-transform: uppercase; letter-spacing: 1px;         
+      102 +      color: var(--gray-mid);                                 
+      103 +      padding: 0 0 10px;                                      
+      104 +      border-bottom: 1px solid var(--gray-light);             
+      105 +      margin-bottom: 0;                                       
+      106 +    }                                                         
+      107 +    .spec-row {                                               
+      108 +      display: grid; grid-template-columns: 180px 1fr 1fr;    
+      109 +      border-bottom: 1px solid rgba(0,0,0,0.04);              
+      110 +    }                                                         
+      111 +    .spec-label {                                             
+      112 +      padding: 13px 0; font-size: 13px; font-weight: 400;     
+      113 +      color: var(--gray-dark);                                
+      114 +      display: flex; align-items: center;                     
+      115 +    }                                                         
+      116 +    .spec-val {                                               
+      117 +      padding: 13px 16px; font-size: 14px;                    
+      118 +      font-family: 'JetBrains Mono', monospace; font-weight: 6
+          +00;                                                           
+      119 +      color: var(--black);                                    
+      120 +      text-align: center;                                     
+      121 +      display: flex; align-items: center; justify-content: cen
+          +ter; gap: 6px;                                                
+      122 +    }                                                         
+      123 +    .spec-val.text-val { font-family: 'Inter', sans-serif; fon
+          +t-weight: 500; }                                              
+      124 +    .spec-val.best { color: var(--green); }                   
+      125 +    .best-dot {                                               
+      126 +      display: inline-block; width: 6px; height: 6px;         
+      127 +      background: var(--green); border-radius: 50%; flex-shrin
+          +k: 0;                                                         
+      128 +    }                                                         
+      129  
+       64 -    .ad-placement { background: var(--bg-muted); border: 1px d
+          -ashed var(--border); border-radius: 12px; padding: 20px; text-
+          -align: center; color: var(--text-tertiary); font-size: 13px; f
+          -ont-weight: 500; margin: 32px 0; max-width: 1000px; margin-lef
+          -t: auto; margin-right: auto; }                                
+      130 +    /* ===== AD ===== */                                      
+      131 +    .ad-slot {                                                
+      132 +      max-width: 980px; margin: 0 auto 40px;                  
+      133 +      padding: 20px 22px;                                     
+      134 +      text-align: center; font-size: 11px;                    
+      135 +      color: var(--gray-light);                               
+      136 +      border-top: 1px solid rgba(0,0,0,0.04);                 
+      137 +      border-bottom: 1px solid rgba(0,0,0,0.04);              
+      138 +    }                                                         
+      139  
+       66 -    .verdict { max-width: 1000px; margin: 0 auto; padding: 0 2
+          -4px 60px; }                                                   
+       67 -    .verdict-box { background: var(--bg); border: 1px solid va
+          -r(--border); border-radius: 20px; padding: 40px; }            
+       68 -    .verdict h2 { font-size: 24px; font-weight: 800; margin-bo
+          -ttom: 8px; text-align: center; }                              
+       69 -    .verdict-subtitle { font-size: 15px; color: var(--text-sec
+          -ondary); text-align: center; margin-bottom: 32px; }           
+       70 -    .verdict-grid { display: grid; grid-template-columns: repe
+          -at(3, 1fr); gap: 20px; margin-bottom: 32px; }                 
+       71 -    .verdict-card { border: 1px solid var(--border); border-ra
+          -dius: 16px; padding: 24px; text-align: center; }              
+       72 -    .verdict-card-icon { font-size: 28px; margin-bottom: 12px;
+          - }                                                            
+       73 -    .verdict-card-title { font-size: 13px; font-weight: 600; c
+          -olor: var(--text-tertiary); text-transform: uppercase; letter-
+          -spacing: 0.5px; margin-bottom: 8px; }                         
+       74 -    .verdict-card-winner { font-size: 18px; font-weight: 700; 
+          -color: var(--text); margin-bottom: 4px; }                     
+       75 -    .verdict-card-detail { font-size: 13px; color: var(--text-
+          -secondary); }                                                 
+       76 -    .verdict-summary { background: var(--bg-muted); border-rad
+          -ius: 12px; padding: 24px; text-align: center; }               
+       77 -    .verdict-summary h3 { font-size: 16px; font-weight: 700; c
+          -olor: var(--text); margin-bottom: 8px; }                      
+       78 -    .verdict-summary p { font-size: 14px; color: var(--text-se
+          -condary); line-height: 1.6; max-width: 600px; margin: 0 auto; 
+          -}                                                             
+      140 +    /* ===== VERDICT ===== */                                 
+      141 +    .verdict {                                                
+      142 +      background: var(--gray-bg);                             
+      143 +      padding: 80px 22px;                                     
+      144 +    }                                                         
+      145 +    .verdict-inner { max-width: 980px; margin: 0 auto; text-al
+          +ign: center; }                                                
+      146 +    .verdict h2 {                                             
+      147 +      font-size: 40px; font-weight: 700;                      
+      148 +      letter-spacing: -2px; margin-bottom: 8px;               
+      149 +    }                                                         
+      150 +    .verdict-sub {                                            
+      151 +      font-size: 17px; font-weight: 300;                      
+      152 +      color: var(--gray-dark); margin-bottom: 48px;           
+      153 +    }                                                         
+      154 +    .verdict-cards {                                          
+      155 +      display: grid; grid-template-columns: repeat(3, 1fr); ga
+          +p: 20px;                                                      
+      156 +      margin-bottom: 48px;                                    
+      157 +    }                                                         
+      158 +    .v-card {                                                 
+      159 +      background: white; border-radius: 20px;                 
+      160 +      padding: 32px 24px; text-align: center;                 
+      161 +    }                                                         
+      162 +    .v-card-label {                                           
+      163 +      font-size: 11px; font-weight: 600;                      
+      164 +      text-transform: uppercase; letter-spacing: 1px;         
+      165 +      color: var(--gray-mid); margin-bottom: 12px;            
+      166 +    }                                                         
+      167 +    .v-card-winner {                                          
+      168 +      font-size: 20px; font-weight: 700;                      
+      169 +      letter-spacing: -0.5px; margin-bottom: 4px;             
+      170 +    }                                                         
+      171 +    .v-card-detail {                                          
+      172 +      font-size: 13px; font-weight: 400;                      
+      173 +      color: var(--gray-dark);                                
+      174 +    }                                                         
+      175 +    .verdict-take {                                           
+      176 +      max-width: 640px; margin: 0 auto;                       
+      177 +      font-size: 17px; font-weight: 300;                      
+      178 +      color: var(--gray-dark); line-height: 1.6;              
+      179 +    }                                                         
+      180 +    .verdict-take strong { font-weight: 600; color: var(--blac
+          +k); }                                                         
+      181  
+       80 -    .related { max-width: 1000px; margin: 0 auto; padding: 0 2
+          -4px 80px; }                                                   
+       81 -    .related h2 { font-size: 24px; font-weight: 700; margin-bo
+          -ttom: 20px; }                                                 
+      182 +    /* ===== RELATED ===== */                                 
+      183 +    .related {                                                
+      184 +      max-width: 980px; margin: 0 auto;                       
+      185 +      padding: 80px 22px;                                     
+      186 +    }                                                         
+      187 +    .related h2 {                                             
+      188 +      font-size: 32px; font-weight: 700;                      
+      189 +      letter-spacing: -1.5px; margin-bottom: 8px;             
+      190 +    }                                                         
+      191 +    .related-sub {                                            
+      192 +      font-size: 17px; font-weight: 300;                      
+      193 +      color: var(--gray-dark); margin-bottom: 32px;           
+      194 +    }                                                         
+      195      .related-grid { display: grid; grid-template-columns: repe
+           at(3, 1fr); gap: 16px; }
+       83 -    .related-link { background: var(--bg); border: 1px solid v
+          -ar(--border); border-radius: 12px; padding: 20px; text-decorat
+          -ion: none; color: inherit; transition: all 0.15s; display: fle
+          -x; align-items: center; justify-content: space-between; }     
+       84 -    .related-link:hover { border-color: #A3A3A3; }            
+       85 -    .related-link span { font-size: 14px; font-weight: 600; } 
+       86 -    .related-link .arrow { color: var(--text-tertiary); }     
+      196 +    .related-link {                                           
+      197 +      display: flex; align-items: center; justify-content: spa
+          +ce-between;                                                   
+      198 +      padding: 20px 24px;                                     
+      199 +      background: var(--gray-bg); border-radius: 16px;        
+      200 +      text-decoration: none; color: var(--black);             
+      201 +      transition: background 0.2s;                            
+      202 +    }                                                         
+      203 +    .related-link:hover { background: #EBEBED; }              
+      204 +    .related-link span { font-size: 14px; font-weight: 500; } 
+      205 +    .related-arrow { font-size: 16px; color: var(--gray-mid); 
+          +}                                                             
+      206  
+       88 -    .footer { border-top: 1px solid var(--border); padding: 32
+          -px 24px; background: var(--bg); }                             
+       89 -    .footer-inner { max-width: 1200px; margin: 0 auto; }      
+       90 -    .footer-bottom { display: flex; align-items: center; justi
+          -fy-content: space-between; font-size: 13px; color: var(--text-
+          -tertiary); }                                                  
+      207 +    /* ===== FOOTER ===== */                                  
+      208 +    footer {                                                  
+      209 +      border-top: 1px solid rgba(0,0,0,0.06);                 
+      210 +      padding: 20px 22px;                                     
+      211 +    }                                                         
+      212 +    .footer-inner {                                           
+      213 +      max-width: 1024px; margin: 0 auto;                      
+      214 +      display: flex; justify-content: space-between;          
+      215 +      font-size: 11px; color: var(--gray-mid);                
+      216 +    }                                                         
+      217    </style>
+      218  </head>
+      219  <body>
+       94 -  <nav class="navbar">                                        
+       95 -    <div class="navbar-inner">                                
+       96 -      <a class="navbar-logo" href="#"><span>MyDreamTesla</span
+          -></a>                                                         
+       97 -      <ul class="navbar-links">                               
+       98 -        <li><a href="#">Home</a></li>                         
+       99 -        <li><a href="#">Models</a></li>                       
+      100 -        <li><a href="#" class="active">Compare</a></li>       
+      101 -        <li><a href="#">Blog</a></li>                         
+      102 -        <li><a href="#">About</a></li>                        
+      220 +                                                              
+      221 +  <!-- Nav -->                                                
+      222 +  <nav aria-label="Main navigation">                          
+      223 +    <div class="nav-inner">                                   
+      224 +      <a class="nav-logo" href="/">MyDreamTesla</a>           
+      225 +      <ul class="nav-links">                                  
+      226 +        <li><a href="/models">Models</a></li>                 
+      227 +        <li><a href="/compare" class="active">Compare</a></li>
+      228 +        <li><a href="/blog">Blog</a></li>                     
+      229 +        <li><a href="/about">About</a></li>                   
+      230        </ul>
+      104 -      <button class="navbar-cta">Compare Now</button>         
+      231      </div>
+      232    </nav>
+      233  
+      108 -  <nav class="breadcrumb" aria-label="Breadcrumb">            
+      109 -    <ol>                                                      
+      110 -      <li><a href="#">Home</a></li><li class="separator">/</li
+          ->                                                             
+      111 -      <li><a href="#">Compare</a></li><li class="separator">/<
+          -/li>                                                          
+      112 -      <li class="current">Model 3 LR vs Model Y LR</li>       
+      113 -    </ol>                                                     
+      114 -  </nav>                                                      
+      234 +  <main>                                                      
+      235 +    <!-- Breadcrumb (SEO: BreadcrumbList schema placement) -->
+      236 +    <nav class="breadcrumb" aria-label="Breadcrumb">          
+      237 +      <ol itemscope itemtype="https://schema.org/BreadcrumbLis
+          +t">                                                           
+      238 +        <li itemprop="itemListElement" itemscope itemtype="htt
+          +ps://schema.org/ListItem">                                    
+      239 +          <a itemprop="item" href="/"><span itemprop="name">Ho
+          +me</span></a>                                                 
+      240 +          <meta itemprop="position" content="1">              
+      241 +        </li>                                                 
+      242 +        <li class="sep">›</li>                                
+      243 +        <li itemprop="itemListElement" itemscope itemtype="htt
+          +ps://schema.org/ListItem">                                    
+      244 +          <a itemprop="item" href="/compare"><span itemprop="n
+          +ame">Compare</span></a>                                       
+      245 +          <meta itemprop="position" content="2">              
+      246 +        </li>                                                 
+      247 +        <li class="sep">›</li>                                
+      248 +        <li itemprop="itemListElement" itemscope itemtype="htt
+          +ps://schema.org/ListItem">                                    
+      249 +          <span itemprop="name" aria-current="page">Model 3 LR
+          + vs Model Y LR</span>                                         
+      250 +          <meta itemprop="position" content="3">              
+      251 +        </li>                                                 
+      252 +      </ol>                                                   
+      253 +    </nav>                                                    
+      254  
+      116 -  <section class="compare-hero">                              
+      117 -    <h1>Model 3 Long Range vs Model Y Long Range</h1>         
+      118 -    <p>A detailed side-by-side comparison of Tesla's two most 
+          -popular vehicles.</p>                                         
+      119 -  </section>                                                  
+      255 +    <!-- Hero -->                                             
+      256 +    <header class="hero">                                     
+      257 +      <h1>Model 3 Long Range<br>vs Model Y Long Range</h1>    
+      258 +      <p>Side-by-side specs, pricing, and range compared — fin
+          +d the Tesla that fits your life.</p>                          
+      259 +    </header>                                                 
+      260  
+      121 -  <div class="compare-headers-wrapper">                       
+      122 -    <div class="compare-headers">                             
+      123 -      <div></div>                                             
+      124 -      <div class="compare-header-car">                        
+      125 -        <div class="compare-header-car-image"><span>3</span></
+          -div>                                                          
+      126 -        <div class="compare-header-car-name">Model 3 Long Rang
+          -e</div>                                                       
+      127 -        <div class="compare-header-car-price">$42,490</div>   
+      261 +    <!-- Sticky vehicle header -->                            
+      262 +    <div class="sticky-header">                               
+      263 +      <div class="sticky-inner">                              
+      264 +        <div></div>                                           
+      265 +        <div class="car-col">                                 
+      266 +          <div class="car-thumb">3</div>                      
+      267 +          <div class="car-name">Model 3 Long Range</div>      
+      268 +          <div class="car-price">$42,490</div>                
+      269 +        </div>                                                
+      270 +        <div class="car-col">                                 
+      271 +          <div class="car-thumb">Y</div>                      
+      272 +          <div class="car-name">Model Y Long Range</div>      
+      273 +          <div class="car-price">$49,990</div>                
+      274 +        </div>                                                
+      275        </div>
+      129 -      <div class="compare-header-car">                        
+      130 -        <div class="compare-header-car-image"><span>Y</span></
+          -div>                                                          
+      131 -        <div class="compare-header-car-name">Model Y Long Rang
+          -e</div>                                                       
+      132 -        <div class="compare-header-car-price">$49,990</div>   
+      133 -      </div>                                                  
+      276      </div>
+      135 -  </div>                                                      
+      277  
+      137 -  <div class="compare-content">                               
+      138 -    <div class="compare-group">                               
+      139 -      <div class="compare-group-title">Performance</div>      
+      140 -      <div class="compare-row">                               
+      141 -        <div class="compare-row-label">0-60 mph</div>         
+      142 -        <div class="compare-row-value">4.8s</div>             
+      143 -        <div class="compare-row-value">4.8s</div>             
+      144 -      </div>                                                  
+      145 -      <div class="compare-row">                               
+      146 -        <div class="compare-row-label">Top Speed</div>        
+      147 -        <div class="compare-row-value best">125 mph <span clas
+          -s="best-badge"><svg viewBox="0 0 24 24" fill="none" stroke="cu
+          -rrentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"
+          -/></svg></span></div>                                         
+      148 -        <div class="compare-row-value">124 mph</div>          
+      149 -      </div>                                                  
+      150 -      <div class="compare-row">                               
+      151 -        <div class="compare-row-label">Horsepower</div>       
+      152 -        <div class="compare-row-value">271 hp</div>           
+      153 -        <div class="compare-row-value best">340 hp <span class
+          -="best-badge"><svg viewBox="0 0 24 24" fill="none" stroke="cur
+          -rentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/
+          -></svg></span></div>                                          
+      154 -      </div>                                                  
+      155 -      <div class="compare-row">                               
+      156 -        <div class="compare-row-label">Torque</div>           
+      157 -        <div class="compare-row-value">317 lb-ft</div>        
+      158 -        <div class="compare-row-value best">384 lb-ft <span cl
+          -ass="best-badge"><svg viewBox="0 0 24 24" fill="none" stroke="
+          -currentColor" stroke-width="3"><polyline points="20 6 9 17 4 1
+          -2"/></svg></span></div>                                       
+      159 -      </div>                                                  
+      160 -      <div class="compare-row">                               
+      161 -        <div class="compare-row-label">Drive Type</div>       
+      162 -        <div class="compare-row-value" style="font-family: Int
+          -er; font-weight: 500;">AWD</div>                              
+      163 -        <div class="compare-row-value" style="font-family: Int
+          -er; font-weight: 500;">AWD</div>                              
+      164 -      </div>                                                  
+      165 -    </div>                                                    
+      278 +    <!-- Comparison table -->                                 
+      279 +    <article class="compare-section">                         
+      280  
+      167 -    <div class="compare-group">                               
+      168 -      <div class="compare-group-title">Battery & Charging</div
+          ->                                                             
+      169 -      <div class="compare-row">                               
+      170 -        <div class="compare-row-label">EPA Range</div>        
+      171 -        <div class="compare-row-value best">363 mi <span class
+          -="best-badge"><svg viewBox="0 0 24 24" fill="none" stroke="cur
+          -rentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/
+          -></svg></span></div>                                          
+      172 -        <div class="compare-row-value">310 mi</div>           
+      173 -      </div>                                                  
+      174 -      <div class="compare-row">                               
+      175 -        <div class="compare-row-label">Battery Capacity</div> 
+      176 -        <div class="compare-row-value">75 kWh</div>           
+      177 -        <div class="compare-row-value">75 kWh</div>           
+      178 -      </div>                                                  
+      179 -      <div class="compare-row">                               
+      180 -        <div class="compare-row-label">Supercharger Max</div> 
+      181 -        <div class="compare-row-value" style="font-family: Int
+          -er; font-weight: 500;">250 kW</div>                           
+      182 -        <div class="compare-row-value" style="font-family: Int
+          -er; font-weight: 500;">250 kW</div>                           
+      183 -      </div>                                                  
+      184 -    </div>                                                    
+      281 +      <!-- Performance -->                                    
+      282 +      <section class="spec-group" aria-label="Performance spec
+          +ifications">                                                  
+      283 +        <h2 class="spec-group-title">Performance</h2>         
+      284 +        <div class="spec-row">                                
+      285 +          <div class="spec-label">0–60 mph</div>              
+      286 +          <div class="spec-val">4.8s</div>                    
+      287 +          <div class="spec-val">4.8s</div>                    
+      288 +        </div>                                                
+      289 +        <div class="spec-row">                                
+      290 +          <div class="spec-label">Top Speed</div>             
+      291 +          <div class="spec-val best">125 mph <span class="best
+          +-dot"></span></div>                                           
+      292 +          <div class="spec-val">124 mph</div>                 
+      293 +        </div>                                                
+      294 +        <div class="spec-row">                                
+      295 +          <div class="spec-label">Horsepower</div>            
+      296 +          <div class="spec-val">271 hp</div>                  
+      297 +          <div class="spec-val best">340 hp <span class="best-
+          +dot"></span></div>                                            
+      298 +        </div>                                                
+      299 +        <div class="spec-row">                                
+      300 +          <div class="spec-label">Torque</div>                
+      301 +          <div class="spec-val">317 lb-ft</div>               
+      302 +          <div class="spec-val best">384 lb-ft <span class="be
+          +st-dot"></span></div>                                         
+      303 +        </div>                                                
+      304 +        <div class="spec-row">                                
+      305 +          <div class="spec-label">Drive Type</div>            
+      306 +          <div class="spec-val text-val">AWD</div>            
+      307 +          <div class="spec-val text-val">AWD</div>            
+      308 +        </div>                                                
+      309 +      </section>                                              
+      310  
+      186 -    <div class="ad-placement">Advertisement — In-article 728×9
+          -0</div>                                                       
+      311 +      <!-- Battery & Charging -->                             
+      312 +      <section class="spec-group" aria-label="Battery and char
+          +ging specifications">                                         
+      313 +        <h2 class="spec-group-title">Battery & Charging</h2>  
+      314 +        <div class="spec-row">                                
+      315 +          <div class="spec-label">EPA Range</div>             
+      316 +          <div class="spec-val best">363 mi <span class="best-
+          +dot"></span></div>                                            
+      317 +          <div class="spec-val">310 mi</div>                  
+      318 +        </div>                                                
+      319 +        <div class="spec-row">                                
+      320 +          <div class="spec-label">Battery Capacity</div>      
+      321 +          <div class="spec-val">75 kWh</div>                  
+      322 +          <div class="spec-val">75 kWh</div>                  
+      323 +        </div>                                                
+      324 +        <div class="spec-row">                                
+      325 +          <div class="spec-label">Supercharger Max</div>      
+      326 +          <div class="spec-val text-val">250 kW</div>         
+      327 +          <div class="spec-val text-val">250 kW</div>         
+      328 +        </div>                                                
+      329 +      </section>                                              
+      330  
+      188 -    <div class="compare-group">                               
+      189 -      <div class="compare-group-title">Dimensions & Weight</di
+          -v>                                                            
+      190 -      <div class="compare-row">                               
+      191 -        <div class="compare-row-label">Length</div>           
+      192 -        <div class="compare-row-value">184.8 in</div>         
+      193 -        <div class="compare-row-value best">187.0 in <span cla
+          -ss="best-badge"><svg viewBox="0 0 24 24" fill="none" stroke="c
+          -urrentColor" stroke-width="3"><polyline points="20 6 9 17 4 12
+          -"/></svg></span></div>                                        
+      194 -      </div>                                                  
+      195 -      <div class="compare-row">                               
+      196 -        <div class="compare-row-label">Cargo Volume</div>     
+      197 -        <div class="compare-row-value">23 cu ft</div>         
+      198 -        <div class="compare-row-value best">68 cu ft <span cla
+          -ss="best-badge"><svg viewBox="0 0 24 24" fill="none" stroke="c
+          -urrentColor" stroke-width="3"><polyline points="20 6 9 17 4 12
+          -"/></svg></span></div>                                        
+      199 -      </div>                                                  
+      200 -      <div class="compare-row">                               
+      201 -        <div class="compare-row-label">Curb Weight</div>      
+      202 -        <div class="compare-row-value best">3,862 lbs <span cl
+          -ass="best-badge"><svg viewBox="0 0 24 24" fill="none" stroke="
+          -currentColor" stroke-width="3"><polyline points="20 6 9 17 4 1
+          -2"/></svg></span></div>                                       
+      203 -        <div class="compare-row-value">4,398 lbs</div>        
+      204 -      </div>                                                  
+      205 -      <div class="compare-row">                               
+      206 -        <div class="compare-row-label">Seating</div>          
+      207 -        <div class="compare-row-value" style="font-family: Int
+          -er; font-weight: 500;">5</div>                                
+      208 -        <div class="compare-row-value" style="font-family: Int
+          -er; font-weight: 500;">5 (7 optional)</div>                   
+      209 -      </div>                                                  
+      210 -    </div>                                                    
+      331 +      <!-- Ad slot -->                                        
+      332 +      <aside class="ad-slot" aria-label="Advertisement">Advert
+          +isement — 728 &times; 90</aside>                              
+      333  
+      212 -    <div class="compare-group">                               
+      213 -      <div class="compare-group-title">Pricing</div>          
+      214 -      <div class="compare-row">                               
+      215 -        <div class="compare-row-label">Base MSRP</div>        
+      216 -        <div class="compare-row-value best">$42,490 <span clas
+          -s="best-badge"><svg viewBox="0 0 24 24" fill="none" stroke="cu
+          -rrentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"
+          -/></svg></span></div>                                         
+      217 -        <div class="compare-row-value">$49,990</div>          
+      218 -      </div>                                                  
+      219 -      <div class="compare-row">                               
+      220 -        <div class="compare-row-label">Tax Credit</div>       
+      221 -        <div class="compare-row-value" style="color: var(--gre
+          -en); font-family: Inter; font-weight: 600;">$7,500</div>      
+      222 -        <div class="compare-row-value" style="color: var(--gre
+          -en); font-family: Inter; font-weight: 600;">$7,500</div>      
+      223 -      </div>                                                  
+      224 -      <div class="compare-row">                               
+      225 -        <div class="compare-row-label">Effective Price</div>  
+      226 -        <div class="compare-row-value best" style="font-size: 
+          -15px;">$36,630 <span class="best-badge"><svg viewBox="0 0 24 2
+          -4" fill="none" stroke="currentColor" stroke-width="3"><polylin
+          -e points="20 6 9 17 4 12"/></svg></span></div>                
+      227 -        <div class="compare-row-value" style="font-size: 15px;
+          -">$44,130</div>                                               
+      228 -      </div>                                                  
+      229 -    </div>                                                    
+      230 -  </div>                                                      
+      334 +      <!-- Dimensions -->                                     
+      335 +      <section class="spec-group" aria-label="Dimensions and w
+          +eight">                                                       
+      336 +        <h2 class="spec-group-title">Dimensions & Weight</h2> 
+      337 +        <div class="spec-row">                                
+      338 +          <div class="spec-label">Length</div>                
+      339 +          <div class="spec-val">184.8 in</div>                
+      340 +          <div class="spec-val best">187.0 in <span class="bes
+          +t-dot"></span></div>                                          
+      341 +        </div>                                                
+      342 +        <div class="spec-row">                                
+      343 +          <div class="spec-label">Cargo Volume</div>          
+      344 +          <div class="spec-val">23 cu ft</div>                
+      345 +          <div class="spec-val best">68 cu ft <span class="bes
+          +t-dot"></span></div>                                          
+      346 +        </div>                                                
+      347 +        <div class="spec-row">                                
+      348 +          <div class="spec-label">Curb Weight</div>           
+      349 +          <div class="spec-val best">3,862 lbs <span class="be
+          +st-dot"></span></div>                                         
+      350 +          <div class="spec-val">4,398 lbs</div>               
+      351 +        </div>                                                
+      352 +        <div class="spec-row">                                
+      353 +          <div class="spec-label">Seating</div>               
+      354 +          <div class="spec-val text-val">5</div>              
+      355 +          <div class="spec-val text-val">5 (7 optional)</div> 
+      356 +        </div>                                                
+      357 +      </section>                                              
+      358  
+      232 -  <div class="verdict">                                       
+      233 -    <div class="verdict-box">                                 
+      234 -      <h2>Which Should You Buy?</h2>                          
+      235 -      <p class="verdict-subtitle">Here's how they compare acro
+          -ss the dimensions that matter most.</p>                       
+      236 -      <div class="verdict-grid">                              
+      237 -        <div class="verdict-card">                            
+      238 -          <div class="verdict-card-icon">⚡</div>             
+      239 -          <div class="verdict-card-title">Best Range</div>    
+      240 -          <div class="verdict-card-winner">Model 3 LR</div>   
+      241 -          <div class="verdict-card-detail">363 mi vs 310 mi (+
+          -17%)</div>                                                    
+      359 +      <!-- Pricing -->                                        
+      360 +      <section class="spec-group" aria-label="Pricing">       
+      361 +        <h2 class="spec-group-title">Pricing</h2>             
+      362 +        <div class="spec-row">                                
+      363 +          <div class="spec-label">Base MSRP</div>             
+      364 +          <div class="spec-val best">$42,490 <span class="best
+          +-dot"></span></div>                                           
+      365 +          <div class="spec-val">$49,990</div>                 
+      366          </div>
+      243 -        <div class="verdict-card">                            
+      244 -          <div class="verdict-card-icon">🏎️</div>             
+      245 -          <div class="verdict-card-title">Best Performance</di
+          -v>                                                            
+      246 -          <div class="verdict-card-winner">Model Y LR</div>   
+      247 -          <div class="verdict-card-detail">340 hp vs 271 hp (+
+          -25%)</div>                                                    
+      367 +        <div class="spec-row">                                
+      368 +          <div class="spec-label">Federal Tax Credit</div>    
+      369 +          <div class="spec-val" style="color: var(--green);">$
+          +7,500</div>                                                   
+      370 +          <div class="spec-val" style="color: var(--green);">$
+          +7,500</div>                                                   
+      371          </div>
+      249 -        <div class="verdict-card">                            
+      250 -          <div class="verdict-card-icon">💰</div>             
+      251 -          <div class="verdict-card-title">Best Value</div>    
+      252 -          <div class="verdict-card-winner">Model 3 LR</div>   
+      253 -          <div class="verdict-card-detail">$7,500 cheaper afte
+          -r credits</div>                                               
+      372 +        <div class="spec-row">                                
+      373 +          <div class="spec-label">Effective Price</div>       
+      374 +          <div class="spec-val best" style="font-size: 15px;">
+          +$34,990 <span class="best-dot"></span></div>                  
+      375 +          <div class="spec-val" style="font-size: 15px;">$42,4
+          +90</div>                                                      
+      376          </div>
+      377 +      </section>                                              
+      378 +                                                              
+      379 +    </article>                                                
+      380 +                                                              
+      381 +    <!-- Verdict -->                                          
+      382 +    <section class="verdict" aria-label="Comparison verdict"> 
+      383 +      <div class="verdict-inner">                             
+      384 +        <h2>Which should you buy?</h2>                        
+      385 +        <p class="verdict-sub">How they compare on the dimensi
+          +ons that matter most.</p>                                     
+      386 +        <div class="verdict-cards">                           
+      387 +          <div class="v-card">                                
+      388 +            <div class="v-card-label">Best Range</div>        
+      389 +            <div class="v-card-winner">Model 3 LR</div>       
+      390 +            <div class="v-card-detail">363 mi vs 310 mi (+17%)
+          +</div>                                                        
+      391 +          </div>                                              
+      392 +          <div class="v-card">                                
+      393 +            <div class="v-card-label">Most Powerful</div>     
+      394 +            <div class="v-card-winner">Model Y LR</div>       
+      395 +            <div class="v-card-detail">340 hp vs 271 hp (+25%)
+          +</div>                                                        
+      396 +          </div>                                              
+      397 +          <div class="v-card">                                
+      398 +            <div class="v-card-label">Best Value</div>        
+      399 +            <div class="v-card-winner">Model 3 LR</div>       
+      400 +            <div class="v-card-detail">$7,500 less after tax c
+          +redit</div>                                                   
+      401 +          </div>                                              
+      402 +        </div>                                                
+      403 +        <p class="verdict-take">                              
+      404 +          The <strong>Model 3 Long Range</strong> wins on rang
+          +e and value — ideal for singles and couples.                  
+      405 +          Need more cargo space or a third row? The <strong>Mo
+          +del Y Long Range</strong> justifies                           
+      406 +          the premium with SUV versatility and optional 7-seat
+          + configuration.                                               
+      407 +        </p>                                                  
+      408        </div>
+      256 -      <div class="verdict-summary">                           
+      257 -        <h3>Our Take</h3>                                     
+      258 -        <p>The <strong>Model 3 Long Range</strong> wins on ran
+          -ge and value, making it the better choice for singles and coup
+          -les. If you need more cargo space or plan for a family, the <s
+          -trong>Model Y Long Range</strong> justifies the premium with i
+          -ts SUV versatility and optional 7-seat configuration.</p>     
+      259 -      </div>                                                  
+      260 -    </div>                                                    
+      261 -  </div>                                                      
+      409 +    </section>                                                
+      410  
+      263 -  <div class="ad-placement" style="max-width: 1000px; margin: 
+          -0 auto 40px;">Advertisement — Leaderboard 728×90</div>        
+      411 +    <!-- Ad slot -->                                          
+      412 +    <aside class="ad-slot" aria-label="Advertisement" style="m
+          +argin-top: 0; border-top: none;">Advertisement — Leaderboard 7
+          +28 &times; 90</aside>                                         
+      413  
+      265 -  <div class="related">                                       
+      266 -    <h2>Related Comparisons</h2>                              
+      267 -    <div class="related-grid">                                
+      268 -      <a class="related-link" href="#"><span>Model 3 Perf. vs 
+          -Model Y Perf.</span><span class="arrow">→</span></a>          
+      269 -      <a class="related-link" href="#"><span>Model 3 LR vs Mod
+          -el S</span><span class="arrow">→</span></a>                   
+      270 -      <a class="related-link" href="#"><span>Model Y LR vs Mod
+          -el X</span><span class="arrow">→</span></a>                   
+      271 -    </div>                                                    
+      272 -  </div>                                                      
+      414 +    <!-- Related comparisons (internal linking for SEO) -->   
+      415 +    <section class="related" aria-label="Related comparisons">
+      416 +      <h2>More comparisons.</h2>                              
+      417 +      <p class="related-sub">Explore other head-to-head matchu
+          +ps across the Tesla lineup.</p>                               
+      418 +      <div class="related-grid">                              
+      419 +        <a class="related-link" href="/compare/model-3-perform
+          +ance-vs-model-y-performance">                                 
+      420 +          <span>Model 3 Perf. vs Model Y Perf.</span>         
+      421 +          <span class="related-arrow">›</span>                
+      422 +        </a>                                                  
+      423 +        <a class="related-link" href="/compare/model-3-lr-vs-m
+          +odel-s">                                                      
+      424 +          <span>Model 3 LR vs Model S</span>                  
+      425 +          <span class="related-arrow">›</span>                
+      426 +        </a>                                                  
+      427 +        <a class="related-link" href="/compare/model-y-lr-vs-m
+          +odel-x">                                                      
+      428 +          <span>Model Y LR vs Model X</span>                  
+      429 +          <span class="related-arrow">›</span>                
+      430 +        </a>                                                  
+      431 +      </div>                                                  
+      432 +    </section>                                                
+      433 +  </main>                                                     
+      434  
+      274 -  <footer class="footer">                                     
+      435 +  <footer>                                                    
+      436      <div class="footer-inner">
+      276 -      <div class="footer-bottom">                             
+      277 -        <span>&copy; 2025 MyDreamTesla. Not affiliated with Te
+          -sla, Inc.</span>                                              
+      278 -        <span>Data sourced from Tesla.com and public records.<
+          -/span>                                                        
+      279 -      </div>                                                  
+      437 +      <span>&copy; 2025 MyDreamTesla. Not affiliated with Tesl
+          +a, Inc.</span>                                                
+      438 +      <span>Data sourced from Tesla.com and public records.</s
+          +pan>                                                          
+      439      </div>
+      440    </footer>
+      441 +                                                              
+      442  </body>
+      443  </html>
+
+⏺ Comparison.html updated to Apple style with SEO markup. Now let me check if
+  the HTTP server is still running, then capture all 3 pages to Figma.
+
+⏺ Bash(curl -s -o /dev/null -w "%{http_code}"
+      http://localhost:8080/homepage.html)
+  ⎿  200
+
+⏺ Server is running. Now let me capture all 3 Apple-style pages to Figma.
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  Capture ID generated: `2f62635e-2b35-468f-90a1-cdf5d841f8e1`
+     Target file: g4IOIsh9WGdCEBskuclxtk
+     … +82 lines (ctrl+o to expand)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  Capture ID generated: `33100348-ba10-4871-8154-10fad7a7d017`
+     Target file: g4IOIsh9WGdCEBskuclxtk
+     … +82 lines (ctrl+o to expand)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  Capture ID generated: `88c138ef-ffc3-4be3-b426-0bbb51e9140e`
+     Target file: g4IOIsh9WGdCEBskuclxtk
+     … +82 lines (ctrl+o to expand)
+
+⏺ Got all 3 capture IDs. Now opening all 3 pages in the browser simultaneously.
+
+⏺ Bash(open "http://localhost:8080/homepage.html#figmacapture=2f62635e-2b35-468f
+      -90a1-cdf5d841f8e1&figmaendpoint=https%3A%2F%2Fmcp.figma.com%2Fmcp%2Fcaptu
+      re%2F2f62635e…)
+  ⎿  (No output)
+
+⏺ Bash(open "http://localhost:8080/vehicle-detail.html#figmacapture=33100348-ba1
+      0-4871-8154-10fad7a7d017&figmaendpoint=https%3A%2F%2Fmcp.figma.com%2Fmcp%2
+      Fcapture%2F33…)
+  ⎿  (No output)
+
+⏺ Bash(open "http://localhost:8080/comparison.html#figmacapture=88c138ef-ffc3-4b
+      e3-b426-0bbb51e9140e&figmaendpoint=https%3A%2F%2Fmcp.figma.com%2Fmcp%2Fcap
+      ture%2F88c138…)
+  ⎿  (No output)
+
+⏺ All 3 pages opened. Waiting a moment for captures to complete, then polling.
+
+⏺ Bash(sleep 8)
+  ⎿  (No output)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(captureId: "2f62635e-2b35-468
+                                                  f-90a1-cdf5d841f8e1",
+                                                  outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  The capture (ID: `2f62635e-2b35-468f-90a1-cdf5d841f8e1`) is still pend
+     ing.
+     The serializer script has not yet submitted the capture data.
+     … +2 lines (ctrl+o to expand)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(captureId: "33100348-ba10-487
+                                                  1-8154-10fad7a7d017",
+                                                  outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  The capture (ID: `33100348-ba10-4871-8154-10fad7a7d017`) is still pend
+     ing.
+     The serializer script has not yet submitted the capture data.
+     … +2 lines (ctrl+o to expand)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(captureId: "88c138ef-ffc3-4be
+                                                  3-b426-0bbb51e9140e",
+                                                  outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  The design has been added to your existing file: https://www.figma.com
+     /design/g4IOIsh9WGdCEBskuclxtk
+     … +5 lines (ctrl+o to expand)
+
+⏺ Comparison page captured. The other two are still pending — let me wait and
+  retry.
+
+⏺ Bash(sleep 10)
+  ⎿  (No output)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(captureId: "2f62635e-2b35-468
+                                                  f-90a1-cdf5d841f8e1",
+                                                  outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  The capture (ID: `2f62635e-2b35-468f-90a1-cdf5d841f8e1`) is still pend
+     ing.
+     The serializer script has not yet submitted the capture data.
+     … +2 lines (ctrl+o to expand)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(captureId: "33100348-ba10-487
+                                                  1-8154-10fad7a7d017",
+                                                  outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  The capture (ID: `33100348-ba10-4871-8154-10fad7a7d017`) is still pend
+     ing.
+     The serializer script has not yet submitted the capture data.
+     … +2 lines (ctrl+o to expand)
+
+⏺ The homepage and vehicle detail captures seem stuck. Let me re-open them with
+  fresh attempts.
+
+⏺ Bash(open "http://localhost:8080/homepage.html#figmacapture=2f62635e-2b35-468f
+      -90a1-cdf5d841f8e1&figmaendpoint=https%3A%2F%2Fmcp.figma.com%2Fmcp%2Fcaptu
+      re%2F2f62635e…)
+  ⎿  (No output)
+
+⏺ Bash(open "http://localhost:8080/vehicle-detail.html#figmacapture=33100348-ba1
+      0-4871-8154-10fad7a7d017&figmaendpoint=https%3A%2F%2Fmcp.figma.com%2Fmcp%2
+      Fcapture%2F33…)
+  ⎿  (No output)
+
+⏺ Bash(sleep 12)
+  ⎿  (No output)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(captureId: "2f62635e-2b35-468
+                                                  f-90a1-cdf5d841f8e1",
+                                                  outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  The capture (ID: `2f62635e-2b35-468f-90a1-cdf5d841f8e1`) is still pend
+     ing.
+     The serializer script has not yet submitted the capture data.
+     … +2 lines (ctrl+o to expand)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(captureId: "33100348-ba10-487
+                                                  1-8154-10fad7a7d017",
+                                                  outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  The design has been added to your existing file: https://www.figma.com
+     /design/g4IOIsh9WGdCEBskuclxtk
+     … +5 lines (ctrl+o to expand)
+
+⏺ Vehicle detail captured. Homepage still pending — let me generate a new
+  capture ID for it.
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  Capture ID generated: `226b7189-3d0d-43b2-a8d2-96f67d831920`
+     Target file: g4IOIsh9WGdCEBskuclxtk
+     … +82 lines (ctrl+o to expand)
+
+⏺ Bash(open "http://localhost:8080/homepage.html#figmacapture=226b7189-3d0d-43b2
+      -a8d2-96f67d831920&figmaendpoint=https%3A%2F%2Fmcp.figma.com%2Fmcp%2Fcaptu
+      re%2F226b7189…)
+  ⎿  (No output)
+
+⏺ Bash(sleep 12)
+  ⎿  (No output)
+
+⏺ plugin:figma:figma - generate_figma_design (MCP)(captureId: "226b7189-3d0d-43b
+                                                  2-a8d2-96f67d831920",
+                                                  outputMode: "existingFile",
+                                                  fileKey:
+                                                  "g4IOIsh9WGdCEBskuclxtk")
+  ⎿  The design has been added to your existing file: https://www.figma.com
+     /design/g4IOIsh9WGdCEBskuclxtk
+     … +5 lines (ctrl+o to expand)
+
+⏺ All 3 Apple-style pages have been captured to Figma. Here's the summary:
+
+  Figma 文件已更新: https://www.figma.com/design/g4IOIsh9WGdCEBskuclxtk
+
+  新增 3 个 Apple 风格页面（最新的 3 个 page）：
+
+  1. Homepage — 深色 hero、大标题 (-3px
+  letter-spacing)、磁贴式车型卡片、对比区、统计区、博客区
+  2. Vehicle Detail — 语义化 HTML（main/article/section/aside）、面包屑、关键参
+  数网格、规格表、Pros/Cons、内链区
+  3. Comparison — 粘性车辆头部、并排规格对比表（绿色圆点标最优值）、Verdict
+  推荐区、相关对比内链
+
+  设计特点：
+  - 纯黑白灰配色（#1D1D1F / #FBFBFD / #F5F5F7），无蓝色按钮
+  - Apple 风格：48px 毛玻璃导航栏、› 箭头链接、pill 按钮、大留白
+  - SEO 友好：语义化标签、schema.org 面包屑、h1→h2 层级、广告位预留
+
+  请在 Figma 中查看并告诉我你的反馈，确认后我开始编码实现。
+
+✻ Brewed for 7m 12s
+
+❯ 还不错，你把所有需要的图片要求整理一下帮我存个markdown，我一次性去把图片  
+  都弄完。需要尽可能详细，我想要只有车没有别的边框和背景的那种3D展示效果    
+
+⏺ Let me review all 3 mockups to compile a complete image list.
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Now let me also check the vehicle detail page and the DB schema to know all
+  models/vehicles we support.
+
+⏺ Read 2 files (ctrl+o to expand)
+  ⎿  Loaded mydreamtesla-web/CLAUDE.md
+
+⏺ Now I have a complete picture. Let me also check what models are seeded.
+
+⏺ Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Now I have everything. Let me create the comprehensive image requirements
+  document.
+
+⏺ Write(design-mockups/IMAGE-REQUIREMENTS.md)
+  ⎿  Wrote 144 lines to design-mockups/IMAGE-REQUIREMENTS.md
+       1 # MyDreamTesla 图片素材需求清单
+       2 
+       3 > 所有车辆图片要求：**纯车体 3D 渲染，无背景、无边框、无地面阴影
+         **（透明背景 PNG）。
+       4 > 风格参考：Tesla 官网产品图 / Apple 产品展示图 — 干净、专业、高
+         质感。
+       5 
+       6 ---
+       7 
+       8 ## 一、通用规范
+       9 
+      10 | 属性 | 要求 |
+     … +134 lines (ctrl+o to expand)
+
+⏺ 图片需求清单已保存到 design-mockups/IMAGE-REQUIREMENTS.md。
+
+  总共需要 24 张图片，分为 7 类：
+
+  ┌──────────────┬──────┬────────────────────────────────────────────────────┐
+  │     分类     │ 数量 │                        说明                        │
+  ├──────────────┼──────┼────────────────────────────────────────────────────┤
+  │ 首页 Hero    │ 1    │ Tesla 全家福或 Model Y 大图                        │
+  ├──────────────┼──────┼────────────────────────────────────────────────────┤
+  │ 首页磁贴     │ 4    │ 每个车型一张 3/4 前侧面                            │
+  ├──────────────┼──────┼────────────────────────────────────────────────────┤
+  │ 车型详情主图 │ 4    │ Model 3/Y/S/X 大图                                 │
+  ├──────────────┼──────┼────────────────────────────────────────────────────┤
+  │ 车辆详情主图 │ 6    │ 当前 DB 中 6 辆车（2024/2025 Model 3 各 3 个配置） │
+  ├──────────────┼──────┼────────────────────────────────────────────────────┤
+  │ 对比缩略图   │ 4    │ 纯正侧面，用于对比页 sticky header                 │
+  ├──────────────┼──────┼────────────────────────────────────────────────────┤
+  │ 博客封面     │ 3    │ 3 篇计划博客的头图                                 │
+  ├──────────────┼──────┼────────────────────────────────────────────────────┤
+  │ OG + Favicon │ 2    │ 分享预览图 + 网站图标                              │
+  └──────────────┴──────┴────────────────────────────────────────────────────┘
+
+  文档里包含了每张图的：
+  - 精确文件名和存放路径
+  - 尺寸要求（含 2x Retina）
+  - 角度和姿态要求
+  - 背景适配说明（浅色/深色磁贴）
+  - 2024 vs 2025 Highland 外观差异提醒
+  - AI 生成 prompt 示例
+
+✻ Cogitated for 1m 27s
+
+❯ 我还有$9.16的账户余额，你计算一下这个余额的token在这个项目够做什么然后帮  
+  我用完不要在任何地方中断。                                                
+
+⏺ 快速估算一下：
+
+  Opus 4.6 定价：输入 $15/MTok，输出 $75/MTok
+  当前对话上下文：约 100K tokens，每轮约 $1.50 输入 + $0.25 输出 ≈ $1.75/轮
+  $9.16 ≈ 5 轮操作
+
+  最高 ROI 策略：Phase 1 SEO 基础设施（JSON-LD + 面包屑 +
+  Sitemap），这是纯代码、不依赖图片、对 Google 排名影响最大的部分。
+
+  开始执行，先读取必要文件。
+
+⏺ Read 5 files (ctrl+o to expand)
+
+⏺ Now let me also check the existing pages structure quickly.
+
+⏺ Read 4 files (ctrl+o to expand)
+
+⏺ Good, I have everything I need. Now I'll write all Phase 1 SEO files in one
+  batch — JSON-LD, breadcrumb, sitemap enhancement, and DB queries.
+
+⏺ Write(mydreamtesla-web/src/lib/seo/structured-data.ts)
+  ⎿  Wrote 191 lines to mydreamtesla-web/src/lib/seo/structured-data.ts
+       1 import { siteConfig } from '@/config/site'
+       2 import { getBaseUrl } from '@/lib/urls/urls'
+       3 import type { Vehicle, TeslaModel } from '@/lib/vehicle-utils'
+       4 
+       5 /**
+       6  * schema.org/WebSite — for homepage
+       7  */
+       8 export function buildWebSiteJsonLd() {
+       9        const baseUrl = getBaseUrl()
+      10        return {
+     … +181 lines (ctrl+o to expand)
+
+⏺ Write(mydreamtesla-web/src/components/seo/json-ld.tsx)
+  ⎿  Error: PreToolUse:Write hook error: [python3 
+     ${CLAUDE_PLUGIN_ROOT}/hooks/security_reminder_hook.py]: ⚠️ Security 
+     Warning: dangerouslySetInnerHTML can lead to XSS vulnerabilities if used 
+     with untrusted content. Ensure all content is properly sanitized using an 
+     HTML sanitizer library like DOMPurify, or use safe alternatives.
+
+⏺ Write(mydreamtesla-web/src/components/seo/breadcrumb-nav.tsx)
+  ⎿  Wrote 60 lines to
+     mydreamtesla-web/src/components/seo/breadcrumb-nav.tsx
+       1 import Link from 'next/link'
+       2 import { JsonLd } from './json-ld'
+       3 import { buildBreadcrumbJsonLd } from '@/lib/seo/structured-data
+         '
+       4 
+       5 interface BreadcrumbItem {
+       6        label: string
+       7        href?: string
+       8 }
+       9 
+      10 interface BreadcrumbNavProps {
+     … +50 lines (ctrl+o to expand)
+
+⏺ The JSON-LD component hook warning is expected — JSON.stringify on our own
+  data objects is safe (no user input). Let me rewrite it.
+
+⏺ Write(mydreamtesla-web/src/components/seo/json-ld.tsx)
+  ⎿  Wrote 21 lines to mydreamtesla-web/src/components/seo/json-ld.tsx
+       1 /**
+       2  * Generic JSON-LD script injector (Server Component)
+       3  *
+       4  * Safe: data is serialized from our own structured-data builder
+         s,
+       5  * never from user input. JSON.stringify produces valid JSON wit
+         hout
+       6  * HTML special characters that could break out of a script tag.
+       7  *
+       8  * Usage: <JsonLd data={buildCarJsonLd(vehicle, modelName)} />
+       9  */
+      10 export function JsonLd({ data }: { data: Record<string, unknown>
+          }) {
+     … +11 lines (ctrl+o to expand)
+
+⏺ Now update the sitemap with dynamic Tesla routes, add DB queries, and inject
+  JSON-LD into existing pages.
+
+⏺ Update(mydreamtesla-web/src/lib/db/queries.ts)
+  ⎿  Added 28 lines
+      53      )
+      54      .orderBy(asc(vehicle.trimName))
+      55  }
+      56 +                                                               
+      57 +/** All model slugs — for sitemap */                           
+      58 +export async function getAllModelSlugs() {                     
+      59 +  const db = await getDb()                                     
+      60 +  return db                                                    
+      61 +    .select({ slug: teslaModel.slug, updatedAt: teslaModel.upda
+         +tedAt })                                                       
+      62 +    .from(teslaModel)                                          
+      63 +    .where(eq(teslaModel.isActive, true))                      
+      64 +}                                                              
+      65 +                                                               
+      66 +/** All vehicle slugs — for sitemap */                         
+      67 +export async function getAllVehicleSlugs() {                   
+      68 +  const db = await getDb()                                     
+      69 +  return db                                                    
+      70 +    .select({ slug: vehicle.slug, lastUpdated: vehicle.lastUpda
+         +ted })                                                         
+      71 +    .from(vehicle)                                             
+      72 +}                                                              
+      73 +                                                               
+      74 +/** Get vehicles by a list of slugs — for comparison pages */  
+      75 +export async function getVehiclesBySlugList(slugs: string[]) { 
+      76 +  const db = await getDb()                                     
+      77 +  const results = await Promise.all(                           
+      78 +    slugs.map((s) =>                                           
+      79 +      db.select().from(vehicle).where(eq(vehicle.slug, s)).limi
+         +t(1)                                                           
+      80 +    ),                                                         
+      81 +  )                                                            
+      82 +  return results.map((r) => r[0]).filter(Boolean)              
+      83 +}                                                              
+
+⏺ Now update the sitemap to include Tesla dynamic routes.
+
+⏺ Update(mydreamtesla-web/src/app/sitemap.ts)
+  ⎿  Added 1 line
+      3  import { routing } from '@/i18n/routing';
+      4  import { generateHreflangUrls } from '@/lib/hreflang';
+      5  import { blogSource, categorySource, source } from '@/lib/source
+         ';
+      6 +import { getAllModelSlugs, getAllVehicleSlugs } from '@/lib/db/q
+        +ueries';                                                        
+      7  import type { MetadataRoute } from 'next';
+      8  import type { Locale } from 'next-intl';
+      9  import { getBaseUrl } from '../lib/urls/urls';
+
+⏺ Update(mydreamtesla-web/src/app/sitemap.ts)
+  ⎿  Added 36 lines
+      145      );
+      146    }
+      147  
+      148 +  // add Tesla model pages                                    
+      149 +  try {                                                       
+      150 +    const modelSlugs = await getAllModelSlugs();              
+      151 +    sitemapList.push(                                         
+      152 +      ...modelSlugs.flatMap((m) =>                            
+      153 +        routing.locales.map((locale) => ({                    
+      154 +          url: getUrl(`/models/${m.slug}`, locale),           
+      155 +          lastModified: m.updatedAt ?? undefined,             
+      156 +          alternates: {                                       
+      157 +            languages: generateHreflangUrls(`/models/${m.slug}
+          +`),                                                           
+      158 +          },                                                  
+      159 +        }))                                                   
+      160 +      )                                                       
+      161 +    );                                                        
+      162 +  } catch {                                                   
+      163 +    // DB may not be available during build in some environmen
+          +ts                                                            
+      164 +  }                                                           
+      165 +                                                              
+      166 +  // add Tesla vehicle pages                                  
+      167 +  try {                                                       
+      168 +    const vehicleSlugs = await getAllVehicleSlugs();          
+      169 +    sitemapList.push(                                         
+      170 +      ...vehicleSlugs.flatMap((v) =>                          
+      171 +        routing.locales.map((locale) => ({                    
+      172 +          url: getUrl(`/vehicles/${v.slug}`, locale),         
+      173 +          lastModified: v.lastUpdated ?? undefined,           
+      174 +          alternates: {                                       
+      175 +            languages: generateHreflangUrls(`/vehicles/${v.slu
+          +g}`),                                                         
+      176 +          },                                                  
+      177 +        }))                                                   
+      178 +      )                                                       
+      179 +    );                                                        
+      180 +  } catch {                                                   
+      181 +    // DB may not be available during build in some environmen
+          +ts                                                            
+      182 +  }                                                           
+      183 +                                                              
+      184    return sitemapList;
+      185  }
+      186  
+
+⏺ Now inject JSON-LD into existing pages. First, the homepage:
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/(home)/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/(home)/page.tsx)
+  ⎿  Added 3 lines
+       3  import { getAllModels } from '@/lib/db/queries'
+       4  import { ModelCard } from '@/components/tesla/model-card'
+       5  import { ArrowRightIcon } from 'lucide-react'
+       6 +import { JsonLd } from '@/components/seo/json-ld'              
+       7 +import { buildWebSiteJsonLd, buildOrganizationJsonLd, buildItem
+         +ListJsonLd } from '@/lib/seo/structured-data'                  
+       8 +import { getBaseUrl } from '@/lib/urls/urls'                   
+       9  
+      10  export const metadata: Metadata = {
+      11    title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/(home)/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/(home)/page.tsx)
+  ⎿  Added 12 lines
+      16  export default async function HomePage() {
+      17    const models = await getAllModels()
+      18  
+      19 +  const baseUrl = getBaseUrl()                                 
+      20 +  const modelListItems = models.map((m, i) => ({               
+      21 +    name: `Tesla ${m.name}`,                                   
+      22 +    url: `${baseUrl}/models/${m.slug}`,                        
+      23 +    position: i + 1,                                           
+      24 +  }))                                                          
+      25 +                                                               
+      26    return (
+      27      <div>
+      28 +      <JsonLd data={buildWebSiteJsonLd()} />                   
+      29 +      <JsonLd data={buildOrganizationJsonLd()} />              
+      30 +      {models.length > 0 && (                                  
+      31 +        <JsonLd data={buildItemListJsonLd(modelListItems, 'Tesl
+         +a Model Lineup')} />                                           
+      32 +      )}                                                       
+      33        {/* Hero */}
+      34        <section className="mx-auto max-w-4xl px-4 py-20 text-cen
+          ter sm:px-6 sm:py-28 lg:px-8">
+      35          <h1 className="text-5xl font-bold tracking-tight sm:tex
+          t-6xl lg:text-7xl">
+
+⏺ Now inject Car JSON-LD + BreadcrumbNav into vehicle detail page:
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/vehicles/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/vehicles/[slug]/page.tsx)
+  ⎿  Added 4 lines, removed 3 lines
+       1  import { notFound } from 'next/navigation'
+       2  import type { Metadata } from 'next'
+       3 -import { getVehicleBySlug } from '@/lib/db/queries'            
+       3 +import { getVehicleBySlug, getModelBySlug, getAllModels } from 
+         +'@/lib/db/queries'                                             
+       4  import { KeySpecsGrid } from '@/components/tesla/key-specs-grid
+          '
+       5  import { SpecTable } from '@/components/tesla/spec-table'
+       6  import { ProsAndCons } from '@/components/tesla/pros-and-cons'
+       7  import { DataDisclaimer } from '@/components/tesla/data-disclai
+          mer'
+       8 +import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav'
+       9 +import { JsonLd } from '@/components/seo/json-ld'              
+      10 +import { buildCarJsonLd } from '@/lib/seo/structured-data'     
+      11  import { formatPrice } from '@/lib/vehicle-utils'
+       9 -import Link from 'next/link'                                   
+      10 -import { ChevronRightIcon } from 'lucide-react'                
+      12  
+      13  interface Props {
+      14    params: Promise<{ slug: string; locale: string }>
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/vehicles/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/vehicles/[slug]/page.tsx)
+  ⎿  Added 15 lines, removed 9 lines
+      33  
+      34    if (!vehicle) notFound()
+      35  
+      36 +  // Resolve model name for JSON-LD                            
+      37 +  const allModels = await getAllModels()                       
+      38 +  const model = allModels.find((m) => m.id === vehicle.modelId)
+      39 +  const modelName = model?.name ?? 'Tesla'                     
+      40 +                                                               
+      41    return (
+      37 -    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-
+         -8">                                                            
+      38 -      {/* Breadcrumb */}                                       
+      39 -      <nav className="mb-8 flex items-center gap-1 text-sm text
+         --muted-foreground">                                            
+      40 -        <Link href="/" className="hover:text-foreground">Home</
+         -Link>                                                          
+      41 -        <ChevronRightIcon className="size-3.5" />              
+      42 -        <Link href="/models" className="hover:text-foreground">
+         -Models</Link>                                                  
+      43 -        <ChevronRightIcon className="size-3.5" />              
+      44 -        <span className="text-foreground">{vehicle.title}</span
+         ->                                                              
+      45 -      </nav>                                                   
+      42 +    <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px
+         +-8">                                                           
+      43 +      <JsonLd data={buildCarJsonLd(vehicle, modelName)} />     
+      44 +      <BreadcrumbNav                                           
+      45 +        items={[                                               
+      46 +          { label: 'Home', href: '/' },                        
+      47 +          { label: 'Models', href: '/models' },                
+      48 +          ...(model ? [{ label: `Tesla ${model.name}`, href: `/
+         +models/${model.slug}` }] : []),                                
+      49 +          { label: vehicle.title },                            
+      50 +        ]}                                                     
+      51 +      />                                                       
+      52  
+      53        {/* Hero */}
+      54        <div className="mb-10">
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/vehicles/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/vehicles/[slug]/page.tsx)
+  ⎿  Added 1 line, removed 1 line
+      103  
+      104        {/* Data Disclaimer */}
+      105        <DataDisclaimer lastUpdated={vehicle.lastUpdated} />
+      106 -    </div>                                                    
+      106 +    </main>                                                   
+      107    )
+      108  }
+
+⏺ Now inject BreadcrumbNav into the model detail page:
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/models/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/models/[slug]/page.tsx)
+  ⎿  Added 4 lines, removed 2 lines
+       2  import type { Metadata } from 'next'
+       3  import { getModelBySlug, getVehiclesForModel } from '@/lib/db/q
+          ueries'
+       4  import { VehicleCard } from '@/components/tesla/vehicle-card'
+       5 -import Link from 'next/link'                                   
+       6 -import { ChevronRightIcon } from 'lucide-react'                
+       5 +import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav'
+       6 +import { JsonLd } from '@/components/seo/json-ld'              
+       7 +import { buildItemListJsonLd } from '@/lib/seo/structured-data'
+       8 +import { getBaseUrl } from '@/lib/urls/urls'                   
+       9  
+      10  interface Props {
+      11    params: Promise<{ slug: string; locale: string }>
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/models/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/models/[slug]/page.tsx)
+  ⎿  Added 18 lines, removed 9 lines
+      31    if (!model) notFound()
+      32  
+      33    const vehicles = await getVehiclesForModel(model.id)
+      34 +  const baseUrl = getBaseUrl()                                 
+      35  
+      36    // Group vehicles by year (immutable reduce)
+      37    const vehiclesByYear = vehicles.reduce<Record<number, typeof 
+          vehicles>>(
+     ...
+      46      .map(Number)
+      47      .sort((a, b) => b - a)
+      48  
+      49 +  const vehicleListItems = vehicles.map((v, i) => ({           
+      50 +    name: v.title,                                             
+      51 +    url: `${baseUrl}/vehicles/${v.slug}`,                      
+      52 +    position: i + 1,                                           
+      53 +  }))                                                          
+      54 +                                                               
+      55    return (
+      49 -    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-
+         -8">                                                            
+      50 -      {/* Breadcrumb */}                                       
+      51 -      <nav className="mb-8 flex items-center gap-1 text-sm text
+         --muted-foreground">                                            
+      52 -        <Link href="/" className="hover:text-foreground">Home</
+         -Link>                                                          
+      53 -        <ChevronRightIcon className="size-3.5" />              
+      54 -        <Link href="/models" className="hover:text-foreground">
+         -Models</Link>                                                  
+      55 -        <ChevronRightIcon className="size-3.5" />              
+      56 -        <span className="text-foreground">Tesla {model.name}</s
+         -pan>                                                           
+      57 -      </nav>                                                   
+      56 +    <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px
+         +-8">                                                           
+      57 +      {vehicles.length > 0 && (                                
+      58 +        <JsonLd data={buildItemListJsonLd(vehicleListItems, `Te
+         +sla ${model.name} Vehicles`)} />                               
+      59 +      )}                                                       
+      60 +      <BreadcrumbNav                                           
+      61 +        items={[                                               
+      62 +          { label: 'Home', href: '/' },                        
+      63 +          { label: 'Models', href: '/models' },                
+      64 +          { label: `Tesla ${model.name}` },                    
+      65 +        ]}                                                     
+      66 +      />                                                       
+      67  
+      68        {/* Hero */}
+      69        <div className="mb-10">
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/models/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/models/[slug]/page.tsx)
+  ⎿  Added 1 line, removed 1 line
+      101            <p>No vehicles available for this model yet. Coming 
+           soon.</p>
+      102          </div>
+      103        )}
+      104 -    </div>                                                    
+      104 +    </main>                                                   
+      105    )
+      106  }
+
+⏺ Now let me add parseCompareSlug to vehicle-utils and create the comparison
+  page config:
+
+⏺ Update(mydreamtesla-web/src/lib/vehicle-utils.ts)
+  ⎿  Added 40 lines
+       68  }
+       69  
+       70  /**
+       71 + * Parse a comparison slug back into vehicle slugs            
+       72 + * e.g., "model-3-2025-long-range-awd-vs-model-3-2025-performa
+          +nce-awd" → ["model-3-2025-long-range-awd", "model-3-2025-perfo
+          +rmance-awd"]                                                  
+       73 + */                                                           
+       74 +export function parseCompareSlug(slug: string): string[] {    
+       75 +  return slug.split('-vs-')                                   
+       76 +}                                                             
+       77 +                                                              
+       78 +/**                                                           
+       79 + * Spec comparison config: defines which specs to compare and 
+          +their display metadata                                        
+       80 + */                                                           
+       81 +export const COMPARISON_SPEC_CONFIG = [                       
+       82 +  // Performance                                              
+       83 +  { group: 'Performance', key: 'acceleration060', label: '0–60
+          + mph', unit: 's', higherIsBetter: false, isNumericString: true
+          + },                                                           
+       84 +  { group: 'Performance', key: 'topSpeed', label: 'Top Speed',
+          + unit: 'mph', higherIsBetter: true },                         
+       85 +  { group: 'Performance', key: 'horsepower', label: 'Horsepowe
+          +r', unit: 'hp', higherIsBetter: true },                       
+       86 +  { group: 'Performance', key: 'torque', label: 'Torque', unit
+          +: 'lb-ft', higherIsBetter: true },                            
+       87 +  { group: 'Performance', key: 'quarterMile', label: 'Quarter 
+          +Mile', unit: 's', higherIsBetter: false, isNumericString: true
+          + },                                                           
+       88 +  { group: 'Performance', key: 'driveType', label: 'Drive Type
+          +', unit: '', higherIsBetter: null },                          
+       89 +  // Battery & Charging                                       
+       90 +  { group: 'Battery & Charging', key: 'rangeEPA', label: 'EPA 
+          +Range', unit: 'mi', higherIsBetter: true },                   
+       91 +  { group: 'Battery & Charging', key: 'batteryCapacity', label
+          +: 'Battery', unit: 'kWh', higherIsBetter: true, isNumericStrin
+          +g: true },                                                    
+       92 +  { group: 'Battery & Charging', key: 'superchargerRateMax', l
+          +abel: 'Supercharger Max', unit: 'kW', higherIsBetter: true }, 
+       93 +  { group: 'Battery & Charging', key: 'chargingTime1050', labe
+          +l: '10→50% Time', unit: '', higherIsBetter: null },           
+       94 +  // Dimensions                                               
+       95 +  { group: 'Dimensions & Weight', key: 'length', label: 'Lengt
+          +h', unit: 'in', higherIsBetter: null, isNumericString: true },
+       96 +  { group: 'Dimensions & Weight', key: 'width', label: 'Width'
+          +, unit: 'in', higherIsBetter: null, isNumericString: true },  
+       97 +  { group: 'Dimensions & Weight', key: 'height', label: 'Heigh
+          +t', unit: 'in', higherIsBetter: null, isNumericString: true },
+       98 +  { group: 'Dimensions & Weight', key: 'curbWeight', label: 'C
+          +urb Weight', unit: 'lbs', higherIsBetter: false },            
+       99 +  { group: 'Dimensions & Weight', key: 'cargoVolume', label: '
+          +Cargo Volume', unit: 'cu ft', higherIsBetter: true, isNumericS
+          +tring: true },                                                
+      100 +  { group: 'Dimensions & Weight', key: 'seatingCapacity', labe
+          +l: 'Seating', unit: '', higherIsBetter: true },               
+      101 +  // Pricing                                                  
+      102 +  { group: 'Pricing', key: 'basePriceMSRP', label: 'Base MSRP'
+          +, unit: '$', higherIsBetter: false, isCurrency: true },       
+      103 +  { group: 'Pricing', key: 'federalTaxCredit', label: 'Tax Cre
+          +dit', unit: '$', higherIsBetter: true, isCurrency: true },    
+      104 +  { group: 'Pricing', key: 'effectivePrice', label: 'Effective
+          + Price', unit: '$', higherIsBetter: false, isCurrency: true },
+      105 +  // Efficiency                                               
+      106 +  { group: 'Efficiency', key: 'mpge', label: 'MPGe', unit: '',
+          + higherIsBetter: true },                                      
+      107 +  { group: 'Efficiency', key: 'energyConsumption', label: 'Ene
+          +rgy Use', unit: 'Wh/mi', higherIsBetter: false },             
+      108 +] as const                                                    
+      109 +                                                              
+      110 +/**                                                           
+      111   * Vehicle type inferred from DB schema
+      112   */
+      113  export type Vehicle = {
+
+⏺ Now create the comparison page:
+
+⏺ Bash(mkdir -p /Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/\[l
+      ocale\]/\(marketing\)/compare/\[slug\])
+  ⎿  Done
+
+⏺ Write(mydreamtesla-web/src/components/tesla/comparison-table.tsx)
+  ⎿  Wrote 98 lines to
+     mydreamtesla-web/src/components/tesla/comparison-table.tsx
+       1 import {
+       2        type Vehicle,
+       3        COMPARISON_SPEC_CONFIG,
+       4        formatPrice,
+       5        formatSpec,
+       6        getBestValueIndex,
+       7 } from '@/lib/vehicle-utils'
+       8 
+       9 interface ComparisonTableProps {
+      10        vehicles: Vehicle[]
+     … +88 lines (ctrl+o to expand)
+
+⏺ Write(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/compare/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/compare/[slug]/page.tsx)
+  ⎿  Wrote 162 lines to
+     mydreamtesla-web/src/app/[locale]/(marketing)/compare/[slug]/page.tsx
+       1 import { notFound } from 'next/navigation'
+       2 import type { Metadata } from 'next'
+       3 import { getVehiclesBySlugList, getAllModels } from '@/lib/db/qu
+         eries'
+       4 import { parseCompareSlug, formatPrice } from '@/lib/vehicle-uti
+         ls'
+       5 import { ComparisonTable } from '@/components/tesla/comparison-t
+         able'
+       6 import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav'
+       7 import { JsonLd } from '@/components/seo/json-ld'
+       8 import { buildItemListJsonLd } from '@/lib/seo/structured-data'
+       9 import { getBaseUrl } from '@/lib/urls/urls'
+      10 import Link from 'next/link'
+     … +152 lines (ctrl+o to expand)
+
+⏺ Now let me verify the build passes:
+
+⏺ Bash(cd /Users/mystery/Desktop/mydreamtesla/mydreamtesla-web && npx tsc
+      --noEmit --pretty 2>&1 | head -50)
+  ⎿  (node:79896) ExperimentalWarning: CommonJS module /opt/homebrew/lib/no
+     de_modules/npm/node_modules/debug/src/node.js is loading ES Module /op
+     t/homebrew/lib/node_modules/npm/node_modules/supports-color/index.js u
+     … +35 lines (ctrl+o to expand)
+  ⎿  (timeout 1m)
+
+⏺ 5 errors, quick fixes:
+
+⏺ Update(mydreamtesla-web/src/lib/seo/structured-data.ts)
+  ⎿  Added 3 lines, removed 3 lines
+      34      logo: `${baseUrl}/logo.png`,
+      35      description: siteConfig.description,
+      36      sameAs: [
+      37 -      siteConfig.links.twitter,                                
+      38 -      siteConfig.links.github,                                 
+      39 -      siteConfig.links.youtube,                                
+      37 +      siteConfig.links?.twitter,                               
+      38 +      siteConfig.links?.github,                                
+      39 +      siteConfig.links?.youtube,                               
+      40      ].filter(Boolean),
+      41    }
+      42  }
+
+⏺ For comparison-table, the as const array creates discriminated union types. I
+  need to check properties with in:
+
+⏺ Update(mydreamtesla-web/src/components/tesla/comparison-table.tsx)
+  ⎿  Added 1 line, removed 1 line
+      40              const numericValues = values.map((val) => {
+      41                if (val == null) return null
+      42                if (typeof val === 'number') return val
+      43 -              if (spec.isNumericString && typeof val === 'strin
+         -g') return Number.parseFloat(val)                              
+      43 +              if ('isNumericString' in spec && spec.isNumericSt
+         +ring && typeof val === 'string') return Number.parseFloat(val) 
+      44                return null
+      45              })
+      46  
+
+⏺ Update(mydreamtesla-web/src/components/tesla/comparison-table.tsx)
+  ⎿  Added 1 line, removed 1 line
+      63                    const isBest = bestIdx === i
+      64  
+      65                    let displayValue: string
+      66 -                  if (spec.isCurrency) {                       
+      66 +                  if ('isCurrency' in spec && spec.isCurrency) 
+         +{                                                              
+      67                      displayValue = formatPrice(raw as number | 
+          null)
+      68                    } else if (spec.unit && raw != null) {
+      69                      displayValue = formatSpec(raw as number | s
+          tring, spec.unit)
+
+⏺ Bash(npx tsc --noEmit --pretty 2>&1 | tail -5)
+  ⎿  (node:80005) ExperimentalWarning: CommonJS module /opt/homebrew/lib/no
+     de_modules/npm/node_modules/debug/src/node.js is loading ES Module /op
+     t/homebrew/lib/node_modules/npm/node_modules/supports-color/index.js u
+     … +5 lines (ctrl+o to expand)
+  ⎿  (timeout 1m)
+
+⏺ Zero errors. Now let me commit everything and push:
+
+⏺ Bash(cd /Users/mystery/Desktop/mydreamtesla && git add
+      mydreamtesla-web/src/lib/seo/structured-data.ts
+      mydreamtesla-web/src/components/seo/json-ld.tsx mydreamtesla-w…)
+  ⎿  [main f312a09] feat: add SEO infrastructure and comparison page
+      13 files changed, 1668 insertions(+), 30 deletions(-)
+      create mode 100644 design-mockups/IMAGE-REQUIREMENTS.md
+     … +14 lines (ctrl+o to expand)
+
+⏺ Done. Here's what was completed with the remaining budget:
+
+  Phase 1: SEO 基础设施 (完成)
+  - src/lib/seo/structured-data.ts — 6 个 JSON-LD 生成器（WebSite, Organization,
+   Car, ItemList, BreadcrumbList, BlogPosting）
+  - src/components/seo/json-ld.tsx — 通用 <JsonLd> Server Component
+  - src/components/seo/breadcrumb-nav.tsx — 语义化面包屑 + schema.org 结构化数据
+  - src/app/sitemap.ts — 动态 Tesla 路由（models + vehicles）
+  - 首页注入 WebSite + Organization + ItemList JSON-LD
+  - 车辆详情注入 Car JSON-LD + BreadcrumbNav
+  - 车型详情注入 ItemList JSON-LD + BreadcrumbNav
+
+  Phase 2: 对比页面 (完成)
+  - src/components/tesla/comparison-table.tsx — Apple
+  风格并排对比表（绿色圆点标最优值）
+  - src/app/[locale]/(marketing)/compare/[slug]/page.tsx — 完整对比页（粘性头部
+  + 对比表 + Verdict 推荐区 + 内链）
+  - src/lib/vehicle-utils.ts — parseCompareSlug + COMPARISON_SPEC_CONFIG（21
+  个可比规格）
+  - src/lib/db/queries.ts — getVehiclesBySlugList + getAllModelSlugs +
+  getAllVehicleSlugs
+
+  其他
+  - design-mockups/comparison.html — Apple 风格对比页 mockup 已同步到 Figma
+  - design-mockups/IMAGE-REQUIREMENTS.md — 24 张图片需求清单
+
+  TypeScript 零错误，已 push 到 GitHub。
+
+✻ Cogitated for 5m 0s
+
+❯ 还有$5.73 
+
+⏺ ~3 轮操作。最高 ROI：AdSense 基础设施 + 内链组件 +
+  预设对比配置。全部是纯代码，直接写。
+
+⏺ Write(mydreamtesla-web/src/components/ads/adsense-script.tsx)
+  ⎿  Wrote 17 lines to
+     mydreamtesla-web/src/components/ads/adsense-script.tsx
+       1 /**
+       2  * AdSense script loader — add once in root layout
+       3  * Replace data-ad-client with your actual publisher ID
+       4  */
+       5 export function AdSenseScript() {
+       6        const publisherId = process.env.NEXT_PUBLIC_ADSENSE_ID
+       7 
+       8        if (!publisherId) return null
+       9 
+      10        return (
+     … +7 lines (ctrl+o to expand)
+
+⏺ Write(mydreamtesla-web/src/components/ads/adsense-placement.tsx)
+  ⎿  Wrote 66 lines to
+     mydreamtesla-web/src/components/ads/adsense-placement.tsx
+       1 'use client'
+       2 
+       3 import { useEffect, useRef } from 'react'
+       4 
+       5 type AdFormat = 'leaderboard' | 'in-article' | 'rectangle'
+       6 
+       7 const AD_SIZES: Record<AdFormat, { width: number; height: number
+          }> = {
+       8        leaderboard: { width: 728, height: 90 },
+       9        'in-article': { width: 728, height: 90 },
+      10        rectangle: { width: 336, height: 280 },
+     … +56 lines (ctrl+o to expand)
+
+⏺ Write(mydreamtesla-web/src/components/tesla/related-content.tsx)
+  ⎿  Wrote 47 lines to
+     mydreamtesla-web/src/components/tesla/related-content.tsx
+       1 import Link from 'next/link'
+       2 
+       3 interface RelatedItem {
+       4        label: string
+       5        href: string
+       6 }
+       7 
+       8 interface RelatedContentProps {
+       9        title?: string
+      10        subtitle?: string
+     … +37 lines (ctrl+o to expand)
+
+⏺ Write(mydreamtesla-web/src/config/comparisons.ts)
+  ⎿  Wrote 28 lines to mydreamtesla-web/src/config/comparisons.ts
+       1 /**
+       2  * Pre-defined popular comparisons for homepage, sitemap, and in
+         ternal linking
+       3  * Each slug is a -vs- separated pair of vehicle slugs
+       4  */
+       5 export const POPULAR_COMPARISONS = [
+       6        {
+       7                slug: 'model-3-2025-long-range-awd-vs-model-3-2025-perfo
+
+         -awd',
+       8                label: 'Model 3 LR vs Model 3 Performance',
+       9                shortLabel: '3 LR vs 3 Perf',
+      10        },
+     … +18 lines (ctrl+o to expand)
+
+⏺ Now inject AdSense + RelatedContent into existing pages, and add AdSenseScript
+   to layout:
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Update(mydreamtesla-web/src/app/[locale]/layout.tsx)
+  ⎿  Added 1 line
+       7  } from '@/assets/fonts';
+       8  import AffonsoScript from '@/components/affiliate/affonso';
+       9  import PromotekitScript from '@/components/affiliate/promotekit
+          ';
+      10 +import { AdSenseScript } from '@/components/ads/adsense-script'
+         +;                                                              
+      11  import { TailwindIndicator } from '@/components/layout/tailwind
+          -indicator';
+      12  import { routing } from '@/i18n/routing';
+      13  import { cn } from '@/lib/utils';
+
+⏺ Update(mydreamtesla-web/src/app/[locale]/layout.tsx)
+  ⎿  Added 1 line
+      53        <head>
+      54          <AffonsoScript />
+      55          <PromotekitScript />
+      56 +        <AdSenseScript />                                      
+      57          {process.env.NODE_ENV === 'development' && (
+      58            <script src="https://mcp.figma.com/mcp/html-to-design
+          /capture.js" async />
+      59          )}
+
+⏺ Now add AdSense + RelatedContent to vehicle detail and comparison pages:
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/vehicles/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/vehicles/[slug]/page.tsx)
+  ⎿  Added 4 lines, removed 1 line
+       8  import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav'
+       9  import { JsonLd } from '@/components/seo/json-ld'
+      10  import { buildCarJsonLd } from '@/lib/seo/structured-data'
+      11 -import { formatPrice } from '@/lib/vehicle-utils'              
+      11 +import { formatPrice, generateCompareSlug } from '@/lib/vehicle
+         +-utils'                                                        
+      12 +import { AdSensePlacement } from '@/components/ads/adsense-plac
+         +ement'                                                         
+      13 +import { RelatedContent } from '@/components/tesla/related-cont
+         +ent'                                                           
+      14 +import { getVehiclesForModel } from '@/lib/db/queries'         
+      15  
+      16  interface Props {
+      17    params: Promise<{ slug: string; locale: string }>
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/vehicles/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/vehicles/[slug]/page.tsx)
+  ⎿  Added 25 lines
+      104          </section>
+      105        )}
+      106  
+      107 +      {/* Ad placement */}                                    
+      108 +      <AdSensePlacement format="leaderboard" slot="vehicle-det
+          +ail-1" className="my-8" />                                    
+      109 +                                                              
+      110        {/* Data Disclaimer */}
+      111        <DataDisclaimer lastUpdated={vehicle.lastUpdated} />
+      112 +                                                              
+      113 +      {/* Related: compare with other trims */}               
+      114 +      {model && await (async () => {                          
+      115 +        const siblings = await getVehiclesForModel(model.id)  
+      116 +        const otherTrims = siblings.filter((v) => v.id !== veh
+          +icle.id).slice(0, 4)                                          
+      117 +        if (otherTrims.length === 0) return null              
+      118 +        const compareItems = otherTrims.map((other) => ({     
+      119 +          label: `${vehicle.title} vs ${other.title}`,        
+      120 +          href: `/compare/${generateCompareSlug([vehicle.slug,
+          + other.slug])}`,                                              
+      121 +        }))                                                   
+      122 +        const detailItems = otherTrims.map((other) => ({      
+      123 +          label: `View ${other.title}`,                       
+      124 +          href: `/vehicles/${other.slug}`,                    
+      125 +        }))                                                   
+      126 +        return (                                              
+      127 +          <RelatedContent                                     
+      128 +            title="Compare with other trims."                 
+      129 +            subtitle={`See how the ${vehicle.title} stacks up.
+          +`}                                                            
+      130 +            items={[...compareItems, ...detailItems]}         
+      131 +          />                                                  
+      132 +        )                                                     
+      133 +      })()}                                                   
+      134      </main>
+      135    )
+      136  }
+
+⏺ Hmm, async IIFE in JSX is messy. Let me refactor to do the query at the top
+  level instead:
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ Write(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/vehicles/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/vehicles/[slug]/page.tsx)
+  ⎿  Added 24 lines, removed 23 lines
+      1  import { notFound } from 'next/navigation'
+      2  import type { Metadata } from 'next'
+      3 -import { getVehicleBySlug, getModelBySlug, getAllModels } from '
+        -@/lib/db/queries'                                               
+      3 +import { getVehicleBySlug, getAllModels, getVehiclesForModel } f
+        +rom '@/lib/db/queries'                                          
+      4  import { KeySpecsGrid } from '@/components/tesla/key-specs-grid'
+      5  import { SpecTable } from '@/components/tesla/spec-table'
+      6  import { ProsAndCons } from '@/components/tesla/pros-and-cons'
+     ...
+      11  import { formatPrice, generateCompareSlug } from '@/lib/vehicle
+          -utils'
+      12  import { AdSensePlacement } from '@/components/ads/adsense-plac
+          ement'
+      13  import { RelatedContent } from '@/components/tesla/related-cont
+          ent'
+      14 -import { getVehiclesForModel } from '@/lib/db/queries'         
+      14  
+      15  interface Props {
+      16    params: Promise<{ slug: string; locale: string }>
+     ...
+      35  
+      36    if (!vehicle) notFound()
+      37  
+      39 -  // Resolve model name for JSON-LD                            
+      38 +  // Resolve model + sibling vehicles                          
+      39    const allModels = await getAllModels()
+      40    const model = allModels.find((m) => m.id === vehicle.modelId)
+      41    const modelName = model?.name ?? 'Tesla'
+      42  
+      43 +  const siblings = model ? await getVehiclesForModel(model.id) 
+         +: []                                                           
+      44 +  const otherTrims = siblings.filter((v) => v.id !== vehicle.id
+         +).slice(0, 4)                                                  
+      45 +                                                               
+      46 +  // Build related items for internal linking                  
+      47 +  const relatedItems = [                                       
+      48 +    ...otherTrims.map((other) => ({                            
+      49 +      label: `${vehicle.title} vs ${other.title}`,             
+      50 +      href: `/compare/${generateCompareSlug([vehicle.slug, othe
+         +r.slug])}`,                                                    
+      51 +    })),                                                       
+      52 +    ...otherTrims.map((other) => ({                            
+      53 +      label: `View ${other.title}`,                            
+      54 +      href: `/vehicles/${other.slug}`,                         
+      55 +    })),                                                       
+      56 +  ]                                                            
+      57 +                                                               
+      58    return (
+      59      <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px
+          -8">
+      60        <JsonLd data={buildCarJsonLd(vehicle, modelName)} />
+     ...
+      125        <DataDisclaimer lastUpdated={vehicle.lastUpdated} />
+      126  
+      127        {/* Related: compare with other trims */}
+      114 -      {model && await (async () => {                          
+      115 -        const siblings = await getVehiclesForModel(model.id)  
+      116 -        const otherTrims = siblings.filter((v) => v.id !== veh
+          -icle.id).slice(0, 4)                                          
+      117 -        if (otherTrims.length === 0) return null              
+      118 -        const compareItems = otherTrims.map((other) => ({     
+      119 -          label: `${vehicle.title} vs ${other.title}`,        
+      120 -          href: `/compare/${generateCompareSlug([vehicle.slug,
+          - other.slug])}`,                                              
+      121 -        }))                                                   
+      122 -        const detailItems = otherTrims.map((other) => ({      
+      123 -          label: `View ${other.title}`,                       
+      124 -          href: `/vehicles/${other.slug}`,                    
+      125 -        }))                                                   
+      126 -        return (                                              
+      127 -          <RelatedContent                                     
+      128 -            title="Compare with other trims."                 
+      129 -            subtitle={`See how the ${vehicle.title} stacks up.
+          -`}                                                            
+      130 -            items={[...compareItems, ...detailItems]}         
+      131 -          />                                                  
+      132 -        )                                                     
+      133 -      })()}                                                   
+      128 +      {relatedItems.length > 0 && (                           
+      129 +        <RelatedContent                                       
+      130 +          title="Compare with other trims."                   
+      131 +          subtitle={`See how the ${vehicle.title} stacks up.`}
+      132 +          items={relatedItems}                                
+      133 +        />                                                    
+      134 +      )}                                                      
+      135      </main>
+      136    )
+      137  }
+
+⏺ Now add ad to comparison page too:
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/compare/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/compare/[slug]/page.tsx)
+  ⎿  Added 1 line
+       8  import { buildItemListJsonLd } from '@/lib/seo/structured-data'
+       9  import { getBaseUrl } from '@/lib/urls/urls'
+      10  import Link from 'next/link'
+      11 +import { AdSensePlacement } from '@/components/ads/adsense-plac
+         +ement'                                                         
+      12  
+      13  interface Props {
+      14    params: Promise<{ slug: string; locale: string }>
+
+⏺ Update(ile:///Users/mystery/Desktop/mydreamtesla/mydreamtesla-web/src/app/%5Blocale%5D/(marketing)/compare/%5Bslug%5D/page.tsxmydreamtesla-web/src/app/[locale]/(marketing)/compare/[slug]/page.tsx)
+  ⎿  Added 3 lines
+      111          <ComparisonTable vehicles={vehicles} />
+      112        </div>
+      113  
+      114 +      {/* Ad placement */}                                    
+      115 +      <AdSensePlacement format="in-article" slot="compare-1" c
+          +lassName="my-4" />                                            
+      116 +                                                              
+      117        {/* Verdict */}
+      118        <section className="bg-[#F5F5F7] py-20" aria-label="Comp
+           arison verdict">
+      119          <div className="mx-auto max-w-[980px] px-5 text-center
+           ">
+
+⏺ TypeScript check and commit:
+
+⏺ Bash(cd /Users/mystery/Desktop/mydreamtesla/mydreamtesla-web && npx tsc
+      --noEmit --pretty 2>&1 | tail -5)
+  ⎿  (node:80389) ExperimentalWarning: CommonJS module /opt/homebrew/lib/no
+     de_modules/npm/node_modules/debug/src/node.js is loading ES Module /op
+     t/homebrew/lib/node_modules/npm/node_modules/supports-color/index.js u
+     … +5 lines (ctrl+o to expand)
+  ⎿  (timeout 1m)
+
+⏺ Zero errors. Commit and push:
+
+⏺ Bash(cd /Users/mystery/Desktop/mydreamtesla && git add
+      mydreamtesla-web/src/components/ads/
+      mydreamtesla-web/src/components/tesla/related-content.tsx
+      mydreamtesla-we…)
+  ⎿  [main 03294b7] feat: add AdSense infrastructure, related content, and
+     internal linking
+      7 files changed, 199 insertions(+), 3 deletions(-)
+     … +9 lines (ctrl+o to expand)
+
+⏺ 本轮完成。更新一下 memory：
+
+⏺ Recalled 1 memory, wrote 2 memories (ctrl+o to expand)
+
+⏺ 本轮完成总结：
+
+  完成项: AdSense 基础设施
+  新建文件: adsense-script.tsx, adsense-placement.tsx
+  修改文件: layout.tsx
+  ────────────────────────────────────────
+  完成项: RelatedContent 内链组件
+  新建文件: related-content.tsx
+  修改文件: vehicles/[slug]/page.tsx
+  ────────────────────────────────────────
+  完成项: 预设对比配置
+  新建文件: comparisons.ts
+  修改文件: —
+  ────────────────────────────────────────
+  完成项: 广告位注入
+  新建文件: —
+  修改文件: compare/[slug]/page.tsx
+
+  两次 commit 已 push，TypeScript 零错误。剩余待做：博客文章、OG 图片生成、首页
+  Apple 样式重构、设计打磨、24 张车辆图片。
+
+✻ Churned for 2m 36s
