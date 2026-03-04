@@ -209,3 +209,9 @@ git add -A && git commit -m "<type>: <description>" && git push
 - The project includes comprehensive internationalization support
 - Docker Compose 在 `docker-compose.yml`，PostgreSQL 端口 5433
 - Figma 设计文件: https://www.figma.com/design/g4IOIsh9WGdCEBskuclxtk
+
+## 数据库规则（必须遵守）
+
+- **禁止默认使用本地数据库**：在没有明确确认远程数据库不存在的情况下，不允许建议或使用本地数据库（Docker/localhost）
+- 当需要运行 seed 脚本、migration 或任何数据库操作时，先询问用户使用哪个数据库环境
+- 当前状态：仅有本地数据库配置（localhost:5433），尚未配置远程数据库
