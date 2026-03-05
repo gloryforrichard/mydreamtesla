@@ -21,8 +21,10 @@ import { generateAlternates } from '@/lib/hreflang';
 import { websiteConfig } from '@/config/website';
 import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
+import { VehicleAngleViewer } from '@/components/tesla/vehicle-angle-viewer';
 import { VehicleRegionNotice } from '@/components/tesla/vehicle-region-notice';
 import { getVehicleGeneration } from '@/lib/vehicle-generations';
+import { getAnglePhotos } from '@/lib/vehicle-angles';
 import { VEHICLE_FAQS } from '@/config/vehicle-faqs';
 import { buildFAQPageJsonLd } from '@/lib/seo/structured-data';
 
@@ -82,6 +84,9 @@ export default async function VehicleDetailPage({ params }: Props) {
     : null;
   const vehicleImage =
     generation?.image ?? `/images/vehicles/${vehicle.slug}.png`;
+  const anglePhotos = model
+    ? getAnglePhotos(model.slug, vehicle.year)
+    : null;
 
   const relatedItems = [
     ...otherTrims.map((other) => ({
@@ -121,18 +126,24 @@ export default async function VehicleDetailPage({ params }: Props) {
         </h1>
         {/* Price hidden for now */}
         <VehicleRegionNotice vehicle={vehicle} />
-        <div className="mt-8 overflow-hidden rounded-sm bg-[#F5F2ED]">
-          <VehicleImage
-            src={vehicleImage}
-            alt={vehicle.title}
-            width={1000}
-            height={500}
-            className="h-auto w-full mix-blend-multiply object-contain p-6"
-            fallbackClassName="flex h-[280px] w-full items-center justify-center"
-            fallbackLabel={String(vehicle.year)}
-            priority
-          />
-        </div>
+        {anglePhotos ? (
+          <div className="mt-8">
+            <VehicleAngleViewer photos={anglePhotos} alt={vehicle.title} />
+          </div>
+        ) : (
+          <div className="mt-8 overflow-hidden rounded-sm bg-[#F5F2ED]">
+            <VehicleImage
+              src={vehicleImage}
+              alt={vehicle.title}
+              width={1000}
+              height={500}
+              className="h-auto w-full mix-blend-multiply object-contain p-6"
+              fallbackClassName="flex h-[280px] w-full items-center justify-center"
+              fallbackLabel={String(vehicle.year)}
+              priority
+            />
+          </div>
+        )}
       </header>
 
       {/* Key Specs */}
