@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { cn } from '@/lib/utils';
 import type { AnglePhoto, VehicleAngle } from '@/lib/vehicle-angles';
 import { DEFAULT_ANGLE } from '@/lib/vehicle-angles';
 
@@ -12,54 +11,81 @@ interface VehicleAngleViewerProps {
 }
 
 export function VehicleAngleViewer({ photos, alt }: VehicleAngleViewerProps) {
-  const [activeAngle, setActiveAngle] = useState<VehicleAngle>(DEFAULT_ANGLE);
-  const [failedAngles, setFailedAngles] = useState<Set<VehicleAngle>>(
-    new Set(),
+  const [activeIndex, setActiveIndex] = useState(() =>
+    Math.max(
+      photos.findIndex((p) => p.angle === DEFAULT_ANGLE),
+      0,
+    ),
   );
 
-  const activePhoto = photos.find((p) => p.angle === activeAngle) ?? photos[0];
+  const activePhoto = photos[activeIndex];
+
+  const prev = () =>
+    setActiveIndex((i) => (i - 1 + photos.length) % photos.length);
+  const next = () =>
+    setActiveIndex((i) => (i + 1) % photos.length);
 
   return (
     <div className="overflow-hidden rounded-sm bg-[#F5F2ED]">
-      {/* Main image */}
-      <div className="relative">
+      <div className="relative flex items-center">
+        {/* Left arrow */}
+        <button
+          type="button"
+          onClick={prev}
+          className="absolute left-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/70 text-[#1A1A1A] shadow-sm backdrop-blur-sm transition-colors hover:bg-white sm:left-4 sm:h-10 sm:w-10"
+          aria-label="Previous angle"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.5 15L7.5 10L12.5 5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
+        {/* Image */}
         <Image
-          key={activeAngle}
+          key={activePhoto.angle}
           src={activePhoto.src}
           alt={`${alt} — ${activePhoto.label}`}
           width={1000}
           height={500}
           className="h-auto w-full animate-fade-in mix-blend-multiply object-contain p-6"
-          priority={activeAngle === DEFAULT_ANGLE}
-          onError={() =>
-            setFailedAngles((prev) => new Set(prev).add(activeAngle))
-          }
+          priority={activePhoto.angle === DEFAULT_ANGLE}
         />
-      </div>
 
-      {/* Angle selector */}
-      <div className="flex items-center justify-center gap-2 border-t border-black/5 px-4 py-3">
-        {photos.map((photo) => {
-          const failed = failedAngles.has(photo.angle);
-          const isActive = photo.angle === activeAngle;
-          return (
-            <button
-              key={photo.angle}
-              type="button"
-              onClick={() => setActiveAngle(photo.angle)}
-              disabled={failed}
-              className={cn(
-                'rounded-sm px-3 py-1.5 text-[13px] font-medium transition-colors',
-                isActive
-                  ? 'bg-[#1A1A1A] text-white'
-                  : 'text-[#777777] hover:bg-black/5 hover:text-[#1A1A1A]',
-                failed && 'cursor-not-allowed opacity-40',
-              )}
-            >
-              {photo.label}
-            </button>
-          );
-        })}
+        {/* Right arrow */}
+        <button
+          type="button"
+          onClick={next}
+          className="absolute right-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/70 text-[#1A1A1A] shadow-sm backdrop-blur-sm transition-colors hover:bg-white sm:right-4 sm:h-10 sm:w-10"
+          aria-label="Next angle"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.5 5L12.5 10L7.5 15"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   );
