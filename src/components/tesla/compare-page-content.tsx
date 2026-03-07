@@ -1,15 +1,5 @@
-import {
-  formatRegionSpecValue,
-  getDisplayTitle,
-  getRegionSpecMeta,
-  isVehicleAvailableInRegion,
-} from '@/lib/vehicle-region';
-import type { Region } from '@/lib/vehicle-region';
-import {
-  formatPrice,
-  type TeslaModel,
-  type Vehicle,
-} from '@/lib/vehicle-utils';
+import { formatSpec } from '@/lib/vehicle-utils';
+import type { TeslaModel, Vehicle } from '@/lib/vehicle-utils';
 import { getVehicleGeneration } from '@/lib/vehicle-generations';
 import { getAnglePhotos, DEFAULT_ANGLE } from '@/lib/vehicle-angles';
 import { VehicleImage } from './vehicle-image';
@@ -18,57 +8,22 @@ import { ComparisonTable } from './comparison-table';
 interface ComparePageContentProps {
   vehicles: Vehicle[];
   models: TeslaModel[];
-  region: Region;
-}
-
-function toNumber(value: number | string | null | undefined) {
-  if (value == null) return null;
-  if (typeof value === 'number') return value;
-  const parsed = Number.parseFloat(value);
-  return Number.isFinite(parsed) ? parsed : null;
 }
 
 export function ComparePageContent({
   vehicles,
   models,
-  region,
 }: ComparePageContentProps) {
-  const visibleVehicles = vehicles.filter((vehicle) =>
-    isVehicleAvailableInRegion(vehicle, region)
-  );
+  const bestRange = [...vehicles].sort(
+    (a, b) => (b.rangeKm ?? 0) - (a.rangeKm ?? 0),
+  )[0];
 
-  if (visibleVehicles.length < 2) {
-    return (
-      <div className="mx-auto max-w-[980px] px-5 py-8">
-        <div className="rounded-sm border border-[#E5E2DC] bg-[#F5F2ED] p-6 text-center">
-          <h2 className="text-[20px] font-semibold tracking-[-0.3px] text-[#1A1A1A]">
-            Comparison unavailable in {region}
-          </h2>
-          <p className="mt-2 text-[14px] text-[#777777]">
-            One or more selected trims are not currently sold in this region.
-            Switch back to US to view the full comparison.
-          </p>
-        </div>
-      </div>
-    );
-  }
+  const bestPower = [...vehicles].sort(
+    (a, b) => (b.horsepower ?? 0) - (a.horsepower ?? 0),
+  )[0];
 
-  const bestRange = [...visibleVehicles].sort((a, b) => {
-    const aVal = toNumber(getRegionSpecMeta(a, 'rangeEPA', region).value) ?? 0;
-    const bVal = toNumber(getRegionSpecMeta(b, 'rangeEPA', region).value) ?? 0;
-    return bVal - aVal;
-  })[0];
-
-  const bestPower = [...visibleVehicles].sort((a, b) => {
-    const aVal =
-      toNumber(getRegionSpecMeta(a, 'horsepower', region).value) ?? 0;
-    const bVal =
-      toNumber(getRegionSpecMeta(b, 'horsepower', region).value) ?? 0;
-    return bVal - aVal;
-  })[0];
-
-  const bestValue = [...visibleVehicles].sort(
-    (a, b) => (a.effectivePrice ?? Infinity) - (b.effectivePrice ?? Infinity)
+  const bestValue = [...vehicles].sort(
+    (a, b) => (a.effectivePrice ?? Infinity) - (b.effectivePrice ?? Infinity),
   )[0];
 
   return (
@@ -78,11 +33,11 @@ export function ComparePageContent({
           className="mx-auto max-w-[980px] px-5 py-4"
           style={{
             display: 'grid',
-            gridTemplateColumns: `180px repeat(${visibleVehicles.length}, 1fr)`,
+            gridTemplateColumns: `180px repeat(${vehicles.length}, 1fr)`,
           }}
         >
           <div />
-          {visibleVehicles.map((vehicle) => {
+          {vehicles.map((vehicle) => {
             const model = models.find((m) => m.id === vehicle.modelId);
             const generation = model
               ? getVehicleGeneration(model.slug, vehicle.year)
@@ -102,7 +57,7 @@ export function ComparePageContent({
                 <div className="mx-auto mb-2.5 flex h-24 w-36 items-center justify-center overflow-hidden rounded-sm bg-[#F5F2ED]">
                   <VehicleImage
                     src={imageSrc}
-                    alt={getDisplayTitle(vehicle, region)}
+                    alt={vehicle.title}
                     width={288}
                     height={192}
                     className="h-full w-full mix-blend-multiply object-contain"
@@ -111,9 +66,8 @@ export function ComparePageContent({
                   />
                 </div>
                 <div className="text-[15px] font-semibold tracking-[-0.3px]">
-                  {getDisplayTitle(vehicle, region)}
+                  {vehicle.title}
                 </div>
-                {/* Price hidden for now */}
               </div>
             );
           })}
@@ -121,7 +75,7 @@ export function ComparePageContent({
       </div>
 
       <div className="py-8">
-        <ComparisonTable vehicles={visibleVehicles} region={region} />
+        <ComparisonTable vehicles={vehicles} />
       </div>
 
       <section className="bg-[#F5F2ED] py-20" aria-label="Comparison verdict">
@@ -139,10 +93,10 @@ export function ComparePageContent({
                 Best Range
               </div>
               <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
-                {getDisplayTitle(bestRange, region)}
+                {bestRange.title}
               </div>
               <div className="mt-1 text-[13px] text-[#777777]">
-                {formatRegionSpecValue(bestRange, 'rangeEPA', region)} EPA
+                {formatSpec(bestRange.rangeKm, 'km')}
               </div>
             </div>
             <div className="rounded-sm bg-white p-8 text-center">
@@ -150,10 +104,10 @@ export function ComparePageContent({
                 Most Powerful
               </div>
               <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
-                {getDisplayTitle(bestPower, region)}
+                {bestPower.title}
               </div>
               <div className="mt-1 text-[13px] text-[#777777]">
-                {formatRegionSpecValue(bestPower, 'horsepower', region)}
+                {formatSpec(bestPower.horsepower, 'hp')}
               </div>
             </div>
             <div className="rounded-sm bg-white p-8 text-center">
@@ -161,9 +115,8 @@ export function ComparePageContent({
                 Best Value
               </div>
               <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
-                {getDisplayTitle(bestValue, region)}
+                {bestValue.title}
               </div>
-              {/* Price hidden for now */}
             </div>
           </div>
         </div>

@@ -33,6 +33,18 @@ const ANGLE_PHOTO_CONFIG: Record<
   },
   'model-y': {
     Original: '2021',
+    Juniper: '2025',
+  },
+  'model-s': {
+    Original: '2016',
+    Refresh: '2022',
+  },
+  'model-x': {
+    Original: '2016',
+    Refresh: '2022',
+  },
+  cybertruck: {
+    Production: '2024',
   },
 };
 

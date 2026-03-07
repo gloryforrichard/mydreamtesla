@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRegion } from '@/contexts/region-context';
 import type { Vehicle } from '@/lib/vehicle-utils';
 import type { ReactNode } from 'react';
 import { ModelVehiclesByGeneration } from './model-vehicles-by-generation';
@@ -20,10 +19,9 @@ export function ModelVehiclesByGenerationInteractive({
   modelName,
   children,
 }: ModelVehiclesByGenerationInteractiveProps) {
-  const { region } = useRegion();
   const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
 
-  const isDefault = region === 'US' && sortOrder === 'desc';
+  const isDefault = sortOrder === 'desc';
 
   return (
     <>
@@ -48,7 +46,6 @@ export function ModelVehiclesByGenerationInteractive({
           vehicles={vehicles}
           modelSlug={modelSlug}
           modelName={modelName}
-          region={region}
           sortOrder={sortOrder}
         />
       )}

@@ -129,9 +129,9 @@ export const COMPARISON_SPEC_CONFIG = [
   // Battery & Charging
   {
     group: 'Battery & Charging',
-    key: 'rangeEPA',
-    label: 'EPA Range',
-    unit: 'mi',
+    key: 'rangeKm',
+    label: 'Range',
+    unit: 'km',
     higherIsBetter: true,
   },
   {
@@ -255,26 +255,21 @@ export type Vehicle = {
   modelId: number;
   year: number;
   trimName: string;
-  caTrimName: string | null;
   driveType: string;
   basePriceMSRP: number | null;
   destinationFee: number | null;
   federalTaxCredit: number | null;
   effectivePrice: number | null;
   rangeEPA: number | null;
-  caRangeEPAkm: number | null;
+  rangeKm: number | null;
   acceleration060: string | null;
-  caAcceleration0100: string | null;
   topSpeed: number | null;
-  caTopSpeedKmh: number | null;
   horsepower: number | null;
-  caHorsepower: number | null;
   torque: number | null;
   quarterMile: string | null;
   batteryCapacity: string | null;
   batteryType: string | null;
   superchargerRateMax: number | null;
-  caSuperchargerRateMax: number | null;
   chargingTime1050: string | null;
   onboardCharger: string | null;
   chargePort: string | null;
@@ -304,7 +299,7 @@ export type Vehicle = {
   seoTitle: string | null;
   seoDescription: string | null;
   isCurrentModel: boolean | null;
-  caAvailable: boolean | null;
+  regionNote: string | null;
   discontinuedDate: string | null;
   lastUpdated: Date | null;
   createdAt: Date | null;

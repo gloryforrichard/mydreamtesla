@@ -1,13 +1,7 @@
 'use client';
 
-import { useEffect, useId, useState, type ReactNode } from 'react';
+import { useId, useState, type ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
-import { useRegion } from '@/contexts/region-context';
-import {
-  getDisplayTrimName,
-  isVehicleAvailableInRegion,
-  type Region,
-} from '@/lib/vehicle-region';
 import { generateCompareSlug } from '@/lib/vehicle-utils';
 import type { Vehicle, TeslaModel } from '@/lib/vehicle-utils';
 
@@ -30,22 +24,12 @@ const EMPTY_SELECTION: SelectionState = {
 
 export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
   const router = useRouter();
-  const { region } = useRegion();
   const [selectionA, setSelectionA] = useState<SelectionState>(EMPTY_SELECTION);
   const [selectionB, setSelectionB] = useState<SelectionState>(EMPTY_SELECTION);
 
-  const availableVehicles = vehicles.filter((v) =>
-    isVehicleAvailableInRegion(v, region)
-  );
-
   const yearOptions = Array.from(
-    new Set(availableVehicles.map((v) => v.year))
+    new Set(vehicles.map((v) => v.year))
   ).sort((a, b) => b - a);
-
-  useEffect(() => {
-    setSelectionA((prev) => sanitizeSelection(prev, availableVehicles));
-    setSelectionB((prev) => sanitizeSelection(prev, availableVehicles));
-  }, [region, vehicles]);
 
   const canCompare =
     selectionA.slug !== '' &&
@@ -65,9 +49,8 @@ export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <VehicleSelector
             title="Vehicle 1"
-            region={region}
             models={models}
-            vehicles={availableVehicles}
+            vehicles={vehicles}
             yearOptions={yearOptions}
             value={selectionA}
             onChange={setSelectionA}
@@ -75,9 +58,8 @@ export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
           />
           <VehicleSelector
             title="Vehicle 2"
-            region={region}
             models={models}
-            vehicles={availableVehicles}
+            vehicles={vehicles}
             yearOptions={yearOptions}
             value={selectionB}
             onChange={setSelectionB}
@@ -97,63 +79,8 @@ export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
   );
 }
 
-function sanitizeSelection(
-  selection: SelectionState,
-  vehicles: Vehicle[]
-): SelectionState {
-  if (!selection.year) return EMPTY_SELECTION;
-
-  const year = Number(selection.year);
-  if (Number.isNaN(year) || !vehicles.some((v) => v.year === year)) {
-    return EMPTY_SELECTION;
-  }
-
-  if (!selection.modelId) {
-    return {
-      year: selection.year,
-      modelId: '',
-      slug: '',
-    };
-  }
-
-  const modelId = Number(selection.modelId);
-  if (
-    Number.isNaN(modelId) ||
-    !vehicles.some((v) => v.year === year && v.modelId === modelId)
-  ) {
-    return {
-      year: selection.year,
-      modelId: '',
-      slug: '',
-    };
-  }
-
-  if (!selection.slug) {
-    return {
-      year: selection.year,
-      modelId: selection.modelId,
-      slug: '',
-    };
-  }
-
-  const slugExists = vehicles.some(
-    (v) => v.slug === selection.slug && v.year === year && v.modelId === modelId
-  );
-
-  if (!slugExists) {
-    return {
-      year: selection.year,
-      modelId: selection.modelId,
-      slug: '',
-    };
-  }
-
-  return selection;
-}
-
 interface VehicleSelectorProps {
   title: string;
-  region: Region;
   models: TeslaModel[];
   vehicles: Vehicle[];
   yearOptions: number[];
@@ -164,7 +91,6 @@ interface VehicleSelectorProps {
 
 function VehicleSelector({
   title,
-  region,
   models,
   vehicles,
   yearOptions,
@@ -192,9 +118,7 @@ function VehicleSelector({
             (v) => v.year === selectedYear && v.modelId === selectedModelId
           )
           .sort((a, b) => {
-            const trimCompare = getDisplayTrimName(a, region).localeCompare(
-              getDisplayTrimName(b, region)
-            );
+            const trimCompare = a.trimName.localeCompare(b.trimName);
             if (trimCompare !== 0) return trimCompare;
             return a.driveType.localeCompare(b.driveType);
           });
@@ -263,7 +187,7 @@ function VehicleSelector({
             value={vehicle.slug}
             disabled={vehicle.slug === excludeSlug}
           >
-            {`${getDisplayTrimName(vehicle, region)} · ${vehicle.driveType}`}
+            {`${vehicle.trimName} · ${vehicle.driveType}`}
           </option>
         ))}
       </SelectField>

@@ -1,12 +1,5 @@
-'use client';
-
 import Link from 'next/link';
-import { useRegion } from '@/contexts/region-context';
-import {
-  formatRegionSpecValue,
-  getDisplayTrimName,
-} from '@/lib/vehicle-region';
-import { formatPrice } from '@/lib/vehicle-utils';
+import { formatSpec } from '@/lib/vehicle-utils';
 import type { Vehicle } from '@/lib/vehicle-utils';
 import { VehicleImage } from './vehicle-image';
 
@@ -15,8 +8,6 @@ interface VehicleCardProps {
 }
 
 export function VehicleCard({ vehicle }: VehicleCardProps) {
-  const { region } = useRegion();
-
   return (
     <Link
       href={`/vehicles/${vehicle.slug}`}
@@ -38,18 +29,17 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
           {vehicle.year} · {vehicle.driveType}
         </p>
         <h3 className="mt-1 text-lg font-semibold text-[#1A1A1A]">
-          {getDisplayTrimName(vehicle, region)}
+          {vehicle.trimName}
         </h3>
-        {/* Price hidden for now */}
         <div className="mt-4 flex items-center gap-6 border-t border-[#E5E2DC] pt-4 text-xs text-[#999999]">
           <span className="font-mono font-medium text-[#1A1A1A]">
-            {formatRegionSpecValue(vehicle, 'rangeEPA', region)}
+            {formatSpec(vehicle.rangeKm, 'km')}
           </span>
           <span className="font-mono font-medium text-[#1A1A1A]">
-            {formatRegionSpecValue(vehicle, 'acceleration', region)}
+            {vehicle.acceleration060 ? `${vehicle.acceleration060}s` : 'N/A'}
           </span>
           <span className="font-mono font-medium text-[#1A1A1A]">
-            {formatRegionSpecValue(vehicle, 'horsepower', region)}
+            {formatSpec(vehicle.horsepower, 'hp')}
           </span>
         </div>
       </div>

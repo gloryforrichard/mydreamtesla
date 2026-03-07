@@ -1,25 +1,54 @@
 import {
-  type ComparisonSpecEntry,
-  type Region,
-  getRegionAwareComparisonSpecConfig,
-} from '@/lib/vehicle-region';
-import { type Vehicle, getBestValueIndex } from '@/lib/vehicle-utils';
+  COMPARISON_SPEC_CONFIG,
+  type Vehicle,
+  formatPrice,
+  formatSpec,
+  getBestValueIndex,
+} from '@/lib/vehicle-utils';
 
 interface ComparisonTableProps {
   vehicles: Vehicle[];
-  region: Region;
 }
 
-/**
- * Editorial-style side-by-side comparison table
- * Groups specs into sections with green dot for best values
- */
-export function ComparisonTable({ vehicles, region }: ComparisonTableProps) {
-  const comparisonSpecConfig = getRegionAwareComparisonSpecConfig(region);
+interface SpecEntry {
+  id: string;
+  group: string;
+  label: string;
+  getRawValue: (v: Vehicle) => number | string | null | undefined;
+  formatValue: (v: Vehicle) => string;
+  higherIsBetter: boolean | null;
+  isNumericString?: boolean;
+}
 
-  // Group specs by category
-  const groups: Record<string, ComparisonSpecEntry[]> = {};
-  for (const spec of comparisonSpecConfig) {
+function buildSpecEntries(): SpecEntry[] {
+  return COMPARISON_SPEC_CONFIG.map((spec) => ({
+    id: spec.key,
+    group: spec.group,
+    label: spec.label,
+    higherIsBetter: spec.higherIsBetter ?? null,
+    isNumericString: 'isNumericString' in spec ? spec.isNumericString : false,
+    getRawValue: (v: Vehicle) => {
+      const val = v[spec.key as keyof Vehicle];
+      return val as number | string | null | undefined;
+    },
+    formatValue: (v: Vehicle) => {
+      const val = v[spec.key as keyof Vehicle];
+      if ('isCurrency' in spec && spec.isCurrency) {
+        return formatPrice(val as number | null | undefined);
+      }
+      return formatSpec(
+        val as number | string | null | undefined,
+        spec.unit || undefined,
+      );
+    },
+  }));
+}
+
+export function ComparisonTable({ vehicles }: ComparisonTableProps) {
+  const specEntries = buildSpecEntries();
+
+  const groups: Record<string, SpecEntry[]> = {};
+  for (const spec of specEntries) {
     const existing = groups[spec.group] ?? [];
     existing.push(spec);
     groups[spec.group] = existing;
@@ -39,7 +68,6 @@ export function ComparisonTable({ vehicles, region }: ComparisonTableProps) {
           {specs.map((spec) => {
             const values = vehicles.map((v) => spec.getRawValue(v));
 
-            // Determine best value
             const numericValues = values.map((val) => {
               if (val == null) return null;
               if (typeof val === 'number') return val;

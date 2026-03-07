@@ -1,35 +1,27 @@
-import { getRegionSpecMeta, formatRegionSpecValue } from '@/lib/vehicle-region';
-import type { Region } from '@/lib/vehicle-region';
+import { formatSpec } from '@/lib/vehicle-utils';
 import type { Vehicle } from '@/lib/vehicle-utils';
 
 interface KeySpecsGridProps {
   vehicle: Vehicle;
-  region: Region;
 }
 
-export function KeySpecsGrid({ vehicle, region }: KeySpecsGridProps) {
-
-  const rangeMeta = getRegionSpecMeta(vehicle, 'rangeEPA', region);
-  const accelMeta = getRegionSpecMeta(vehicle, 'acceleration', region);
-  const hpMeta = getRegionSpecMeta(vehicle, 'horsepower', region);
-  const speedMeta = getRegionSpecMeta(vehicle, 'topSpeed', region);
-
+export function KeySpecsGrid({ vehicle }: KeySpecsGridProps) {
   const specs = [
     {
-      label: rangeMeta.label,
-      value: formatRegionSpecValue(vehicle, 'rangeEPA', region),
+      label: 'Range',
+      value: formatSpec(vehicle.rangeKm, 'km'),
     },
     {
-      label: accelMeta.label,
-      value: formatRegionSpecValue(vehicle, 'acceleration', region),
+      label: '0–60 mph',
+      value: vehicle.acceleration060 ? `${vehicle.acceleration060}s` : 'N/A',
     },
     {
-      label: hpMeta.label,
-      value: formatRegionSpecValue(vehicle, 'horsepower', region),
+      label: 'Horsepower',
+      value: formatSpec(vehicle.horsepower, 'hp'),
     },
     {
-      label: speedMeta.label,
-      value: formatRegionSpecValue(vehicle, 'topSpeed', region),
+      label: 'Top Speed',
+      value: formatSpec(vehicle.topSpeed, 'mph'),
     },
   ];
 

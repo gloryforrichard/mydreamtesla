@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { getVehiclesBySlugList, getAllModels } from '@/lib/db/queries';
 import { parseCompareSlug } from '@/lib/vehicle-utils';
 import { ComparePageContent } from '@/components/tesla/compare-page-content';
-import { ComparePageRegion } from '@/components/tesla/compare-page-region';
 import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav';
 import { JsonLd } from '@/components/seo/json-ld';
 import { buildItemListJsonLd } from '@/lib/seo/structured-data';
@@ -99,13 +98,7 @@ export default async function ComparePage({ params }: Props) {
         </p>
       </header>
 
-      <ComparePageRegion vehicles={vehicles} models={allModels}>
-        <ComparePageContent
-          vehicles={vehicles}
-          models={allModels}
-          region="US"
-        />
-      </ComparePageRegion>
+      <ComparePageContent vehicles={vehicles} models={allModels} />
 
       {/* Related comparisons (internal linking for SEO) */}
       <section

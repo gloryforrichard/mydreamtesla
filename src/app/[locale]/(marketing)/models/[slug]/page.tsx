@@ -172,7 +172,6 @@ export default async function ModelDetailPage({ params }: Props) {
             vehicles={vehicles}
             modelSlug={model.slug}
             modelName={model.name}
-            region="US"
           />
         </ModelVehiclesByGenerationInteractive>
 

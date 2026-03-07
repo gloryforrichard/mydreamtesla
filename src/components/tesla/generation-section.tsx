@@ -1,11 +1,6 @@
 import Link from 'next/link';
 import type { GenerationDef } from '@/lib/vehicle-generations';
-import {
-  formatRegionSpecValue,
-  getDisplayTrimName,
-} from '@/lib/vehicle-region';
-import type { Region } from '@/lib/vehicle-region';
-import { formatPrice } from '@/lib/vehicle-utils';
+import { formatSpec } from '@/lib/vehicle-utils';
 import type { Vehicle } from '@/lib/vehicle-utils';
 import { VehicleImage } from './vehicle-image';
 import { ChevronRight } from 'lucide-react';
@@ -14,7 +9,6 @@ interface GenerationSectionProps {
   generation: GenerationDef;
   vehicles: Vehicle[];
   modelName: string;
-  region: Region;
   /** Trim family filter — undefined or '__all__' means show all */
   activeTrimFamily?: string;
 }
@@ -75,17 +69,13 @@ export function GenerationSection({
   generation,
   vehicles,
   modelName,
-  region,
   activeTrimFamily,
 }: GenerationSectionProps) {
-  const isCA = region === 'CA';
-
   // Build ordered list of unique trim families present in this generation
   const trimFamilies: string[] = [];
   const seen = new Set<string>();
   for (const v of vehicles) {
-    const display = getDisplayTrimName(v, region);
-    const family = getTrimFamily(display);
+    const family = getTrimFamily(v.trimName);
     if (!seen.has(family)) {
       seen.add(family);
       trimFamilies.push(family);
@@ -96,10 +86,7 @@ export function GenerationSection({
   const showAll = !activeTrimFamily || activeTrimFamily === '__all__';
   const filteredVehicles = showAll
     ? vehicles
-    : vehicles.filter((v) => {
-        const display = getDisplayTrimName(v, region);
-        return getTrimFamily(display) === activeTrimFamily;
-      });
+    : vehicles.filter((v) => getTrimFamily(v.trimName) === activeTrimFamily);
 
   return (
     <section className="mb-12">
@@ -142,12 +129,8 @@ export function GenerationSection({
                   <th className="py-3 pr-3 font-medium">Year</th>
                   <th className="px-3 py-3 font-medium">Trim</th>
                   <th className="hidden px-3 py-3 font-medium lg:table-cell">Drive</th>
-                  <th className="px-3 py-3 font-medium">
-                    {isCA ? 'Range (km)' : 'Range (mi)'}
-                  </th>
-                  <th className="px-3 py-3 font-medium">
-                    {isCA ? '0-100' : '0-60'}
-                  </th>
+                  <th className="px-3 py-3 font-medium">Range (km)</th>
+                  <th className="px-3 py-3 font-medium">0-60</th>
                   <th className="hidden px-3 py-3 font-medium lg:table-cell">HP</th>
                   <th className="w-8 py-3 pl-3">
                     <span className="sr-only">Details</span>
@@ -169,11 +152,16 @@ export function GenerationSection({
                           href={`/vehicles/${vehicle.slug}`}
                           className="font-medium text-[#1A1A1A] transition-colors hover:text-[#555555]"
                         >
-                          {getDisplayTrimName(vehicle, region)}
+                          {vehicle.trimName}
                         </Link>
                         {vehicle.isCurrentModel && (
                           <span className="inline-flex items-center rounded-full bg-[#E8F5E9] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#2E7D32]">
                             Current
+                          </span>
+                        )}
+                        {vehicle.regionNote && (
+                          <span className="inline-flex items-center rounded-full bg-[#FFF3E0] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#E65100]">
+                            {vehicle.regionNote}
                           </span>
                         )}
                       </div>
@@ -182,13 +170,15 @@ export function GenerationSection({
                       {vehicle.driveType || 'N/A'}
                     </td>
                     <td className="px-3 py-3 font-mono text-[13px] text-[#1A1A1A]">
-                      {formatRegionSpecValue(vehicle, 'rangeEPA', region)}
+                      {formatSpec(vehicle.rangeKm, 'km')}
                     </td>
                     <td className="px-3 py-3 font-mono text-[13px] text-[#1A1A1A]">
-                      {formatRegionSpecValue(vehicle, 'acceleration', region)}
+                      {vehicle.acceleration060
+                        ? `${vehicle.acceleration060}s`
+                        : 'N/A'}
                     </td>
                     <td className="hidden px-3 py-3 font-mono text-[13px] text-[#1A1A1A] lg:table-cell">
-                      {formatRegionSpecValue(vehicle, 'horsepower', region)}
+                      {formatSpec(vehicle.horsepower, 'hp')}
                     </td>
                     <td className="py-3 pl-3">
                       <Link

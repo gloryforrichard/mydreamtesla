@@ -1,11 +1,8 @@
-import { formatRegionSpecValue, getRegionSpecMeta } from '@/lib/vehicle-region';
-import type { Region } from '@/lib/vehicle-region';
 import { formatPrice, formatSpec } from '@/lib/vehicle-utils';
 import type { Vehicle } from '@/lib/vehicle-utils';
 
 interface SpecTableProps {
   vehicle: Vehicle;
-  region: Region;
 }
 
 interface SpecRow {
@@ -18,53 +15,20 @@ interface SpecSection {
   rows: SpecRow[];
 }
 
-function getSpecSections(vehicle: Vehicle, region: 'US' | 'CA'): SpecSection[] {
-  const perfRange = getRegionSpecMeta(vehicle, 'rangeEPA', region);
-  const perfAccel = getRegionSpecMeta(vehicle, 'acceleration', region);
-  const perfTopSpeed = getRegionSpecMeta(vehicle, 'topSpeed', region);
-  const perfHp = getRegionSpecMeta(vehicle, 'horsepower', region);
-  const supercharger = getRegionSpecMeta(
-    vehicle,
-    'superchargerRateMax',
-    region
-  );
-
-  const length = getRegionSpecMeta(vehicle, 'length', region);
-  const width = getRegionSpecMeta(vehicle, 'width', region);
-  const height = getRegionSpecMeta(vehicle, 'height', region);
-  const wheelbase = getRegionSpecMeta(vehicle, 'wheelbase', region);
-  const curbWeight = getRegionSpecMeta(vehicle, 'curbWeight', region);
-  const groundClearance = getRegionSpecMeta(vehicle, 'groundClearance', region);
-  const cargoVolume = getRegionSpecMeta(vehicle, 'cargoVolume', region);
-  const frunkVolume = getRegionSpecMeta(vehicle, 'frunkVolume', region);
-  const towingCapacity = getRegionSpecMeta(vehicle, 'towingCapacity', region);
-
-  const basePrice = getRegionSpecMeta(vehicle, 'basePriceMSRP', region);
-  const destinationFee = getRegionSpecMeta(vehicle, 'destinationFee', region);
-  const taxCredit = getRegionSpecMeta(vehicle, 'federalTaxCredit', region);
-  const effectivePrice = getRegionSpecMeta(vehicle, 'effectivePrice', region);
-  const energy = getRegionSpecMeta(vehicle, 'energyConsumption', region);
-
+function getSpecSections(vehicle: Vehicle): SpecSection[] {
   return [
     {
       title: 'Performance',
       rows: [
+        { label: 'Range', value: formatSpec(vehicle.rangeKm, 'km') },
         {
-          label: perfRange.label,
-          value: formatRegionSpecValue(vehicle, 'rangeEPA', region),
+          label: '0–60 mph',
+          value: vehicle.acceleration060
+            ? `${vehicle.acceleration060}s`
+            : 'N/A',
         },
-        {
-          label: perfAccel.label,
-          value: formatRegionSpecValue(vehicle, 'acceleration', region),
-        },
-        {
-          label: perfTopSpeed.label,
-          value: formatRegionSpecValue(vehicle, 'topSpeed', region),
-        },
-        {
-          label: perfHp.label,
-          value: formatRegionSpecValue(vehicle, 'horsepower', region),
-        },
+        { label: 'Top Speed', value: formatSpec(vehicle.topSpeed, 'mph') },
+        { label: 'Horsepower', value: formatSpec(vehicle.horsepower, 'hp') },
         { label: 'Torque', value: formatSpec(vehicle.torque, 'lb-ft') },
         {
           label: 'Quarter Mile',
@@ -83,8 +47,8 @@ function getSpecSections(vehicle: Vehicle, region: 'US' | 'CA'): SpecSection[] {
         },
         { label: 'Battery Type', value: vehicle.batteryType ?? 'N/A' },
         {
-          label: supercharger.label,
-          value: formatRegionSpecValue(vehicle, 'superchargerRateMax', region),
+          label: 'Supercharger Max',
+          value: formatSpec(vehicle.superchargerRateMax, 'kW'),
         },
         {
           label: 'Charge Time (10-50%)',
@@ -102,45 +66,29 @@ function getSpecSections(vehicle: Vehicle, region: 'US' | 'CA'): SpecSection[] {
     {
       title: 'Dimensions & Weight',
       rows: [
+        { label: 'Length', value: formatSpec(vehicle.length, 'in') },
+        { label: 'Width', value: formatSpec(vehicle.width, 'in') },
+        { label: 'Height', value: formatSpec(vehicle.height, 'in') },
+        { label: 'Wheelbase', value: formatSpec(vehicle.wheelbase, 'in') },
+        { label: 'Curb Weight', value: formatSpec(vehicle.curbWeight, 'lbs') },
         {
-          label: length.label,
-          value: formatRegionSpecValue(vehicle, 'length', region),
+          label: 'Ground Clearance',
+          value: formatSpec(vehicle.groundClearance, 'in'),
         },
         {
-          label: width.label,
-          value: formatRegionSpecValue(vehicle, 'width', region),
+          label: 'Cargo Volume',
+          value: formatSpec(vehicle.cargoVolume, 'cu ft'),
         },
         {
-          label: height.label,
-          value: formatRegionSpecValue(vehicle, 'height', region),
+          label: 'Frunk Volume',
+          value: formatSpec(vehicle.frunkVolume, 'cu ft'),
         },
         {
-          label: wheelbase.label,
-          value: formatRegionSpecValue(vehicle, 'wheelbase', region),
-        },
-        {
-          label: curbWeight.label,
-          value: formatRegionSpecValue(vehicle, 'curbWeight', region),
-        },
-        {
-          label: groundClearance.label,
-          value: formatRegionSpecValue(vehicle, 'groundClearance', region),
-        },
-        {
-          label: cargoVolume.label,
-          value: formatRegionSpecValue(vehicle, 'cargoVolume', region),
-        },
-        {
-          label: frunkVolume.label,
-          value: formatRegionSpecValue(vehicle, 'frunkVolume', region),
-        },
-        {
-          label: towingCapacity.label,
-          value: formatRegionSpecValue(vehicle, 'towingCapacity', region),
+          label: 'Towing Capacity',
+          value: formatSpec(vehicle.towingCapacity, 'lbs'),
         },
       ],
     },
-    /* Pricing section hidden for now */
     {
       title: 'Interior & Comfort',
       rows: [
@@ -178,15 +126,14 @@ function getSpecSections(vehicle: Vehicle, region: 'US' | 'CA'): SpecSection[] {
                 ? 'Yes'
                 : 'No',
         },
-        /* FSD Price hidden for now */
       ],
     },
     {
       title: 'Efficiency',
       rows: [
         {
-          label: energy.label,
-          value: formatRegionSpecValue(vehicle, 'energyConsumption', region),
+          label: 'Energy Consumption',
+          value: formatSpec(vehicle.energyConsumption, 'Wh/mi'),
         },
         { label: 'MPGe', value: formatSpec(vehicle.mpge) },
       ],
@@ -194,8 +141,8 @@ function getSpecSections(vehicle: Vehicle, region: 'US' | 'CA'): SpecSection[] {
   ];
 }
 
-export function SpecTable({ vehicle, region }: SpecTableProps) {
-  const sections = getSpecSections(vehicle, region);
+export function SpecTable({ vehicle }: SpecTableProps) {
+  const sections = getSpecSections(vehicle);
 
   return (
     <div className="space-y-8">

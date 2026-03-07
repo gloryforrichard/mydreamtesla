@@ -7,9 +7,7 @@ import {
   getAllVehicleSlugs,
 } from '@/lib/db/queries';
 import { KeySpecsGrid } from '@/components/tesla/key-specs-grid';
-import { KeySpecsGridRegion } from '@/components/tesla/key-specs-grid-region';
 import { SpecTable } from '@/components/tesla/spec-table';
-import { SpecTableRegion } from '@/components/tesla/spec-table-region';
 import { ProsAndCons } from '@/components/tesla/pros-and-cons';
 import { DataDisclaimer } from '@/components/tesla/data-disclaimer';
 import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav';
@@ -22,7 +20,6 @@ import { websiteConfig } from '@/config/website';
 import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { VehicleAngleViewer } from '@/components/tesla/vehicle-angle-viewer';
-import { VehicleRegionNotice } from '@/components/tesla/vehicle-region-notice';
 import { getVehicleGeneration } from '@/lib/vehicle-generations';
 import { getAnglePhotos } from '@/lib/vehicle-angles';
 import { VEHICLE_FAQS } from '@/config/vehicle-faqs';
@@ -125,7 +122,6 @@ export default async function VehicleDetailPage({ params }: Props) {
           {vehicle.title}
         </h1>
         {/* Price hidden for now */}
-        <VehicleRegionNotice vehicle={vehicle} />
         {anglePhotos ? (
           <div className="mt-8">
             <VehicleAngleViewer photos={anglePhotos} alt={vehicle.title} />
@@ -151,9 +147,7 @@ export default async function VehicleDetailPage({ params }: Props) {
         <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
           Key Specifications
         </h2>
-        <KeySpecsGridRegion vehicle={vehicle}>
-          <KeySpecsGrid vehicle={vehicle} region="US" />
-        </KeySpecsGridRegion>
+        <KeySpecsGrid vehicle={vehicle} />
       </section>
 
       {/* What's New */}
@@ -175,9 +169,7 @@ export default async function VehicleDetailPage({ params }: Props) {
         <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
           Full Specifications
         </h2>
-        <SpecTableRegion vehicle={vehicle}>
-          <SpecTable vehicle={vehicle} region="US" />
-        </SpecTableRegion>
+        <SpecTable vehicle={vehicle} />
       </section>
 
       {/* Pros & Cons */}

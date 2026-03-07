@@ -1,9 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { useRegion } from '@/contexts/region-context';
 import type { GenerationDef } from '@/lib/vehicle-generations';
-import { getDisplayTrimName } from '@/lib/vehicle-region';
 import type { Vehicle } from '@/lib/vehicle-utils';
 import { cn } from '@/lib/utils';
 import { GenerationSection, getTrimFamily } from './generation-section';
@@ -24,7 +22,6 @@ export function GenerationSectionInteractive({
   modelName,
   children,
 }: GenerationSectionInteractiveProps) {
-  const { region } = useRegion();
   const [activeTrim, setActiveTrim] = useState(ALL_TRIMS);
 
   // Build ordered list of unique trim families
@@ -32,17 +29,16 @@ export function GenerationSectionInteractive({
     const seen = new Set<string>();
     const families: string[] = [];
     for (const v of vehicles) {
-      const display = getDisplayTrimName(v, region);
-      const family = getTrimFamily(display);
+      const family = getTrimFamily(v.trimName);
       if (!seen.has(family)) {
         seen.add(family);
         families.push(family);
       }
     }
     return families;
-  }, [vehicles, region]);
+  }, [vehicles]);
 
-  // Reset filter if the active trim family no longer exists (e.g. region switch)
+  // Reset filter if the active trim family no longer exists
   const validTrim =
     activeTrim === ALL_TRIMS || trimFamilies.includes(activeTrim);
   if (!validTrim && activeTrim !== ALL_TRIMS) {
@@ -50,7 +46,7 @@ export function GenerationSectionInteractive({
   }
 
   const showFilter = trimFamilies.length > 1;
-  const isDefault = region === 'US' && activeTrim === ALL_TRIMS;
+  const isDefault = activeTrim === ALL_TRIMS;
 
   return (
     <div>
@@ -87,7 +83,7 @@ export function GenerationSectionInteractive({
         </div>
       )}
 
-      {/* Show server-rendered content when US + all trims, otherwise re-render */}
+      {/* Show server-rendered content when all trims, otherwise re-render */}
       {isDefault ? (
         children
       ) : (
@@ -95,7 +91,6 @@ export function GenerationSectionInteractive({
           generation={generation}
           vehicles={vehicles}
           modelName={modelName}
-          region={region}
           activeTrimFamily={activeTrim}
         />
       )}

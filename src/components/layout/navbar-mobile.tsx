@@ -3,7 +3,6 @@
 import LocaleSelector from '@/components/layout/locale-selector';
 import { ModeSwitcherHorizontal } from '@/components/layout/mode-switcher-horizontal';
 import Image from 'next/image';
-import { RegionToggle } from '@/components/layout/region-toggle';
 import { Button, buttonVariants } from '@/components/ui/button';
 import {
   Collapsible,
@@ -155,26 +154,12 @@ function MainMobileMenu({ userLoggedIn, onLinkClicked }: MainMobileMenuProps) {
   const t = useTranslations();
   const menuLinks = useNavbarLinks();
   const localePathname = useLocalePathname();
-  const showRegionToggle =
-    localePathname === '/models' ||
-    localePathname.startsWith('/models/') ||
-    localePathname === '/vehicles' ||
-    localePathname.startsWith('/vehicles/') ||
-    localePathname === '/compare' ||
-    localePathname.startsWith('/compare/');
-
   return (
     <div
       className="fixed w-full inset-0 z-50 mt-[64px] overflow-y-auto
       bg-background backdrop-blur-md animate-in fade-in-0"
     >
       <div className="size-full flex flex-col items-start space-y-4">
-        {showRegionToggle && (
-          <div className="w-full px-4">
-            <RegionToggle className="bg-background" />
-          </div>
-        )}
-
         {/* main menu */}
         <ul className="w-full px-4">
           {menuLinks?.map((item) => {

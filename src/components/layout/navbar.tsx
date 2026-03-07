@@ -1,7 +1,6 @@
 'use client';
 
 import { NavbarMobile } from '@/components/layout/navbar-mobile';
-import { RegionToggle } from '@/components/layout/region-toggle';
 import { useNavbarLinks } from '@/config/navbar-config';
 import { useScroll } from '@/hooks/use-scroll';
 import { LocaleLink, useLocalePathname } from '@/i18n/navigation';
@@ -62,7 +61,6 @@ export function Navbar({ scroll }: NavBarProps) {
               );
             })}
           </ul>
-          <RegionToggle />
         </div>
       </nav>
 

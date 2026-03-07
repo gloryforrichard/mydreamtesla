@@ -191,7 +191,6 @@ export const vehicle = pgTable('vehicle', {
 	modelId: integer('model_id').references(() => teslaModel.id).notNull(),
 	year: integer('year').notNull(),
 	trimName: varchar('trim_name', { length: 100 }).notNull(),
-	caTrimName: varchar('ca_trim_name', { length: 100 }),
 	driveType: varchar('drive_type', { length: 50 }).notNull(),
 
 	// Pricing
@@ -202,13 +201,10 @@ export const vehicle = pgTable('vehicle', {
 
 	// Performance
 	rangeEPA: integer('range_epa'),
-	caRangeEPAkm: integer('ca_range_epa_km'),
+	rangeKm: integer('range_km'),
 	acceleration060: numeric('acceleration_060'),
-	caAcceleration0100: numeric('ca_acceleration_0100'),
 	topSpeed: integer('top_speed'),
-	caTopSpeedKmh: integer('ca_top_speed_kmh'),
 	horsepower: integer('horsepower'),
-	caHorsepower: integer('ca_horsepower'),
 	torque: integer('torque'),
 	quarterMile: numeric('quarter_mile'),
 
@@ -216,7 +212,6 @@ export const vehicle = pgTable('vehicle', {
 	batteryCapacity: numeric('battery_capacity'),
 	batteryType: varchar('battery_type', { length: 50 }),
 	superchargerRateMax: integer('supercharger_rate_max'),
-	caSuperchargerRateMax: integer('ca_supercharger_rate_max'),
 	chargingTime1050: varchar('charging_time_10_50', { length: 50 }),
 	onboardCharger: numeric('onboard_charger'),
 	chargePort: varchar('charge_port', { length: 50 }),
@@ -260,7 +255,7 @@ export const vehicle = pgTable('vehicle', {
 
 	// Meta
 	isCurrentModel: boolean('is_current_model').default(true),
-	caAvailable: boolean('ca_available').default(true),
+	regionNote: varchar('region_note', { length: 50 }),
 	discontinuedDate: varchar('discontinued_date', { length: 20 }),
 	lastUpdated: timestamp('last_updated').defaultNow(),
 	createdAt: timestamp('created_at').defaultNow(),
