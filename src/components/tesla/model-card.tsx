@@ -12,7 +12,7 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
   return (
     <Link
       href={`/models/${model.slug}`}
-      className="group flex flex-col overflow-hidden rounded-sm border border-border/50 transition-colors hover:bg-muted/50"
+      className="group flex flex-col overflow-hidden rounded-sm bg-[#F5F2ED] transition-colors hover:bg-[#EDEAE4]"
     >
       <div className="flex aspect-[16/9] items-center justify-center overflow-hidden">
         <VehicleImage
@@ -20,7 +20,7 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
           alt={`Tesla ${model.name}`}
           width={1200}
           height={600}
-          className="h-full w-full object-contain p-4"
+          className="h-full w-full mix-blend-multiply object-contain p-4"
           fallbackClassName="flex h-full w-full items-center justify-center"
           fallbackLabel={model.name}
         />

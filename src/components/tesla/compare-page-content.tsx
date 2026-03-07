@@ -99,13 +99,13 @@ export function ComparePageContent({
               `/images/vehicles/${vehicle.slug}.png`;
             return (
               <div key={vehicle.id} className="px-4 text-center">
-                <div className="mx-auto mb-2.5 flex h-24 w-36 items-center justify-center overflow-hidden rounded-sm">
+                <div className="mx-auto mb-2.5 flex h-24 w-36 items-center justify-center overflow-hidden rounded-sm bg-[#F5F2ED]">
                   <VehicleImage
                     src={imageSrc}
                     alt={getDisplayTitle(vehicle, region)}
                     width={288}
                     height={192}
-                    className="h-full w-full object-contain"
+                    className="h-full w-full mix-blend-multiply object-contain"
                     fallbackClassName="flex h-full w-full items-center justify-center"
                     fallbackLabel={model?.name.replace('Model ', '') ?? '?'}
                   />

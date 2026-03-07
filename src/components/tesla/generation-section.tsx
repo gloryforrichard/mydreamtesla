@@ -120,13 +120,13 @@ export function GenerationSection({
       <div className="flex flex-col gap-6 lg:flex-row">
         {/* Image — stacks on top on mobile, left side on desktop */}
         <div className="flex-shrink-0 lg:sticky lg:top-24 lg:w-[40%] lg:self-start">
-          <div className="overflow-hidden rounded-sm">
+          <div className="overflow-hidden rounded-sm bg-[#F5F2ED]">
             <VehicleImage
               src={generation.image}
               alt={`Tesla ${modelName} ${generation.name}`}
               width={800}
               height={400}
-              className="h-auto w-full object-contain p-6"
+              className="h-auto w-full mix-blend-multiply object-contain p-6"
               fallbackClassName="flex aspect-[2/1] w-full items-center justify-center bg-gradient-to-br from-[#E8E5DF] to-[#D6D3CD]"
               fallbackLabel={modelName}
             />

@@ -131,13 +131,13 @@ export default async function VehicleDetailPage({ params }: Props) {
             <VehicleAngleViewer photos={anglePhotos} alt={vehicle.title} />
           </div>
         ) : (
-          <div className="mt-8 overflow-hidden rounded-sm">
+          <div className="mt-8 overflow-hidden rounded-sm bg-[#F5F2ED]">
             <VehicleImage
               src={vehicleImage}
               alt={vehicle.title}
               width={1000}
               height={500}
-              className="h-auto w-full object-contain p-6"
+              className="h-auto w-full mix-blend-multiply object-contain p-6"
               fallbackClassName="flex h-[280px] w-full items-center justify-center"
               fallbackLabel={String(vehicle.year)}
               priority

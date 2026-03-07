@@ -162,7 +162,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   alt={`Tesla ${item.model.name}`}
                   width={800}
                   height={480}
-                  className="h-auto w-full rounded-t-sm object-contain"
+                  className="h-auto w-full mix-blend-multiply rounded-t-sm object-contain"
                   fallbackClassName="flex h-[240px] w-full items-center justify-center rounded-t-sm bg-gradient-to-br from-[#E8E5DF] to-[#D6D3CD]"
                   fallbackLabel={item.model.name.replace('Model ', '')}
                 />
