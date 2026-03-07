@@ -85,6 +85,13 @@
       "when": 1772466213420,
       "tag": "0011_lazy_spacker_dave",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1741337600000,
+      "tag": "0012_remove_region",
+      "breakpoints": true
     }
   ]
 }
