@@ -90,7 +90,7 @@ export function NavbarMobile({
             alt="MyDreamTesla"
             width={200}
             height={52}
-            className="h-8 w-auto"
+            className="h-6 w-auto"
             priority
           />
         </LocaleLink>
@@ -169,38 +169,6 @@ function MainMobileMenu({ userLoggedIn, onLinkClicked }: MainMobileMenuProps) {
       bg-background backdrop-blur-md animate-in fade-in-0"
     >
       <div className="size-full flex flex-col items-start space-y-4">
-        {/* action buttons */}
-        {userLoggedIn ? null : (
-          <div className="w-full flex flex-col gap-4 px-4">
-            <LocaleLink
-              href={Routes.Login}
-              onClick={onLinkClicked}
-              className={cn(
-                buttonVariants({
-                  variant: 'outline',
-                  size: 'lg',
-                }),
-                'w-full'
-              )}
-            >
-              {t('Common.login')}
-            </LocaleLink>
-            <LocaleLink
-              href={Routes.Register}
-              className={cn(
-                buttonVariants({
-                  variant: 'default',
-                  size: 'lg',
-                }),
-                'w-full'
-              )}
-              onClick={onLinkClicked}
-            >
-              {t('Common.signUp')}
-            </LocaleLink>
-          </div>
-        )}
-
         {showRegionToggle && (
           <div className="w-full px-4">
             <RegionToggle className="bg-background" />

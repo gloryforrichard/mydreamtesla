@@ -26,7 +26,7 @@ export function VehicleAngleViewer({ photos, alt }: VehicleAngleViewerProps) {
     setActiveIndex((i) => (i + 1) % photos.length);
 
   return (
-    <div className="overflow-hidden rounded-sm bg-[#F5F2ED]">
+    <div className="overflow-hidden rounded-sm">
       <div className="relative flex items-center">
         {/* Left arrow */}
         <button
@@ -59,7 +59,7 @@ export function VehicleAngleViewer({ photos, alt }: VehicleAngleViewerProps) {
           alt={`${alt} — ${activePhoto.label}`}
           width={1000}
           height={500}
-          className="h-auto w-full animate-fade-in mix-blend-multiply object-contain p-6"
+          className="h-auto w-full animate-fade-in object-contain p-6"
           priority={activePhoto.angle === DEFAULT_ANGLE}
         />
 

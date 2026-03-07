@@ -31,6 +31,9 @@ const ANGLE_PHOTO_CONFIG: Record<
     'Refresh / Chrome Delete': '2021',
     Highland: '2025',
   },
+  'model-y': {
+    Original: '2021',
+  },
 };
 
 export interface AnglePhoto {

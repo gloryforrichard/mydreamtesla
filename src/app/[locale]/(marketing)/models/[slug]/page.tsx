@@ -146,13 +146,13 @@ export default async function ModelDetailPage({ params }: Props) {
           )}
 
           {/* Vehicle image */}
-          <div className="mt-10 overflow-hidden rounded-sm bg-[#F5F2ED]">
+          <div className="mt-10 overflow-hidden rounded-sm">
             <VehicleImage
               src={getModelDetailImage(model.slug)}
               alt={`Tesla ${model.name}`}
               width={1200}
               height={600}
-              className="h-auto w-full mix-blend-multiply object-contain p-8"
+              className="h-auto w-full object-contain p-8"
               fallbackClassName="flex h-[280px] w-full items-center justify-center"
               fallbackLabel={model.name}
               priority

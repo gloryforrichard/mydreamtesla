@@ -42,7 +42,7 @@ export function RegionToggle({ className }: RegionToggleProps) {
           region === 'US' ? 'bg-[#1A1A1A] text-white' : 'text-[#999999]'
         )}
       >
-        US
+        🇺🇸 US
       </button>
       <button
         type="button"
@@ -53,7 +53,7 @@ export function RegionToggle({ className }: RegionToggleProps) {
           region === 'CA' ? 'bg-[#1A1A1A] text-white' : 'text-[#999999]'
         )}
       >
-        CA
+        🇨🇦 CA
       </button>
     </fieldset>
   );

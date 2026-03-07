@@ -11,6 +11,7 @@ import {
   type Vehicle,
 } from '@/lib/vehicle-utils';
 import { getVehicleGeneration } from '@/lib/vehicle-generations';
+import { getAnglePhotos, DEFAULT_ANGLE } from '@/lib/vehicle-angles';
 import { VehicleImage } from './vehicle-image';
 import { ComparisonTable } from './comparison-table';
 
@@ -86,24 +87,28 @@ export function ComparePageContent({
             const generation = model
               ? getVehicleGeneration(model.slug, vehicle.year)
               : null;
+            const anglePhotos = model
+              ? getAnglePhotos(model.slug, vehicle.year)
+              : null;
+            const defaultAngle = anglePhotos?.find(
+              (p) => p.angle === DEFAULT_ANGLE,
+            );
+            const imageSrc =
+              defaultAngle?.src ??
+              generation?.image ??
+              `/images/vehicles/${vehicle.slug}.png`;
             return (
               <div key={vehicle.id} className="px-4 text-center">
-                <div className="mx-auto mb-2.5 flex h-16 w-24 items-center justify-center overflow-hidden rounded-sm bg-[#F5F2ED]">
-                  {generation?.image ? (
-                    <VehicleImage
-                      src={generation.image}
-                      alt={getDisplayTitle(vehicle, region)}
-                      width={192}
-                      height={128}
-                      className="h-full w-full mix-blend-multiply object-contain p-1"
-                      fallbackClassName="flex h-full w-full items-center justify-center"
-                      fallbackLabel={model?.name.replace('Model ', '') ?? '?'}
-                    />
-                  ) : (
-                    <span className="text-2xl font-bold text-[#CCCCCC]">
-                      {model?.name.replace('Model ', '') ?? '?'}
-                    </span>
-                  )}
+                <div className="mx-auto mb-2.5 flex h-24 w-36 items-center justify-center overflow-hidden rounded-sm">
+                  <VehicleImage
+                    src={imageSrc}
+                    alt={getDisplayTitle(vehicle, region)}
+                    width={288}
+                    height={192}
+                    className="h-full w-full object-contain"
+                    fallbackClassName="flex h-full w-full items-center justify-center"
+                    fallbackLabel={model?.name.replace('Model ', '') ?? '?'}
+                  />
                 </div>
                 <div className="text-[15px] font-semibold tracking-[-0.3px]">
                   {getDisplayTitle(vehicle, region)}
