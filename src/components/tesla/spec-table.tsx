@@ -148,13 +148,13 @@ export function SpecTable({ vehicle }: SpecTableProps) {
     <div className="space-y-8">
       {sections.map((section) => (
         <div key={section.title}>
-          <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wider text-[#999999]">{section.title}</h3>
-          <div className="overflow-hidden rounded-sm border border-[#E5E2DC]">
+          <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">{section.title}</h3>
+          <div className="overflow-hidden rounded-sm border border-border">
             {section.rows.map((row, i) => (
               <div
                 key={row.label}
                 className={`flex items-center justify-between px-4 py-3 ${
-                  i % 2 === 0 ? 'bg-background' : 'bg-[#F5F2ED]'
+                  i % 2 === 0 ? 'bg-background' : 'bg-card'
                 }`}
               >
                 <span className="text-sm text-muted-foreground">

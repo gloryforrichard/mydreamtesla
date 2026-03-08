@@ -38,6 +38,12 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  /* Tesla product tokens */
+  --color-secondary-text: var(--secondary-text);
+  --color-card-hover: var(--card-hover);
+  --color-border-muted: var(--border-muted);
+  --color-success: var(--success);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -178,6 +184,15 @@
   --color-color-3: var(--color-3);
   --color-color-2: var(--color-2);
   --color-color-1: var(--color-1);
+  --animate-fade-in: fade-in 0.3s ease-in-out;
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
   --animate-rippling: rippling var(--duration) ease-out;
   @keyframes rippling {
     0% {
@@ -266,6 +281,10 @@
   --color-3: oklch(69.6% 0.165 251);
   --color-4: oklch(80.2% 0.134 225);
   --color-5: oklch(90.7% 0.231 133);
+  --secondary-text: oklch(0.55 0 0);
+  --card-hover: oklch(0.935 0.008 80);
+  --border-muted: oklch(0.83 0 0);
+  --success: oklch(0.50 0.17 150);
 }
 
 .dark {
@@ -323,6 +342,10 @@
   --color-3: oklch(69.6% 0.165 251);
   --color-4: oklch(80.2% 0.134 225);
   --color-5: oklch(90.7% 0.231 133);
+  --secondary-text: oklch(0.60 0 0);
+  --card-hover: oklch(0.25 0.005 80);
+  --border-muted: oklch(0.35 0 0);
+  --success: oklch(0.60 0.17 150);
 }
 
 /*

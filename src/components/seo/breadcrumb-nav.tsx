@@ -25,7 +25,7 @@ export function BreadcrumbNav({ items }: BreadcrumbNavProps) {
     <>
       <JsonLd data={buildBreadcrumbJsonLd(jsonLdItems)} />
       <nav aria-label="Breadcrumb" className="mb-6 text-sm">
-        <ol className="flex items-center gap-1.5 text-[#999999]">
+        <ol className="flex items-center gap-1.5 text-muted-foreground">
           {items.map((item, i) => {
             const isLast = i === items.length - 1;
             return (
@@ -33,7 +33,7 @@ export function BreadcrumbNav({ items }: BreadcrumbNavProps) {
                 {i > 0 && (
                   <span
                     aria-hidden="true"
-                    className="text-[#CCCCCC]"
+                    className="text-border-muted"
                   >
                     ›
                   </span>
@@ -41,14 +41,14 @@ export function BreadcrumbNav({ items }: BreadcrumbNavProps) {
                 {isLast || !item.href ? (
                   <span
                     aria-current={isLast ? 'page' : undefined}
-                    className={isLast ? 'text-[#777777]' : ''}
+                    className={isLast ? 'text-secondary-text' : ''}
                   >
                     {item.label}
                   </span>
                 ) : (
                   <Link
                     href={item.href}
-                    className="transition-colors hover:text-[#1A1A1A] hover:underline"
+                    className="transition-colors hover:text-foreground hover:underline"
                   >
                     {item.label}
                   </Link>

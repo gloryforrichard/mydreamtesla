@@ -45,7 +45,7 @@ export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <div className="rounded-sm bg-white p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+      <div className="rounded-sm bg-background p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <VehicleSelector
             title="Vehicle 1"
@@ -70,7 +70,7 @@ export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
           type="button"
           onClick={handleCompare}
           disabled={!canCompare}
-          className="mt-6 w-full rounded-sm bg-[#1A1A1A] px-8 py-3.5 text-[15px] font-medium text-white transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"
+          className="mt-6 w-full rounded-sm bg-foreground px-8 py-3.5 text-[15px] font-medium text-background transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"
         >
           Compare ›
         </button>
@@ -125,7 +125,7 @@ function VehicleSelector({
 
   return (
     <fieldset className="space-y-3">
-      <legend className="mb-1 block text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
+      <legend className="mb-1 block text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
         {title}
       </legend>
 
@@ -216,7 +216,7 @@ function SelectField({
     <div>
       <label
         htmlFor={selectId}
-        className="mb-1.5 block text-[11px] font-medium text-[#777777]"
+        className="mb-1.5 block text-[11px] font-medium text-secondary-text"
       >
         {label}
       </label>
@@ -225,7 +225,7 @@ function SelectField({
         value={value}
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full appearance-none rounded-sm border border-[#E5E2DC] bg-[#F5F2ED] px-4 py-3 text-[15px] text-[#1A1A1A] outline-none transition-colors focus:border-[#1A1A1A] disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full appearance-none rounded-sm border border-border bg-card px-4 py-3 text-[15px] text-foreground outline-none transition-colors focus:border-foreground disabled:cursor-not-allowed disabled:opacity-50"
       >
         {children}
       </select>

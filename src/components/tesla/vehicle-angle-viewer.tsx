@@ -26,13 +26,13 @@ export function VehicleAngleViewer({ photos, alt }: VehicleAngleViewerProps) {
     setActiveIndex((i) => (i + 1) % photos.length);
 
   return (
-    <div className="overflow-hidden rounded-sm bg-[#F5F2ED]">
+    <div className="overflow-hidden rounded-sm bg-card">
       <div className="relative flex items-center">
         {/* Left arrow */}
         <button
           type="button"
           onClick={prev}
-          className="absolute left-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/70 text-[#1A1A1A] shadow-sm backdrop-blur-sm transition-colors hover:bg-white sm:left-4 sm:h-10 sm:w-10"
+          className="absolute left-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-background/70 text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background sm:left-4 sm:h-10 sm:w-10"
           aria-label="Previous angle"
         >
           <svg
@@ -59,7 +59,7 @@ export function VehicleAngleViewer({ photos, alt }: VehicleAngleViewerProps) {
           alt={`${alt} — ${activePhoto.label}`}
           width={1000}
           height={500}
-          className="h-auto w-full animate-fade-in mix-blend-multiply object-contain p-6"
+          className="h-auto w-full animate-fade-in mix-blend-multiply object-contain p-6 dark:mix-blend-normal"
           priority={activePhoto.angle === DEFAULT_ANGLE}
         />
 
@@ -67,7 +67,7 @@ export function VehicleAngleViewer({ photos, alt }: VehicleAngleViewerProps) {
         <button
           type="button"
           onClick={next}
-          className="absolute right-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/70 text-[#1A1A1A] shadow-sm backdrop-blur-sm transition-colors hover:bg-white sm:right-4 sm:h-10 sm:w-10"
+          className="absolute right-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-background/70 text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background sm:right-4 sm:h-10 sm:w-10"
           aria-label="Next angle"
         >
           <svg

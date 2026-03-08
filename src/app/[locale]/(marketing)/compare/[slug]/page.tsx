@@ -81,18 +81,18 @@ export default async function ComparePage({ params }: Props) {
 
       {/* Hero */}
       <header className="mx-auto max-w-[980px] px-5 pb-12 text-center">
-        <h1 className="font-display text-[48px] font-bold leading-[1.08] tracking-[-2.5px] text-[#1A1A1A]">
+        <h1 className="font-display text-[36px] font-bold leading-[1.08] tracking-[-2.5px] text-foreground sm:text-[48px]">
           {vehicles.map((v, i) => (
             <span key={v.id}>
               {v.title}
               {i < vehicles.length - 1 && <br />}
               {i < vehicles.length - 1 && (
-                <span className="text-[#999999]">vs </span>
+                <span className="text-muted-foreground">vs </span>
               )}
             </span>
           ))}
         </h1>
-        <p className="mx-auto mt-3 max-w-[560px] text-[19px] font-light leading-[1.4] text-[#777777]">
+        <p className="mx-auto mt-3 max-w-[560px] text-[17px] font-light leading-[1.4] text-secondary-text sm:text-[19px]">
           Side-by-side specs, pricing, and range compared — find the Tesla that
           fits your life.
         </p>
@@ -105,10 +105,10 @@ export default async function ComparePage({ params }: Props) {
         className="mx-auto max-w-[980px] px-5 py-20"
         aria-label="Related comparisons"
       >
-        <h2 className="font-display text-[32px] font-bold tracking-[-1.5px] text-[#1A1A1A]">
+        <h2 className="font-display text-[28px] font-bold tracking-[-1.5px] text-foreground sm:text-[32px]">
           More comparisons.
         </h2>
-        <p className="mt-2 text-[17px] font-light text-[#777777]">
+        <p className="mt-2 text-[17px] font-light text-secondary-text">
           Explore other head-to-head matchups across the Tesla lineup.
         </p>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -116,10 +116,10 @@ export default async function ComparePage({ params }: Props) {
             <Link
               key={v.id}
               href={`/vehicles/${v.slug}`}
-              className="flex items-center justify-between rounded-sm bg-[#F5F2ED] px-6 py-5 text-[14px] font-medium transition-colors hover:bg-[#EDEAE4]"
+              className="flex items-center justify-between rounded-sm bg-card px-6 py-5 text-[14px] font-medium transition-colors hover:bg-card-hover"
             >
               <span>View {v.title} details</span>
-              <span className="text-[#999999]">›</span>
+              <span className="text-muted-foreground">›</span>
             </Link>
           ))}
         </div>

@@ -35,19 +35,19 @@ export default async function CompareIndexPage() {
 
       {/* Hero */}
       <header className="mx-auto max-w-[980px] px-5 pb-16 pt-4 text-center">
-        <h1 className="font-display text-[48px] font-bold leading-[1.08] tracking-[-2.5px] text-[#1A1A1A]">
+        <h1 className="font-display text-[36px] font-bold leading-[1.08] tracking-[-2.5px] text-foreground sm:text-[48px]">
           Compare any Tesla.
         </h1>
-        <p className="mx-auto mt-3 max-w-[560px] text-[19px] font-light leading-[1.4] text-[#777777]">
+        <p className="mx-auto mt-3 max-w-[560px] text-[17px] font-light leading-[1.4] text-secondary-text sm:text-[19px]">
           Select two vehicles to see a detailed side-by-side breakdown of specs,
           range, performance, and pricing.
         </p>
       </header>
 
       {/* Comparison Builder */}
-      <section className="bg-[#F5F2ED] py-16">
+      <section className="bg-card py-16">
         <div className="mx-auto max-w-[980px] px-5">
-          <h2 className="mb-8 text-center font-display text-[28px] font-bold tracking-[-1px] text-[#1A1A1A]">
+          <h2 className="mb-8 text-center font-display text-[24px] font-bold tracking-[-1px] text-foreground sm:text-[28px]">
             Build your comparison
           </h2>
           <CompareBuilder models={models} vehicles={vehicles} />
@@ -56,10 +56,10 @@ export default async function CompareIndexPage() {
 
       {/* Popular Comparisons */}
       <section className="mx-auto max-w-[980px] px-5 py-20">
-        <h2 className="font-display text-[32px] font-bold tracking-[-1.5px] text-[#1A1A1A]">
+        <h2 className="font-display text-[28px] font-bold tracking-[-1.5px] text-foreground sm:text-[32px]">
           Popular comparisons.
         </h2>
-        <p className="mt-2 text-[17px] font-light text-[#777777]">
+        <p className="mt-2 text-[17px] font-light text-secondary-text">
           The matchups Tesla shoppers search for most.
         </p>
 
@@ -68,17 +68,17 @@ export default async function CompareIndexPage() {
             <Link
               key={c.slug}
               href={getCompareUrl(c.slug)}
-              className="group flex flex-col justify-between rounded-sm bg-[#F5F2ED] px-6 py-5 transition-colors hover:bg-[#EDEAE4]"
+              className="group flex flex-col justify-between rounded-sm bg-card px-6 py-5 transition-colors hover:bg-card-hover"
             >
               <div>
-                <div className="text-[17px] font-semibold tracking-[-0.3px] text-[#1A1A1A]">
+                <div className="text-[17px] font-semibold tracking-[-0.3px] text-foreground">
                   {c.label}
                 </div>
-                <p className="mt-1 text-[14px] font-light leading-[1.4] text-[#777777]">
+                <p className="mt-1 text-[14px] font-light leading-[1.4] text-secondary-text">
                   {c.description}
                 </p>
               </div>
-              <div className="mt-4 text-[14px] font-medium text-[#1A1A1A]">
+              <div className="mt-4 text-[14px] font-medium text-foreground">
                 Compare ›
               </div>
             </Link>

@@ -74,12 +74,12 @@ export default async function HomePage({ params }: HomePageProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
         <div className="relative z-10 px-4 py-36 sm:py-40">
           <p className="text-[17px] font-normal text-white/60">MyDreamTesla</p>
-          <h1 className="mt-2 font-display text-5xl font-bold leading-[1.05] tracking-[-3px] text-white sm:text-[64px]">
+          <h1 className="mt-2 font-display text-4xl font-bold leading-[1.05] tracking-[-3px] text-white sm:text-[64px]">
             Find Your
             <br />
             Perfect Tesla.
           </h1>
-          <p className="mx-auto mt-4 max-w-[500px] text-[21px] font-light leading-relaxed text-white/70">
+          <p className="mx-auto mt-4 max-w-[500px] text-lg font-light leading-relaxed text-white/70 sm:text-[21px]">
             Every model. Every year. Every spec.
             <br />
             Compared side by side.
@@ -87,7 +87,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="mt-8 flex items-center justify-center gap-4">
             <Link
               href="/models"
-              className="rounded-full bg-white px-7 py-3 text-[15px] font-medium text-[#1A1A1A] transition-colors hover:bg-white/90"
+              className="rounded-full bg-white px-7 py-3 text-[15px] font-medium text-black transition-colors hover:bg-white/90"
             >
               Browse Models
             </Link>
@@ -109,15 +109,15 @@ export default async function HomePage({ params }: HomePageProps) {
             <Link
               key={item.model.id}
               href={`/models/${item.model.slug}`}
-              className="flex min-h-[520px] flex-col items-center overflow-hidden rounded-sm bg-[#F5F2ED] px-10 pt-14 text-center"
+              className="flex min-h-[520px] flex-col items-center overflow-hidden rounded-sm bg-card px-10 pt-14 text-center"
             >
-              <p className="text-[14px] font-medium uppercase tracking-[0.5px] text-[#999999]">
+              <p className="text-[14px] font-medium uppercase tracking-[0.5px] text-muted-foreground">
                 {item.model.bodyType}
               </p>
-              <h2 className="mt-1 font-display text-[40px] font-bold tracking-[-1.5px] text-[#1A1A1A]">
+              <h2 className="mt-1 font-display text-[32px] font-bold tracking-[-1.5px] text-foreground sm:text-[40px]">
                 {item.model.name}
               </h2>
-              <p className="mt-2 text-[17px] font-light text-[#777777]">
+              <p className="mt-2 text-[17px] font-light text-secondary-text">
                 {item.model.tagline ?? 'Explore all trims.'}
               </p>
 
@@ -126,20 +126,20 @@ export default async function HomePage({ params }: HomePageProps) {
                 <div className="mt-4 flex gap-8">
                   {v.rangeEPA && (
                     <div>
-                      <div className="font-mono text-[16px] font-semibold text-[#1A1A1A]">
+                      <div className="font-mono text-[16px] font-semibold text-foreground">
                         {formatSpec(v.rangeEPA, 'mi')}
                       </div>
-                      <div className="mt-0.5 text-[11px] text-[#999999]">
+                      <div className="mt-0.5 text-[11px] text-muted-foreground">
                         Range
                       </div>
                     </div>
                   )}
                   {v.acceleration060 && (
                     <div>
-                      <div className="font-mono text-[16px] font-semibold text-[#1A1A1A]">
+                      <div className="font-mono text-[16px] font-semibold text-foreground">
                         {formatAcceleration(v.acceleration060)}
                       </div>
-                      <div className="mt-0.5 text-[11px] text-[#999999]">
+                      <div className="mt-0.5 text-[11px] text-muted-foreground">
                         0-60 mph
                       </div>
                     </div>
@@ -149,8 +149,8 @@ export default async function HomePage({ params }: HomePageProps) {
 
               {/* Tile links */}
               <div className="mt-4 flex gap-6">
-                <span className="text-[14px] text-[#1A1A1A]">Explore ›</span>
-                <span className="text-[14px] text-[#1A1A1A]">
+                <span className="text-[14px] text-foreground">Explore ›</span>
+                <span className="text-[14px] text-foreground">
                   Compare trims ›
                 </span>
               </div>
@@ -162,8 +162,8 @@ export default async function HomePage({ params }: HomePageProps) {
                   alt={`Tesla ${item.model.name}`}
                   width={800}
                   height={480}
-                  className="h-auto w-full mix-blend-multiply rounded-t-sm object-contain"
-                  fallbackClassName="flex h-[240px] w-full items-center justify-center rounded-t-sm bg-gradient-to-br from-[#E8E5DF] to-[#D6D3CD]"
+                  className="h-auto w-full mix-blend-multiply rounded-t-sm object-contain dark:mix-blend-normal"
+                  fallbackClassName="flex h-[240px] w-full items-center justify-center rounded-t-sm bg-gradient-to-br from-muted to-muted/70"
                   fallbackLabel={item.model.name.replace('Model ', '')}
                 />
               </div>
@@ -176,10 +176,10 @@ export default async function HomePage({ params }: HomePageProps) {
       <section className="px-4 py-20">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <h2 className="font-display text-[36px] font-bold tracking-[-1.5px] text-[#1A1A1A] sm:text-[42px]">
+            <h2 className="font-display text-[32px] font-bold tracking-[-1.5px] text-foreground sm:text-[42px]">
               Head-to-head comparisons
             </h2>
-            <p className="mt-2 text-[17px] font-light text-[#777777]">
+            <p className="mt-2 text-[17px] font-light text-secondary-text">
               The matchups people search for most.
             </p>
           </div>
@@ -188,15 +188,15 @@ export default async function HomePage({ params }: HomePageProps) {
               <Link
                 key={comp.slug}
                 href={getCompareUrl(comp.slug)}
-                className="group rounded-sm border border-[#E5E2DC] px-6 py-5 transition-colors hover:border-[#CCCCCC] hover:bg-[#FDFCF9]"
+                className="group rounded-sm border border-border px-6 py-5 transition-colors hover:border-border-muted hover:bg-background"
               >
-                <p className="text-[14px] font-semibold text-[#1A1A1A] group-hover:text-[#555555]">
+                <p className="text-[14px] font-semibold text-foreground group-hover:text-foreground/70">
                   {comp.label}
                 </p>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-[#999999]">
+                <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
                   {comp.description}
                 </p>
-                <p className="mt-3 text-[13px] font-medium text-[#777777] group-hover:text-[#1A1A1A]">
+                <p className="mt-3 text-[13px] font-medium text-secondary-text group-hover:text-foreground">
                   Compare ›
                 </p>
               </Link>
@@ -205,7 +205,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="mt-8 text-center">
             <Link
               href="/compare"
-              className="text-[14px] font-medium text-[#999999] transition-colors hover:text-[#1A1A1A]"
+              className="text-[14px] font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               View all comparisons ›
             </Link>
@@ -219,16 +219,16 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="mx-auto max-w-5xl">
             <div className="flex items-end justify-between">
               <div>
-                <h2 className="font-display text-[36px] font-bold tracking-[-1.5px] text-[#1A1A1A] sm:text-[42px]">
+                <h2 className="font-display text-[32px] font-bold tracking-[-1.5px] text-foreground sm:text-[42px]">
                   Latest from Our Blog
                 </h2>
-                <p className="mt-2 text-[17px] font-light text-[#777777]">
+                <p className="mt-2 text-[17px] font-light text-secondary-text">
                   Guides, comparisons, and Tesla news.
                 </p>
               </div>
               <Link
                 href="/blog"
-                className="hidden text-[14px] font-medium text-[#999999] transition-colors hover:text-[#1A1A1A] sm:block"
+                className="hidden text-[14px] font-medium text-muted-foreground transition-colors hover:text-foreground sm:block"
               >
                 View All &rarr;
               </Link>
@@ -238,7 +238,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 <Link
                   key={post.url}
                   href={`/blog/${post.slugs}`}
-                  className="group flex flex-col overflow-hidden rounded-sm bg-[#F5F2ED] transition-colors hover:bg-[#EDEAE4]"
+                  className="group flex flex-col overflow-hidden rounded-sm bg-card transition-colors hover:bg-card-hover"
                 >
                   {post.data.image && (
                     <div className="aspect-video w-full overflow-hidden">
@@ -252,22 +252,22 @@ export default async function HomePage({ params }: HomePageProps) {
                     </div>
                   )}
                   <div className="flex flex-1 flex-col p-5">
-                    <h3 className="text-[17px] font-semibold leading-snug text-[#1A1A1A] line-clamp-2">
+                    <h3 className="text-[17px] font-semibold leading-snug text-foreground line-clamp-2">
                       {post.data.title}
                     </h3>
                     {post.data.description && (
-                      <p className="mt-2 line-clamp-2 text-[14px] leading-relaxed text-[#777777]">
+                      <p className="mt-2 line-clamp-2 text-[14px] leading-relaxed text-secondary-text">
                         {post.data.description}
                       </p>
                     )}
                     <div className="mt-auto flex items-center justify-between pt-4">
                       <time
-                        className="text-[12px] text-[#999999]"
+                        className="text-[12px] text-muted-foreground"
                         dateTime={post.data.date}
                       >
                         {formatDate(new Date(post.data.date))}
                       </time>
-                      <span className="text-[13px] font-medium text-[#777777] group-hover:text-[#1A1A1A]">
+                      <span className="text-[13px] font-medium text-secondary-text group-hover:text-foreground">
                         Read More &rsaquo;
                       </span>
                     </div>
@@ -278,7 +278,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <div className="mt-8 text-center sm:hidden">
               <Link
                 href="/blog"
-                className="text-[14px] font-medium text-[#999999] transition-colors hover:text-[#1A1A1A]"
+                className="text-[14px] font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 View all posts &rarr;
               </Link>
@@ -288,8 +288,8 @@ export default async function HomePage({ params }: HomePageProps) {
       )}
 
       {/* Stats — compact inline strip */}
-      <section className="border-y border-[#E5E2DC] bg-[#FDFCF9]">
-        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center divide-x divide-[#E5E2DC] px-4">
+      <section className="border-y border-border bg-background">
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center divide-x divide-border px-4">
           {[
             { num: `${counts.modelCount}`, label: 'Models' },
             { num: `${counts.vehicleCount}+`, label: 'Trims' },
@@ -300,34 +300,34 @@ export default async function HomePage({ params }: HomePageProps) {
               key={stat.label}
               className="flex items-baseline gap-2 px-6 py-6 sm:px-8 sm:py-8"
             >
-              <span className="font-display text-[28px] font-bold tracking-[-1px] text-[#1A1A1A] sm:text-[32px]">
+              <span className="font-display text-[24px] font-bold tracking-[-1px] text-foreground sm:text-[32px]">
                 {stat.num}
               </span>
-              <span className="text-[13px] text-[#999999]">{stat.label}</span>
+              <span className="text-[13px] text-muted-foreground">{stat.label}</span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA — dark section */}
-      <section className="bg-[#1A1A1A] px-4 py-20 text-center">
-        <h2 className="font-display text-[36px] font-bold tracking-[-1.5px] text-white sm:text-[42px]">
+      {/* CTA — inverted section */}
+      <section className="bg-foreground px-4 py-20 text-center">
+        <h2 className="font-display text-[32px] font-bold tracking-[-1.5px] text-background sm:text-[42px]">
           Ready to find yours?
         </h2>
-        <p className="mx-auto mt-3 max-w-md text-[17px] font-light text-white/50">
+        <p className="mx-auto mt-3 max-w-md text-[17px] font-light text-background/50">
           Browse every Tesla model, compare specs side by side, and find the one
           that fits your life.
         </p>
         <div className="mt-8 flex items-center justify-center gap-4">
           <Link
             href="/models"
-            className="rounded-full bg-white px-7 py-3 text-[15px] font-medium text-[#1A1A1A] transition-colors hover:bg-white/90"
+            className="rounded-full bg-background px-7 py-3 text-[15px] font-medium text-foreground transition-colors hover:bg-background/90"
           >
             Browse Models
           </Link>
           <Link
             href="/compare"
-            className="rounded-full border border-white/30 px-7 py-3 text-[15px] font-medium text-white transition-colors hover:border-white/60 hover:bg-white/10"
+            className="rounded-full border border-background/30 px-7 py-3 text-[15px] font-medium text-background transition-colors hover:border-background/60 hover:bg-background/10"
           >
             Compare ›
           </Link>

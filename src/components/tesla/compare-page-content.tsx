@@ -28,7 +28,7 @@ export function ComparePageContent({
 
   return (
     <>
-      <div className="sticky top-12 z-40 border-b border-[#E5E2DC] bg-[#FDFCF9]/90 backdrop-blur-[20px]">
+      <div className="sticky top-12 z-40 border-b border-border bg-background/90 backdrop-blur-[20px]">
         <div
           className="mx-auto max-w-[980px] px-5 py-4"
           style={{
@@ -54,13 +54,13 @@ export function ComparePageContent({
               `/images/vehicles/${vehicle.slug}.png`;
             return (
               <div key={vehicle.id} className="px-4 text-center">
-                <div className="mx-auto mb-2.5 flex h-24 w-36 items-center justify-center overflow-hidden rounded-sm bg-[#F5F2ED]">
+                <div className="mx-auto mb-2.5 flex h-24 w-36 items-center justify-center overflow-hidden rounded-sm bg-card">
                   <VehicleImage
                     src={imageSrc}
                     alt={vehicle.title}
                     width={288}
                     height={192}
-                    className="h-full w-full mix-blend-multiply object-contain"
+                    className="h-full w-full mix-blend-multiply object-contain dark:mix-blend-normal"
                     fallbackClassName="flex h-full w-full items-center justify-center"
                     fallbackLabel={model?.name.replace('Model ', '') ?? '?'}
                   />
@@ -78,43 +78,43 @@ export function ComparePageContent({
         <ComparisonTable vehicles={vehicles} />
       </div>
 
-      <section className="bg-[#F5F2ED] py-20" aria-label="Comparison verdict">
+      <section className="bg-card py-20" aria-label="Comparison verdict">
         <div className="mx-auto max-w-[980px] px-5 text-center">
-          <h2 className="font-display text-[40px] font-bold tracking-[-2px] text-[#1A1A1A]">
+          <h2 className="font-display text-[40px] font-bold tracking-[-2px] text-foreground sm:text-[32px] md:text-[40px]">
             Which should you buy?
           </h2>
-          <p className="mt-2 text-[17px] font-light text-[#777777]">
+          <p className="mt-2 text-[17px] font-light text-secondary-text">
             How they compare on the dimensions that matter most.
           </p>
 
           <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-3">
-            <div className="rounded-sm bg-white p-8 text-center">
-              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
+            <div className="rounded-sm bg-background p-8 text-center">
+              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
                 Best Range
               </div>
-              <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+              <div className="text-[20px] font-bold tracking-[-0.5px] text-foreground">
                 {bestRange.title}
               </div>
-              <div className="mt-1 text-[13px] text-[#777777]">
+              <div className="mt-1 text-[13px] text-secondary-text">
                 {formatSpec(bestRange.rangeKm, 'km')}
               </div>
             </div>
-            <div className="rounded-sm bg-white p-8 text-center">
-              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
+            <div className="rounded-sm bg-background p-8 text-center">
+              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
                 Most Powerful
               </div>
-              <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+              <div className="text-[20px] font-bold tracking-[-0.5px] text-foreground">
                 {bestPower.title}
               </div>
-              <div className="mt-1 text-[13px] text-[#777777]">
+              <div className="mt-1 text-[13px] text-secondary-text">
                 {formatSpec(bestPower.horsepower, 'hp')}
               </div>
             </div>
-            <div className="rounded-sm bg-white p-8 text-center">
-              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
+            <div className="rounded-sm bg-background p-8 text-center">
+              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
                 Best Value
               </div>
-              <div className="text-[20px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+              <div className="text-[20px] font-bold tracking-[-0.5px] text-foreground">
                 {bestValue.title}
               </div>
             </div>

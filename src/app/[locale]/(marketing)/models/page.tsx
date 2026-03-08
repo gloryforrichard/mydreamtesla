@@ -32,21 +32,21 @@ export default async function ModelsPage() {
       )}
 
       <header className="mb-12 text-center">
-        <h1 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1A1A1A] sm:text-[48px]">
+        <h1 className="font-display text-[32px] font-bold leading-[1.05] tracking-[-1.5px] text-foreground sm:text-[40px] md:text-[48px]">
           All Tesla Models
         </h1>
-        <p className="mt-4 text-[21px] font-light text-[#777777]">
+        <p className="mt-4 text-lg font-light text-secondary-text sm:text-[21px]">
           Explore every Tesla vehicle. Compare specs across all model years and
           trims.
         </p>
-        <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-[#999999]">
+        <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
           Browse all Tesla cars from the affordable Model 3 sedan to the
           flagship Model S Plaid. Compare Tesla models by range, performance,
           and price to find the right EV for you.
         </p>
         <a
           href="/models/compare-all"
-          className="mt-4 inline-block text-[15px] font-medium text-[#3B82F6] hover:underline"
+          className="mt-4 inline-block text-[15px] font-medium text-blue-500 hover:underline dark:text-blue-400"
         >
           Compare all Tesla models side by side &rarr;
         </a>
@@ -55,7 +55,7 @@ export default async function ModelsPage() {
       <ModelsList models={models} vehicles={vehicles} />
 
       {models.length === 0 && (
-        <div className="py-20 text-center text-[#999999]">
+        <div className="py-20 text-center text-muted-foreground">
           <p>No models available yet. Check back soon.</p>
         </div>
       )}

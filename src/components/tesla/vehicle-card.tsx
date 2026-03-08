@@ -11,7 +11,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
   return (
     <Link
       href={`/vehicles/${vehicle.slug}`}
-      className="group flex flex-col overflow-hidden rounded-sm bg-[#F5F2ED] transition-colors hover:bg-[#EDEAE4]"
+      className="group flex flex-col overflow-hidden rounded-sm bg-card transition-colors hover:bg-card-hover"
     >
       <div className="flex aspect-[16/10] items-center justify-center overflow-hidden">
         <VehicleImage
@@ -25,20 +25,20 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
         />
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-xs font-medium uppercase tracking-wider text-[#999999]">
+        <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
           {vehicle.year} · {vehicle.driveType}
         </p>
-        <h3 className="mt-1 text-lg font-semibold text-[#1A1A1A]">
+        <h3 className="mt-1 text-lg font-semibold text-foreground">
           {vehicle.trimName}
         </h3>
-        <div className="mt-4 flex items-center gap-6 border-t border-[#E5E2DC] pt-4 text-xs text-[#999999]">
-          <span className="font-mono font-medium text-[#1A1A1A]">
+        <div className="mt-4 flex items-center gap-6 border-t border-border pt-4 text-xs text-muted-foreground">
+          <span className="font-mono font-medium text-foreground">
             {formatSpec(vehicle.rangeKm, 'km')}
           </span>
-          <span className="font-mono font-medium text-[#1A1A1A]">
+          <span className="font-mono font-medium text-foreground">
             {vehicle.acceleration060 ? `${vehicle.acceleration060}s` : 'N/A'}
           </span>
-          <span className="font-mono font-medium text-[#1A1A1A]">
+          <span className="font-mono font-medium text-foreground">
             {formatSpec(vehicle.horsepower, 'hp')}
           </span>
         </div>

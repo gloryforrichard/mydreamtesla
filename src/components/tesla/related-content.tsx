@@ -24,21 +24,21 @@ export function RelatedContent({
 
   return (
     <section className="py-16" aria-label="Related content">
-      <h2 className="font-display text-[32px] font-bold tracking-[-1.5px] text-[#1A1A1A]">
+      <h2 className="font-display text-[32px] font-bold tracking-[-1.5px] text-foreground sm:text-[28px] md:text-[32px]">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-2 text-[17px] font-light text-[#777777]">{subtitle}</p>
+        <p className="mt-2 text-[17px] font-light text-secondary-text">{subtitle}</p>
       )}
       <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="flex items-center justify-between rounded-sm bg-[#F5F2ED] px-6 py-5 text-[14px] font-medium text-[#1A1A1A] transition-colors hover:bg-[#EDEAE4]"
+            className="flex items-center justify-between rounded-sm bg-card px-6 py-5 text-[14px] font-medium text-foreground transition-colors hover:bg-card-hover"
           >
             <span>{item.label}</span>
-            <span className="text-[#999999]">›</span>
+            <span className="text-muted-foreground">›</span>
           </Link>
         ))}
       </div>

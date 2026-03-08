@@ -91,14 +91,14 @@ export function GenerationSection({
   return (
     <section className="mb-12">
       {/* Generation header */}
-      <h2 className="mb-1 font-display text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+      <h2 className="mb-1 font-display text-[28px] font-bold tracking-[-0.5px] text-foreground sm:text-[24px] md:text-[28px]">
         {generation.name}{' '}
-        <span className="text-[22px] font-normal text-[#999999]">
+        <span className="text-[22px] font-normal text-muted-foreground sm:text-[18px] md:text-[22px]">
           ({formatYearRange(generation.yearStart, generation.yearEnd)})
         </span>
       </h2>
       {generation.description && (
-        <p className="mb-6 max-w-3xl text-[14px] leading-relaxed text-[#777777]">
+        <p className="mb-6 max-w-3xl text-[14px] leading-relaxed text-secondary-text">
           {generation.description}
         </p>
       )}
@@ -107,14 +107,14 @@ export function GenerationSection({
       <div className="flex flex-col gap-6 lg:flex-row">
         {/* Image — stacks on top on mobile, left side on desktop */}
         <div className="flex-shrink-0 lg:sticky lg:top-24 lg:w-[40%] lg:self-start">
-          <div className="overflow-hidden rounded-sm bg-[#F5F2ED]">
+          <div className="overflow-hidden rounded-sm bg-card">
             <VehicleImage
               src={generation.image}
               alt={`Tesla ${modelName} ${generation.name}`}
               width={800}
               height={400}
-              className="h-auto w-full mix-blend-multiply object-contain p-6"
-              fallbackClassName="flex aspect-[2/1] w-full items-center justify-center bg-gradient-to-br from-[#E8E5DF] to-[#D6D3CD]"
+              className="h-auto w-full mix-blend-multiply object-contain p-6 dark:mix-blend-normal"
+              fallbackClassName="flex aspect-[2/1] w-full items-center justify-center bg-gradient-to-br from-muted to-muted/70"
               fallbackLabel={modelName}
             />
           </div>
@@ -125,7 +125,7 @@ export function GenerationSection({
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-[#E5E2DC] text-xs font-medium uppercase tracking-wider text-[#999999]">
+                <tr className="border-b border-border text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   <th className="py-3 pr-3 font-medium">Year</th>
                   <th className="px-3 py-3 font-medium">Trim</th>
                   <th className="hidden px-3 py-3 font-medium lg:table-cell">Drive</th>
@@ -141,49 +141,49 @@ export function GenerationSection({
                 {filteredVehicles.map((vehicle) => (
                   <tr
                     key={vehicle.id}
-                    className="group border-b border-[#F0EDE8] transition-colors hover:bg-[#F9F7F4]"
+                    className="group border-b border-border/50 transition-colors hover:bg-muted/50"
                   >
-                    <td className="py-3 pr-3 font-mono text-[13px] text-[#777777]">
+                    <td className="py-3 pr-3 font-mono text-[13px] text-secondary-text">
                       {vehicle.year}
                     </td>
                     <td className="px-3 py-3">
                       <div className="flex items-center gap-2">
                         <Link
                           href={`/vehicles/${vehicle.slug}`}
-                          className="font-medium text-[#1A1A1A] transition-colors hover:text-[#555555]"
+                          className="font-medium text-foreground transition-colors hover:text-foreground/70"
                         >
                           {vehicle.trimName}
                         </Link>
                         {vehicle.isCurrentModel && (
-                          <span className="inline-flex items-center rounded-full bg-[#E8F5E9] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#2E7D32]">
+                          <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-green-700 dark:bg-green-950 dark:text-green-400">
                             Current
                           </span>
                         )}
                         {vehicle.regionNote && (
-                          <span className="inline-flex items-center rounded-full bg-[#FFF3E0] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#E65100]">
+                          <span className="inline-flex items-center rounded-full bg-orange-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-orange-700 dark:bg-orange-950 dark:text-orange-400">
                             {vehicle.regionNote}
                           </span>
                         )}
                       </div>
                     </td>
-                    <td className="hidden px-3 py-3 text-[13px] text-[#777777] lg:table-cell">
+                    <td className="hidden px-3 py-3 text-[13px] text-secondary-text lg:table-cell">
                       {vehicle.driveType || 'N/A'}
                     </td>
-                    <td className="px-3 py-3 font-mono text-[13px] text-[#1A1A1A]">
+                    <td className="px-3 py-3 font-mono text-[13px] text-foreground">
                       {formatSpec(vehicle.rangeKm, 'km')}
                     </td>
-                    <td className="px-3 py-3 font-mono text-[13px] text-[#1A1A1A]">
+                    <td className="px-3 py-3 font-mono text-[13px] text-foreground">
                       {vehicle.acceleration060
                         ? `${vehicle.acceleration060}s`
                         : 'N/A'}
                     </td>
-                    <td className="hidden px-3 py-3 font-mono text-[13px] text-[#1A1A1A] lg:table-cell">
+                    <td className="hidden px-3 py-3 font-mono text-[13px] text-foreground lg:table-cell">
                       {formatSpec(vehicle.horsepower, 'hp')}
                     </td>
                     <td className="py-3 pl-3">
                       <Link
                         href={`/vehicles/${vehicle.slug}`}
-                        className="inline-flex items-center text-[#CCCCCC] transition-colors group-hover:text-[#999999]"
+                        className="inline-flex items-center text-border-muted transition-colors group-hover:text-muted-foreground"
                         aria-label={`View ${vehicle.title} details`}
                       >
                         <ChevronRight className="h-4 w-4" />

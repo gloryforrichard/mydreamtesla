@@ -115,25 +115,24 @@ export default async function VehicleDetailPage({ params }: Props) {
 
       {/* Hero */}
       <header className="mb-12 mt-4">
-        <p className="text-[14px] font-medium uppercase tracking-[0.5px] text-[#999999]">
+        <p className="text-[14px] font-medium uppercase tracking-[0.5px] text-muted-foreground">
           {vehicle.year} · {vehicle.driveType}
         </p>
-        <h1 className="mt-2 font-display text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1A1A1A] sm:text-[48px]">
+        <h1 className="mt-2 font-display text-[32px] font-bold leading-[1.05] tracking-[-1.5px] text-foreground sm:text-[40px] md:text-[48px]">
           {vehicle.title}
         </h1>
-        {/* Price hidden for now */}
         {anglePhotos ? (
           <div className="mt-8">
             <VehicleAngleViewer photos={anglePhotos} alt={vehicle.title} />
           </div>
         ) : (
-          <div className="mt-8 overflow-hidden rounded-sm bg-[#F5F2ED]">
+          <div className="mt-8 overflow-hidden rounded-sm bg-card">
             <VehicleImage
               src={vehicleImage}
               alt={vehicle.title}
               width={1000}
               height={500}
-              className="h-auto w-full mix-blend-multiply object-contain p-6"
+              className="h-auto w-full mix-blend-multiply object-contain p-6 dark:mix-blend-normal"
               fallbackClassName="flex h-[280px] w-full items-center justify-center"
               fallbackLabel={String(vehicle.year)}
               priority
@@ -144,7 +143,7 @@ export default async function VehicleDetailPage({ params }: Props) {
 
       {/* Key Specs */}
       <section className="mb-12">
-        <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+        <h2 className="mb-6 text-[24px] font-bold tracking-[-0.5px] text-foreground sm:text-[28px]">
           Key Specifications
         </h2>
         <KeySpecsGrid vehicle={vehicle} />
@@ -153,11 +152,11 @@ export default async function VehicleDetailPage({ params }: Props) {
       {/* What's New */}
       {vehicle.keyChangesFromPriorYear && (
         <section className="mb-12">
-          <h2 className="mb-4 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+          <h2 className="mb-4 text-[24px] font-bold tracking-[-0.5px] text-foreground sm:text-[28px]">
             What&apos;s New
           </h2>
-          <div className="rounded-sm bg-[#F5F2ED] p-6">
-            <p className="text-[15px] leading-relaxed text-[#1A1A1A]">
+          <div className="rounded-sm bg-card p-6">
+            <p className="text-[15px] leading-relaxed text-foreground">
               {vehicle.keyChangesFromPriorYear}
             </p>
           </div>
@@ -166,7 +165,7 @@ export default async function VehicleDetailPage({ params }: Props) {
 
       {/* Full Specs */}
       <section className="mb-12">
-        <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+        <h2 className="mb-6 text-[24px] font-bold tracking-[-0.5px] text-foreground sm:text-[28px]">
           Full Specifications
         </h2>
         <SpecTable vehicle={vehicle} />
@@ -175,7 +174,7 @@ export default async function VehicleDetailPage({ params }: Props) {
       {/* Pros & Cons */}
       {vehicle.prosAndCons && (
         <section className="mb-12">
-          <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+          <h2 className="mb-6 text-[24px] font-bold tracking-[-0.5px] text-foreground sm:text-[28px]">
             Pros & Cons
           </h2>
           <ProsAndCons prosAndCons={vehicle.prosAndCons} />
@@ -187,22 +186,22 @@ export default async function VehicleDetailPage({ params }: Props) {
       {/* FAQ Section */}
       {faqs && faqs.length > 0 && (
         <section className="mb-12">
-          <h2 className="mb-6 text-[28px] font-bold tracking-[-0.5px] text-[#1A1A1A]">
+          <h2 className="mb-6 text-[24px] font-bold tracking-[-0.5px] text-foreground sm:text-[28px]">
             Frequently Asked Questions
           </h2>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
               <details
                 key={i}
-                className="group rounded-sm border border-[#E5E2DC]"
+                className="group rounded-sm border border-border"
               >
-                <summary className="flex cursor-pointer items-center justify-between p-5 text-[15px] font-medium text-[#1A1A1A] [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer items-center justify-between p-5 text-[15px] font-medium text-foreground [&::-webkit-details-marker]:hidden">
                   <span>{faq.question}</span>
-                  <span className="ml-4 text-[#999999] transition-transform group-open:rotate-45">
+                  <span className="ml-4 text-muted-foreground transition-transform group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <div className="px-5 pb-5 text-[15px] leading-relaxed text-[#777777]">
+                <div className="px-5 pb-5 text-[15px] leading-relaxed text-secondary-text">
                   {faq.answer}
                 </div>
               </details>

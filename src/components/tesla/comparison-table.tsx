@@ -62,7 +62,7 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
           className="mb-8"
           aria-label={`${groupName} specifications`}
         >
-          <h2 className="border-b border-[#E5E2DC] pb-2.5 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-[#999999]">
+          <h2 className="border-b border-border pb-2.5 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
             {groupName}
           </h2>
           {specs.map((spec) => {
@@ -84,12 +84,12 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
             return (
               <div
                 key={spec.id}
-                className="grid border-b border-[#E5E2DC]/50"
+                className="grid border-b border-border/50"
                 style={{
                   gridTemplateColumns: `180px repeat(${vehicles.length}, 1fr)`,
                 }}
               >
-                <div className="flex items-center py-3 text-[13px] font-normal text-[#777777]">
+                <div className="flex items-center py-3 text-[13px] font-normal text-secondary-text">
                   {spec.label}
                 </div>
                 {vehicles.map((v, i) => {
@@ -102,11 +102,11 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
                       key={v.id}
                       className={`flex items-center justify-center gap-1.5 px-4 py-3 text-center text-[14px] ${
                         isTextVal ? 'font-medium' : 'font-mono font-semibold'
-                      } ${isBest ? 'text-[#2D8A39]' : 'text-[#1A1A1A]'}`}
+                      } ${isBest ? 'text-success' : 'text-foreground'}`}
                     >
                       {displayValue}
                       {isBest && (
-                        <span className="inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#2D8A39]" />
+                        <span className="inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-success" />
                       )}
                     </div>
                   );
