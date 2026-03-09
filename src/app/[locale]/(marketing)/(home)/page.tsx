@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { getRepresentativeVehicles } from '@/lib/db/queries';
-import { formatAcceleration, formatSpec } from '@/lib/vehicle-utils';
 import { POPULAR_COMPARISONS, getCompareUrl } from '@/config/comparisons';
 import { JsonLd } from '@/components/seo/json-ld';
 import {
@@ -15,7 +14,7 @@ import { getBaseUrl } from '@/lib/urls/urls';
 import { getModelCardImage } from '@/lib/vehicle-images';
 import { blogSource } from '@/lib/source';
 import { formatDate } from '@/lib/formatter';
-import { HeroContent, FadeInSection } from '@/components/tesla/homepage-animations';
+import { HeroContent, HeroItem, FadeInSection, AnimatedSpec } from '@/components/tesla/homepage-animations';
 
 export const metadata: Metadata = {
   title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
@@ -71,30 +70,36 @@ export default async function HomePage({ params }: HomePageProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
         <HeroContent>
-          <h1 className="font-display text-[36px] font-bold leading-[0.95] tracking-[-3px] text-white sm:text-5xl md:text-[80px]">
-            Find Your
-            <br />
-            Perfect Tesla.
-          </h1>
-          <p className="mx-auto mt-6 max-w-[480px] text-lg font-light leading-relaxed text-white/60 sm:text-[20px]">
-            Every model. Every year. Every spec.
-            <br />
-            Compared side by side.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
-            <Link
-              href="/models"
-              className="w-full rounded-full bg-white px-8 py-3.5 text-center text-[15px] font-semibold text-black shadow-lg transition-colors duration-200 hover:bg-white/90 sm:w-auto"
-            >
-              Browse Models
-            </Link>
-            <Link
-              href={getCompareUrl(POPULAR_COMPARISONS[0].slug)}
-              className="w-full rounded-full border border-white/40 px-8 py-3.5 text-center text-[15px] font-medium text-white transition-all duration-200 hover:border-white/70 hover:bg-white/10 sm:w-auto"
-            >
-              Compare Now
-            </Link>
-          </div>
+          <HeroItem>
+            <h1 className="font-display text-[36px] font-bold leading-[0.95] tracking-[-3px] text-white sm:text-5xl md:text-[80px]">
+              Find Your
+              <br />
+              Perfect Tesla.
+            </h1>
+          </HeroItem>
+          <HeroItem>
+            <p className="mx-auto mt-6 max-w-[480px] text-lg font-light leading-relaxed text-white/60 sm:text-[20px]">
+              Every model. Every year. Every spec.
+              <br />
+              Compared side by side.
+            </p>
+          </HeroItem>
+          <HeroItem>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
+              <Link
+                href="/models"
+                className="w-full rounded-full bg-white px-8 py-3.5 text-center text-[15px] font-semibold text-black shadow-lg transition-colors duration-200 hover:bg-white/90 sm:w-auto"
+              >
+                Browse Models
+              </Link>
+              <Link
+                href={getCompareUrl(POPULAR_COMPARISONS[0].slug)}
+                className="w-full rounded-full border border-white/40 px-8 py-3.5 text-center text-[15px] font-medium text-white transition-all duration-200 hover:border-white/70 hover:bg-white/10 sm:w-auto"
+              >
+                Compare Now
+              </Link>
+            </div>
+          </HeroItem>
         </HeroContent>
       </section>
 
@@ -123,9 +128,11 @@ export default async function HomePage({ params }: HomePageProps) {
                   <div className="mt-5 flex gap-10">
                     {v.rangeEPA && (
                       <div>
-                        <div className="font-mono text-[18px] font-semibold text-foreground">
-                          {formatSpec(v.rangeEPA, 'mi')}
-                        </div>
+                        <AnimatedSpec
+                          value={Number(v.rangeEPA)}
+                          suffix=" mi"
+                          className="font-mono text-[18px] font-semibold text-foreground"
+                        />
                         <div className="mt-0.5 text-[11px] uppercase tracking-wide text-muted-foreground">
                           Range
                         </div>
@@ -133,9 +140,12 @@ export default async function HomePage({ params }: HomePageProps) {
                     )}
                     {v.acceleration060 && (
                       <div>
-                        <div className="font-mono text-[18px] font-semibold text-foreground">
-                          {formatAcceleration(v.acceleration060)}
-                        </div>
+                        <AnimatedSpec
+                          value={parseFloat(v.acceleration060)}
+                          suffix="s"
+                          decimalPlaces={1}
+                          className="font-mono text-[18px] font-semibold text-foreground"
+                        />
                         <div className="mt-0.5 text-[11px] uppercase tracking-wide text-muted-foreground">
                           0-60 mph
                         </div>
