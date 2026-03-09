@@ -31,7 +31,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
         <h3 className="mt-1.5 text-lg font-bold text-foreground">
           {vehicle.trimName}
         </h3>
-        <div className="mt-4 flex items-center gap-6 border-t border-border pt-4 text-xs text-muted-foreground">
+        <div className="mt-4 flex items-center gap-4 border-t border-border pt-4 text-xs text-muted-foreground sm:gap-6">
           <span className="font-mono font-medium text-foreground">
             {formatSpec(vehicle.rangeKm, 'km')}
           </span>

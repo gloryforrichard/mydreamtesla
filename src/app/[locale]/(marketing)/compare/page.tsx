@@ -86,7 +86,7 @@ export default async function CompareIndexPage() {
 
       {/* Hero */}
       <header className="mx-auto max-w-[1060px] px-5 pb-16 pt-4 text-center">
-        <h1 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-2.5px] text-foreground sm:text-[56px]">
+        <h1 className="font-display text-[32px] font-bold leading-[1.05] tracking-[-2.5px] text-foreground sm:text-[40px] md:text-[56px]">
           Compare Any Tesla.
         </h1>
         <p className="mx-auto mt-4 max-w-[620px] text-[17px] font-light leading-[1.5] text-secondary-text sm:text-[19px]">

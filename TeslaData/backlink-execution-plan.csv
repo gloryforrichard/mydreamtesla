@@ -1,0 +1,80 @@
+自动化级别,#,网站名称,类别,操作方式,预估耗时,说明
+可自动化 - Claude可直接帮你完成,37,Dev.to,Web 2.0,Claude写技术博文 + 你注册后发布,10分钟,注册后把文章内容给你粘贴发布
+可自动化 - Claude可直接帮你完成,38,Hashnode,Web 2.0,Claude写技术博文 + 你注册后发布,10分钟,注册后把文章内容给你粘贴发布
+可自动化 - Claude可直接帮你完成,39,WordPress.com,Web 2.0,Claude写Tesla对比文章 + 你创建博客后发布,15分钟,创建卫星博客;Claude可批量写文章
+可自动化 - Claude可直接帮你完成,40,Blogger,Web 2.0,Claude写Tesla对比文章 + 你创建博客后发布,15分钟,创建卫星博客;Claude可批量写文章
+可自动化 - Claude可直接帮你完成,41,Medium,Web 2.0,Claude写完整文章 + 你登录后发布,10分钟,Claude产出文章;你复制粘贴发布
+可自动化 - Claude可直接帮你完成,42,LinkedIn,Web 2.0,Claude写LinkedIn文章 + 你登录后发布,10分钟,Claude产出文章;你复制粘贴发布
+可自动化 - Claude可直接帮你完成,43,Substack,Web 2.0,Claude写newsletter内容 + 你创建后发布,15分钟,Claude可批量写系列文章
+可自动化 - Claude可直接帮你完成,44,Tumblr,Web 2.0,Claude写短文+图片描述 + 你发布,5分钟,适合信息图类内容
+可自动化 - Claude可直接帮你完成,45,Telegra.ph,Web 2.0,Claude写文章 + 你打开网页粘贴发布,3分钟,最简单;无需注册;直接发布
+可自动化 - Claude可直接帮你完成,46,HubPages,Web 2.0,Claude写长文 + 你注册后发布,15分钟,需审核;文章质量要求高
+可自动化 - Claude可直接帮你完成,47,LiveJournal,Web 2.0,Claude写文章 + 你注册后发布,10分钟,dofollow确认
+可自动化 - Claude可直接帮你完成,48,Wix Blog,Web 2.0,Claude写文章 + 你创建博客后发布,15分钟,卫星博客
+可自动化 - Claude可直接帮你完成,71,Hacker News,讨论/评论,Claude写Show HN帖子 + 你提交,5分钟,DA92 dofollow;最高价值
+可自动化 - Claude可直接帮你完成,57,Slashdot,社交书签,Claude写提交内容 + 你提交,5分钟,DA80+ dofollow
+可自动化 - Claude可直接帮你完成,73,BizSugar,讨论/评论,Claude写提交内容 + 你提交,5分钟,dofollow
+可自动化 - Claude可直接帮你完成,81,Accessories for Tesla,客座文章,Claude写完整1000+字投稿 + 你发邮件,30分钟,Tesla专属;最相关投稿
+可自动化 - Claude可直接帮你完成,82,EVShout,客座文章,Claude写完整投稿 + 你发邮件,30分钟,EV专属;1-2个dofollow
+可自动化 - Claude可直接帮你完成,83,Bell Engineering,客座文章,Claude写工程技术角度文章 + 你发邮件,30分钟,技术博客
+可自动化 - Claude可直接帮你完成,84,Motor Craz,客座文章,Claude写汽车对比文章 + 你发邮件,30分钟,汽车博客
+可自动化 - Claude可直接帮你完成,85,The Environmental Blog,客座文章,Claude写环保角度文章 + 你发邮件,30分钟,环保博客
+可自动化 - Claude可直接帮你完成,86,Climate Sort,客座文章,Claude写可持续发展文章 + 你发邮件,30分钟,清洁技术
+可自动化 - Claude可直接帮你完成,87,AutoMotorBlog,客座文章,Claude写汽车对比文章 + 你发邮件,30分钟,汽车博客
+可自动化 - Claude可直接帮你完成,88,MotorAxle,客座文章,Claude写家庭用车文章 + 你发邮件,30分钟,汽车博客
+可自动化 - Claude可直接帮你完成,89,CarzTuning,客座文章,Claude写性能对比文章 + 你发邮件,30分钟,改装博客
+可自动化 - Claude可直接帮你完成,90,Wheels on the South,客座文章,Claude写购车指南 + 你发邮件,30分钟,汽车博客
+可自动化 - Claude可直接帮你完成,13-14,Quora回答(x2),Q&A,Claude写5-10个高质量回答 + 你登录后发布,每个5分钟,找Tesla相关问题回答
+半自动 - Claude准备内容+你操作几步,22,GitHub 个人资料,个人资料,你更新Profile网站字段,2分钟,DA96 dofollow;只需改设置
+半自动 - Claude准备内容+你操作几步,23,GitHub 项目README,个人资料,Claude写README + 你创建repo,10分钟,创建Tesla数据相关开源项目
+半自动 - Claude准备内容+你操作几步,24,GitLab,个人资料,你注册并填个人资料,3分钟,DA92 dofollow
+半自动 - Claude准备内容+你操作几步,25,Gravatar,个人资料,你注册并填Bio+网站,3分钟,DA85 dofollow;快速
+半自动 - Claude准备内容+你操作几步,26,About.me,个人资料,你注册并填个人页面,5分钟,DA80 dofollow;快速
+半自动 - Claude准备内容+你操作几步,27,Crunchbase,个人资料,你注册公司页面,10分钟,DA91 dofollow;需公司信息
+半自动 - Claude准备内容+你操作几步,28,Wellfound,个人资料,你注册创始人页面,10分钟,DA85 dofollow
+半自动 - Claude准备内容+你操作几步,29,Behance,个人资料,Claude做网站截图描述 + 你上传,10分钟,DA93 dofollow;上传设计作品
+半自动 - Claude准备内容+你操作几步,30,Dribbble,个人资料,Claude做作品描述 + 你上传,10分钟,DA91 dofollow;上传截图
+半自动 - Claude准备内容+你操作几步,31,Goodreads,个人资料,你注册并填个人资料,3分钟,DA93 dofollow
+半自动 - Claude准备内容+你操作几步,32,Disqus,个人资料,你注册并填个人资料,3分钟,DA88 dofollow
+半自动 - Claude准备内容+你操作几步,33,Instructables,个人资料,你注册并填个人资料,3分钟,DA85 dofollow
+半自动 - Claude准备内容+你操作几步,34,Linktree,个人资料,你注册并添加链接,3分钟,DA85 dofollow;快速
+半自动 - Claude准备内容+你操作几步,35,Scribd,个人资料,Claude写PDF文档 + 你上传,10分钟,DA93 dofollow;上传Tesla对比PDF
+半自动 - Claude准备内容+你操作几步,36,Academia.edu,个人资料,你注册并填个人资料,3分钟,DA90 dofollow
+半自动 - Claude准备内容+你操作几步,96,Bitbucket,个人资料,你注册并填个人资料,3分钟,DA90 dofollow
+半自动 - Claude准备内容+你操作几步,49,Flipboard,社交书签,你注册创建Magazine + 添加链接,5分钟,DA90 dofollow
+半自动 - Claude准备内容+你操作几步,50,Mix.com,社交书签,你注册并提交书签,3分钟,DA80 dofollow
+半自动 - Claude准备内容+你操作几步,51,Scoop.it,社交书签,你注册创建Topic + 添加链接,5分钟,DA85 dofollow
+半自动 - Claude准备内容+你操作几步,52,Diigo,社交书签,你注册并提交书签,3分钟,DA80 dofollow
+半自动 - Claude准备内容+你操作几步,53,Pearltrees,社交书签,你注册并创建合集,5分钟,DA70 dofollow
+半自动 - Claude准备内容+你操作几步,54,Folkd,社交书签,你注册并提交书签,3分钟,DA55 dofollow
+半自动 - Claude准备内容+你操作几步,55,BibSonomy,社交书签,你注册并提交书签,3分钟,DA50 dofollow
+半自动 - Claude准备内容+你操作几步,56,Start.me,社交书签,你注册并创建公开页面,5分钟,DA60 dofollow
+半自动 - Claude准备内容+你操作几步,58,Pinterest,社交书签,Claude做Pin描述 + 你创建Pins,每个2分钟,DA94;需制作信息图
+半自动 - Claude准备内容+你操作几步,59,Product Hunt,目录,Claude写Launch文案 + 你提交,20分钟,DA90 dofollow;需准备Launch策略
+半自动 - Claude准备内容+你操作几步,60,AlternativeTo,目录,你提交为替代品,10分钟,DA75 dofollow
+半自动 - Claude准备内容+你操作几步,61,BOTW,目录,你提交网站,10分钟,DA60 dofollow;人工审核
+半自动 - Claude准备内容+你操作几步,62,Jasmine Directory,目录,你提交网站,10分钟,DA50 dofollow;人工审核
+半自动 - Claude准备内容+你操作几步,63,Curlie,目录,你提交网站,10分钟,DA70 dofollow;DMOZ继承者
+半自动 - Claude准备内容+你操作几步,64,BetaList,目录,你提交产品,10分钟,DA65 dofollow
+半自动 - Claude准备内容+你操作几步,65,SaaSHub,目录,你提交产品,10分钟,DA65 dofollow
+半自动 - Claude准备内容+你操作几步,66,Openhunts,目录,你提交产品,5分钟,DA50 dofollow
+半自动 - Claude准备内容+你操作几步,67,Google Business,目录,你创建商家页面,15分钟,DA100 dofollow
+半自动 - Claude准备内容+你操作几步,68,Bing Places,目录,你创建商家页面,15分钟,DA95 dofollow
+半自动 - Claude准备内容+你操作几步,70,Quick Directory,目录,你提交网站,5分钟,DA25 dofollow
+半自动 - Claude准备内容+你操作几步,95,SoloPush,目录,你提交产品,5分钟,DA30 dofollow
+必须手动 - 需要持续互动/账号维护,1,Tesla Motors Club,论坛,注册 → 发6帖 → 开启签名,需1-2周积累,最高价值但需长期参与
+必须手动 - 需要持续互动/账号维护,2,Tesla Owners Online,论坛,注册 → 参与讨论 → 签名链接,需持续参与,XenForo论坛;需社区互动
+必须手动 - 需要持续互动/账号维护,3,Cybertruck Owners Club,论坛,注册 → 参与讨论 → 签名链接,需持续参与,Cybertruck社区
+必须手动 - 需要持续互动/账号维护,4,Inside EVs Forum,论坛,注册 → 参与讨论 → 签名链接,需持续参与,知名EV论坛
+必须手动 - 需要持续互动/账号维护,5,Speak EV,论坛,注册 → 参与讨论 → 签名链接,需持续参与,英国EV论坛
+必须手动 - 需要持续互动/账号维护,6,BobIsTheOilGuy,论坛,注册 → 参与EV板块讨论,需持续参与,老牌汽车论坛
+必须手动 - 需要持续互动/账号维护,7-12,其他小型EV论坛(x6),论坛,注册 → 填资料 → 参与,每个10-30分钟,批量注册;个人资料链接
+必须手动 - 需要持续互动/账号维护,15-20,Reddit各Tesla子版(x6),Q&A,长期参与 → 偶尔分享链接,需长期维护,遵守9:1规则;需积累karma
+必须手动 - 需要持续互动/账号维护,74-80,EV新闻网站评论(x7),评论,在相关文章下留有价值评论,每篇5分钟,CleanTechnica/InsideEVs/Electrek等
+必须手动 - 需要持续互动/账号维护,72,Lobsters,讨论,需获得邀请码,不确定,需邀请注册;技术社区
+必须手动 - 需要持续互动/账号维护,69,Starter Story,目录,需投稿创业故事,1-2小时写作,创业案例研究
+必须手动 - 需要持续互动/账号维护,91-94,EV品牌博客联系投稿(x4),客座文章,需发邮件联系编辑,每个30分钟,EVANNEX/PedalCommander/Cleanerwatt/EVTuners
+必须手动 - 需要持续互动/账号维护,97,Quora Space,Q&A,需申请加入Space,10分钟,Tesla Followers Space
+必须手动 - 需要持续互动/账号维护,11,Tesla 官方论坛,论坛,需Tesla账户,看是否有账户,DA90+;需Tesla车主账户
+必须手动 - 需要持续互动/账号维护,78,Edmunds社区,论坛,注册 → 参与讨论,需持续参与,知名汽车网站论坛
+必须手动 - 需要持续互动/账号维护,100,Tesla Press Kit引用,引用,在其他文章中引用时使用,N/A,不是直接外链;是内容引用策略

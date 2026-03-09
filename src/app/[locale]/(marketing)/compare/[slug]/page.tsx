@@ -81,7 +81,7 @@ export default async function ComparePage({ params }: Props) {
 
       {/* Hero */}
       <header className="mx-auto max-w-[980px] px-5 pb-12 text-center">
-        <h1 className="font-display text-[36px] font-bold leading-[1.08] tracking-[-2.5px] text-foreground sm:text-[48px]">
+        <h1 className="font-display text-[26px] font-bold leading-[1.08] tracking-[-2px] text-foreground sm:text-[36px] md:text-[48px]">
           {vehicles.map((v, i) => (
             <span key={v.id}>
               {v.title}
@@ -116,7 +116,7 @@ export default async function ComparePage({ params }: Props) {
             <Link
               key={v.id}
               href={`/vehicles/${v.slug}`}
-              className="flex items-center justify-between rounded-sm bg-card px-6 py-5 text-[14px] font-medium transition-colors hover:bg-card-hover"
+              className="flex items-center justify-between rounded-lg bg-card px-5 py-4 text-[14px] font-medium transition-colors hover:bg-card-hover sm:px-6 sm:py-5"
             >
               <span>View {v.title} details</span>
               <span className="text-muted-foreground">›</span>

@@ -77,7 +77,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <p className="font-mono text-[13px] font-medium uppercase tracking-[3px] text-white/50">
             MyDreamTesla
           </p>
-          <h1 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-[-3px] text-white sm:text-[80px]">
+          <h1 className="mt-4 font-display text-[36px] font-bold leading-[0.95] tracking-[-3px] text-white sm:text-5xl md:text-[80px]">
             Find Your
             <br />
             Perfect Tesla.
@@ -87,16 +87,16 @@ export default async function HomePage({ params }: HomePageProps) {
             <br />
             Compared side by side.
           </p>
-          <div className="mt-10 flex items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
             <Link
               href="/models"
-              className="rounded-full bg-white px-8 py-3.5 text-[15px] font-semibold text-black shadow-lg transition-all duration-200 hover:bg-white/90 hover:shadow-xl hover:scale-[1.02]"
+              className="w-full rounded-full bg-white px-8 py-3.5 text-center text-[15px] font-semibold text-black shadow-lg transition-all duration-200 hover:bg-white/90 hover:shadow-xl hover:scale-[1.02] sm:w-auto"
             >
               Browse Models
             </Link>
             <Link
               href={getCompareUrl(POPULAR_COMPARISONS[0].slug)}
-              className="rounded-full border border-white/40 px-8 py-3.5 text-[15px] font-medium text-white transition-all duration-200 hover:border-white/70 hover:bg-white/10"
+              className="w-full rounded-full border border-white/40 px-8 py-3.5 text-center text-[15px] font-medium text-white transition-all duration-200 hover:border-white/70 hover:bg-white/10 sm:w-auto"
             >
               Compare Now
             </Link>
@@ -112,7 +112,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <FadeInSection key={item.model.id} delay={index * 0.08}>
               <Link
                 href={`/models/${item.model.slug}`}
-                className="group flex min-h-[520px] flex-col items-center overflow-hidden rounded-lg bg-card px-10 pt-14 text-center transition-all duration-300 hover:bg-card-hover hover:shadow-lg"
+                className="group flex min-h-[420px] flex-col items-center overflow-hidden rounded-lg bg-card px-5 pt-10 text-center transition-all duration-300 hover:bg-card-hover hover:shadow-lg sm:min-h-[520px] sm:px-10 sm:pt-14"
               >
                 <p className="font-mono text-[12px] font-medium uppercase tracking-[2px] text-muted-foreground">
                   {item.model.bodyType}

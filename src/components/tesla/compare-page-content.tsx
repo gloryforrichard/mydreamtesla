@@ -29,48 +29,50 @@ export function ComparePageContent({
   return (
     <>
       <div className="sticky top-12 z-40 border-b border-border bg-background/90 backdrop-blur-[20px]">
-        <div
-          className="mx-auto max-w-[980px] px-5 py-4"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: `180px repeat(${vehicles.length}, 1fr)`,
-          }}
-        >
-          <div />
-          {vehicles.map((vehicle) => {
-            const model = models.find((m) => m.id === vehicle.modelId);
-            const generation = model
-              ? getVehicleGeneration(model.slug, vehicle.year)
-              : null;
-            const anglePhotos = model
-              ? getAnglePhotos(model.slug, vehicle.year)
-              : null;
-            const defaultAngle = anglePhotos?.find(
-              (p) => p.angle === DEFAULT_ANGLE,
-            );
-            const imageSrc =
-              defaultAngle?.src ??
-              generation?.image ??
-              `/images/vehicles/${vehicle.slug}.png`;
-            return (
-              <div key={vehicle.id} className="px-4 text-center">
-                <div className="mx-auto mb-2.5 flex h-24 w-36 items-center justify-center overflow-hidden rounded-sm bg-card">
-                  <VehicleImage
-                    src={imageSrc}
-                    alt={vehicle.title}
-                    width={288}
-                    height={192}
-                    className="h-full w-full mix-blend-multiply object-contain dark:mix-blend-normal"
-                    fallbackClassName="flex h-full w-full items-center justify-center"
-                    fallbackLabel={model?.name.replace('Model ', '') ?? '?'}
-                  />
+        <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+          <div
+            className="mx-auto min-w-[480px] max-w-[980px] px-5 py-4"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: `clamp(120px, 25vw, 180px) repeat(${vehicles.length}, 1fr)`,
+            }}
+          >
+            <div />
+            {vehicles.map((vehicle) => {
+              const model = models.find((m) => m.id === vehicle.modelId);
+              const generation = model
+                ? getVehicleGeneration(model.slug, vehicle.year)
+                : null;
+              const anglePhotos = model
+                ? getAnglePhotos(model.slug, vehicle.year)
+                : null;
+              const defaultAngle = anglePhotos?.find(
+                (p) => p.angle === DEFAULT_ANGLE,
+              );
+              const imageSrc =
+                defaultAngle?.src ??
+                generation?.image ??
+                `/images/vehicles/${vehicle.slug}.png`;
+              return (
+                <div key={vehicle.id} className="px-2 text-center sm:px-4">
+                  <div className="mx-auto mb-2 flex h-16 w-24 items-center justify-center overflow-hidden rounded-lg bg-card sm:mb-2.5 sm:h-24 sm:w-36">
+                    <VehicleImage
+                      src={imageSrc}
+                      alt={vehicle.title}
+                      width={288}
+                      height={192}
+                      className="h-full w-full mix-blend-multiply object-contain dark:mix-blend-normal"
+                      fallbackClassName="flex h-full w-full items-center justify-center"
+                      fallbackLabel={model?.name.replace('Model ', '') ?? '?'}
+                    />
+                  </div>
+                  <div className="text-[12px] font-semibold tracking-[-0.3px] sm:text-[15px]">
+                    {vehicle.title}
+                  </div>
                 </div>
-                <div className="text-[15px] font-semibold tracking-[-0.3px]">
-                  {vehicle.title}
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -80,7 +82,7 @@ export function ComparePageContent({
 
       <section className="bg-card py-20" aria-label="Comparison verdict">
         <div className="mx-auto max-w-[980px] px-5 text-center">
-          <h2 className="font-display text-[40px] font-bold tracking-[-2px] text-foreground sm:text-[32px] md:text-[40px]">
+          <h2 className="font-display text-[28px] font-bold tracking-[-2px] text-foreground sm:text-[36px] md:text-[40px]">
             Which should you buy?
           </h2>
           <p className="mt-2 text-[17px] font-light text-secondary-text">
@@ -88,7 +90,7 @@ export function ComparePageContent({
           </p>
 
           <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-3">
-            <div className="rounded-sm bg-background p-8 text-center">
+            <div className="rounded-lg bg-background p-6 text-center sm:p-8">
               <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
                 Best Range
               </div>
@@ -99,7 +101,7 @@ export function ComparePageContent({
                 {formatSpec(bestRange.rangeKm, 'km')}
               </div>
             </div>
-            <div className="rounded-sm bg-background p-8 text-center">
+            <div className="rounded-lg bg-background p-6 text-center sm:p-8">
               <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
                 Most Powerful
               </div>
@@ -110,7 +112,7 @@ export function ComparePageContent({
                 {formatSpec(bestPower.horsepower, 'hp')}
               </div>
             </div>
-            <div className="rounded-sm bg-background p-8 text-center">
+            <div className="rounded-lg bg-background p-6 text-center sm:p-8">
               <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
                 Best Value
               </div>

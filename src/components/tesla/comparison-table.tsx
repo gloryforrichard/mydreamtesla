@@ -56,66 +56,70 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
 
   return (
     <article className="mx-auto max-w-[980px] px-5">
-      {Object.entries(groups).map(([groupName, specs]) => (
-        <section
-          key={groupName}
-          className="mb-8"
-          aria-label={`${groupName} specifications`}
-        >
-          <h2 className="border-b border-border pb-2.5 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
-            {groupName}
-          </h2>
-          {specs.map((spec) => {
-            const values = vehicles.map((v) => spec.getRawValue(v));
+      <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+        <div className="min-w-[480px]">
+          {Object.entries(groups).map(([groupName, specs]) => (
+            <section
+              key={groupName}
+              className="mb-8"
+              aria-label={`${groupName} specifications`}
+            >
+              <h2 className="border-b border-border pb-2.5 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
+                {groupName}
+              </h2>
+              {specs.map((spec) => {
+                const values = vehicles.map((v) => spec.getRawValue(v));
 
-            const numericValues = values.map((val) => {
-              if (val == null) return null;
-              if (typeof val === 'number') return val;
-              if (spec.isNumericString && typeof val === 'string')
-                return Number.parseFloat(val);
-              return null;
-            });
+                const numericValues = values.map((val) => {
+                  if (val == null) return null;
+                  if (typeof val === 'number') return val;
+                  if (spec.isNumericString && typeof val === 'string')
+                    return Number.parseFloat(val);
+                  return null;
+                });
 
-            const bestIdx =
-              spec.higherIsBetter != null
-                ? getBestValueIndex(numericValues, spec.higherIsBetter)
-                : -1;
+                const bestIdx =
+                  spec.higherIsBetter != null
+                    ? getBestValueIndex(numericValues, spec.higherIsBetter)
+                    : -1;
 
-            return (
-              <div
-                key={spec.id}
-                className="grid border-b border-border/50"
-                style={{
-                  gridTemplateColumns: `180px repeat(${vehicles.length}, 1fr)`,
-                }}
-              >
-                <div className="flex items-center py-3 text-[13px] font-normal text-secondary-text">
-                  {spec.label}
-                </div>
-                {vehicles.map((v, i) => {
-                  const isBest = bestIdx === i;
-                  const displayValue = spec.formatValue(v);
-                  const isTextVal = spec.higherIsBetter == null;
-
-                  return (
-                    <div
-                      key={v.id}
-                      className={`flex items-center justify-center gap-1.5 px-4 py-3 text-center text-[14px] ${
-                        isTextVal ? 'font-medium' : 'font-mono font-semibold'
-                      } ${isBest ? 'text-success' : 'text-foreground'}`}
-                    >
-                      {displayValue}
-                      {isBest && (
-                        <span className="inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-success" />
-                      )}
+                return (
+                  <div
+                    key={spec.id}
+                    className="grid border-b border-border/50"
+                    style={{
+                      gridTemplateColumns: `clamp(120px, 25vw, 180px) repeat(${vehicles.length}, 1fr)`,
+                    }}
+                  >
+                    <div className="flex items-center py-3 text-[12px] font-normal text-secondary-text sm:text-[13px]">
+                      {spec.label}
                     </div>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </section>
-      ))}
+                    {vehicles.map((v, i) => {
+                      const isBest = bestIdx === i;
+                      const displayValue = spec.formatValue(v);
+                      const isTextVal = spec.higherIsBetter == null;
+
+                      return (
+                        <div
+                          key={v.id}
+                          className={`flex items-center justify-center gap-1 px-2 py-3 text-center text-[13px] sm:gap-1.5 sm:px-4 sm:text-[14px] ${
+                            isTextVal ? 'font-medium' : 'font-mono font-semibold'
+                          } ${isBest ? 'text-success' : 'text-foreground'}`}
+                        >
+                          {displayValue}
+                          {isBest && (
+                            <span className="inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-success" />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </section>
+          ))}
+        </div>
+      </div>
     </article>
   );
 }
