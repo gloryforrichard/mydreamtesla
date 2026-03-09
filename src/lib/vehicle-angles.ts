@@ -22,6 +22,11 @@ export const DEFAULT_ANGLE: VehicleAngle = 'front-angle';
  * Maps generation name → photo year prefix used in file names.
  * Only Model 3 has multi-angle photos for now.
  */
+/**
+ * Maps generation name → photo year prefix used in file names.
+ * Only add entries when actual angle photo files exist in
+ * public/images/vehicles/angles/{modelSlug}/{year}-{angle}.png
+ */
 const ANGLE_PHOTO_CONFIG: Record<
   string,
   Record<string, string>
@@ -33,18 +38,6 @@ const ANGLE_PHOTO_CONFIG: Record<
   },
   'model-y': {
     Original: '2021',
-    Juniper: '2025',
-  },
-  'model-s': {
-    Original: '2016',
-    Refresh: '2022',
-  },
-  'model-x': {
-    Original: '2016',
-    Refresh: '2022',
-  },
-  cybertruck: {
-    Production: '2024',
   },
 };
 
