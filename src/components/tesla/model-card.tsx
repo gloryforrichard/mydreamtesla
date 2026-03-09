@@ -12,7 +12,7 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
   return (
     <Link
       href={`/models/${model.slug}`}
-      className="group flex flex-col overflow-hidden rounded-sm bg-card transition-colors hover:bg-card-hover"
+      className="group flex flex-col overflow-hidden rounded-lg bg-card transition-all duration-300 hover:bg-card-hover hover:shadow-md"
     >
       <div className="flex aspect-[16/9] items-center justify-center overflow-hidden">
         <VehicleImage
@@ -25,12 +25,12 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
           fallbackLabel={model.name}
         />
       </div>
-      <div className="flex flex-1 flex-col p-5">
-        <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+      <div className="flex flex-1 flex-col p-6">
+        <p className="font-mono text-[11px] font-medium uppercase tracking-[1.5px] text-muted-foreground">
           {model.bodyType}
           {model.productionStart && ` · Since ${model.productionStart}`}
         </p>
-        <h3 className="mt-1 text-xl font-semibold text-foreground">
+        <h3 className="mt-1.5 text-xl font-bold text-foreground">
           Tesla {model.name}
         </h3>
         {model.tagline && (
@@ -42,7 +42,7 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
               {vehicleCount} {vehicleCount === 1 ? 'trim' : 'trims'} available
             </span>
           )}
-          <span className="ml-auto text-sm font-medium text-foreground group-hover:text-secondary-text">
+          <span className="ml-auto text-sm font-medium text-foreground transition-colors group-hover:text-brand">
             View Details ›
           </span>
         </div>

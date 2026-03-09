@@ -11,7 +11,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
   return (
     <Link
       href={`/vehicles/${vehicle.slug}`}
-      className="group flex flex-col overflow-hidden rounded-sm bg-card transition-colors hover:bg-card-hover"
+      className="group flex flex-col overflow-hidden rounded-lg bg-card transition-all duration-300 hover:bg-card-hover hover:shadow-md"
     >
       <div className="flex aspect-[16/10] items-center justify-center overflow-hidden">
         <VehicleImage
@@ -24,11 +24,11 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
           fallbackLabel={String(vehicle.year)}
         />
       </div>
-      <div className="flex flex-1 flex-col p-5">
-        <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+      <div className="flex flex-1 flex-col p-6">
+        <p className="font-mono text-[11px] font-medium uppercase tracking-[1.5px] text-muted-foreground">
           {vehicle.year} · {vehicle.driveType}
         </p>
-        <h3 className="mt-1 text-lg font-semibold text-foreground">
+        <h3 className="mt-1.5 text-lg font-bold text-foreground">
           {vehicle.trimName}
         </h3>
         <div className="mt-4 flex items-center gap-6 border-t border-border pt-4 text-xs text-muted-foreground">
