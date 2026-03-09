@@ -45,7 +45,7 @@ export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <div className="rounded-sm bg-background p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
+      <div className="rounded-lg bg-background p-8 shadow-md">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <VehicleSelector
             title="Vehicle 1"
@@ -70,7 +70,7 @@ export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
           type="button"
           onClick={handleCompare}
           disabled={!canCompare}
-          className="mt-6 w-full rounded-sm bg-foreground px-8 py-3.5 text-[15px] font-medium text-background transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"
+          className="mt-6 w-full rounded-lg bg-foreground px-8 py-3.5 text-[15px] font-semibold text-background transition-all duration-200 hover:opacity-90 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-30"
         >
           Compare ›
         </button>
@@ -225,7 +225,7 @@ function SelectField({
         value={value}
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full appearance-none rounded-sm border border-border bg-card px-4 py-3 text-[15px] text-foreground outline-none transition-colors focus:border-foreground disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full appearance-none rounded-lg border border-border bg-card px-4 py-3 text-[15px] text-foreground outline-none transition-colors focus:border-foreground disabled:cursor-not-allowed disabled:opacity-50"
       >
         {children}
       </select>
