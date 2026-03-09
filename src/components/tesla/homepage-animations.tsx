@@ -3,7 +3,7 @@
 import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
 
-function HeroContent({ children }: { children: ReactNode }) {
+export function HeroContent({ children }: { children: ReactNode }) {
   return (
     <motion.div
       className="relative z-10 px-4 py-40 sm:py-44"
@@ -16,7 +16,7 @@ function HeroContent({ children }: { children: ReactNode }) {
   );
 }
 
-function FadeInSection({
+export function FadeInSection({
   children,
   delay = 0,
 }: {
@@ -38,8 +38,3 @@ function FadeInSection({
     </motion.div>
   );
 }
-
-export const HomepageAnimations = {
-  HeroContent,
-  FadeInSection,
-};

@@ -15,7 +15,7 @@ import { getBaseUrl } from '@/lib/urls/urls';
 import { getModelCardImage } from '@/lib/vehicle-images';
 import { blogSource } from '@/lib/source';
 import { formatDate } from '@/lib/formatter';
-import { HomepageAnimations } from '@/components/tesla/homepage-animations';
+import { HeroContent, FadeInSection } from '@/components/tesla/homepage-animations';
 
 export const metadata: Metadata = {
   title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
@@ -73,7 +73,7 @@ export default async function HomePage({ params }: HomePageProps) {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-        <HomepageAnimations.HeroContent>
+        <HeroContent>
           <p className="font-mono text-[13px] font-medium uppercase tracking-[3px] text-white/50">
             MyDreamTesla
           </p>
@@ -101,7 +101,7 @@ export default async function HomePage({ params }: HomePageProps) {
               Compare Now
             </Link>
           </div>
-        </HomepageAnimations.HeroContent>
+        </HeroContent>
       </section>
 
       {/* Model Tiles — 2×2 grid */}
@@ -109,7 +109,7 @@ export default async function HomePage({ params }: HomePageProps) {
         {modelData.map((item, index) => {
           const v = item.vehicle;
           return (
-            <HomepageAnimations.FadeInSection key={item.model.id} delay={index * 0.08}>
+            <FadeInSection key={item.model.id} delay={index * 0.08}>
               <Link
                 href={`/models/${item.model.slug}`}
                 className="group flex min-h-[520px] flex-col items-center overflow-hidden rounded-lg bg-card px-10 pt-14 text-center transition-all duration-300 hover:bg-card-hover hover:shadow-lg"
@@ -173,7 +173,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   />
                 </div>
               </Link>
-            </HomepageAnimations.FadeInSection>
+            </FadeInSection>
           );
         })}
       </section>
@@ -181,7 +181,7 @@ export default async function HomePage({ params }: HomePageProps) {
       {/* Compare Section — clean text-based cards */}
       <section className="px-4 py-24">
         <div className="mx-auto max-w-5xl">
-          <HomepageAnimations.FadeInSection>
+          <FadeInSection>
             <div className="text-center">
               <h2 className="font-display text-[36px] font-bold tracking-[-2px] text-foreground sm:text-[48px]">
                 Head-to-head comparisons
@@ -190,10 +190,10 @@ export default async function HomePage({ params }: HomePageProps) {
                 The matchups people search for most.
               </p>
             </div>
-          </HomepageAnimations.FadeInSection>
+          </FadeInSection>
           <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {TOP_COMPARISONS.map((comp, index) => (
-              <HomepageAnimations.FadeInSection key={comp.slug} delay={index * 0.06}>
+              <FadeInSection key={comp.slug} delay={index * 0.06}>
                 <Link
                   href={getCompareUrl(comp.slug)}
                   className="group rounded-lg border border-border px-6 py-6 transition-all duration-200 hover:border-border-muted hover:bg-card hover:shadow-md"
@@ -208,7 +208,7 @@ export default async function HomePage({ params }: HomePageProps) {
                     Compare ›
                   </p>
                 </Link>
-              </HomepageAnimations.FadeInSection>
+              </FadeInSection>
             ))}
           </div>
           <div className="mt-10 text-center">
@@ -226,7 +226,7 @@ export default async function HomePage({ params }: HomePageProps) {
       {blogPosts.length > 0 && (
         <section className="px-4 py-24">
           <div className="mx-auto max-w-5xl">
-            <HomepageAnimations.FadeInSection>
+            <FadeInSection>
               <div className="flex items-end justify-between">
                 <div>
                   <h2 className="font-display text-[36px] font-bold tracking-[-2px] text-foreground sm:text-[48px]">
@@ -243,10 +243,10 @@ export default async function HomePage({ params }: HomePageProps) {
                   View All &rarr;
                 </Link>
               </div>
-            </HomepageAnimations.FadeInSection>
+            </FadeInSection>
             <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {blogPosts.map((post, index) => (
-                <HomepageAnimations.FadeInSection key={post.url} delay={index * 0.08}>
+                <FadeInSection key={post.url} delay={index * 0.08}>
                   <Link
                     href={`/blog/${post.slugs}`}
                     className="group flex h-full flex-col overflow-hidden rounded-lg bg-card transition-all duration-300 hover:bg-card-hover hover:shadow-md"
@@ -285,7 +285,7 @@ export default async function HomePage({ params }: HomePageProps) {
                       </div>
                     </div>
                   </Link>
-                </HomepageAnimations.FadeInSection>
+                </FadeInSection>
               ))}
             </div>
             <div className="mt-10 text-center sm:hidden">
@@ -301,7 +301,7 @@ export default async function HomePage({ params }: HomePageProps) {
       )}
 
       {/* Stats — compact inline strip */}
-      <HomepageAnimations.FadeInSection>
+      <FadeInSection>
         <section className="border-y border-border bg-card/50">
           <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center divide-x divide-border px-4">
             {[
@@ -324,11 +324,11 @@ export default async function HomePage({ params }: HomePageProps) {
             ))}
           </div>
         </section>
-      </HomepageAnimations.FadeInSection>
+      </FadeInSection>
 
       {/* CTA — inverted section */}
       <section className="bg-foreground px-4 py-24 text-center">
-        <HomepageAnimations.FadeInSection>
+        <FadeInSection>
           <h2 className="font-display text-[36px] font-bold tracking-[-2px] text-background sm:text-[48px]">
             Ready to find yours?
           </h2>
@@ -350,7 +350,7 @@ export default async function HomePage({ params }: HomePageProps) {
               Compare ›
             </Link>
           </div>
-        </HomepageAnimations.FadeInSection>
+        </FadeInSection>
       </section>
     </main>
   );
