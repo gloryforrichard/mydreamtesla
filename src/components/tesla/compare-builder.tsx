@@ -72,7 +72,7 @@ export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
           disabled={!canCompare}
           className="mt-6 w-full rounded-lg bg-foreground px-8 py-3.5 text-[15px] font-semibold text-background transition-all duration-200 hover:opacity-90 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-30"
         >
-          Compare ›
+          Compare Vehicles
         </button>
       </div>
     </div>

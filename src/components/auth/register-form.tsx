@@ -157,9 +157,15 @@ export const RegisterForm = ({
           }
         },
         onError: (ctx) => {
-          // sign up fail, display the error message
-          // console.error('register, error:', ctx.error);
-          setError(`${ctx.error.status}: ${ctx.error.message}`);
+          const friendlyMessages: Record<number, string> = {
+            409: 'An account with this email already exists. Try signing in instead.',
+            422: 'Please check your information and try again.',
+            429: 'Too many attempts. Please wait a moment and try again.',
+          };
+          setError(
+            friendlyMessages[ctx.error.status] ??
+              'Something went wrong. Please try again.',
+          );
           // Reset captcha on registration error
           if (captchaConfigured) {
             resetCaptcha();
@@ -193,7 +199,7 @@ export const RegisterForm = ({
                       <Input
                         {...field}
                         disabled={isPending}
-                        placeholder="name"
+                        placeholder="Your name"
                       />
                     </FormControl>
                     <FormMessage />

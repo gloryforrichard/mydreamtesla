@@ -143,7 +143,7 @@ export default async function CompareIndexPage() {
                     </p>
                   </div>
                   <div className="mt-5 text-[14px] font-medium text-muted-foreground transition-colors group-hover:text-brand">
-                    Compare side by side ›
+                    View full comparison →
                   </div>
                 </Link>
               ))}

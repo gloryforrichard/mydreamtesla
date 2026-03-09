@@ -56,7 +56,7 @@ export default async function ModelsPage() {
 
       {models.length === 0 && (
         <div className="py-20 text-center text-muted-foreground">
-          <p>No models available yet. Check back soon.</p>
+          <p>We&apos;re building our database. Check back soon for the complete Tesla lineup!</p>
         </div>
       )}
     </main>

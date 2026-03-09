@@ -24,7 +24,7 @@
     "logoutFailed": "Failed to log out",
     "table": {
       "totalRecords": "Total {count} records",
-      "noResults": "No results",
+      "noResults": "No results found. Try adjusting your search or filters.",
       "loading": "Loading...",
       "columns": "Columns",
       "rowsPerPage": "Rows per page",
@@ -61,7 +61,7 @@
       "getLifetimeAccess": "Get Lifetime Access",
       "getStarted": "Get Started",
       "notAvailable": "Not Available",
-      "daysTrial": "{days}-day free trial"
+      "daysTrial": "{days}-day free trial, no card required"
     },
     "CheckoutButton": {
       "loading": "Loading...",
@@ -116,19 +116,19 @@
   "CreditPackages": {
     "basic": {
       "name": "Basic",
-      "description": "Basic credits package description"
+      "description": "Great for getting started with a small number of credits"
     },
     "standard": {
       "name": "Standard",
-      "description": "Standard credits package description"
+      "description": "The most popular choice for regular usage"
     },
     "premium": {
       "name": "Premium",
-      "description": "Premium credits package description"
+      "description": "Best value per credit for power users"
     },
     "enterprise": {
       "name": "Enterprise",
-      "description": "Enterprise credits package description"
+      "description": "Maximum credits at the lowest price per credit"
     }
   },
   "NotFoundPage": {
@@ -137,9 +137,9 @@
     "backToHome": "Back to home"
   },
   "ErrorPage": {
-    "title": "Oops! Something went wrong!",
+    "title": "Something went wrong",
     "tryAgain": "Try again",
-    "backToHome": "Back to home"
+    "backToHome": "Go back home"
   },
   "AboutPage": {
     "title": "About",
@@ -170,8 +170,8 @@
       "email": "Email",
       "subscribe": "Subscribe",
       "subscribing": "Subscribing...",
-      "success": "Subscribed successfully",
-      "fail": "Failed to subscribe",
+      "success": "You're on the list! We'll notify you when we launch.",
+      "fail": "Something went wrong. Please try again.",
       "emailValidation": "Please enter a valid email address"
     }
   },
@@ -183,8 +183,8 @@
       "email": "Email",
       "subscribe": "Subscribe",
       "subscribing": "Subscribing...",
-      "success": "Subscribed successfully",
-      "fail": "Failed to subscribe",
+      "success": "You're subscribed! Check your email to confirm.",
+      "fail": "Something went wrong. Please try again.",
       "emailValidation": "Please enter a valid email address"
     }
   },
@@ -215,7 +215,7 @@
       "password": "Password",
       "signUp": "Sign Up",
       "signInHint": "Already have an account? Sign in",
-      "checkEmail": "Please check your email inbox",
+      "checkEmail": "We've sent you a verification email. Click the link inside to confirm your account.",
       "showPassword": "Show password",
       "hidePassword": "Hide password",
       "nameRequired": "Please enter your name",
@@ -229,7 +229,7 @@
       "email": "Email",
       "send": "Send reset link",
       "backToLogin": "Back to login",
-      "checkEmail": "Please check your email inbox",
+      "checkEmail": "Check your email for a password reset link. If you don't see it, check your spam folder.",
       "emailRequired": "Please enter your email"
     },
     "resetPassword": {
@@ -242,10 +242,10 @@
       "minLength": "Password must be at least 8 characters"
     },
     "error": {
-      "title": "Oops! Something went wrong!",
+      "title": "Something went wrong",
       "tryAgain": "Please try again.",
       "backToLogin": "Back to login",
-      "checkEmail": "Please check your email inbox"
+      "checkEmail": "Check your email — we've sent you a link to continue."
     },
     "common": {
       "termsOfService": "Terms of Service",
@@ -256,14 +256,14 @@
   },
   "BlogPage": {
     "title": "Blog",
-    "description": "Latest news and updates from our team",
-    "subtitle": "Latest news and updates from our team",
+    "description": "Tesla insights, comparison guides, and EV news",
+    "subtitle": "Tesla insights, comparison guides, and EV news",
     "author": "Author",
     "categories": "Categories",
     "tableOfContents": "Table of Contents",
     "readTime": "{minutes} min read",
     "all": "All",
-    "noPostsFound": "No posts found",
+    "noPostsFound": "No posts found in this category.",
     "allPosts": "All Posts",
     "morePosts": "More Posts"
   },
@@ -413,7 +413,7 @@
         "fakeData": "Note: Faked data for demonstration, some features are disabled",
         "error": "Failed to get users",
         "search": "Search users...",
-        "noResults": "No users found",
+        "noResults": "No users match your search. Try a different term.",
         "columns": {
           "columns": "Columns",
           "name": "Name",
@@ -464,11 +464,11 @@
         "description": "Manage your account information",
         "avatar": {
           "title": "Avatar",
-          "description": "Click upload button to upload a custom one",
+          "description": "Upload a custom profile picture",
           "recommendation": "An avatar is optional but strongly recommended",
           "uploading": "Uploading...",
           "uploadAvatar": "Upload Avatar",
-          "success": "Avatar updated successfully",
+          "success": "Profile picture updated!",
           "fail": "Failed to update avatar"
         },
         "name": {
@@ -478,7 +478,7 @@
           "minLength": "Please use 3 characters at minimum",
           "maxLength": "Please use 30 characters at maximum",
           "hint": "Please use 3-30 characters for your name",
-          "success": "Name updated successfully",
+          "success": "Name updated. Your profile has been saved.",
           "fail": "Failed to update name",
           "saving": "Saving...",
           "save": "Save"
@@ -501,7 +501,7 @@
         "currentPlan": {
           "title": "Current Plan",
           "description": "Your current plan details",
-          "noPlan": "You have no active plan"
+          "noPlan": "You're on the Free plan. Upgrade anytime for more features."
         },
         "CustomerPortalButton": {
           "loading": "Loading...",
@@ -518,7 +518,7 @@
         "upgradePlan": "Upgrade Plan",
         "retry": "Retry",
         "errorMessage": "Failed to get data",
-        "paymentSuccess": "Payment success"
+        "paymentSuccess": "Payment successful! Your plan has been upgraded."
       },
       "payment": {
         "processing": {
@@ -579,7 +579,7 @@
           "search": "Search credit transactions...",
           "clearSearch": "Clear search",
           "paymentIdCopied": "Payment ID copied to clipboard",
-          "noResults": "No results found",
+          "noResults": "No transactions found. Your credit history will appear here.",
           "columns": {
             "columns": "Columns",
             "id": "ID",
@@ -639,7 +639,7 @@
           "hint": "Please use at least 8 characters for password",
           "showPassword": "Show password",
           "hidePassword": "Hide password",
-          "success": "Password updated successfully",
+          "success": "Password changed! Use your new password next time you log in.",
           "fail": "Failed to update password",
           "saving": "Saving...",
           "save": "Save"
@@ -656,7 +656,7 @@
           "warning": "This action is not reversible, so please continue with caution",
           "button": "Delete Account",
           "confirmTitle": "Delete Account",
-          "confirmDescription": "Are you sure you want to delete your account? This action cannot be undone.",
+          "confirmDescription": "This will permanently delete your account and all your data. This cannot be undone.",
           "confirm": "Delete",
           "cancel": "Cancel",
           "deleting": "Deleting...",
@@ -675,7 +675,7 @@
         "cancel": "Cancel",
         "create": "Create",
         "creating": "Creating...",
-        "noResults": "No API keys found",
+        "noResults": "No API keys yet. Create one to get started.",
         "createSuccess": "API key created successfully",
         "createError": "Failed to create API key",
         "deleteSuccess": "API key deleted successfully",
@@ -684,7 +684,7 @@
         "delete": "Delete",
         "done": "Done",
         "newKeyDialogTitle": "Your New API Key",
-        "newKeyDialogDescription": "Please copy and save this key now. You won't be able to see it again!",
+        "newKeyDialogDescription": "Copy this key now and store it somewhere safe — you won't be able to view it again after closing this dialog.",
         "columns": {
           "name": "Name",
           "key": "Key",
@@ -880,8 +880,8 @@
           "answer": "We offer a 30-day money-back guarantee if you are not happy with our product."
         },
         "item-5": {
-          "question": "Can't find what you're looking for?",
-          "answer": "Please contact our customer support team at support@mydreamtesla.com"
+          "question": "Have more questions?",
+          "answer": "We'd love to help! Reach out to our support team at support@mydreamtesla.com and we'll get back to you within 24 hours."
         }
       }
     },

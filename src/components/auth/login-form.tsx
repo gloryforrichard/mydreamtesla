@@ -149,8 +149,16 @@ export const LoginForm = ({
           // router.push(callbackUrl || "/dashboard");
         },
         onError: (ctx) => {
-          // console.error('login, error:', ctx.error);
-          setError(`${ctx.error.status}: ${ctx.error.message}`);
+          const friendlyMessages: Record<number, string> = {
+            401: 'Incorrect email or password. Please try again.',
+            403: 'Your account has been suspended. Contact support for help.',
+            404: 'No account found with this email. Would you like to sign up?',
+            429: 'Too many login attempts. Please wait a moment and try again.',
+          };
+          setError(
+            friendlyMessages[ctx.error.status] ??
+              'Something went wrong. Please try again.',
+          );
           // Reset captcha on login error
           if (captchaConfigured) {
             resetCaptcha();

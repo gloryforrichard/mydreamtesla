@@ -24,7 +24,7 @@
     "logoutFailed": "退出失败",
     "table": {
       "totalRecords": "总共 {count} 条记录",
-      "noResults": "无结果",
+      "noResults": "没有找到结果，试试调整搜索条件。",
       "loading": "加载中...",
       "columns": "列",
       "rowsPerPage": "每页行数",
@@ -61,7 +61,7 @@
       "getLifetimeAccess": "开启终身会员",
       "getStarted": "开始免费试用",
       "notAvailable": "不可用",
-      "daysTrial": "{days} 天试用期"
+      "daysTrial": "{days} 天免费试用，无需绑卡"
     },
     "CheckoutButton": {
       "loading": "加载中...",
@@ -116,19 +116,19 @@
   "CreditPackages": {
     "basic": {
       "name": "基础版",
-      "description": "基础版功能介绍放这里"
+      "description": "适合入门使用，获取少量积分"
     },
     "standard": {
       "name": "标准版",
-      "description": "标准版功能介绍放这里"
+      "description": "最受欢迎的选择，适合日常使用"
     },
     "premium": {
       "name": "高级版",
-      "description": "高级版功能介绍放这里"
+      "description": "单价最优惠，适合重度用户"
     },
     "enterprise": {
       "name": "企业版",
-      "description": "企业版功能介绍放这里"
+      "description": "最大量积分，单价最低"
     }
   },
   "NotFoundPage": {
@@ -137,7 +137,7 @@
     "backToHome": "返回首页"
   },
   "ErrorPage": {
-    "title": "哎呀！出错了！",
+    "title": "出了点问题",
     "tryAgain": "重试",
     "backToHome": "返回首页"
   },
@@ -170,8 +170,8 @@
       "email": "邮箱",
       "subscribe": "加入等待队列",
       "subscribing": "加入等待队列中...",
-      "success": "加入等待队列成功",
-      "fail": "加入等待队列失败",
+      "success": "已加入！我们会在上线后第一时间通知您。",
+      "fail": "提交失败，请稍后重试。",
       "emailValidation": "请输入有效的邮箱地址"
     }
   },
@@ -183,8 +183,8 @@
       "email": "邮箱",
       "subscribe": "订阅",
       "subscribing": "订阅中...",
-      "success": "订阅成功",
-      "fail": "订阅失败",
+      "success": "订阅成功！请查收确认邮件。",
+      "fail": "订阅失败，请稍后重试。",
       "emailValidation": "请输入有效的邮箱地址"
     }
   },
@@ -215,7 +215,7 @@
       "password": "密码",
       "signUp": "注册",
       "signInHint": "已经有账号？登录",
-      "checkEmail": "请检查您的邮箱",
+      "checkEmail": "验证邮件已发送，请查收邮箱并点击链接确认账号。",
       "showPassword": "显示密码",
       "hidePassword": "隐藏密码",
       "nameRequired": "请输入姓名",
@@ -229,7 +229,7 @@
       "email": "邮箱",
       "send": "发送重置密码链接",
       "backToLogin": "返回登录",
-      "checkEmail": "请检查您的邮箱",
+      "checkEmail": "重置密码链接已发送到您的邮箱。如未收到，请检查垃圾邮件。",
       "emailRequired": "请输入邮箱"
     },
     "resetPassword": {
@@ -242,10 +242,10 @@
       "minLength": "密码必须至少包含 8 个字符"
     },
     "error": {
-      "title": "哎呀！出错了！",
+      "title": "出了点问题",
       "tryAgain": "请重试",
       "backToLogin": "返回登录",
-      "checkEmail": "请检查您的邮箱"
+      "checkEmail": "请查收邮箱，我们已发送了一封包含操作链接的邮件。"
     },
     "common": {
       "termsOfService": "服务条款",
@@ -256,14 +256,14 @@
   },
   "BlogPage": {
     "title": "博客",
-    "description": "来自我们的团队最新新闻和更新",
-    "subtitle": "来自我们的团队最新新闻和更新",
+    "description": "特斯拉资讯、对比指南与电动车新闻",
+    "subtitle": "特斯拉资讯、对比指南与电动车新闻",
     "author": "作者",
     "categories": "分类",
     "tableOfContents": "目录",
     "readTime": "{minutes} 分钟阅读",
     "all": "全部",
-    "noPostsFound": "没有找到文章",
+    "noPostsFound": "该分类下暂无文章。",
     "allPosts": "全部文章",
     "morePosts": "更多文章"
   },
@@ -413,7 +413,7 @@
         "fakeData": "注：只为演示功能，数据为假数据，封禁功能不可用",
         "error": "获取用户失败",
         "search": "搜索用户...",
-        "noResults": "没有找到用户",
+        "noResults": "未找到匹配的用户，请尝试其他搜索词。",
         "columns": {
           "columns": "显示列",
           "name": "姓名",
@@ -464,11 +464,11 @@
         "description": "管理您的账户信息",
         "avatar": {
           "title": "头像",
-          "description": "点击上传按钮上传自定义头像",
+          "description": "上传自定义头像",
           "recommendation": "头像是可选的，但强烈推荐设置",
           "uploading": "上传中...",
           "uploadAvatar": "上传头像",
-          "success": "头像更新成功",
+          "success": "头像已更新！",
           "fail": "更新头像失败"
         },
         "name": {
@@ -478,7 +478,7 @@
           "minLength": "请至少使用 3 个字符",
           "maxLength": "请最多使用 30 个字符",
           "hint": "请使用 3-30 个字符",
-          "success": "名字更新成功",
+          "success": "名字已更新，个人资料已保存。",
           "fail": "更新名字失败",
           "saving": "保存中...",
           "save": "保存"
@@ -501,7 +501,7 @@
         "currentPlan": {
           "title": "当前方案",
           "description": "您当前的方案详情",
-          "noPlan": "您没有激活的方案"
+          "noPlan": "当前为免费版，随时可升级获取更多功能。"
         },
         "CustomerPortalButton": {
           "loading": "加载中...",
@@ -518,7 +518,7 @@
         "upgradePlan": "升级方案",
         "retry": "重试",
         "errorMessage": "获取数据失败",
-        "paymentSuccess": "支付成功"
+        "paymentSuccess": "支付成功！您的方案已升级。"
       },
       "payment": {
         "processing": {
@@ -579,7 +579,7 @@
           "search": "搜索积分交易记录...",
           "clearSearch": "清除搜索",
           "paymentIdCopied": "支付ID已复制到剪贴板",
-          "noResults": "没有找到结果",
+          "noResults": "暂无交易记录，积分使用记录将在这里显示。",
           "columns": {
             "columns": "列",
             "id": "ID",
@@ -639,7 +639,7 @@
           "hint": "请至少使用 8 个字符作为密码",
           "showPassword": "显示密码",
           "hidePassword": "隐藏密码",
-          "success": "密码更新成功",
+          "success": "密码已修改！下次登录时请使用新密码。",
           "fail": "更新密码失败",
           "saving": "保存中...",
           "save": "保存"
@@ -656,7 +656,7 @@
           "warning": "此操作是不可逆的，请谨慎操作",
           "button": "删除账号",
           "confirmTitle": "删除账号",
-          "confirmDescription": "您确定要删除您的账号吗？此操作无法撤销",
+          "confirmDescription": "此操作将永久删除您的账号和所有数据，且无法恢复。",
           "confirm": "删除",
           "cancel": "取消",
           "deleting": "删除中...",
@@ -675,7 +675,7 @@
         "cancel": "取消",
         "create": "创建",
         "creating": "创建中...",
-        "noResults": "未找到 API 密钥",
+        "noResults": "还没有 API 密钥，创建一个开始使用。",
         "createSuccess": "API 密钥创建成功",
         "createError": "创建 API 密钥失败",
         "deleteSuccess": "API 密钥已删除",
@@ -684,7 +684,7 @@
         "delete": "删除",
         "done": "完成",
         "newKeyDialogTitle": "您的新 API 密钥",
-        "newKeyDialogDescription": "请立即复制并保存此密钥，您将无法再次查看它！",
+        "newKeyDialogDescription": "请立即复制并妥善保存此密钥——关闭对话框后将无法再次查看。",
         "columns": {
           "name": "名称",
           "key": "密钥",
@@ -880,8 +880,8 @@
           "answer": "是的，我们提供30天的退款保证。"
         },
         "item-5": {
-          "question": "找不到您想问的问题？",
-          "answer": "请联系我们的客户支持团队，邮箱地址：support@mydreamtesla.com"
+          "question": "还有其他问题？",
+          "answer": "我们很乐意帮助！发邮件至 support@mydreamtesla.com，我们将在 24 小时内回复。"
         }
       }
     },
