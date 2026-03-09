@@ -78,7 +78,9 @@ export default function BlogCard({ locale, post }: BlogCardProps) {
                     src={blogAuthor?.data.avatar}
                     alt={`avatar for ${blogAuthor?.data.name}`}
                     className="rounded-full object-cover"
-                    fill
+                    width={28}
+                    height={28}
+                    sizes="28px"
                   />
                 )}
               </div>

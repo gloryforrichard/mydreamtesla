@@ -5,6 +5,7 @@ import { Callout } from '@/components/shared/callout';
 import { CopyButton } from '@/components/shared/copy-button';
 import { cn } from '@/lib/utils';
 import { MDXRemote, type MDXRemoteOptions } from 'next-mdx-remote-client/rsc';
+import Image from 'next/image';
 import Link from 'next/link';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
@@ -216,14 +217,20 @@ const markdownComponents = {
   img: ({
     className,
     alt,
+    src,
+    width,
+    height,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // biome-ignore lint/a11y/useAltText: <explanation>
-    <img
+    <Image
       className={cn('rounded-md border my-2', className)}
       alt={alt || 'Image'}
       title={alt || 'Image'}
-      {...props}
+      src={src || ''}
+      width={Number(width) || 800}
+      height={Number(height) || 400}
+      sizes="(max-width: 768px) 100vw, 700px"
+      loading="lazy"
     />
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
@@ -296,13 +303,22 @@ const markdownComponents = {
  */
 const customComponents = {
   Callout,
-  Image: ({ className, ...props }: React.ComponentProps<'img'>) => (
-    // biome-ignore lint/a11y/useAltText: use alt="image" as default
-    <img
+  Image: ({
+    className,
+    alt,
+    src,
+    width,
+    height,
+    ...props
+  }: React.ComponentProps<'img'>) => (
+    <Image
       className={cn('rounded-md border my-2', className)}
-      // biome-ignore lint/a11y/noRedundantAlt: use image as default alt
-      alt="image"
-      {...props}
+      alt={alt || 'image'}
+      src={src || ''}
+      width={Number(width) || 800}
+      height={Number(height) || 400}
+      sizes="(max-width: 768px) 100vw, 700px"
+      loading="lazy"
     />
   ),
   Step: ({ className, ...props }: React.ComponentProps<'h3'>) => (

@@ -12,6 +12,7 @@ interface VehicleImageProps {
   className?: string;
   fallbackClassName?: string;
   priority?: boolean;
+  sizes?: string;
 }
 
 export function VehicleImage({
@@ -23,6 +24,7 @@ export function VehicleImage({
   className,
   fallbackClassName,
   priority = false,
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
 }: VehicleImageProps) {
   const [error, setError] = useState(false);
 
@@ -51,6 +53,7 @@ export function VehicleImage({
       height={height}
       className={className}
       priority={priority}
+      sizes={sizes}
       onError={() => setError(true)}
     />
   );

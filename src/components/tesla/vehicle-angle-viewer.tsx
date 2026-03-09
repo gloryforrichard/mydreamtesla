@@ -59,6 +59,7 @@ export function VehicleAngleViewer({ photos, alt }: VehicleAngleViewerProps) {
           alt={`${alt} — ${activePhoto.label}`}
           width={1000}
           height={500}
+          sizes="(max-width: 768px) 100vw, 60vw"
           className="h-auto w-full animate-fade-in mix-blend-multiply object-contain p-6 dark:mix-blend-normal"
           priority={activePhoto.angle === DEFAULT_ANGLE}
         />
