@@ -155,7 +155,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 )}
 
                 <div className="mt-5">
-                  <span className="text-[14px] font-medium text-foreground transition-colors group-hover:text-brand">
+                  <span className="text-[14px] font-medium text-brand">
                     Explore all trims →
                   </span>
                 </div>
@@ -186,6 +186,7 @@ export default async function HomePage({ params }: HomePageProps) {
               <h2 className="font-display text-[36px] font-bold tracking-[-2px] text-foreground sm:text-[48px]">
                 Head-to-head comparisons
               </h2>
+              <div className="mx-auto mt-4 h-px w-12 bg-brand/40" />
               <p className="mt-3 text-[17px] font-light text-secondary-text">
                 The matchups people search for most.
               </p>
@@ -204,7 +205,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
                     {comp.description}
                   </p>
-                  <p className="mt-4 text-[13px] font-medium text-secondary-text transition-colors group-hover:text-brand">
+                  <p className="mt-4 text-[13px] font-medium text-brand">
                     Compare ›
                   </p>
                 </Link>
@@ -214,9 +215,9 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="mt-10 text-center">
             <Link
               href="/compare"
-              className="text-[14px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-[14px] font-medium text-brand/70 transition-colors hover:text-brand"
             >
-              View all comparisons ›
+              View all comparisons →
             </Link>
           </div>
         </div>
@@ -232,13 +233,14 @@ export default async function HomePage({ params }: HomePageProps) {
                   <h2 className="font-display text-[36px] font-bold tracking-[-2px] text-foreground sm:text-[48px]">
                     Latest from Our Blog
                   </h2>
+                  <div className="mt-4 h-px w-12 bg-brand/40" />
                   <p className="mt-3 text-[17px] font-light text-secondary-text">
                     Guides, comparisons, and Tesla news.
                   </p>
                 </div>
                 <Link
                   href="/blog"
-                  className="hidden text-[14px] font-medium text-muted-foreground transition-colors hover:text-foreground sm:block"
+                  className="hidden text-[14px] font-medium text-brand/70 transition-colors hover:text-brand sm:block"
                 >
                   View All &rarr;
                 </Link>
@@ -279,7 +281,7 @@ export default async function HomePage({ params }: HomePageProps) {
                         >
                           {formatDate(new Date(post.data.date))}
                         </time>
-                        <span className="text-[13px] font-medium text-secondary-text transition-colors group-hover:text-brand">
+                        <span className="text-[13px] font-medium text-brand">
                           Read More &rsaquo;
                         </span>
                       </div>
@@ -291,7 +293,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <div className="mt-10 text-center sm:hidden">
               <Link
                 href="/blog"
-                className="text-[14px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="text-[14px] font-medium text-brand/70 transition-colors hover:text-brand"
               >
                 View all posts &rarr;
               </Link>

@@ -139,7 +139,7 @@ export default async function CompareIndexPage() {
                       {c.description}
                     </p>
                   </div>
-                  <div className="mt-5 text-[14px] font-medium text-muted-foreground transition-colors group-hover:text-brand">
+                  <div className="mt-5 text-[14px] font-medium text-brand">
                     View full comparison →
                   </div>
                 </Link>

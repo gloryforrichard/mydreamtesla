@@ -42,8 +42,8 @@ export function ModelCard({ model, vehicleCount }: ModelCardProps) {
               {vehicleCount} {vehicleCount === 1 ? 'trim' : 'trims'} available
             </span>
           )}
-          <span className="ml-auto text-sm font-medium text-foreground transition-colors group-hover:text-brand">
-            View Details ›
+          <span className="ml-auto text-sm font-medium text-brand">
+            View Details →
           </span>
         </div>
       </div>
