@@ -126,7 +126,7 @@ export default async function CompareIndexPage() {
                 <Link
                   key={c.slug}
                   href={getCompareUrl(c.slug)}
-                  className="group flex flex-col justify-between rounded-lg border border-border bg-background p-6 transition-all duration-200 hover:border-border-muted hover:bg-card hover:shadow-md"
+                  className="group flex flex-col justify-between rounded-lg border border-border bg-background p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-border-muted hover:bg-card hover:shadow-md"
                 >
                   <div>
                     <div className="mb-3 inline-block rounded-full bg-card px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[1.5px] text-muted-foreground">

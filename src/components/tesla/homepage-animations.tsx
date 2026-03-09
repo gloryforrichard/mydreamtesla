@@ -5,8 +5,11 @@ import {
   useInView,
   useMotionValue,
   useReducedMotion,
+  useScroll,
   useSpring,
+  useTransform,
 } from 'motion/react';
+import Image from 'next/image';
 import { type ReactNode, useEffect, useRef } from 'react';
 
 // -- Hero stagger variants --
@@ -58,6 +61,34 @@ export function HeroItem({
   return (
     <motion.div variants={heroItemVariants} className={className}>
       {children}
+    </motion.div>
+  );
+}
+
+// -- Hero parallax background image --
+
+export function HeroParallaxImage() {
+  const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="absolute inset-x-0 -inset-y-[15%]"
+      style={shouldReduceMotion ? undefined : { y }}
+    >
+      <Image
+        src="/images/landing.jpg"
+        alt="Tesla on a forest road"
+        fill
+        className="object-cover"
+        priority
+      />
     </motion.div>
   );
 }

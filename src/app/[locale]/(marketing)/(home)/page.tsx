@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { getRepresentativeVehicles } from '@/lib/db/queries';
@@ -14,7 +13,8 @@ import { getBaseUrl } from '@/lib/urls/urls';
 import { getModelCardImage } from '@/lib/vehicle-images';
 import { blogSource } from '@/lib/source';
 import { formatDate } from '@/lib/formatter';
-import { HeroContent, HeroItem, FadeInSection, AnimatedSpec } from '@/components/tesla/homepage-animations';
+import Image from 'next/image';
+import { HeroContent, HeroItem, HeroParallaxImage, FadeInSection, AnimatedSpec } from '@/components/tesla/homepage-animations';
 
 export const metadata: Metadata = {
   title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
@@ -61,13 +61,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* Hero — full-screen background image */}
       <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden text-center">
-        <Image
-          src="/images/landing.jpg"
-          alt="Tesla on a forest road"
-          fill
-          className="object-cover"
-          priority
-        />
+        <HeroParallaxImage />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
         <HeroContent>
           <HeroItem>
@@ -111,7 +105,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <FadeInSection key={item.model.id} delay={index * 0.08}>
               <Link
                 href={`/models/${item.model.slug}`}
-                className="group flex min-h-[420px] flex-col items-center overflow-hidden rounded-lg bg-card px-5 pt-10 text-center transition-all duration-300 hover:bg-card-hover hover:shadow-lg sm:min-h-[520px] sm:px-10 sm:pt-14"
+                className="group flex min-h-[420px] flex-col items-center overflow-hidden rounded-lg bg-card px-5 pt-10 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-card-hover hover:shadow-lg sm:min-h-[520px] sm:px-10 sm:pt-14"
               >
                 <p className="font-mono text-[12px] font-medium uppercase tracking-[2px] text-muted-foreground">
                   {item.model.bodyType}
@@ -197,7 +191,7 @@ export default async function HomePage({ params }: HomePageProps) {
               <FadeInSection key={comp.slug} delay={index * 0.06}>
                 <Link
                   href={getCompareUrl(comp.slug)}
-                  className="group rounded-lg border border-border px-6 py-6 transition-all duration-200 hover:border-border-muted hover:bg-card hover:shadow-md"
+                  className="group rounded-lg border border-border px-6 py-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-border-muted hover:bg-card hover:shadow-md"
                 >
                   <p className="text-[15px] font-semibold text-foreground">
                     {comp.label}
@@ -251,7 +245,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 <FadeInSection key={post.url} delay={index * 0.08}>
                   <Link
                     href={`/blog/${post.slugs}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-lg bg-card transition-all duration-300 hover:bg-card-hover hover:shadow-md"
+                    className="group flex h-full flex-col overflow-hidden rounded-lg bg-card transition-all duration-300 hover:-translate-y-1 hover:bg-card-hover hover:shadow-md"
                   >
                     {post.data.image && (
                       <div className="aspect-video w-full overflow-hidden">
