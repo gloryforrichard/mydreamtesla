@@ -558,6 +558,12 @@ def main():
         default=10,
         help="每次提交间隔秒数 (默认: 10)",
     )
+    parser.add_argument(
+        "--targets-file",
+        type=str,
+        default=None,
+        help="自定义 targets JSON 文件路径",
+    )
 
     args = parser.parse_args()
 
@@ -566,7 +572,11 @@ def main():
         delay=args.delay,
     )
 
-    targets = submitter.load_targets()
+    if args.targets_file:
+        with open(args.targets_file, encoding="utf-8") as f:
+            targets = json.load(f)
+    else:
+        targets = submitter.load_targets()
     print(f"已加载 {len(targets)} 个目标")
 
     submitter.run(
