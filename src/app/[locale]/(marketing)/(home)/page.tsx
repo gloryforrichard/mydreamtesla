@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
-import { getRepresentativeVehicles, getSiteCounts } from '@/lib/db/queries';
+import { getRepresentativeVehicles } from '@/lib/db/queries';
 import { formatAcceleration, formatSpec } from '@/lib/vehicle-utils';
 import { POPULAR_COMPARISONS, getCompareUrl } from '@/config/comparisons';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -31,10 +31,7 @@ interface HomePageProps {
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
-  const [modelData, counts] = await Promise.all([
-    getRepresentativeVehicles(),
-    getSiteCounts(),
-  ]);
+  const modelData = await getRepresentativeVehicles();
 
   // Get latest blog posts
   const blogPosts = blogSource
@@ -74,10 +71,7 @@ export default async function HomePage({ params }: HomePageProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
         <HeroContent>
-          <p className="font-mono text-[13px] font-medium uppercase tracking-[3px] text-white/50">
-            MyDreamTesla
-          </p>
-          <h1 className="mt-4 font-display text-[36px] font-bold leading-[0.95] tracking-[-3px] text-white sm:text-5xl md:text-[80px]">
+          <h1 className="font-display text-[36px] font-bold leading-[0.95] tracking-[-3px] text-white sm:text-5xl md:text-[80px]">
             Find Your
             <br />
             Perfect Tesla.
@@ -90,7 +84,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
             <Link
               href="/models"
-              className="w-full rounded-full bg-white px-8 py-3.5 text-center text-[15px] font-semibold text-black shadow-lg transition-all duration-200 hover:bg-white/90 hover:shadow-xl hover:scale-[1.02] sm:w-auto"
+              className="w-full rounded-full bg-white px-8 py-3.5 text-center text-[15px] font-semibold text-black shadow-lg transition-colors duration-200 hover:bg-white/90 sm:w-auto"
             >
               Browse Models
             </Link>
@@ -150,18 +144,14 @@ export default async function HomePage({ params }: HomePageProps) {
                   </div>
                 )}
 
-                {/* Tile links */}
-                <div className="mt-5 flex gap-6">
+                <div className="mt-5">
                   <span className="text-[14px] font-medium text-foreground transition-colors group-hover:text-brand">
-                    Explore ›
-                  </span>
-                  <span className="text-[14px] font-medium text-foreground transition-colors group-hover:text-brand">
-                    Compare trims ›
+                    Explore all trims →
                   </span>
                 </div>
 
                 {/* Model tile image */}
-                <div className="mt-auto w-full max-w-[420px] transition-transform duration-500 group-hover:scale-[1.03]">
+                <div className="mt-auto w-full max-w-[420px]">
                   <VehicleImage
                     src={getModelCardImage(item.model.slug)}
                     alt={`Tesla ${item.model.name}`}
@@ -300,58 +290,6 @@ export default async function HomePage({ params }: HomePageProps) {
         </section>
       )}
 
-      {/* Stats — compact inline strip */}
-      <FadeInSection>
-        <section className="border-y border-border bg-card/50">
-          <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center divide-x divide-border px-4">
-            {[
-              { num: `${counts.modelCount}`, label: 'Models' },
-              { num: `${counts.vehicleCount}+`, label: 'Trims' },
-              { num: '150+', label: 'Data points' },
-              { num: `${counts.yearCount}`, label: 'Model years' },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="flex items-baseline gap-2.5 px-8 py-8 sm:px-10 sm:py-10"
-              >
-                <span className="font-display text-[28px] font-bold tracking-[-1.5px] text-foreground sm:text-[36px]">
-                  {stat.num}
-                </span>
-                <span className="text-[13px] font-medium text-muted-foreground">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-      </FadeInSection>
-
-      {/* CTA — inverted section */}
-      <section className="bg-foreground px-4 py-24 text-center">
-        <FadeInSection>
-          <h2 className="font-display text-[36px] font-bold tracking-[-2px] text-background sm:text-[48px]">
-            Ready to find yours?
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-[17px] font-light text-background/50">
-            Browse every Tesla model, compare specs side by side, and find the
-            one that fits your life.
-          </p>
-          <div className="mt-10 flex items-center justify-center gap-4">
-            <Link
-              href="/models"
-              className="rounded-full bg-background px-8 py-3.5 text-[15px] font-semibold text-foreground shadow-lg transition-all duration-200 hover:bg-background/90 hover:shadow-xl hover:scale-[1.02]"
-            >
-              Browse Models
-            </Link>
-            <Link
-              href="/compare"
-              className="rounded-full border border-background/30 px-8 py-3.5 text-[15px] font-medium text-background transition-all duration-200 hover:border-background/60 hover:bg-background/10"
-            >
-              Compare ›
-            </Link>
-          </div>
-        </FadeInSection>
-      </section>
     </main>
   );
 }

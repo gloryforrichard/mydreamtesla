@@ -99,9 +99,6 @@ export default async function CompareIndexPage() {
       {/* Comparison Builder */}
       <section className="bg-card py-16">
         <div className="mx-auto max-w-[1060px] px-5">
-          <h2 className="mb-8 text-center font-display text-[24px] font-bold tracking-[-1px] text-foreground sm:text-[28px]">
-            Build your comparison
-          </h2>
           <CompareBuilder models={models} vehicles={vehicles} />
         </div>
       </section>
