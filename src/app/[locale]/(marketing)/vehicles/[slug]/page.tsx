@@ -24,6 +24,8 @@ import { getVehicleGeneration } from '@/lib/vehicle-generations';
 import { getAnglePhotos } from '@/lib/vehicle-angles';
 import { VEHICLE_FAQS } from '@/config/vehicle-faqs';
 import { buildFAQPageJsonLd } from '@/lib/seo/structured-data';
+import { MODEL_BLOG_LINKS } from '@/config/vehicle-blog-links';
+import { blogSource } from '@/lib/source';
 
 export async function generateStaticParams() {
   const vehicles = await getAllVehicleSlugs();
@@ -84,6 +86,17 @@ export default async function VehicleDetailPage({ params }: Props) {
   const anglePhotos = model
     ? getAnglePhotos(model.slug, vehicle.year)
     : null;
+
+  // Related blog articles for this model
+  const blogSlugs = model ? (MODEL_BLOG_LINKS[model.slug] ?? []) : [];
+  const allBlogPages = blogSource.getPages('en');
+  const relatedArticles = blogSlugs
+    .map((slug) => allBlogPages.find((p) => p.slugs[0] === slug))
+    .filter((p): p is NonNullable<typeof p> => p != null && p.data.published)
+    .map((p) => ({
+      label: p.data.title,
+      href: `/blog/${p.slugs.join('/')}`,
+    }));
 
   const relatedItems = [
     ...otherTrims.map((other) => ({
@@ -215,6 +228,14 @@ export default async function VehicleDetailPage({ params }: Props) {
           title="Compare with other trims."
           subtitle={`See how the ${vehicle.title} stacks up.`}
           items={relatedItems}
+        />
+      )}
+
+      {relatedArticles.length > 0 && (
+        <RelatedContent
+          title="Related Articles"
+          subtitle={`Guides and comparisons for the Tesla ${modelName}.`}
+          items={relatedArticles}
         />
       )}
     </main>

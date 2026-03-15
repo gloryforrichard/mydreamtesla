@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { Locale } from 'next-intl';
 import Link from 'next/link';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
 import { getRepresentativeVehicles } from '@/lib/db/queries';
@@ -15,18 +16,24 @@ import { blogSource } from '@/lib/source';
 import { formatDate } from '@/lib/formatter';
 import Image from 'next/image';
 import { HeroContent, HeroItem, HeroParallaxImage, FadeInSection, AnimatedSpec } from '@/components/tesla/homepage-animations';
-
-export const metadata: Metadata = {
-  title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
-  description:
-    'The most comprehensive Tesla vehicle database. Compare specs, pricing, and performance across every model year and trim — all in one place.',
-};
-
-const TOP_COMPARISONS = POPULAR_COMPARISONS.slice(0, 6);
+import { constructMetadata } from '@/lib/metadata';
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
 }
+
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return constructMetadata({
+    title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
+    description:
+      'The most comprehensive Tesla vehicle database. Compare specs, pricing, and performance across every model year and trim — all in one place.',
+    locale: locale as Locale,
+    pathname: '/',
+  });
+}
+
+const TOP_COMPARISONS = POPULAR_COMPARISONS.slice(0, 6);
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;

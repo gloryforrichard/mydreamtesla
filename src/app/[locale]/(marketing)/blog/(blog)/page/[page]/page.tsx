@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: BlogListPageProps) {
     description: pt('description'),
     locale,
     pathname: '/blog',
+    noIndex: true,
   });
 }
 

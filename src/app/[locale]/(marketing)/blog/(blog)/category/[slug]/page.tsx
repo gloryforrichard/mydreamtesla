@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: BlogCategoryPageProps) {
     description: category.data.description,
     locale,
     pathname: canonicalPath,
+    noIndex: true,
   });
 }
 

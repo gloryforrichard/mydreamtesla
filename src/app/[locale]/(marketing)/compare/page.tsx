@@ -12,6 +12,7 @@ import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav';
 import { JsonLd } from '@/components/seo/json-ld';
 import { buildFAQPageJsonLd } from '@/lib/seo/structured-data';
 import { getOgImageUrl } from '@/lib/metadata';
+import { generateAlternates } from '@/lib/hreflang';
 
 const COMPARE_FAQS = [
   {
@@ -56,6 +57,7 @@ export const metadata: Metadata = {
     'all tesla models compared',
     'tesla model y 2024 vs 2025',
   ],
+  alternates: generateAlternates('/compare'),
   openGraph: {
     images: [
       getOgImageUrl({
