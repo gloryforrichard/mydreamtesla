@@ -44,10 +44,9 @@ const COMPARE_FAQS = [
 ];
 
 export const metadata: Metadata = {
-  title:
-    'Compare Tesla Models Side by Side — Model 3 vs Model Y, Specs & Pricing | MyDreamTesla',
+  title: 'Tesla Model Comparisons 2025 — Side-by-Side Specs & Price',
   description:
-    'Compare any Tesla vehicles side by side: Model 3 vs Model Y, Long Range vs Performance, 2024 vs 2025. Full specs, range, horsepower, battery capacity, and pricing compared.',
+    'Compare any two Tesla vehicles side by side — Model 3 vs Model Y, Long Range vs Performance, 2024 vs 2025. Full specs, range, 0-60, and pricing compared. Pick your perfect Tesla.',
   keywords: [
     'tesla comparison',
     'compare tesla models',

@@ -36,9 +36,9 @@ const MODELS_PAGE_FAQS = [
 ];
 
 export const metadata: Metadata = {
-  title: 'All Tesla Models & Cars Compared (2025) | MyDreamTesla',
+  title: 'All Tesla Models 2025: Prices From $29,990 — Specs & Range Guide',
   description:
-    'Compare all Tesla models side by side — Model 3, Model Y, Model S, Model X & Cybertruck. Full specs, EPA range, pricing & performance for every trim and year.',
+    'Every Tesla model compared — Model 3, Y, S, X & Cybertruck. Browse all trims with EPA range, 0-60 times, pricing & performance. Find the right Tesla for your budget.',
   alternates: generateAlternates('/models'),
   openGraph: {
     images: [

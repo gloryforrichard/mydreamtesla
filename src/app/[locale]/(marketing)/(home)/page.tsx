@@ -25,9 +25,9 @@ interface HomePageProps {
 export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
   const { locale } = await params;
   return constructMetadata({
-    title: 'MyDreamTesla — Every Tesla. Every Year. Compared.',
+    title: 'Compare Every Tesla Model & Trim (2017–2025) — Specs, Range, Price',
     description:
-      'The most comprehensive Tesla vehicle database. Compare specs, pricing, and performance across every model year and trim — all in one place.',
+      'The most comprehensive Tesla database. Compare specs, range, 0-60 times, and pricing across every model, trim & year — Model 3, Y, S, X & Cybertruck. Updated for 2025.',
     locale: locale as Locale,
     pathname: '/',
   });

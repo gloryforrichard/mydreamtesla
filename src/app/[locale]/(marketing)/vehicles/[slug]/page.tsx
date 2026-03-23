@@ -12,7 +12,10 @@ import { ProsAndCons } from '@/components/tesla/pros-and-cons';
 import { DataDisclaimer } from '@/components/tesla/data-disclaimer';
 import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav';
 import { JsonLd } from '@/components/seo/json-ld';
-import { buildCarJsonLd } from '@/lib/seo/structured-data';
+import {
+  buildCarJsonLd,
+  buildVehicleReviewJsonLd,
+} from '@/lib/seo/structured-data';
 import { formatPrice, generateCompareSlug } from '@/lib/vehicle-utils';
 import { getOgImageUrl } from '@/lib/metadata';
 import { generateAlternates } from '@/lib/hreflang';
@@ -44,11 +47,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const vehicle = await getVehicleBySlug(slug);
   if (!vehicle) return {};
 
+  const range = vehicle.rangeEPA;
+  const price = vehicle.basePriceMSRP
+    ? `$${Number(vehicle.basePriceMSRP).toLocaleString()}`
+    : null;
+  const specs = [range && `${range}mi`, price].filter(Boolean).join(', ');
   const title =
-    vehicle.seoTitle ?? `${vehicle.title} Specs & Review | MyDreamTesla`;
+    vehicle.seoTitle ??
+    `${vehicle.title}${specs ? ` — ${specs}` : ''} | MDT`;
+  const month = new Date().toLocaleString('en-US', { month: 'long' });
   const description =
     vehicle.seoDescription ??
-    `${vehicle.title} full specs — ${vehicle.rangeEPA ?? 'N/A'}-mile EPA range, ${vehicle.acceleration060 ?? 'N/A'}s 0-60${vehicle.horsepower ? `, ${vehicle.horsepower} hp` : ''}${vehicle.curbWeight ? `, ${Number(vehicle.curbWeight).toLocaleString()} lbs` : ''}${vehicle.basePriceMSRP ? `. Starting at $${Number(vehicle.basePriceMSRP).toLocaleString()}` : ''}.`;
+    `${vehicle.title}: ${range ?? 'N/A'} mi range, ${vehicle.acceleration060 ?? 'N/A'}s 0-60, ${price ?? 'N/A'} MSRP. Full specs + pros/cons + how it compares to other trims. Updated ${month} 2025.`;
 
   const ogImage = getOgImageUrl({
     title: vehicle.title,
@@ -114,6 +124,7 @@ export default async function VehicleDetailPage({ params }: Props) {
   return (
     <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <JsonLd data={buildCarJsonLd(vehicle, modelName)} />
+      <JsonLd data={buildVehicleReviewJsonLd(vehicle)} />
       {faqs && faqs.length > 0 && <JsonLd data={buildFAQPageJsonLd(faqs)} />}
       <BreadcrumbNav
         items={[
@@ -134,6 +145,16 @@ export default async function VehicleDetailPage({ params }: Props) {
         <h1 className="mt-2 font-display text-[32px] font-bold leading-[1.05] tracking-[-1.5px] text-foreground sm:text-[40px] md:text-[48px]">
           {vehicle.title}
         </h1>
+        <p className="mt-3 font-mono text-[15px] tracking-tight text-secondary-text sm:text-[17px]">
+          {[
+            vehicle.rangeEPA && `${vehicle.rangeEPA} mi`,
+            vehicle.acceleration060 && `${vehicle.acceleration060}s`,
+            vehicle.basePriceMSRP &&
+              `From $${Number(vehicle.basePriceMSRP).toLocaleString()}`,
+          ]
+            .filter(Boolean)
+            .join(' · ')}
+        </p>
         {anglePhotos ? (
           <div className="mt-8">
             <VehicleAngleViewer photos={anglePhotos} alt={vehicle.title} />

@@ -1,6 +1,10 @@
 import { siteConfig } from '@/config/site';
 import { getBaseUrl } from '@/lib/urls/urls';
-import type { Vehicle, TeslaModel } from '@/lib/vehicle-utils';
+import {
+  type Vehicle,
+  type TeslaModel,
+  calculateVehicleRating,
+} from '@/lib/vehicle-utils';
 
 /**
  * schema.org/WebSite — for homepage
@@ -96,6 +100,8 @@ export function buildCarJsonLd(vehicle: Vehicle, modelName: string) {
       },
     }),
     fuelType: 'Electric',
+    vehicleTransmission: 'Electric',
+    numberOfDoors: 4,
     ...(vehicle.rangeEPA && {
       fuelEfficiency: {
         '@type': 'QuantitativeValue',
@@ -103,6 +109,73 @@ export function buildCarJsonLd(vehicle: Vehicle, modelName: string) {
         unitText: 'mi EPA range',
       },
     }),
+    ...(vehicle.acceleration060 && {
+      accelerationTime: {
+        '@type': 'QuantitativeValue',
+        value: Number.parseFloat(vehicle.acceleration060),
+        unitText: 'seconds 0-60 mph',
+      },
+    }),
+    ...(vehicle.topSpeed && {
+      speed: {
+        '@type': 'QuantitativeValue',
+        value: vehicle.topSpeed,
+        unitText: 'mph',
+      },
+    }),
+    ...(vehicle.curbWeight && {
+      weightTotal: {
+        '@type': 'QuantitativeValue',
+        value: vehicle.curbWeight,
+        unitText: 'lbs',
+      },
+    }),
+  };
+}
+
+/**
+ * schema.org/Review — for vehicle detail pages (star ratings in SERP)
+ */
+export function buildVehicleReviewJsonLd(vehicle: Vehicle) {
+  const baseUrl = getBaseUrl();
+  const ratingValue = calculateVehicleRating(vehicle);
+  const reviewParts = [`Comprehensive spec review of the ${vehicle.title}.`];
+  if (vehicle.rangeEPA) reviewParts.push(`EPA range: ${vehicle.rangeEPA} miles.`);
+  if (vehicle.acceleration060)
+    reviewParts.push(`0-60 mph: ${vehicle.acceleration060}s.`);
+  if (vehicle.basePriceMSRP)
+    reviewParts.push(
+      `Starting at $${Number(vehicle.basePriceMSRP).toLocaleString()}.`
+    );
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    itemReviewed: {
+      '@type': 'Car',
+      name: vehicle.title,
+      manufacturer: { '@type': 'Organization', name: 'Tesla, Inc.' },
+    },
+    author: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: baseUrl,
+    },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    reviewBody: reviewParts.join(' '),
+    datePublished: vehicle.lastUpdated
+      ? vehicle.lastUpdated.toISOString().split('T')[0]
+      : new Date().toISOString().split('T')[0],
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: baseUrl,
+    },
   };
 }
 

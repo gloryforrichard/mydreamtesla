@@ -305,6 +305,43 @@ export type Vehicle = {
   createdAt: Date | null;
 };
 
+/**
+ * Calculate a vehicle rating (1-5) based on key specs.
+ * Used for Review schema to display star ratings in SERP.
+ */
+export function calculateVehicleRating(vehicle: Vehicle): number {
+  let totalScore = 0;
+  let weightSum = 0;
+
+  // Range score (weight 3): 400mi = 5.0
+  if (vehicle.rangeEPA) {
+    const rangeScore = Math.min((vehicle.rangeEPA / 400) * 5, 5);
+    totalScore += rangeScore * 3;
+    weightSum += 3;
+  }
+
+  // Performance score (weight 2): 2s 0-60 = 5.0, 6s = 2.1
+  if (vehicle.acceleration060) {
+    const acc = Number.parseFloat(vehicle.acceleration060);
+    const perfScore = Math.min(Math.max(6.4 - acc * 0.7, 1), 5);
+    totalScore += perfScore * 2;
+    weightSum += 2;
+  }
+
+  // Value score (weight 2): range per $10k spent
+  if (vehicle.rangeEPA && vehicle.basePriceMSRP) {
+    const valueRatio = vehicle.rangeEPA / (vehicle.basePriceMSRP / 10000);
+    const valueScore = Math.min((valueRatio / 80) * 5, 5);
+    totalScore += valueScore * 2;
+    weightSum += 2;
+  }
+
+  if (weightSum === 0) return 4.0;
+
+  const raw = totalScore / weightSum;
+  return Math.round(Math.max(3.5, Math.min(4.9, raw)) * 10) / 10;
+}
+
 export type TeslaModel = {
   id: number;
   name: string;

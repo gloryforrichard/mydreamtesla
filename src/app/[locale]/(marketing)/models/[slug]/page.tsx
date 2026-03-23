@@ -35,11 +35,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const model = await getModelBySlug(slug);
   if (!model) return {};
 
+  const vehicles = await getVehiclesForModel(model.id);
+  const years = [...new Set(vehicles.map((v) => v.year))];
+  const startYear = years.length > 0 ? Math.min(...years) : model.productionStart ?? 2017;
+  const endYear = years.length > 0 ? Math.max(...years) : 2025;
+  const trimCount = new Set(vehicles.map((v) => v.trimName)).size;
+  const ranges = vehicles.map((v) => v.rangeEPA).filter((r): r is number => r != null);
+  const minRange = ranges.length > 0 ? Math.min(...ranges) : null;
+  const maxRange = ranges.length > 0 ? Math.max(...ranges) : null;
+
   const title =
-    model.seoTitle ?? `Tesla ${model.name} — All Years & Trims | MyDreamTesla`;
+    model.seoTitle ??
+    `Tesla ${model.name} Specs by Year (${startYear}–${endYear}) — Compare All Trims`;
+  const rangeText =
+    minRange && maxRange ? ` Range from ${minRange} to ${maxRange} mi.` : '';
   const description =
     model.seoDescription ??
-    `Compare every Tesla ${model.name} trim and model year. View specs, pricing, range, and performance data.`;
+    `Every Tesla ${model.name} from ${startYear} to ${endYear} compared — ${trimCount} trims, ${years.length} model years.${rangeText} Find your perfect ${model.name}.`;
 
   const ogImage = getOgImageUrl({
     title: `Tesla ${model.name}`,
