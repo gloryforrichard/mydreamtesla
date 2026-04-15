@@ -153,7 +153,7 @@ export function SpecTable({ vehicle }: SpecTableProps) {
             {section.rows.map((row, i) => (
               <div
                 key={row.label}
-                className={`flex items-center justify-between px-4 py-3 ${
+                className={`flex items-center justify-between px-3 py-2.5 sm:px-4 sm:py-3 ${
                   i % 2 === 0 ? 'bg-background' : 'bg-card'
                 }`}
               >

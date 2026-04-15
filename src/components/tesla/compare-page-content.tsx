@@ -31,10 +31,10 @@ export function ComparePageContent({
       <div className="sticky top-12 z-40 border-b border-border bg-background/90 backdrop-blur-[20px]">
         <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
           <div
-            className="mx-auto min-w-[480px] max-w-[980px] px-5 py-4"
+            className="mx-auto min-w-[360px] max-w-[980px] px-5 py-4 sm:min-w-[480px]"
             style={{
               display: 'grid',
-              gridTemplateColumns: `clamp(120px, 25vw, 180px) repeat(${vehicles.length}, 1fr)`,
+              gridTemplateColumns: `clamp(90px, 22vw, 180px) repeat(${vehicles.length}, 1fr)`,
             }}
           >
             <div />

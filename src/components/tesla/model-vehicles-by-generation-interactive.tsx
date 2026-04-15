@@ -32,7 +32,7 @@ export function ModelVehiclesByGenerationInteractive({
           onClick={() =>
             setSortOrder((prev) => (prev === 'desc' ? 'asc' : 'desc'))
           }
-          className="inline-flex items-center gap-1.5 rounded-sm border border-[#E5E2DC] px-3 py-1.5 text-xs font-medium text-[#777777] transition-colors hover:border-[#CCCCCC] hover:text-[#1A1A1A]"
+          className="inline-flex items-center gap-1.5 rounded-sm border border-border px-4 py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:border-border-muted hover:text-foreground"
         >
           <ArrowUpDown className="h-3.5 w-3.5" />
           {sortOrder === 'desc' ? 'Newest first' : 'Oldest first'}

@@ -105,14 +105,14 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* Model Tiles — 2×2 grid */}
-      <section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-4 p-4 sm:grid-cols-2">
+      <section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-3 p-3 sm:grid-cols-2 sm:gap-4 sm:p-4">
         {modelData.map((item, index) => {
           const v = item.vehicle;
           return (
             <FadeInSection key={item.model.id} delay={index * 0.08}>
               <Link
                 href={`/models/${item.model.slug}`}
-                className="group flex min-h-[420px] flex-col items-center overflow-hidden rounded-lg bg-card px-5 pt-10 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-card-hover hover:shadow-lg sm:min-h-[520px] sm:px-10 sm:pt-14"
+                className="group flex min-h-[360px] flex-col items-center overflow-hidden rounded-lg bg-card px-4 pt-8 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-card-hover hover:shadow-lg sm:min-h-[520px] sm:px-10 sm:pt-14"
               >
                 <p className="font-mono text-[12px] font-medium uppercase tracking-[2px] text-muted-foreground">
                   {item.model.bodyType}

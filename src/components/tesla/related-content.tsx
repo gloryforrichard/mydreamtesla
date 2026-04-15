@@ -24,7 +24,7 @@ export function RelatedContent({
 
   return (
     <section className="py-16" aria-label="Related content">
-      <h2 className="font-display text-[32px] font-bold tracking-[-1.5px] text-foreground sm:text-[28px] md:text-[32px]">
+      <h2 className="font-display text-[24px] font-bold tracking-[-1.5px] text-foreground sm:text-[28px] md:text-[32px]">
         {title}
       </h2>
       {subtitle && (
@@ -35,7 +35,7 @@ export function RelatedContent({
           <Link
             key={item.href}
             href={item.href}
-            className="flex items-center justify-between rounded-sm bg-card px-6 py-5 text-[14px] font-medium text-foreground transition-colors hover:bg-card-hover"
+            className="flex items-center justify-between rounded-sm bg-card px-4 py-4 text-[14px] font-medium text-foreground transition-colors hover:bg-card-hover sm:px-6 sm:py-5"
           >
             <span>{item.label}</span>
             <span className="text-muted-foreground">›</span>

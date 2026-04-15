@@ -45,8 +45,8 @@ export function CompareBuilder({ models, vehicles }: CompareBuilderProps) {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <div className="rounded-lg bg-background p-8 shadow-md">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="rounded-lg bg-background p-4 shadow-md sm:p-8">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
           <VehicleSelector
             title="Vehicle 1"
             models={models}

@@ -32,7 +32,7 @@ export function VehicleAngleViewer({ photos, alt }: VehicleAngleViewerProps) {
         <button
           type="button"
           onClick={prev}
-          className="absolute left-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-background/70 text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background sm:left-4 sm:h-10 sm:w-10"
+          className="absolute left-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-background/70 text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background sm:left-4 sm:h-11 sm:w-11"
           aria-label="Previous angle"
         >
           <svg
@@ -68,7 +68,7 @@ export function VehicleAngleViewer({ photos, alt }: VehicleAngleViewerProps) {
         <button
           type="button"
           onClick={next}
-          className="absolute right-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-background/70 text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background sm:right-4 sm:h-10 sm:w-10"
+          className="absolute right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-background/70 text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background sm:right-4 sm:h-11 sm:w-11"
           aria-label="Next angle"
         >
           <svg

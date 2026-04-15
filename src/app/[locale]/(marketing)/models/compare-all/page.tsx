@@ -96,7 +96,7 @@ export default async function CompareAllPage() {
       />
 
       {/* Hero */}
-      <section className="bg-[#FDFCF9] pb-16 pt-8">
+      <section className="bg-card/50 pb-16 pt-8">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <BreadcrumbNav
             items={[
@@ -106,10 +106,10 @@ export default async function CompareAllPage() {
             ]}
           />
 
-          <h1 className="mt-2 font-display text-[40px] font-bold leading-[1.05] tracking-[-1.5px] text-[#1A1A1A] sm:text-[56px]">
+          <h1 className="mt-2 font-display text-[32px] font-bold leading-[1.05] tracking-[-1.5px] text-foreground sm:text-[40px] md:text-[56px]">
             Every Tesla, compared.
           </h1>
-          <p className="mt-3 max-w-2xl text-[21px] font-light text-[#777777]">
+          <p className="mt-3 max-w-2xl text-[17px] font-light text-secondary-text sm:text-[21px]">
             A quick-glance table of every current Tesla model — base trim specs,
             pricing, and key numbers side by side.
           </p>
@@ -118,21 +118,21 @@ export default async function CompareAllPage() {
 
       {/* Comparison Table */}
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="overflow-x-auto rounded-sm border border-[#E5E2DC]">
-          <table className="w-full min-w-[640px] text-left">
+        <div className="overflow-x-auto rounded-sm border border-border">
+          <table className="w-full min-w-[480px] text-left sm:min-w-[640px]">
             <thead>
-              <tr className="border-b border-[#E5E2DC] bg-[#FDFCF9]">
-                <th className="px-5 py-4 text-[13px] font-medium uppercase tracking-[0.5px] text-[#999999]">
+              <tr className="border-b border-border bg-card/50">
+                <th className="px-3 py-3 text-[12px] font-medium uppercase tracking-[0.5px] text-muted-foreground sm:px-5 sm:py-4 sm:text-[13px]">
                   Spec
                 </th>
                 {models.map((model) => (
                   <th
                     key={model.id}
-                    className="px-5 py-4 text-[15px] font-semibold text-[#1A1A1A]"
+                    className="px-3 py-3 text-[13px] font-semibold text-foreground sm:px-5 sm:py-4 sm:text-[15px]"
                   >
                     <Link
                       href={`/models/${model.slug}`}
-                      className="transition-colors hover:text-[#555555] hover:underline"
+                      className="transition-colors hover:text-secondary-text hover:underline"
                     >
                       {model.name}
                     </Link>
@@ -146,11 +146,11 @@ export default async function CompareAllPage() {
                   key={row.label}
                   className={
                     i < SPEC_ROWS.length - 1
-                      ? 'border-b border-[#E5E2DC]'
+                      ? 'border-b border-border'
                       : ''
                   }
                 >
-                  <td className="px-5 py-4 text-[14px] font-medium text-[#777777]">
+                  <td className="px-3 py-3 text-[13px] font-medium text-muted-foreground sm:px-5 sm:py-4 sm:text-[14px]">
                     {row.label}
                   </td>
                   {models.map((model) => {
@@ -158,7 +158,7 @@ export default async function CompareAllPage() {
                     return (
                       <td
                         key={model.id}
-                        className="px-5 py-4 text-[15px] tabular-nums text-[#1A1A1A]"
+                        className="px-3 py-3 text-[13px] tabular-nums text-foreground sm:px-5 sm:py-4 sm:text-[15px]"
                       >
                         {v ? row.render(v) : 'N/A'}
                       </td>
@@ -170,23 +170,23 @@ export default async function CompareAllPage() {
           </table>
         </div>
 
-        <p className="mt-4 text-[13px] text-[#999999]">
+        <p className="mt-4 text-[13px] text-muted-foreground">
           Showing base (lowest-price) trim for each model. Specs reflect the
           current model year.
         </p>
 
         {/* CTA */}
-        <section className="mt-16 rounded-sm bg-[#F5F2ED] px-6 py-12 text-center sm:px-12">
-          <h2 className="font-display text-[28px] font-bold tracking-[-1px] text-[#1A1A1A]">
+        <section className="mt-16 rounded-sm bg-card px-5 py-10 text-center sm:px-12 sm:py-12">
+          <h2 className="font-display text-[24px] font-bold tracking-[-1px] text-foreground sm:text-[28px]">
             Need a detailed head-to-head?
           </h2>
-          <p className="mx-auto mt-2 max-w-md text-[17px] font-light text-[#777777]">
+          <p className="mx-auto mt-2 max-w-md text-[15px] font-light text-secondary-text sm:text-[17px]">
             Pick any two trims and compare every single spec — battery,
             charging, dimensions, efficiency, and more.
           </p>
           <Link
             href="/compare"
-            className="mt-6 inline-block rounded-sm bg-[#1A1A1A] px-8 py-3 text-[15px] font-medium text-white transition-colors hover:bg-[#333333]"
+            className="mt-6 inline-block rounded-sm bg-foreground px-8 py-3 text-[15px] font-medium text-background transition-colors hover:opacity-90"
           >
             Build Your Comparison
           </Link>

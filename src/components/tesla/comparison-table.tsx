@@ -57,7 +57,7 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
   return (
     <article className="mx-auto max-w-[980px] px-5">
       <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
-        <div className="min-w-[480px]">
+        <div className="min-w-[360px] sm:min-w-[480px]">
           {Object.entries(groups).map(([groupName, specs]) => (
             <section
               key={groupName}
@@ -88,7 +88,7 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
                     key={spec.id}
                     className="grid border-b border-border/50"
                     style={{
-                      gridTemplateColumns: `clamp(120px, 25vw, 180px) repeat(${vehicles.length}, 1fr)`,
+                      gridTemplateColumns: `clamp(90px, 22vw, 180px) repeat(${vehicles.length}, 1fr)`,
                     }}
                   >
                     <div className="flex items-center py-3 text-[12px] font-normal text-secondary-text sm:text-[13px]">

@@ -12,7 +12,7 @@ export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
     <footer className={cn('border-t border-border', className)}>
       <div className="mx-auto max-w-[1120px] px-6">
         {/* Link columns */}
-        <div className="grid grid-cols-2 gap-8 py-10 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 py-10 sm:grid-cols-4 sm:gap-8">
           {footerLinks?.map((section) => (
             <div key={section.title}>
               <h4 className="font-mono text-[11px] font-semibold uppercase tracking-[1.5px] text-foreground">
@@ -41,7 +41,7 @@ export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
 
       {/* Bottom bar */}
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-[1120px] items-center justify-between px-6 py-5">
+        <div className="mx-auto flex max-w-[1120px] flex-col items-center justify-between gap-2 px-6 py-5 sm:flex-row sm:gap-0">
           <span className="text-[12px] text-muted-foreground">
             &copy; {new Date().getFullYear()} MyDreamTesla. Not affiliated with
             Tesla, Inc.
