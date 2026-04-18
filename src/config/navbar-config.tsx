@@ -3,7 +3,6 @@
 import { Routes } from '@/routes';
 import type { NestedMenuItem } from '@/types';
 import { useTranslations } from 'next-intl';
-import { websiteConfig } from './website';
 
 /**
  * Get navbar config with translations
@@ -24,6 +23,16 @@ export function useNavbarLinks(): NestedMenuItem[] {
     {
       title: t('compare.title'),
       href: Routes.Compare,
+      external: false,
+    },
+    {
+      title: 'Journal',
+      href: Routes.Blog,
+      external: false,
+    },
+    {
+      title: 'About',
+      href: '/about',
       external: false,
     },
   ];

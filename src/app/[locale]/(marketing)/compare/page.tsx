@@ -79,18 +79,18 @@ export default async function CompareIndexPage() {
       <JsonLd data={buildFAQPageJsonLd(COMPARE_FAQS)} />
 
       {/* Breadcrumb */}
-      <div className="mx-auto max-w-[1060px] px-5 pt-16">
+      <div className="mx-auto max-w-[1400px] px-8 pt-16">
         <BreadcrumbNav
           items={[{ label: 'Home', href: '/' }, { label: 'Compare' }]}
         />
       </div>
 
       {/* Hero */}
-      <header className="mx-auto max-w-[1060px] px-5 pb-16 pt-4 text-center">
+      <header className="mx-auto max-w-[1400px] px-8 pb-16 pt-4 text-center">
         <h1 className="font-display text-[32px] font-bold leading-[1.05] tracking-[-2.5px] text-foreground sm:text-[40px] md:text-[56px]">
           Compare Any Tesla.
         </h1>
-        <p className="mx-auto mt-4 max-w-[620px] text-[17px] font-light leading-[1.5] text-secondary-text sm:text-[19px]">
+        <p className="mx-auto mt-4 max-w-[620px] text-[17px] font-light leading-[1.5] text-ink-2 sm:text-[19px]">
           Model 3 vs Model Y, Long Range vs Performance, 2024 vs 2025 — select
           any two Tesla vehicles for a detailed side-by-side breakdown of specs,
           range, horsepower, battery capacity, and pricing.
@@ -98,8 +98,8 @@ export default async function CompareIndexPage() {
       </header>
 
       {/* Comparison Builder */}
-      <section className="bg-card py-16">
-        <div className="mx-auto max-w-[1060px] px-5">
+      <section className="bg-paper py-16">
+        <div className="mx-auto max-w-[1400px] px-8">
           <CompareBuilder models={models} vehicles={vehicles} />
         </div>
       </section>
@@ -113,12 +113,12 @@ export default async function CompareIndexPage() {
         return (
           <section
             key={category}
-            className="mx-auto max-w-[1060px] px-5 py-16"
+            className="mx-auto max-w-[1400px] px-8 py-16"
           >
             <h2 className="font-display text-[28px] font-bold tracking-[-1.5px] text-foreground sm:text-[36px]">
               {config.title}
             </h2>
-            <p className="mt-2 max-w-2xl text-[16px] font-light leading-relaxed text-secondary-text">
+            <p className="mt-2 max-w-2xl text-[16px] font-light leading-relaxed text-ink-2">
               {config.subtitle}
             </p>
 
@@ -127,20 +127,20 @@ export default async function CompareIndexPage() {
                 <Link
                   key={c.slug}
                   href={getCompareUrl(c.slug)}
-                  className="group flex flex-col justify-between rounded-lg border border-border bg-background p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-border-muted hover:bg-card hover:shadow-md"
+                  className="group flex flex-col justify-between rounded-lg border border-line bg-paper p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                 >
                   <div>
-                    <div className="mb-3 inline-block rounded-full bg-card px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[1.5px] text-muted-foreground">
+                    <div className="mb-3 inline-block rounded-full bg-muted px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[1.5px] text-ink-3">
                       {c.shortLabel}
                     </div>
                     <h3 className="text-[17px] font-semibold tracking-[-0.3px] text-foreground">
                       {c.label}
                     </h3>
-                    <p className="mt-2 text-[14px] leading-relaxed text-secondary-text">
+                    <p className="mt-2 text-[14px] leading-relaxed text-ink-2">
                       {c.description}
                     </p>
                   </div>
-                  <div className="mt-5 text-[14px] font-medium text-brand">
+                  <div className="mt-5 text-[14px] font-medium text-ed-accent">
                     View full comparison →
                   </div>
                 </Link>
@@ -151,12 +151,12 @@ export default async function CompareIndexPage() {
       })}
 
       {/* FAQ Section — SEO content */}
-      <section className="border-t border-border bg-card/50 py-20">
-        <div className="mx-auto max-w-[760px] px-5">
+      <section className="border-t border-line bg-paper py-20">
+        <div className="mx-auto max-w-[760px] px-8">
           <h2 className="text-center font-display text-[28px] font-bold tracking-[-1.5px] text-foreground sm:text-[36px]">
             Frequently Asked Questions
           </h2>
-          <p className="mt-2 text-center text-[16px] font-light text-secondary-text">
+          <p className="mt-2 text-center text-[16px] font-light text-ink-2">
             Common questions about comparing Tesla vehicles.
           </p>
 
@@ -166,7 +166,7 @@ export default async function CompareIndexPage() {
                 <h3 className="text-[17px] font-semibold text-foreground">
                   {faq.question}
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-secondary-text">
+                <p className="mt-2 text-[15px] leading-relaxed text-ink-2">
                   {faq.answer}
                 </p>
               </div>

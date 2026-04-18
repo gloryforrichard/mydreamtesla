@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import { getAllVehicles } from '@/lib/db/queries';
 import { ModelsList } from '@/components/tesla/models-list';
 import { JsonLd } from '@/components/seo/json-ld';
-import { buildItemListJsonLd, buildFAQPageJsonLd } from '@/lib/seo/structured-data';
+import {
+  buildItemListJsonLd,
+  buildFAQPageJsonLd,
+} from '@/lib/seo/structured-data';
 import { generateAlternates } from '@/lib/hreflang';
 import { getBaseUrl } from '@/lib/urls/urls';
 import { getOgImageUrl } from '@/lib/metadata';
@@ -36,9 +39,9 @@ const MODELS_PAGE_FAQS = [
 ];
 
 export const metadata: Metadata = {
-  title: 'All Tesla Models 2025: Prices From $29,990 — Specs & Range Guide',
+  title: 'All Tesla Models: Compare Model 3, Y, S, X & Cybertruck',
   description:
-    'Every Tesla model compared — Model 3, Y, S, X & Cybertruck. Browse all trims with EPA range, 0-60 times, pricing & performance. Find the right Tesla for your budget.',
+    'See every Tesla model and trim in one place. Compare Model 3, Model Y, Model S, Model X, and Cybertruck by price, range, 0-60, years, and body style.',
   alternates: generateAlternates('/models'),
   openGraph: {
     images: [
@@ -72,7 +75,7 @@ export default async function ModelsPage() {
   }));
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-[1400px] px-8 py-12">
       {models.length > 0 && (
         <JsonLd
           data={buildItemListJsonLd(modelListItems, 'All Tesla Models')}
@@ -80,21 +83,23 @@ export default async function ModelsPage() {
       )}
 
       <header className="mb-12 text-center">
-        <h1 className="font-display text-[32px] font-bold leading-[1.05] tracking-[-1.5px] text-foreground sm:text-[40px] md:text-[48px]">
-          All Tesla Models
+        <span className="font-mono text-[11px] font-medium uppercase tracking-[2px] text-ink-3">
+          Complete Lineup
+        </span>
+        <h1 className="mt-3 font-display text-[32px] font-bold leading-[1.05] tracking-[-1.5px] text-foreground sm:text-[40px] md:text-[48px]">
+          All Tesla Models, Trims & Years
         </h1>
-        <p className="mt-4 text-lg font-light text-secondary-text sm:text-[21px]">
-          Explore every Tesla vehicle. Compare specs across all model years and
-          trims.
+        <p className="mt-4 text-lg font-light text-ink-2 sm:text-[21px]">
+          Compare Model 3, Model Y, Model S, Model X, and Cybertruck across
+          current and past trims.
         </p>
-        <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Browse all Tesla cars from the affordable Model 3 sedan to the
-          flagship Model S Plaid. Compare Tesla models by range, performance,
-          and price to find the right EV for you.
+        <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-3">
+          Browse Tesla models by price, range, performance, body style, and
+          model year to find the right EV for your budget and driving needs.
         </p>
         <a
           href="/models/compare-all"
-          className="mt-4 inline-block text-[15px] font-medium text-blue-500 hover:underline dark:text-blue-400"
+          className="mt-4 inline-block text-[15px] font-medium text-ed-accent hover:underline"
         >
           Compare all Tesla models side by side &rarr;
         </a>
@@ -105,6 +110,9 @@ export default async function ModelsPage() {
       {/* FAQ Section */}
       <JsonLd data={buildFAQPageJsonLd(MODELS_PAGE_FAQS)} />
       <section className="mt-16">
+        <span className="mb-2 block text-center font-mono text-[11px] font-medium uppercase tracking-[2px] text-ink-3">
+          FAQ
+        </span>
         <h2 className="mb-6 text-center font-display text-[28px] font-bold tracking-[-1.5px] text-foreground sm:text-[36px]">
           Frequently Asked Questions
         </h2>
@@ -112,15 +120,15 @@ export default async function ModelsPage() {
           {MODELS_PAGE_FAQS.map((faq) => (
             <details
               key={faq.question}
-              className="group rounded-sm border border-border"
+              className="group rounded-lg border border-line bg-paper"
             >
               <summary className="flex cursor-pointer items-center justify-between p-5 text-[15px] font-medium text-foreground [&::-webkit-details-marker]:hidden">
                 <span>{faq.question}</span>
-                <span className="ml-4 text-muted-foreground transition-transform group-open:rotate-45">
+                <span className="ml-4 text-ink-3 transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <div className="px-5 pb-5 text-[15px] leading-relaxed text-secondary-text">
+              <div className="px-5 pb-5 text-[15px] leading-relaxed text-ink-2">
                 {faq.answer}
               </div>
             </details>
@@ -129,8 +137,11 @@ export default async function ModelsPage() {
       </section>
 
       {models.length === 0 && (
-        <div className="py-20 text-center text-muted-foreground">
-          <p>We&apos;re building our database. Check back soon for the complete Tesla lineup!</p>
+        <div className="py-20 text-center text-ink-3">
+          <p>
+            We&apos;re building our database. Check back soon for the complete
+            Tesla lineup!
+          </p>
         </div>
       )}
     </main>

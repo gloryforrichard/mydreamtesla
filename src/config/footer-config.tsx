@@ -4,7 +4,7 @@ import { Routes } from '@/routes';
 import type { NestedMenuItem } from '@/types';
 
 /**
- * Tesla-specific footer links (no translations needed for now)
+ * Editorial-style footer links — 4 columns
  */
 export function useFooterLinks(): NestedMenuItem[] {
   return [
@@ -38,13 +38,14 @@ export function useFooterLinks(): NestedMenuItem[] {
       ],
     },
     {
-      title: 'Resources',
+      title: 'Journal',
       items: [
-        { title: 'Blog', href: Routes.Blog },
+        { title: 'Latest Posts', href: Routes.Blog },
         {
           title: 'Tax Credit Guide',
           href: '/blog/tesla-federal-tax-credit-guide-2025',
         },
+        { title: 'About Us', href: '/about' },
       ],
     },
     {

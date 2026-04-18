@@ -1,9 +1,9 @@
 import { Analytics } from '@/analytics/analytics';
 import {
-  fontManrope,
-  fontNotoSerif,
+  fontInter,
+  fontInstrumentSerif,
   fontSpaceGrotesk,
-  fontSpaceMono,
+  fontJetBrainsMono,
 } from '@/assets/fonts';
 import AffonsoScript from '@/components/affiliate/affonso';
 import PromotekitScript from '@/components/affiliate/promotekit';
@@ -65,10 +65,10 @@ export default async function LocaleLayout({
         suppressHydrationWarning
         className={cn(
           'size-full antialiased',
-          fontManrope.className,
-          fontNotoSerif.variable,
+          fontInter.className,
+          fontInstrumentSerif.variable,
           fontSpaceGrotesk.variable,
-          fontSpaceMono.variable
+          fontJetBrainsMono.variable
         )}
       >
         <NuqsAdapter>

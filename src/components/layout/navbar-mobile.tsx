@@ -2,7 +2,6 @@
 
 import LocaleSelector from '@/components/layout/locale-selector';
 import { ModeSwitcherHorizontal } from '@/components/layout/mode-switcher-horizontal';
-import Image from 'next/image';
 import { Button, buttonVariants } from '@/components/ui/button';
 import {
   Collapsible,
@@ -83,15 +82,11 @@ export function NavbarMobile({
         {...other}
       >
         {/* navbar left shows logo */}
-        <LocaleLink href={Routes.Root} className="flex items-center">
-          <Image
-            src="/navbar-logo.png"
-            alt="MyDreamTesla"
-            width={200}
-            height={52}
-            className="h-6 w-auto"
-            priority
-          />
+        <LocaleLink href={Routes.Root} className="flex items-center gap-1">
+          <span className="font-display text-[18px] font-bold tracking-[-0.5px] text-foreground">
+            MyDreamTesla
+          </span>
+          <span className="text-ed-accent text-[22px] leading-none">.</span>
         </LocaleLink>
 
         {/* navbar right shows menu icon and user button */}

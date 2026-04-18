@@ -1,24 +1,24 @@
 import {
-  Manrope,
-  Noto_Serif,
+  Inter,
+  JetBrains_Mono,
   Space_Grotesk,
-  Space_Mono,
+  Instrument_Serif,
 } from 'next/font/google';
 
 /**
- * Design 4 — Editorial font stack
+ * Editorial magazine font stack
  *
- * - Manrope: body text (400/500/600)
+ * - Inter: body text (400/500/600)
  * - Space Grotesk: display / headings (500/600/700)
- * - Space Mono: data / labels / mono (400)
- * - Noto Serif: blog serif fallback (400)
+ * - JetBrains Mono: data / labels / mono (400/500)
+ * - Instrument Serif: serif accent for <em> (400 italic)
  */
 
-// https://fonts.google.com/specimen/Manrope
-export const fontManrope = Manrope({
+// https://fonts.google.com/specimen/Inter
+export const fontInter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-manrope',
+  variable: '--font-inter',
   weight: ['400', '500', '600'],
 });
 
@@ -30,18 +30,19 @@ export const fontSpaceGrotesk = Space_Grotesk({
   weight: ['500', '600', '700'],
 });
 
-// https://fonts.google.com/specimen/Space+Mono
-export const fontSpaceMono = Space_Mono({
+// https://fonts.google.com/specimen/JetBrains+Mono
+export const fontJetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-space-mono',
-  weight: ['400'],
+  variable: '--font-jetbrains-mono',
+  weight: ['400', '500'],
 });
 
-// https://fonts.google.com/noto/specimen/Noto+Serif
-export const fontNotoSerif = Noto_Serif({
+// https://fonts.google.com/specimen/Instrument+Serif
+export const fontInstrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-noto-serif',
+  variable: '--font-instrument-serif',
   weight: ['400'],
+  style: ['normal', 'italic'],
 });

@@ -73,7 +73,7 @@ export default async function ComparePage({ params }: Props) {
       <JsonLd data={buildItemListJsonLd(listItems, names)} />
 
       {/* Breadcrumb */}
-      <div className="mx-auto max-w-[980px] px-5 pt-16">
+      <div className="mx-auto max-w-[1400px] px-8 pt-16">
         <BreadcrumbNav
           items={[
             { label: 'Home', href: '/' },
@@ -84,19 +84,19 @@ export default async function ComparePage({ params }: Props) {
       </div>
 
       {/* Hero */}
-      <header className="mx-auto max-w-[980px] px-5 pb-12 text-center">
+      <header className="mx-auto max-w-[1400px] px-8 pb-12 text-center">
         <h1 className="font-display text-[26px] font-bold leading-[1.08] tracking-[-2px] text-foreground sm:text-[36px] md:text-[48px]">
           {vehicles.map((v, i) => (
             <span key={v.id}>
               {v.title}
               {i < vehicles.length - 1 && <br />}
               {i < vehicles.length - 1 && (
-                <span className="text-muted-foreground">vs </span>
+                <span className="text-ink-3">vs </span>
               )}
             </span>
           ))}
         </h1>
-        <p className="mx-auto mt-3 max-w-[560px] text-[17px] font-light leading-[1.4] text-secondary-text sm:text-[19px]">
+        <p className="mx-auto mt-3 max-w-[560px] text-[17px] font-light leading-[1.4] text-ink-2 sm:text-[19px]">
           Side-by-side specs, pricing, and range compared — find the Tesla that
           fits your life.
         </p>
@@ -106,13 +106,13 @@ export default async function ComparePage({ params }: Props) {
 
       {/* Related comparisons (internal linking for SEO) */}
       <section
-        className="mx-auto max-w-[980px] px-5 py-20"
+        className="mx-auto max-w-[1400px] px-8 py-20"
         aria-label="Related comparisons"
       >
         <h2 className="font-display text-[28px] font-bold tracking-[-1.5px] text-foreground sm:text-[32px]">
           More comparisons.
         </h2>
-        <p className="mt-2 text-[17px] font-light text-secondary-text">
+        <p className="mt-2 text-[17px] font-light text-ink-2">
           Explore other head-to-head matchups across the Tesla lineup.
         </p>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -120,10 +120,10 @@ export default async function ComparePage({ params }: Props) {
             <Link
               key={v.id}
               href={`/vehicles/${v.slug}`}
-              className="flex items-center justify-between rounded-lg bg-card px-5 py-4 text-[14px] font-medium transition-colors hover:bg-card-hover sm:px-6 sm:py-5"
+              className="flex items-center justify-between rounded-lg bg-paper px-5 py-4 text-[14px] font-medium transition-colors hover:bg-muted sm:px-6 sm:py-5"
             >
               <span>View {v.title} details</span>
-              <span className="text-muted-foreground">›</span>
+              <span className="text-ink-3">›</span>
             </Link>
           ))}
         </div>

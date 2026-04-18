@@ -67,7 +67,8 @@ const config = {
     		},
     		fontFamily: {
     			display: ['var(--font-space-grotesk)', ...fontFamily.sans],
-    			mono: ['var(--font-space-mono)', ...fontFamily.mono],
+    			mono: ['var(--font-jetbrains-mono)', ...fontFamily.mono],
+    			serif: ['var(--font-instrument-serif)', ...fontFamily.serif],
     		},
     		keyframes: {
     			'accordion-down': {

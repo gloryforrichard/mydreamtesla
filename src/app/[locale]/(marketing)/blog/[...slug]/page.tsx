@@ -4,6 +4,7 @@ import { getMDXComponents } from '@/components/docs/mdx-components';
 import { NewsletterCard } from '@/components/newsletter/newsletter-card';
 import { PremiumBadge } from '@/components/premium/premium-badge';
 import { PremiumGuard } from '@/components/premium/premium-guard';
+import { BLOG_FAQS } from '@/config/blog-faqs';
 import { websiteConfig } from '@/config/website';
 import { LocaleLink } from '@/i18n/navigation';
 import { formatDate } from '@/lib/formatter';
@@ -17,6 +18,7 @@ import {
 import { JsonLd } from '@/components/seo/json-ld';
 import {
   buildBlogPostingJsonLd,
+  buildFAQPageJsonLd,
   buildHowToJsonLd,
 } from '@/lib/seo/structured-data';
 import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
@@ -115,13 +117,13 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
   // HowTo structured data for the charging guide
   const slugStr = slug.join('/');
+  const blogFaqs = BLOG_FAQS[slugStr];
   const chargingGuideHowTo =
     slugStr === 'tesla-home-charging-guide'
       ? buildHowToJsonLd({
           name: title ?? 'Tesla Home Charging Setup Guide',
           description:
-            description ??
-            'Complete guide to charging your Tesla at home.',
+            description ?? 'Complete guide to charging your Tesla at home.',
           slug: slugStr,
           totalTime: 'PT2H',
           steps: [
@@ -164,15 +166,18 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
           image,
         })}
       />
+      {blogFaqs && blogFaqs.length > 0 && (
+        <JsonLd data={buildFAQPageJsonLd(blogFaqs)} />
+      )}
       {chargingGuideHowTo && <JsonLd data={chargingGuideHowTo} />}
       {/* content section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* left column (blog post content) */}
         <div className="lg:col-span-2 flex flex-col">
           {/* Basic information */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* blog post image */}
-            <div className="group overflow-hidden relative aspect-16/9 rounded-lg transition-all border">
+            <div className="group overflow-hidden relative aspect-16/9 rounded-lg transition-all border border-line">
               {image && (
                 <Image
                   src={image}
@@ -188,8 +193,8 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             {/* blog post date and premium badge */}
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
-                <CalendarIcon className="size-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground leading-none my-auto">
+                <CalendarIcon className="size-3.5 text-ink-3" />
+                <span className="font-mono text-[12px] uppercase tracking-wide text-ink-3 leading-none my-auto">
                   {publishDate}
                 </span>
               </div>
@@ -198,10 +203,12 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             </div>
 
             {/* blog post title */}
-            <h1 className="text-3xl font-bold">{title}</h1>
+            <h1 className="font-display text-[32px] sm:text-[40px] font-bold tracking-[-1.5px] text-foreground">
+              {title}
+            </h1>
 
             {/* blog post description */}
-            <p className="text-lg text-muted-foreground">{description}</p>
+            <p className="text-lg text-ink-3">{description}</p>
           </div>
 
           {/* blog post content */}
@@ -223,7 +230,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
           <div className="space-y-4 lg:sticky lg:top-24">
             {/* author info */}
             {blogAuthor && (
-              <div className="bg-muted/50 rounded-lg p-6">
+              <div className="bg-paper border border-line rounded-lg p-6">
                 <h2 className="text-lg font-semibold mb-4">{t('author')}</h2>
                 <div className="flex items-center gap-4">
                   <div className="relative h-8 w-8 shrink-0">
@@ -231,7 +238,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                       <Image
                         src={blogAuthor.data.avatar}
                         alt={`avatar for ${blogAuthor.data.name}`}
-                        className="rounded-full object-cover border"
+                        className="rounded-full object-cover border border-line"
                         fill
                       />
                     )}
@@ -242,7 +249,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             )}
 
             {/* categories */}
-            <div className="bg-muted/50 rounded-lg p-6">
+            <div className="bg-paper border border-line rounded-lg p-6">
               <h2 className="text-lg font-semibold mb-4">{t('categories')}</h2>
               <ul className="flex flex-wrap gap-4">
                 {blogCategories.map(
@@ -251,7 +258,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                       <li key={category.slugs[0]}>
                         <LocaleLink
                           href={`/blog/category/${category.slugs[0]}`}
-                          className="text-sm font-medium text-muted-foreground hover:text-primary"
+                          className="text-sm font-medium text-ink-3 hover:text-ed-accent"
                         >
                           {category.data.name}
                         </LocaleLink>
@@ -268,7 +275,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                   items={post.data.toc}
                   open={true}
                   defaultOpen={true}
-                  className="bg-muted/50 border-none"
+                  className="bg-paper border border-line"
                 />
               )}
             </div>
@@ -280,8 +287,8 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
       {relatedPosts && relatedPosts.length > 0 && (
         <div className="flex flex-col gap-8 mt-8">
           <div className="flex items-center gap-2">
-            <FileTextIcon className="size-4 text-primary" />
-            <h2 className="text-lg tracking-wider font-semibold text-primary">
+            <FileTextIcon className="size-4 text-ed-accent" />
+            <h2 className="text-lg tracking-wider font-semibold text-ed-accent">
               {t('morePosts')}
             </h2>
           </div>

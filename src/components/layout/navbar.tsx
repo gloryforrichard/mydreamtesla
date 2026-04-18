@@ -5,7 +5,6 @@ import { useNavbarLinks } from '@/config/navbar-config';
 import { useScroll } from '@/hooks/use-scroll';
 import { LocaleLink, useLocalePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
 
 interface NavBarProps {
   scroll?: boolean;
@@ -21,24 +20,20 @@ export function Navbar({ scroll }: NavBarProps) {
       className={cn(
         'sticky inset-x-0 top-0 z-40 transition-all duration-300',
         scrolled
-          ? 'border-b border-border bg-background/80 shadow-sm backdrop-blur-xl'
-          : 'border-b border-transparent bg-background/60 backdrop-blur-md'
+          ? 'border-b border-line bg-paper/90 backdrop-blur-xl'
+          : 'border-b border-transparent bg-transparent'
       )}
     >
-      <nav className="mx-auto hidden h-14 max-w-[1120px] items-center justify-between px-6 lg:flex">
-        {/* Logo */}
-        <LocaleLink href="/" className="flex items-center">
-          <Image
-            src="/navbar-logo.png"
-            alt="MyDreamTesla"
-            width={200}
-            height={52}
-            className="h-8 w-auto"
-            priority
-          />
+      <nav className="mx-auto hidden h-16 max-w-[1400px] items-center justify-between px-8 lg:flex">
+        {/* Logo — text-based with accent dot */}
+        <LocaleLink href="/" className="flex items-center gap-1">
+          <span className="font-display text-[20px] font-bold tracking-[-0.5px] text-foreground">
+            MyDreamTesla
+          </span>
+          <span className="text-ed-accent text-[24px] leading-none">.</span>
         </LocaleLink>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-10">
           {/* Nav links */}
           <ul className="flex items-center gap-8">
             {menuLinks?.map((item) => {
@@ -53,10 +48,10 @@ export function Navbar({ scroll }: NavBarProps) {
                   <LocaleLink
                     href={item.href || '#'}
                     className={cn(
-                      'text-[13px] font-medium transition-all duration-200',
+                      'text-[14px] font-medium tracking-[-0.01em] transition-colors duration-200',
                       isActive
                         ? 'text-foreground'
-                        : 'text-muted-foreground hover:text-foreground'
+                        : 'text-ink-2 hover:text-foreground'
                     )}
                   >
                     {item.title}
@@ -65,6 +60,14 @@ export function Navbar({ scroll }: NavBarProps) {
               );
             })}
           </ul>
+
+          {/* CTA Button */}
+          <LocaleLink
+            href="/compare"
+            className="rounded-lg bg-foreground px-5 py-2 text-[13px] font-semibold text-background transition-opacity hover:opacity-90"
+          >
+            Compare Now
+          </LocaleLink>
         </div>
       </nav>
 
