@@ -28,17 +28,17 @@ export function RelatedContent({
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-2 text-[17px] font-light text-secondary-text">{subtitle}</p>
+        <p className="mt-2 text-[17px] font-light text-ink-2">{subtitle}</p>
       )}
       <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="flex items-center justify-between rounded-sm bg-card px-4 py-4 text-[14px] font-medium text-foreground transition-colors hover:bg-card-hover sm:px-6 sm:py-5"
+            className="flex items-center justify-between rounded-lg bg-paper px-4 py-4 text-[14px] font-medium text-foreground transition-colors hover:bg-muted sm:px-6 sm:py-5"
           >
             <span>{item.label}</span>
-            <span className="text-muted-foreground">›</span>
+            <span className="text-ink-3">›</span>
           </Link>
         ))}
       </div>

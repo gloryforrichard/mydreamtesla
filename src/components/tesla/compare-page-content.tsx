@@ -28,10 +28,10 @@ export function ComparePageContent({
 
   return (
     <>
-      <div className="sticky top-12 z-40 border-b border-border bg-background/90 backdrop-blur-[20px]">
+      <div className="sticky top-12 z-40 border-b border-line bg-background/90 backdrop-blur-[20px]">
         <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
           <div
-            className="mx-auto min-w-[360px] max-w-[980px] px-5 py-4 sm:min-w-[480px]"
+            className="mx-auto min-w-[360px] max-w-[1400px] px-8 py-4 sm:min-w-[480px]"
             style={{
               display: 'grid',
               gridTemplateColumns: `clamp(90px, 22vw, 180px) repeat(${vehicles.length}, 1fr)`,
@@ -55,7 +55,7 @@ export function ComparePageContent({
                 `/images/vehicles/${vehicle.slug}.png`;
               return (
                 <div key={vehicle.id} className="px-2 text-center sm:px-4">
-                  <div className="mx-auto mb-2 flex h-16 w-24 items-center justify-center overflow-hidden rounded-lg bg-card sm:mb-2.5 sm:h-24 sm:w-36">
+                  <div className="mx-auto mb-2 flex h-16 w-24 items-center justify-center overflow-hidden rounded-lg bg-paper sm:mb-2.5 sm:h-24 sm:w-36">
                     <VehicleImage
                       src={imageSrc}
                       alt={vehicle.title}
@@ -80,40 +80,40 @@ export function ComparePageContent({
         <ComparisonTable vehicles={vehicles} />
       </div>
 
-      <section className="bg-card py-20" aria-label="Comparison verdict">
-        <div className="mx-auto max-w-[980px] px-5 text-center">
+      <section className="bg-paper py-20" aria-label="Comparison verdict">
+        <div className="mx-auto max-w-[1400px] px-8 text-center">
           <h2 className="font-display text-[28px] font-bold tracking-[-2px] text-foreground sm:text-[36px] md:text-[40px]">
             Which should you buy?
           </h2>
-          <p className="mt-2 text-[17px] font-light text-secondary-text">
+          <p className="mt-2 text-[17px] font-light text-ink-2">
             How they compare on the dimensions that matter most.
           </p>
 
           <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-3">
             <div className="rounded-lg bg-background p-6 text-center sm:p-8">
-              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
+              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-ink-3">
                 Best Range
               </div>
               <div className="text-[20px] font-bold tracking-[-0.5px] text-foreground">
                 {bestRange.title}
               </div>
-              <div className="mt-1 text-[13px] text-secondary-text">
+              <div className="mt-1 text-[13px] text-ink-2">
                 {formatSpec(bestRange.rangeKm, 'km')}
               </div>
             </div>
             <div className="rounded-lg bg-background p-6 text-center sm:p-8">
-              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
+              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-ink-3">
                 Most Powerful
               </div>
               <div className="text-[20px] font-bold tracking-[-0.5px] text-foreground">
                 {bestPower.title}
               </div>
-              <div className="mt-1 text-[13px] text-secondary-text">
+              <div className="mt-1 text-[13px] text-ink-2">
                 {formatSpec(bestPower.horsepower, 'hp')}
               </div>
             </div>
             <div className="rounded-lg bg-background p-6 text-center sm:p-8">
-              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
+              <div className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-ink-3">
                 Best Value
               </div>
               <div className="text-[20px] font-bold tracking-[-0.5px] text-foreground">

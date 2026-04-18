@@ -55,7 +55,7 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
   }
 
   return (
-    <article className="mx-auto max-w-[980px] px-5">
+    <article className="mx-auto max-w-[1400px] px-8">
       <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
         <div className="min-w-[360px] sm:min-w-[480px]">
           {Object.entries(groups).map(([groupName, specs]) => (
@@ -64,7 +64,7 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
               className="mb-8"
               aria-label={`${groupName} specifications`}
             >
-              <h2 className="border-b border-border pb-2.5 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
+              <h2 className="border-b border-line pb-2.5 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-ink-3">
                 {groupName}
               </h2>
               {specs.map((spec) => {
@@ -86,12 +86,12 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
                 return (
                   <div
                     key={spec.id}
-                    className="grid border-b border-border/50"
+                    className="grid border-b border-line/50"
                     style={{
                       gridTemplateColumns: `clamp(90px, 22vw, 180px) repeat(${vehicles.length}, 1fr)`,
                     }}
                   >
-                    <div className="flex items-center py-3 text-[12px] font-normal text-secondary-text sm:text-[13px]">
+                    <div className="flex items-center py-3 text-[12px] font-normal text-ink-2 sm:text-[13px]">
                       {spec.label}
                     </div>
                     {vehicles.map((v, i) => {

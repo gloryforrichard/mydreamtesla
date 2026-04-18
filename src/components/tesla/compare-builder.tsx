@@ -125,7 +125,7 @@ function VehicleSelector({
 
   return (
     <fieldset className="space-y-3">
-      <legend className="mb-1 block text-[11px] font-semibold uppercase tracking-[1px] text-muted-foreground">
+      <legend className="mb-1 block text-[11px] font-semibold uppercase tracking-[1px] text-ink-3">
         {title}
       </legend>
 
@@ -216,7 +216,7 @@ function SelectField({
     <div>
       <label
         htmlFor={selectId}
-        className="mb-1.5 block text-[11px] font-medium text-secondary-text"
+        className="mb-1.5 block text-[11px] font-medium text-ink-2"
       >
         {label}
       </label>
@@ -225,7 +225,7 @@ function SelectField({
         value={value}
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full appearance-none rounded-lg border border-border bg-card px-4 py-3 text-[15px] text-foreground outline-none transition-colors focus:border-foreground disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full appearance-none rounded-lg border border-line bg-paper px-4 py-3 text-[15px] text-foreground outline-none transition-colors focus:border-foreground disabled:cursor-not-allowed disabled:opacity-50"
       >
         {children}
       </select>
