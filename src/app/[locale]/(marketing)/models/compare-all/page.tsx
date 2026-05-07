@@ -1,14 +1,20 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getAllVehicles } from '@/lib/db/queries';
-import { formatPrice, formatSpec, formatAcceleration } from '@/lib/vehicle-utils';
+import {
+  formatPrice,
+  formatSpec,
+  formatAcceleration,
+} from '@/lib/vehicle-utils';
 import type { Vehicle, TeslaModel } from '@/lib/vehicle-utils';
 import { JsonLd } from '@/components/seo/json-ld';
-import { buildItemListJsonLd, buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
+import {
+  buildItemListJsonLd,
+  buildBreadcrumbJsonLd,
+} from '@/lib/seo/structured-data';
 import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav';
-import { generateAlternates } from '@/lib/hreflang';
 import { getBaseUrl } from '@/lib/urls/urls';
-import { getOgImageUrl } from '@/lib/metadata';
+import { constructMetadata, getOgImageUrl } from '@/lib/metadata';
 
 const ogImage = getOgImageUrl({
   title: 'Every Tesla, Compared',
@@ -16,14 +22,13 @@ const ogImage = getOgImageUrl({
   type: 'compare',
 });
 
-export const metadata: Metadata = {
-  title: 'All Tesla Models Compared — Side-by-Side Specs | MyDreamTesla',
+export const metadata: Metadata = constructMetadata({
+  title: 'All Tesla Models Compared — Side-by-Side Specs',
   description:
-    'Compare every Tesla model side by side. Starting price, EPA range, 0-60 mph, top speed, seating, and cargo for Model 3, Model Y, Model S, Model X, and Cybertruck.',
-  alternates: generateAlternates('/models/compare-all'),
-  openGraph: { images: [ogImage] },
-  twitter: { card: 'summary_large_image', images: [ogImage] },
-};
+    'Compare every Tesla model side by side by starting price, EPA range, 0-60 mph, top speed, seating, and cargo across Model 3, Y, S, X, and Cybertruck.',
+  image: ogImage,
+  pathname: '/models/compare-all',
+});
 
 /** Pick the cheapest current-year trim per model as the "base" representative */
 function getBaseVehiclePerModel(
@@ -35,7 +40,9 @@ function getBaseVehiclePerModel(
   for (const model of models) {
     const modelVehicles = vehicles
       .filter((v) => v.modelId === model.id && v.isCurrentModel)
-      .sort((a, b) => (a.basePriceMSRP ?? Infinity) - (b.basePriceMSRP ?? Infinity));
+      .sort(
+        (a, b) => (a.basePriceMSRP ?? Infinity) - (b.basePriceMSRP ?? Infinity)
+      );
 
     if (modelVehicles.length > 0) {
       map.set(model.id, modelVehicles[0]);
@@ -86,7 +93,9 @@ export default async function CompareAllPage() {
 
   return (
     <>
-      <JsonLd data={buildItemListJsonLd(modelListItems, 'All Tesla Models Compared')} />
+      <JsonLd
+        data={buildItemListJsonLd(modelListItems, 'All Tesla Models Compared')}
+      />
       <JsonLd
         data={buildBreadcrumbJsonLd([
           { name: 'Home', href: '/' },
@@ -145,9 +154,7 @@ export default async function CompareAllPage() {
                 <tr
                   key={row.label}
                   className={
-                    i < SPEC_ROWS.length - 1
-                      ? 'border-b border-border'
-                      : ''
+                    i < SPEC_ROWS.length - 1 ? 'border-b border-border' : ''
                   }
                 >
                   <td className="px-3 py-3 text-[13px] font-medium text-muted-foreground sm:px-5 sm:py-4 sm:text-[14px]">

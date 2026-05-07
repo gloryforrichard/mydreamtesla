@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import type { Locale } from 'next-intl';
 import {
   getVehicleBySlug,
   getAllModels,
@@ -16,9 +17,13 @@ import {
   buildCarJsonLd,
   buildVehicleReviewJsonLd,
 } from '@/lib/seo/structured-data';
-import { formatPrice, generateCompareSlug } from '@/lib/vehicle-utils';
-import { getOgImageUrl } from '@/lib/metadata';
-import { generateAlternates } from '@/lib/hreflang';
+import {
+  buildVehicleSeoDescription,
+  buildVehicleSeoTitle,
+  formatPrice,
+  generateCompareSlug,
+} from '@/lib/vehicle-utils';
+import { constructMetadata, getOgImageUrl } from '@/lib/metadata';
 import { websiteConfig } from '@/config/website';
 import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
@@ -43,43 +48,18 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const vehicle = await getVehicleBySlug(slug);
   if (!vehicle) return {};
 
-  const range = vehicle.rangeEPA;
-  const price = vehicle.basePriceMSRP
-    ? `$${Number(vehicle.basePriceMSRP).toLocaleString()}`
-    : null;
-  const batteryCapacity =
-    vehicle.batteryCapacity != null
-      ? `${Number(vehicle.batteryCapacity).toLocaleString('en-US', {
-          maximumFractionDigits: 1,
-        })} kWh battery`
-      : null;
-  const specHighlights = [
-    range && `${range} mi range`,
-    vehicle.acceleration060 && `${vehicle.acceleration060}s 0-60`,
-    price && `${price} MSRP`,
-  ].filter(Boolean);
-  const detailHighlights = [
-    vehicle.horsepower && `${vehicle.horsepower} hp`,
-    batteryCapacity,
-  ].filter(Boolean);
   const title =
-    vehicle.seoTitle ??
-    `${vehicle.year} ${vehicle.title} Specs, Range & Price | MDT`;
+    vehicle.seoTitle && vehicle.seoTitle.length <= 70
+      ? vehicle.seoTitle
+      : buildVehicleSeoTitle(vehicle);
   const description =
-    vehicle.seoDescription ??
-    [
-      `${vehicle.year} ${vehicle.title} specs${
-        specHighlights.length > 0 ? `: ${specHighlights.join(', ')}` : '.'
-      }`,
-      detailHighlights.length > 0 ? `${detailHighlights.join(', ')}.` : null,
-      'See charging, dimensions, cargo, FAQs, and related trim comparisons on MyDreamTesla.',
-    ]
-      .filter(Boolean)
-      .join(' ');
+    vehicle.seoDescription && vehicle.seoDescription.length <= 155
+      ? vehicle.seoDescription
+      : buildVehicleSeoDescription(vehicle);
 
   const ogImage = getOgImageUrl({
     title: vehicle.title,
@@ -87,13 +67,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     type: 'vehicle',
   });
 
-  return {
+  return constructMetadata({
     title,
     description,
-    alternates: generateAlternates(`/vehicles/${slug}`),
-    openGraph: { images: [ogImage] },
-    twitter: { card: 'summary_large_image', images: [ogImage] },
-  };
+    image: ogImage,
+    locale: locale as Locale,
+    pathname: `/vehicles/${slug}`,
+  });
 }
 
 export default async function VehicleDetailPage({ params }: Props) {

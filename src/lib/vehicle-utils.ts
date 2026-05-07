@@ -77,6 +77,106 @@ export function parseCompareSlug(slug: string): string[] {
   return slug.split('-vs-');
 }
 
+const VEHICLE_NAME_REPLACEMENTS: Array<[RegExp, string]> = [
+  [/Standard Range Plus/g, 'SR+'],
+  [/Standard Range/g, 'SR'],
+  [/Long Range Plus/g, 'LR+'],
+  [/Long Range/g, 'LR'],
+  [/Rear-Wheel Drive/g, 'RWD'],
+  [/All-Wheel Drive/g, 'AWD'],
+  [/Foundation Series/g, 'Foundation'],
+];
+
+type SeoVehicleFields = Pick<
+  Vehicle,
+  | 'title'
+  | 'rangeEPA'
+  | 'acceleration060'
+  | 'basePriceMSRP'
+  | 'seoTitle'
+  | 'seoDescription'
+>;
+
+function normalizeVehicleName(
+  title: string,
+  {
+    includeYear = false,
+    includeBrand = false,
+  }: { includeYear?: boolean; includeBrand?: boolean } = {}
+): string {
+  let name = title.replace(/\s+/g, ' ').trim();
+
+  if (!includeYear) {
+    name = name.replace(/^\d{4}\s+/, '');
+  }
+
+  if (!includeBrand) {
+    name = name.replace(/^(\d{4}\s+)?Tesla\s+/, '$1');
+  }
+
+  for (const [pattern, replacement] of VEHICLE_NAME_REPLACEMENTS) {
+    name = name.replace(pattern, replacement);
+  }
+
+  return name;
+}
+
+export function getShortVehicleName(
+  title: string,
+  options?: { includeYear?: boolean; includeBrand?: boolean }
+): string {
+  return normalizeVehicleName(title, options);
+}
+
+export function buildVehicleSeoTitle(vehicle: SeoVehicleFields): string {
+  const name = getShortVehicleName(vehicle.title, {
+    includeYear: true,
+    includeBrand: true,
+  });
+
+  return `${name} Specs, Range & Price`;
+}
+
+export function buildVehicleSeoDescription(vehicle: SeoVehicleFields): string {
+  const name = getShortVehicleName(vehicle.title, {
+    includeYear: true,
+    includeBrand: true,
+  });
+  const specs = [
+    vehicle.rangeEPA != null && `${vehicle.rangeEPA} mi range`,
+    vehicle.acceleration060 && `${vehicle.acceleration060}s 0-60`,
+    vehicle.basePriceMSRP != null &&
+      `${formatPrice(vehicle.basePriceMSRP)} MSRP`,
+  ].filter(Boolean);
+
+  if (specs.length === 0) {
+    return `${name} specs, range, pricing, and performance details.`;
+  }
+
+  return `${name}: ${specs.join(', ')}. Compare charging, dimensions, cargo, and related trims.`;
+}
+
+export function buildCompareSeoTitle(vehicles: SeoVehicleFields[]): string {
+  const names = vehicles.map((vehicle) =>
+    getShortVehicleName(vehicle.title, { includeYear: false })
+  );
+
+  return `${names.join(' vs ')} | Specs`;
+}
+
+export function buildCompareSeoDescription(
+  vehicles: SeoVehicleFields[]
+): string {
+  const [a, b] = vehicles;
+  const names = vehicles.map((vehicle) =>
+    getShortVehicleName(vehicle.title, { includeYear: false })
+  );
+  const accelerationA = a.acceleration060 ? `${a.acceleration060}s` : 'N/A';
+  const accelerationB = b.acceleration060 ? `${b.acceleration060}s` : 'N/A';
+
+  return `Compare ${names.join(' vs ')}: range ${a.rangeEPA ?? 'N/A'} vs ${b.rangeEPA ?? 'N/A'} mi, 0-60 ${accelerationA} vs ${accelerationB}, price ${formatPrice(a.basePriceMSRP)} vs ${formatPrice(b.basePriceMSRP)}.`;
+}
+
 /**
  * Spec comparison config: defines which specs to compare and their display metadata
  */

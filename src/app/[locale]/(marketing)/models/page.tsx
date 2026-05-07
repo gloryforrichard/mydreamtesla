@@ -6,9 +6,8 @@ import {
   buildItemListJsonLd,
   buildFAQPageJsonLd,
 } from '@/lib/seo/structured-data';
-import { generateAlternates } from '@/lib/hreflang';
 import { getBaseUrl } from '@/lib/urls/urls';
-import { getOgImageUrl } from '@/lib/metadata';
+import { constructMetadata, getOgImageUrl } from '@/lib/metadata';
 
 const MODELS_PAGE_FAQS = [
   {
@@ -38,31 +37,19 @@ const MODELS_PAGE_FAQS = [
   },
 ];
 
-export const metadata: Metadata = {
+const modelsOgImage = getOgImageUrl({
+  title: 'All Tesla Models',
+  subtitle: 'Compare Every Model, Trim & Year',
+  type: 'default',
+});
+
+export const metadata: Metadata = constructMetadata({
   title: 'All Tesla Models: Compare Model 3, Y, S, X & Cybertruck',
   description:
     'See every Tesla model and trim in one place. Compare Model 3, Model Y, Model S, Model X, and Cybertruck by price, range, 0-60, years, and body style.',
-  alternates: generateAlternates('/models'),
-  openGraph: {
-    images: [
-      getOgImageUrl({
-        title: 'All Tesla Models',
-        subtitle: 'Compare Every Model, Trim & Year',
-        type: 'default',
-      }),
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    images: [
-      getOgImageUrl({
-        title: 'All Tesla Models',
-        subtitle: 'Compare Every Model, Trim & Year',
-        type: 'default',
-      }),
-    ],
-  },
-};
+  image: modelsOgImage,
+  pathname: '/models',
+});
 
 export default async function ModelsPage() {
   const { models, vehicles } = await getAllVehicles();

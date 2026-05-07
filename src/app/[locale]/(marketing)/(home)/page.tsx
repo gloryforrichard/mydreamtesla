@@ -22,12 +22,14 @@ interface HomePageProps {
   params: Promise<{ locale: string }>;
 }
 
-export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: HomePageProps): Promise<Metadata> {
   const { locale } = await params;
   return constructMetadata({
     title: 'Compare Every Tesla Model & Trim (2017–2025) — Specs, Range, Price',
     description:
-      'The most comprehensive Tesla database. Compare specs, range, 0-60 times, and pricing across every model, trim & year — Model 3, Y, S, X & Cybertruck. Updated for 2025.',
+      'Compare Tesla specs, range, 0-60 times, and pricing across every model, trim, and year: Model 3, Y, S, X, and Cybertruck. Updated for 2025.',
     locale: locale as Locale,
     pathname: '/',
   });

@@ -11,8 +11,7 @@ import { CompareBuilder } from '@/components/tesla/compare-builder';
 import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav';
 import { JsonLd } from '@/components/seo/json-ld';
 import { buildFAQPageJsonLd } from '@/lib/seo/structured-data';
-import { getOgImageUrl } from '@/lib/metadata';
-import { generateAlternates } from '@/lib/hreflang';
+import { constructMetadata, getOgImageUrl } from '@/lib/metadata';
 
 const COMPARE_FAQS = [
   {
@@ -26,8 +25,7 @@ const COMPARE_FAQS = [
       'The Model 3 is a compact sedan while the Model Y is a mid-size SUV built on the same platform. The Model Y offers more cargo space (76 cu ft vs 23 cu ft), higher ground clearance, and optional third-row seating. The Model 3 is lighter, slightly faster, and more energy-efficient. Both share the same powertrain options.',
   },
   {
-    question:
-      'Should I buy the Tesla Model 3 Standard Range or Long Range?',
+    question: 'Should I buy the Tesla Model 3 Standard Range or Long Range?',
     answer:
       'The Standard Range Plus (SR+) is the most affordable Tesla with ~270 miles of range and rear-wheel drive. The Long Range adds ~80+ miles of range, all-wheel drive, and faster acceleration. If you frequently drive long distances or live in a cold climate, the Long Range is worth the upgrade.',
   },
@@ -43,10 +41,20 @@ const COMPARE_FAQS = [
   },
 ];
 
+const compareOgImage = getOgImageUrl({
+  title: 'Compare Any Tesla',
+  subtitle: 'Side-by-Side Specs & Pricing',
+  type: 'compare',
+});
+
 export const metadata: Metadata = {
-  title: 'Tesla Model Comparisons 2025 — Side-by-Side Specs & Price',
-  description:
-    'Compare any two Tesla vehicles side by side — Model 3 vs Model Y, Long Range vs Performance, 2024 vs 2025. Full specs, range, 0-60, and pricing compared. Pick your perfect Tesla.',
+  ...constructMetadata({
+    title: 'Tesla Model Comparisons 2025 — Side-by-Side Specs & Price',
+    description:
+      'Compare any two Tesla vehicles side by side. See Model 3 vs Model Y, Long Range vs Performance, 2024 vs 2025 with specs, range, 0-60, and pricing.',
+    image: compareOgImage,
+    pathname: '/compare',
+  }),
   keywords: [
     'tesla comparison',
     'compare tesla models',
@@ -56,16 +64,6 @@ export const metadata: Metadata = {
     'all tesla models compared',
     'tesla model y 2024 vs 2025',
   ],
-  alternates: generateAlternates('/compare'),
-  openGraph: {
-    images: [
-      getOgImageUrl({
-        title: 'Compare Any Tesla',
-        subtitle: 'Side-by-Side Specs & Pricing',
-        type: 'compare',
-      }),
-    ],
-  },
 };
 
 export default async function CompareIndexPage() {
@@ -111,10 +109,7 @@ export default async function CompareIndexPage() {
         if (items.length === 0) return null;
 
         return (
-          <section
-            key={category}
-            className="mx-auto max-w-[1400px] px-8 py-16"
-          >
+          <section key={category} className="mx-auto max-w-[1400px] px-8 py-16">
             <h2 className="font-display text-[28px] font-bold tracking-[-1.5px] text-foreground sm:text-[36px]">
               {config.title}
             </h2>
