@@ -1,6 +1,10 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getModelBySlug, getVehiclesForModel, getAllModelSlugs } from '@/lib/db/queries';
+import {
+  getModelBySlug,
+  getVehiclesForModel,
+  getAllModelSlugs,
+} from '@/lib/db/queries';
 import { ModelVehiclesByGeneration } from '@/components/tesla/model-vehicles-by-generation';
 import { ModelVehiclesByGenerationInteractive } from '@/components/tesla/model-vehicles-by-generation-interactive';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
@@ -30,6 +34,20 @@ interface Props {
   params: Promise<{ slug: string; locale: string }>;
 }
 
+const MODEL_META_OVERRIDES: Record<
+  string,
+  { seoTitle?: string; seoDescription?: string }
+> = {
+  'model-s': {
+    seoDescription:
+      'Tesla Model S AWD and Plaid specs, pricing, range, and performance.',
+  },
+  'model-x': {
+    seoDescription:
+      'Tesla Model X AWD and Plaid specs, pricing, range, towing, and seating.',
+  },
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const model = await getModelBySlug(slug);
@@ -37,19 +55,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const vehicles = await getVehiclesForModel(model.id);
   const years = [...new Set(vehicles.map((v) => v.year))];
-  const startYear = years.length > 0 ? Math.min(...years) : model.productionStart ?? 2017;
+  const startYear =
+    years.length > 0 ? Math.min(...years) : (model.productionStart ?? 2017);
   const endYear = years.length > 0 ? Math.max(...years) : 2025;
   const trimCount = new Set(vehicles.map((v) => v.trimName)).size;
-  const ranges = vehicles.map((v) => v.rangeEPA).filter((r): r is number => r != null);
+  const ranges = vehicles
+    .map((v) => v.rangeEPA)
+    .filter((r): r is number => r != null);
   const minRange = ranges.length > 0 ? Math.min(...ranges) : null;
   const maxRange = ranges.length > 0 ? Math.max(...ranges) : null;
 
+  const modelMeta = MODEL_META_OVERRIDES[slug];
   const title =
+    modelMeta?.seoTitle ??
     model.seoTitle ??
     `Tesla ${model.name} Specs by Year (${startYear}–${endYear}) — Compare All Trims`;
   const rangeText =
     minRange && maxRange ? ` Range from ${minRange} to ${maxRange} mi.` : '';
   const description =
+    modelMeta?.seoDescription ??
     model.seoDescription ??
     `Every Tesla ${model.name} from ${startYear} to ${endYear} compared — ${trimCount} trims, ${years.length} model years.${rangeText} Find your perfect ${model.name}.`;
 

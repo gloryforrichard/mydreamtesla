@@ -48,7 +48,7 @@ const TESLA_MODELS = [
     sortOrder: 3,
     seoTitle: 'Tesla Model S — All Trims & Specs | MyDreamTesla',
     seoDescription:
-      'Compare Tesla Model S AWD and Plaid. Specs, pricing, range, and performance for all current trims.',
+      'Tesla Model S AWD and Plaid specs, pricing, range, and performance.',
   },
   {
     name: 'Model X',
@@ -62,7 +62,7 @@ const TESLA_MODELS = [
     sortOrder: 4,
     seoTitle: 'Tesla Model X — All Trims & Specs | MyDreamTesla',
     seoDescription:
-      'Compare Tesla Model X AWD and Plaid. Specs, pricing, range, towing capacity, and falcon wing doors.',
+      'Tesla Model X AWD and Plaid specs, pricing, range, towing, and seating.',
   },
   {
     name: 'Cybertruck',
@@ -805,7 +805,8 @@ const VEHICLES = [
     groundClearance: '5.5',
     curbWeight: 3862,
     mpge: 141,
-    seoTitle: '2023 Tesla Model 3 Standard Range Plus RWD — Specs | MyDreamTesla',
+    seoTitle:
+      '2023 Tesla Model 3 Standard Range Plus RWD — Specs | MyDreamTesla',
     seoDescription:
       '2023 Model 3 SR+ RWD — 272-mile EPA range, 6.1s 0-60, 283 hp, 3,862 lbs curb weight. $40,240 MSRP ($32,740 after tax credit). Full specs & features.',
     isCurrentModel: false,
@@ -1577,7 +1578,8 @@ const VEHICLES = [
     year: 2023,
     trimName: 'Standard Range',
     driveType: 'RWD',
-    seoTitle: '2023 Tesla Model Y Standard Range RWD — HP & Specs | MyDreamTesla',
+    seoTitle:
+      '2023 Tesla Model Y Standard Range RWD — HP & Specs | MyDreamTesla',
     seoDescription:
       '2023 Model Y Standard Range RWD — 260-mile EPA range, 5.0s 0-60, 283 horsepower, 4,100 lbs curb weight, $43,990 MSRP. Full specifications & comparison.',
     basePriceMSRP: 43990,
@@ -5291,7 +5293,11 @@ async function seedVehicles() {
           'federalTaxCredit' in v ? v.federalTaxCredit : undefined,
         effectivePrice: 'effectivePrice' in v ? v.effectivePrice : undefined,
         rangeEPA: 'rangeEPA' in v ? v.rangeEPA : undefined,
-        rangeKm: ('rangeKm' in v ? (v as any).rangeKm : 'rangeEPA' in v && typeof (v as any).rangeEPA === 'number' ? miToKm((v as any).rangeEPA) : undefined) as number | undefined,
+        rangeKm: ('rangeKm' in v
+          ? (v as any).rangeKm
+          : 'rangeEPA' in v && typeof (v as any).rangeEPA === 'number'
+            ? miToKm((v as any).rangeEPA)
+            : undefined) as number | undefined,
         acceleration060: 'acceleration060' in v ? v.acceleration060 : undefined,
         topSpeed: 'topSpeed' in v ? v.topSpeed : undefined,
         horsepower: 'horsepower' in v ? v.horsepower : undefined,
@@ -5321,7 +5327,9 @@ async function seedVehicles() {
             ? v.keyChangesFromPriorYear
             : undefined,
         isCurrentModel: v.isCurrentModel,
-        regionNote: ('regionNote' in v ? v.regionNote : undefined) as string | undefined,
+        regionNote: ('regionNote' in v ? v.regionNote : undefined) as
+          | string
+          | undefined,
         seoTitle: ('seoTitle' in v ? v.seoTitle : undefined) as
           | string
           | undefined,
