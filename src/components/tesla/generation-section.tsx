@@ -113,7 +113,7 @@ export function GenerationSection({
               alt={`Tesla ${modelName} ${generation.name}`}
               width={800}
               height={400}
-              className="h-auto w-full mix-blend-multiply object-contain p-6 dark:mix-blend-normal"
+              className="h-auto w-full object-contain p-6"
               fallbackClassName="flex aspect-[2/1] w-full items-center justify-center bg-gradient-to-br from-muted to-muted/70"
               fallbackLabel={modelName}
             />
@@ -128,10 +128,14 @@ export function GenerationSection({
                 <tr className="border-b border-border text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   <th className="py-3 pr-3 font-medium">Year</th>
                   <th className="px-3 py-3 font-medium">Trim</th>
-                  <th className="hidden px-3 py-3 font-medium lg:table-cell">Drive</th>
+                  <th className="hidden px-3 py-3 font-medium lg:table-cell">
+                    Drive
+                  </th>
                   <th className="px-3 py-3 font-medium">Range (km)</th>
                   <th className="px-3 py-3 font-medium">0-60</th>
-                  <th className="hidden px-3 py-3 font-medium lg:table-cell">HP</th>
+                  <th className="hidden px-3 py-3 font-medium lg:table-cell">
+                    HP
+                  </th>
                   <th className="w-8 py-3 pl-3">
                     <span className="sr-only">Details</span>
                   </th>

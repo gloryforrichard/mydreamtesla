@@ -15,15 +15,15 @@ export function ComparePageContent({
   models,
 }: ComparePageContentProps) {
   const bestRange = [...vehicles].sort(
-    (a, b) => (b.rangeKm ?? 0) - (a.rangeKm ?? 0),
+    (a, b) => (b.rangeKm ?? 0) - (a.rangeKm ?? 0)
   )[0];
 
   const bestPower = [...vehicles].sort(
-    (a, b) => (b.horsepower ?? 0) - (a.horsepower ?? 0),
+    (a, b) => (b.horsepower ?? 0) - (a.horsepower ?? 0)
   )[0];
 
   const bestValue = [...vehicles].sort(
-    (a, b) => (a.effectivePrice ?? Infinity) - (b.effectivePrice ?? Infinity),
+    (a, b) => (a.effectivePrice ?? Infinity) - (b.effectivePrice ?? Infinity)
   )[0];
 
   return (
@@ -47,11 +47,11 @@ export function ComparePageContent({
                 ? getAnglePhotos(model.slug, vehicle.year)
                 : null;
               const defaultAngle = anglePhotos?.find(
-                (p) => p.angle === DEFAULT_ANGLE,
+                (p) => p.angle === DEFAULT_ANGLE
               );
               const imageSrc =
-                defaultAngle?.src ??
                 generation?.image ??
+                defaultAngle?.src ??
                 `/images/vehicles/${vehicle.slug}.png`;
               return (
                 <div key={vehicle.id} className="px-2 text-center sm:px-4">
@@ -61,7 +61,7 @@ export function ComparePageContent({
                       alt={vehicle.title}
                       width={288}
                       height={192}
-                      className="h-full w-full mix-blend-multiply object-contain dark:mix-blend-normal"
+                      className="h-full w-full object-contain"
                       fallbackClassName="flex h-full w-full items-center justify-center"
                       fallbackLabel={model?.name.replace('Model ', '') ?? '?'}
                     />

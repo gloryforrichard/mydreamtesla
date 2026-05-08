@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getStudioImageForVehicleSlug } from '@/lib/vehicle-images';
 import { formatSpec } from '@/lib/vehicle-utils';
 import type { Vehicle } from '@/lib/vehicle-utils';
 import { VehicleImage } from './vehicle-image';
@@ -8,6 +9,10 @@ interface VehicleCardProps {
 }
 
 export function VehicleCard({ vehicle }: VehicleCardProps) {
+  const imageSrc =
+    getStudioImageForVehicleSlug(vehicle.slug, vehicle.year) ??
+    `/images/vehicles/${vehicle.slug}.png`;
+
   return (
     <Link
       href={`/vehicles/${vehicle.slug}`}
@@ -15,7 +20,7 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
     >
       <div className="flex aspect-[16/10] items-center justify-center overflow-hidden">
         <VehicleImage
-          src={`/images/vehicles/${vehicle.slug}.png`}
+          src={imageSrc}
           alt={vehicle.title}
           width={1000}
           height={500}

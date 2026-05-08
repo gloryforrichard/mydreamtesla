@@ -27,9 +27,7 @@ import { constructMetadata, getOgImageUrl } from '@/lib/metadata';
 import { websiteConfig } from '@/config/website';
 import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
-import { VehicleAngleViewer } from '@/components/tesla/vehicle-angle-viewer';
 import { getVehicleGeneration } from '@/lib/vehicle-generations';
-import { getAnglePhotos } from '@/lib/vehicle-angles';
 import { VEHICLE_FAQS } from '@/config/vehicle-faqs';
 import { buildFAQPageJsonLd } from '@/lib/seo/structured-data';
 import { MODEL_BLOG_LINKS } from '@/config/vehicle-blog-links';
@@ -94,7 +92,6 @@ export default async function VehicleDetailPage({ params }: Props) {
     : null;
   const vehicleImage =
     generation?.image ?? `/images/vehicles/${vehicle.slug}.png`;
-  const anglePhotos = model ? getAnglePhotos(model.slug, vehicle.year) : null;
 
   // Related blog articles for this model
   const blogSlugs = model ? (MODEL_BLOG_LINKS[model.slug] ?? []) : [];
@@ -140,22 +137,18 @@ export default async function VehicleDetailPage({ params }: Props) {
       <header className="mb-16 mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         {/* Left: Image */}
         <div>
-          {anglePhotos ? (
-            <VehicleAngleViewer photos={anglePhotos} alt={vehicle.title} />
-          ) : (
-            <div className="overflow-hidden rounded-lg bg-paper">
-              <VehicleImage
-                src={vehicleImage}
-                alt={vehicle.title}
-                width={1000}
-                height={500}
-                className="h-auto w-full mix-blend-multiply object-contain p-6 dark:mix-blend-normal"
-                fallbackClassName="flex h-[280px] w-full items-center justify-center"
-                fallbackLabel={String(vehicle.year)}
-                priority
-              />
-            </div>
-          )}
+          <div className="overflow-hidden rounded-lg bg-paper">
+            <VehicleImage
+              src={vehicleImage}
+              alt={vehicle.title}
+              width={1000}
+              height={500}
+              className="h-auto w-full object-contain p-6"
+              fallbackClassName="flex h-[280px] w-full items-center justify-center"
+              fallbackLabel={String(vehicle.year)}
+              priority
+            />
+          </div>
         </div>
 
         {/* Right: Title + Key specs metadata */}
@@ -173,7 +166,9 @@ export default async function VehicleDetailPage({ params }: Props) {
               <div>
                 <p className="font-display text-[40px] font-bold leading-none tracking-[-1px] text-foreground sm:text-[48px]">
                   {vehicle.rangeEPA}
-                  <span className="ml-1 text-[18px] font-medium text-ink-3 sm:text-[20px]">mi</span>
+                  <span className="ml-1 text-[18px] font-medium text-ink-3 sm:text-[20px]">
+                    mi
+                  </span>
                 </p>
                 <p className="mt-1 font-mono text-[11px] font-medium uppercase tracking-[2px] text-ink-3">
                   EPA Range
@@ -184,7 +179,9 @@ export default async function VehicleDetailPage({ params }: Props) {
               <div>
                 <p className="font-display text-[40px] font-bold leading-none tracking-[-1px] text-foreground sm:text-[48px]">
                   {vehicle.acceleration060}
-                  <span className="ml-1 text-[18px] font-medium text-ink-3 sm:text-[20px]">s</span>
+                  <span className="ml-1 text-[18px] font-medium text-ink-3 sm:text-[20px]">
+                    s
+                  </span>
                 </p>
                 <p className="mt-1 font-mono text-[11px] font-medium uppercase tracking-[2px] text-ink-3">
                   0-60 mph
