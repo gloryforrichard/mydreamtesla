@@ -58,8 +58,8 @@ const SPEC_ROWS = [
     render: (v: Vehicle) => formatPrice(v.basePriceMSRP),
   },
   {
-    label: 'EPA Range',
-    render: (v: Vehicle) => formatSpec(v.rangeEPA, 'mi'),
+    label: 'Range',
+    render: (v: Vehicle) => formatSpec(v.rangeKm, 'km'),
   },
   {
     label: '0–60 mph',

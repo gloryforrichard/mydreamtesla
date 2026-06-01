@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const ogImage = getOgImageUrl({
     title: vehicle.title,
-    subtitle: `Range: ${vehicle.rangeEPA ?? 'N/A'} mi · 0-60: ${vehicle.acceleration060 ?? 'N/A'}s`,
+    subtitle: `Range: ${vehicle.rangeKm ?? 'N/A'} km · 0-60: ${vehicle.acceleration060 ?? 'N/A'}s`,
     type: 'vehicle',
   });
 
@@ -162,16 +162,16 @@ export default async function VehicleDetailPage({ params }: Props) {
 
           {/* Stats row — large font-display numbers */}
           <div className="mt-8 flex flex-wrap gap-8">
-            {vehicle.rangeEPA && (
+            {vehicle.rangeKm && (
               <div>
                 <p className="font-display text-[40px] font-bold leading-none tracking-[-1px] text-foreground sm:text-[48px]">
-                  {vehicle.rangeEPA}
+                  {vehicle.rangeKm}
                   <span className="ml-1 text-[18px] font-medium text-ink-3 sm:text-[20px]">
-                    mi
+                    km
                   </span>
                 </p>
                 <p className="mt-1 font-mono text-[11px] font-medium uppercase tracking-[2px] text-ink-3">
-                  EPA Range
+                  Range
                 </p>
               </div>
             )}

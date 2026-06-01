@@ -12,19 +12,48 @@ export function formatPrice(price: number | null | undefined): string {
 }
 
 /**
- * Format a spec value with unit
- * e.g., formatSpec(341, 'mi') → "341 mi"
+ * Imperial → metric conversions applied automatically by formatSpec, so the
+ * whole site displays metric while the DB keeps original (imperial) values.
+ * NOTE: 0-60 mph acceleration is intentionally absent here — it is kept as an
+ * industry-standard figure per product decision.
+ */
+const METRIC_CONVERSIONS: Record<
+  string,
+  { to: string; factor: number; decimals: number }
+> = {
+  mph: { to: 'km/h', factor: 1.60934, decimals: 0 },
+  mi: { to: 'km', factor: 1.60934, decimals: 0 },
+  lbs: { to: 'kg', factor: 0.453592, decimals: 0 },
+  'lb-ft': { to: 'Nm', factor: 1.35582, decimals: 0 },
+  in: { to: 'cm', factor: 2.54, decimals: 1 },
+  'cu ft': { to: 'L', factor: 28.3168, decimals: 0 },
+  'Wh/mi': { to: 'Wh/km', factor: 1 / 1.60934, decimals: 0 },
+};
+
+/**
+ * Format a spec value with unit. Imperial units are auto-converted to metric.
+ * e.g., formatSpec(140, 'mph') → "225 km/h"; formatSpec(341, 'mi') → "549 km"
  */
 export function formatSpec(
   value: number | string | null | undefined,
   unit?: string
 ): string {
-  if (value == null) return 'N/A';
-  const formatted =
-    typeof value === 'number'
-      ? new Intl.NumberFormat('en-US').format(value)
-      : value;
-  return unit ? `${formatted} ${unit}` : formatted;
+  if (value == null || value === '') return 'N/A';
+
+  const conversion = unit ? METRIC_CONVERSIONS[unit] : undefined;
+  let num = typeof value === 'number' ? value : Number.parseFloat(value);
+  let displayUnit = unit;
+
+  if (conversion && Number.isFinite(num)) {
+    const p = 10 ** conversion.decimals;
+    num = Math.round(num * conversion.factor * p) / p;
+    displayUnit = conversion.to;
+  }
+
+  const formatted = Number.isFinite(num)
+    ? new Intl.NumberFormat('en-US').format(num)
+    : String(value);
+  return displayUnit ? `${formatted} ${displayUnit}` : formatted;
 }
 
 /**
@@ -91,6 +120,7 @@ type SeoVehicleFields = Pick<
   Vehicle,
   | 'title'
   | 'rangeEPA'
+  | 'rangeKm'
   | 'acceleration060'
   | 'basePriceMSRP'
   | 'seoTitle'
@@ -143,7 +173,7 @@ export function buildVehicleSeoDescription(vehicle: SeoVehicleFields): string {
     includeBrand: true,
   });
   const specs = [
-    vehicle.rangeEPA != null && `${vehicle.rangeEPA} mi range`,
+    vehicle.rangeKm != null && `${vehicle.rangeKm} km range`,
     vehicle.acceleration060 && `${vehicle.acceleration060}s 0-60`,
     vehicle.basePriceMSRP != null &&
       `${formatPrice(vehicle.basePriceMSRP)} MSRP`,
@@ -174,7 +204,7 @@ export function buildCompareSeoDescription(
   const accelerationA = a.acceleration060 ? `${a.acceleration060}s` : 'N/A';
   const accelerationB = b.acceleration060 ? `${b.acceleration060}s` : 'N/A';
 
-  return `Compare ${names.join(' vs ')}: range ${a.rangeEPA ?? 'N/A'} vs ${b.rangeEPA ?? 'N/A'} mi, 0-60 ${accelerationA} vs ${accelerationB}, price ${formatPrice(a.basePriceMSRP)} vs ${formatPrice(b.basePriceMSRP)}.`;
+  return `Compare ${names.join(' vs ')}: range ${a.rangeKm ?? 'N/A'} vs ${b.rangeKm ?? 'N/A'} km, 0-60 ${accelerationA} vs ${accelerationB}, price ${formatPrice(a.basePriceMSRP)} vs ${formatPrice(b.basePriceMSRP)}.`;
 }
 
 /**

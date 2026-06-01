@@ -64,7 +64,7 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
               className="mb-8"
               aria-label={`${groupName} specifications`}
             >
-              <h2 className="border-b border-line pb-2.5 font-mono text-[11px] font-semibold uppercase tracking-[1px] text-ink-3">
+              <h2 className="border-b border-line pb-3 font-mono text-[13px] font-semibold uppercase tracking-[1px] text-ink-3">
                 {groupName}
               </h2>
               {specs.map((spec) => {
@@ -91,7 +91,7 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
                       gridTemplateColumns: `clamp(90px, 22vw, 180px) repeat(${vehicles.length}, 1fr)`,
                     }}
                   >
-                    <div className="flex items-center py-3 text-[12px] font-normal text-ink-2 sm:text-[13px]">
+                    <div className="flex items-center py-3.5 text-[14px] font-normal text-ink-2 sm:text-[15px]">
                       {spec.label}
                     </div>
                     {vehicles.map((v, i) => {
@@ -102,7 +102,7 @@ export function ComparisonTable({ vehicles }: ComparisonTableProps) {
                       return (
                         <div
                           key={v.id}
-                          className={`flex items-center justify-center gap-1 px-2 py-3 text-center text-[13px] sm:gap-1.5 sm:px-4 sm:text-[14px] ${
+                          className={`flex items-center justify-center gap-1 px-2 py-3.5 text-center text-[15px] sm:gap-1.5 sm:px-4 sm:text-[16px] ${
                             isTextVal ? 'font-medium' : 'font-mono font-semibold'
                           } ${isBest ? 'text-success' : 'text-foreground'}`}
                         >

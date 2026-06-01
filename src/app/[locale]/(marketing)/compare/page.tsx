@@ -22,12 +22,12 @@ const COMPARE_FAQS = [
   {
     question: 'What is the difference between Tesla Model 3 and Model Y?',
     answer:
-      'The Model 3 is a compact sedan while the Model Y is a mid-size SUV built on the same platform. The Model Y offers more cargo space (76 cu ft vs 23 cu ft), higher ground clearance, and optional third-row seating. The Model 3 is lighter, slightly faster, and more energy-efficient. Both share the same powertrain options.',
+      'The Model 3 is a compact sedan while the Model Y is a mid-size SUV built on the same platform. The Model Y offers more cargo space (2,150 L vs 650 L), higher ground clearance, and optional third-row seating. The Model 3 is lighter, slightly faster, and more energy-efficient. Both share the same powertrain options.',
   },
   {
     question: 'Should I buy the Tesla Model 3 Standard Range or Long Range?',
     answer:
-      'The Standard Range Plus (SR+) is the most affordable Tesla with ~270 miles of range and rear-wheel drive. The Long Range adds ~80+ miles of range, all-wheel drive, and faster acceleration. If you frequently drive long distances or live in a cold climate, the Long Range is worth the upgrade.',
+      'The Standard Range Plus (SR+) is the most affordable Tesla with ~435 km of range and rear-wheel drive. The Long Range adds ~130+ km of range, all-wheel drive, and faster acceleration. If you frequently drive long distances or live in a cold climate, the Long Range is worth the upgrade.',
   },
   {
     question: 'What changed in the 2025 Tesla Model 3 Highland refresh?',
@@ -96,7 +96,7 @@ export default async function CompareIndexPage() {
       </header>
 
       {/* Comparison Builder */}
-      <section className="bg-paper py-16">
+      <section className="bg-secondary py-20">
         <div className="mx-auto max-w-[1400px] px-8">
           <CompareBuilder models={models} vehicles={vehicles} />
         </div>
@@ -122,20 +122,20 @@ export default async function CompareIndexPage() {
                 <Link
                   key={c.slug}
                   href={getCompareUrl(c.slug)}
-                  className="group flex flex-col justify-between rounded-lg border border-line bg-paper p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                  className="group flex flex-col justify-between rounded-2xl border border-line bg-card p-7 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div>
-                    <div className="mb-3 inline-block rounded-full bg-muted px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[1.5px] text-ink-3">
+                    <div className="mb-4 inline-block rounded-full bg-secondary px-3 py-1 font-mono text-[12px] font-semibold uppercase tracking-[1px] text-ink-3">
                       {c.shortLabel}
                     </div>
-                    <h3 className="text-[17px] font-semibold tracking-[-0.3px] text-foreground">
+                    <h3 className="text-[19px] font-semibold tracking-[-0.3px] text-foreground">
                       {c.label}
                     </h3>
-                    <p className="mt-2 text-[14px] leading-relaxed text-ink-2">
+                    <p className="mt-2 text-[15px] leading-relaxed text-ink-2">
                       {c.description}
                     </p>
                   </div>
-                  <div className="mt-5 text-[14px] font-medium text-ed-accent">
+                  <div className="mt-6 text-[15px] font-medium text-ed-accent">
                     View full comparison →
                   </div>
                 </Link>
@@ -146,7 +146,7 @@ export default async function CompareIndexPage() {
       })}
 
       {/* FAQ Section — SEO content */}
-      <section className="border-t border-line bg-paper py-20">
+      <section className="border-t border-line bg-secondary py-20">
         <div className="mx-auto max-w-[760px] px-8">
           <h2 className="text-center font-display text-[28px] font-bold tracking-[-1.5px] text-foreground sm:text-[36px]">
             Frequently Asked Questions
