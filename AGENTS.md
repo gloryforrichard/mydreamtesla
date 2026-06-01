@@ -13,13 +13,13 @@ Biome (`biome.json`) enforces two-space indentation, single quotes, ES5 trailing
 Automated tests are not wired into package scripts, so validate changes with `pnpm dev`, linting, and focused manual QA around auth, billing, and AI flows. When adding a runner, colocate specs with the feature using `.test.ts(x)` or `.spec.ts(x)` suffixes and document the command in your PR. Update `src/db/migrations` with fixtures whenever data changes are needed for reviewers.
 
 ## Deployment Workflow (Project-Specific)
-For this project, after each completed code change, create a Vercel deployment for testing and share the Vercel URL for review (the user checks the Vercel version instead of local output). Default to a **Preview deployment** for routine iteration; only deploy to **Production** when the user explicitly requests production release.
+For this project, after each completed code change, commit and push to `main` so Vercel auto-triggers a **Production deployment**, then share the Vercel URL for review (the user checks the Vercel version instead of local output). Shipping to Production via `main` is the default per the user's confirmed workflow (2026-05-31); only open a separate **Preview** deployment when a preview is specifically requested.
 
 Important workflow details for this repo:
-- The user validates via Vercel + GitHub metadata, so do **not** rely only on a local-source `vercel deploy` snapshot. Prefer: commit changes, push to GitHub, then deploy/share the preview so the dashboard commit matches the code under review.
+- The user validates via Vercel + GitHub metadata, so do **not** rely only on a local-source `vercel deploy` snapshot. Prefer: commit changes, push to `main`, and let Vercel deploy from that commit so the dashboard commit matches the code under review.
 - Deploy to the **`mydreamtesla`** Vercel project (not `mydreamtesla-web`) unless the user explicitly asks otherwise.
-- If the change includes database schema or seed updates, run the corresponding migration/seed against the **Preview environment database** after deployment (or before first preview verification) so the deployed app does not crash on missing columns/data.
-- When sharing a deployment, include both the Preview URL and (when useful) the Vercel Inspect/logs URL.
+- If the change includes database schema or seed updates, run the corresponding migration/seed against the **Production environment database** (confirm the target environment with the user first) so the deployed app does not crash on missing columns/data.
+- When sharing a deployment, include both the deployment URL and (when useful) the Vercel Inspect/logs URL.
 
 ## Commit & Pull Request Guidelines
 Follow the Conventional Commit style (`feat:`, `fix:`, `chore:`) observed in the log. Keep commits scoped, reference issue IDs in the body, and refresh `env.example` whenever environment variables change. PRs should include a concise summary, testing notes (commands + results), screenshots for UI updates, and callouts for docs or config changes. Request review once checks pass and highlight breaking changes early.
