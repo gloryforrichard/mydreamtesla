@@ -34,17 +34,32 @@ interface Props {
   params: Promise<{ slug: string; locale: string }>;
 }
 
+// SEO titles optimized from GSC query data: "model X trims", "trim levels",
+// "model X specs" are the highest-impression query family — front-load "Trims"
+// and add "Trim Levels" to match. DB seoTitle would otherwise bury "Trims" at
+// the end; these code-level overrides take precedence without touching the DB.
 const MODEL_META_OVERRIDES: Record<
   string,
   { seoTitle?: string; seoDescription?: string }
 > = {
+  'model-3': {
+    seoTitle: 'Tesla Model 3 Trims, Specs & Prices — All Trim Levels',
+  },
+  'model-y': {
+    seoTitle: 'Tesla Model Y Trims, Specs & Prices — All Trim Levels',
+  },
   'model-s': {
+    seoTitle: 'Tesla Model S Trims, Specs & Prices — All Trim Levels',
     seoDescription:
       'Tesla Model S AWD and Plaid specs, pricing, range, and performance.',
   },
   'model-x': {
+    seoTitle: 'Tesla Model X Trims, Specs & Prices — All Trim Levels',
     seoDescription:
       'Tesla Model X AWD and Plaid specs, pricing, range, towing, and seating.',
+  },
+  cybertruck: {
+    seoTitle: 'Tesla Cybertruck Trims, Specs & Prices — All Trim Levels',
   },
 };
 
@@ -60,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const endYear = years.length > 0 ? Math.max(...years) : 2025;
   const trimCount = new Set(vehicles.map((v) => v.trimName)).size;
   const ranges = vehicles
-    .map((v) => v.rangeEPA)
+    .map((v) => v.rangeKm)
     .filter((r): r is number => r != null);
   const minRange = ranges.length > 0 ? Math.min(...ranges) : null;
   const maxRange = ranges.length > 0 ? Math.max(...ranges) : null;
@@ -69,9 +84,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title =
     modelMeta?.seoTitle ??
     model.seoTitle ??
-    `Tesla ${model.name} Specs by Year (${startYear}–${endYear}) — Compare All Trims`;
+    `Tesla ${model.name} Trims & Specs (${startYear}–${endYear}) — All Trim Levels`;
   const rangeText =
-    minRange && maxRange ? ` Range from ${minRange} to ${maxRange} mi.` : '';
+    minRange && maxRange ? ` Range from ${minRange} to ${maxRange} km.` : '';
   const description =
     modelMeta?.seoDescription ??
     model.seoDescription ??
