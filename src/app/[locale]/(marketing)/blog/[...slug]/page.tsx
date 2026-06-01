@@ -8,7 +8,7 @@ import { BLOG_FAQS } from '@/config/blog-faqs';
 import { websiteConfig } from '@/config/website';
 import { LocaleLink } from '@/i18n/navigation';
 import { formatDate } from '@/lib/formatter';
-import { constructMetadata } from '@/lib/metadata';
+import { constructMetadata, getBrandedTitle } from '@/lib/metadata';
 import {
   type BlogType,
   authorSource,
@@ -67,13 +67,11 @@ export async function generateMetadata({
     notFound();
   }
 
-  const t = await getTranslations({ locale, namespace: 'Metadata' });
-
   return constructMetadata({
-    title: `${post.data.title} | ${t('title')}`,
+    title: getBrandedTitle(post.data.title),
     description: post.data.description,
     locale,
-    pathname: `/blog/${slug}`,
+    pathname: `/blog/${slug.join('/')}`,
     image: post.data.image,
   });
 }

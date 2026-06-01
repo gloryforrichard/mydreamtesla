@@ -6,6 +6,33 @@ import type { Locale } from 'next-intl';
 import { generateAlternates, getCurrentHreflang } from './hreflang';
 import { getBaseUrl, getImageUrl, getUrlWithLocale } from './urls/urls';
 
+const MAX_META_TITLE_LENGTH = 70;
+const MAX_META_DESCRIPTION_LENGTH = 155;
+
+export function trimSeoText(value: string, maxLength: number): string {
+  const normalized = value.replace(/\s+/g, ' ').trim();
+
+  if (normalized.length <= maxLength) {
+    return normalized;
+  }
+
+  const boundary = normalized.lastIndexOf(' ', maxLength);
+  const cutAt = boundary >= Math.floor(maxLength * 0.65) ? boundary : maxLength;
+
+  return normalized
+    .slice(0, cutAt)
+    .replace(/[|,;:–—-]\s*$/u, '')
+    .trim();
+}
+
+export function getBrandedTitle(title: string): string {
+  const brandedTitle = `${title} | ${defaultMessages.Metadata.name}`;
+
+  return brandedTitle.length <= MAX_META_TITLE_LENGTH
+    ? brandedTitle
+    : trimSeoText(title, MAX_META_TITLE_LENGTH);
+}
+
 /**
  * Build OG image URL using the /api/og route
  */
@@ -39,14 +66,20 @@ export function constructMetadata({
   locale?: Locale;
   pathname?: string;
 } = {}): Metadata {
-  title = title || defaultMessages.Metadata.title;
-  description = description || defaultMessages.Metadata.description;
+  title = trimSeoText(
+    title || defaultMessages.Metadata.title,
+    MAX_META_TITLE_LENGTH
+  );
+  description = trimSeoText(
+    description || defaultMessages.Metadata.description,
+    MAX_META_DESCRIPTION_LENGTH
+  );
   image = image || websiteConfig.metadata.images?.ogImage;
   const ogImageUrl = getImageUrl(image || '');
 
   // Generate canonical URL from pathname and locale
-  const canonicalUrl = locale
-    ? getUrlWithLocale(pathname || '', locale).replace(/\/$/, '')
+  const canonicalUrl = pathname
+    ? getUrlWithLocale(pathname, locale).replace(/\/$/, '')
     : undefined;
 
   // Generate hreflang alternates if pathname is provided and we have multiple locales

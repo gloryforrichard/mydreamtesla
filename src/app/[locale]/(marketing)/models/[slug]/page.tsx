@@ -1,6 +1,11 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getModelBySlug, getVehiclesForModel, getAllModelSlugs } from '@/lib/db/queries';
+import type { Locale } from 'next-intl';
+import {
+  getModelBySlug,
+  getVehiclesForModel,
+  getAllModelSlugs,
+} from '@/lib/db/queries';
 import { ModelVehiclesByGeneration } from '@/components/tesla/model-vehicles-by-generation';
 import { ModelVehiclesByGenerationInteractive } from '@/components/tesla/model-vehicles-by-generation-interactive';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
@@ -11,9 +16,8 @@ import {
   buildFAQPageJsonLd,
 } from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
-import { getOgImageUrl } from '@/lib/metadata';
+import { constructMetadata, getOgImageUrl } from '@/lib/metadata';
 import { getModelDetailImage } from '@/lib/vehicle-images';
-import { generateAlternates } from '@/lib/hreflang';
 import { MODEL_FAQS } from '@/config/model-faqs';
 import { websiteConfig } from '@/config/website';
 import Link from 'next/link';
@@ -30,26 +34,46 @@ interface Props {
   params: Promise<{ slug: string; locale: string }>;
 }
 
+const MODEL_META_OVERRIDES: Record<
+  string,
+  { seoTitle?: string; seoDescription?: string }
+> = {
+  'model-s': {
+    seoDescription:
+      'Tesla Model S AWD and Plaid specs, pricing, range, and performance.',
+  },
+  'model-x': {
+    seoDescription:
+      'Tesla Model X AWD and Plaid specs, pricing, range, towing, and seating.',
+  },
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const model = await getModelBySlug(slug);
   if (!model) return {};
 
   const vehicles = await getVehiclesForModel(model.id);
   const years = [...new Set(vehicles.map((v) => v.year))];
-  const startYear = years.length > 0 ? Math.min(...years) : model.productionStart ?? 2017;
+  const startYear =
+    years.length > 0 ? Math.min(...years) : (model.productionStart ?? 2017);
   const endYear = years.length > 0 ? Math.max(...years) : 2025;
   const trimCount = new Set(vehicles.map((v) => v.trimName)).size;
-  const ranges = vehicles.map((v) => v.rangeEPA).filter((r): r is number => r != null);
+  const ranges = vehicles
+    .map((v) => v.rangeEPA)
+    .filter((r): r is number => r != null);
   const minRange = ranges.length > 0 ? Math.min(...ranges) : null;
   const maxRange = ranges.length > 0 ? Math.max(...ranges) : null;
 
+  const modelMeta = MODEL_META_OVERRIDES[slug];
   const title =
+    modelMeta?.seoTitle ??
     model.seoTitle ??
     `Tesla ${model.name} Specs by Year (${startYear}–${endYear}) — Compare All Trims`;
   const rangeText =
     minRange && maxRange ? ` Range from ${minRange} to ${maxRange} mi.` : '';
   const description =
+    modelMeta?.seoDescription ??
     model.seoDescription ??
     `Every Tesla ${model.name} from ${startYear} to ${endYear} compared — ${trimCount} trims, ${years.length} model years.${rangeText} Find your perfect ${model.name}.`;
 
@@ -59,13 +83,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     type: 'model',
   });
 
-  return {
+  return constructMetadata({
     title,
     description,
-    alternates: generateAlternates(`/models/${slug}`),
-    openGraph: { images: [ogImage] },
-    twitter: { card: 'summary_large_image', images: [ogImage] },
-  };
+    image: ogImage,
+    locale: locale as Locale,
+    pathname: `/models/${slug}`,
+  });
 }
 
 export default async function ModelDetailPage({ params }: Props) {
@@ -164,7 +188,7 @@ export default async function ModelDetailPage({ params }: Props) {
               alt={`Tesla ${model.name}`}
               width={1200}
               height={600}
-              className="h-auto w-full mix-blend-multiply object-contain p-8 dark:mix-blend-normal"
+              className="h-auto w-full object-contain p-8"
               fallbackClassName="flex h-[280px] w-full items-center justify-center"
               fallbackLabel={model.name}
               priority

@@ -1,14 +1,18 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import type { Locale } from 'next-intl';
 import { getVehiclesBySlugList, getAllModels } from '@/lib/db/queries';
-import { parseCompareSlug, formatPrice } from '@/lib/vehicle-utils';
+import {
+  buildCompareSeoDescription,
+  buildCompareSeoTitle,
+  parseCompareSlug,
+} from '@/lib/vehicle-utils';
 import { ComparePageContent } from '@/components/tesla/compare-page-content';
 import { BreadcrumbNav } from '@/components/seo/breadcrumb-nav';
 import { JsonLd } from '@/components/seo/json-ld';
 import { buildItemListJsonLd } from '@/lib/seo/structured-data';
 import { getBaseUrl } from '@/lib/urls/urls';
-import { getOgImageUrl } from '@/lib/metadata';
-import { generateAlternates } from '@/lib/hreflang';
+import { constructMetadata, getOgImageUrl } from '@/lib/metadata';
 import { POPULAR_COMPARISONS } from '@/config/comparisons';
 import { websiteConfig } from '@/config/website';
 import Link from 'next/link';
@@ -25,7 +29,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const vehicleSlugs = parseCompareSlug(slug);
   const vehicles = await getVehiclesBySlugList(vehicleSlugs);
 
@@ -37,17 +41,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     subtitle: 'Side-by-Side Comparison',
     type: 'compare',
   });
-  const shortNames = vehicles
-    .map((v) => v.title.replace(/^\d{4}\s+Tesla\s+/, ''))
-    .join(' vs ');
-  const [a, b] = vehicles;
-  return {
-    title: `${shortNames}: Range, Price & Speed Compared [2025]`,
-    description: `${a.title} vs ${b.title} — which is better? Compare range (${a.rangeEPA ?? 'N/A'} vs ${b.rangeEPA ?? 'N/A'} mi), 0-60 (${a.acceleration060 ?? 'N/A'}s vs ${b.acceleration060 ?? 'N/A'}s), and price (${formatPrice(a.basePriceMSRP)} vs ${formatPrice(b.basePriceMSRP)}). Make the right choice.`,
-    alternates: generateAlternates(`/compare/${slug}`),
-    openGraph: { images: [ogImage] },
-    twitter: { card: 'summary_large_image', images: [ogImage] },
-  };
+  return constructMetadata({
+    title: buildCompareSeoTitle(vehicles),
+    description: buildCompareSeoDescription(vehicles),
+    image: ogImage,
+    locale: locale as Locale,
+    pathname: `/compare/${slug}`,
+  });
 }
 
 export default async function ComparePage({ params }: Props) {

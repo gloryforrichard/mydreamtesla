@@ -73,6 +73,14 @@ This is a Next.js full-stack SaaS application with the following key architectur
 - **Analytics**: Multiple analytics providers support
 - **Storage**: S3 integration for file uploads
 
+### Tesla 车辆数据（项目核心）
+本站基于 MkSaaS 模板改造为 **Tesla 车型对比站**，`models` / `compare` 页是核心；SaaS 的 credits/payment 多为模板遗留。
+- `scripts/seed-vehicles.ts` — 车辆 seed 数据（~5300 行，含 `rangeKm` 等规格），改完用 `pnpm seed:vehicles` 灌库
+- `src/lib/db/queries.ts` — `getAllModels` / `getAllVehicles` / `getVehiclesForModel` 等读取函数
+- `src/lib/vehicle-utils.ts` — `Vehicle` / `TeslaModel` 类型定义
+- `src/lib/vehicle-angles.ts`、`vehicle-generations.ts`、`vehicle-images.ts` — 多角度影棚图配置
+- Region（US/CA 切换）已移除；续航统一用 `rangeKm`（km），其余规格保留原单位（mph、lbs、in）
+
 ### Development Workflow
 1. Use TypeScript for all new code
 2. Follow Biome formatting rules (single quotes, trailing commas)
@@ -110,6 +118,17 @@ git add -A && git commit -m "<type>: <description>" && git push
 - 每完成一个功能模块或修复后立即 commit + push
 - 使用 conventional commits: feat, fix, refactor, docs, chore
 - 不要攒一大堆改动再提交，小步快跑
+
+## 部署（Deployment）
+
+线上是 **Vercel**，生产域名 `mydreamtesla.com`。
+
+- **Vercel 项目**：部署到 `mydreamtesla`（**不是** `mydreamtesla-web` —— 后者是仓库内另一个嵌套的旧副本，指向同一 origin，**勿混用**）。`vercel.json` 把 `src/app/api/**` 函数 `maxDuration` 设为 300s。
+- **默认提交 `main` 上生产**（用户 2026-05-31 确认，遵全局默认）：日常改动 `git add -A && commit && push` 到 `main`，由 Vercel 自动触发**生产部署**；只有需要预览时才单独开 Preview。
+- **核对方式**：用户通过 Vercel + GitHub 元数据核对，确保 Vercel 上的 commit 与受审代码一致 —— 不要只用本地源码做 `vercel deploy` 快照（必要时附 Inspect/logs URL）。
+- **带 DB 改动时**：若本次含 schema 或 seed 变更，push 前后需对**生产环境数据库**跑对应 migration/seed（操作前按下方「数据库规则」先与用户确认环境），避免线上因缺列/缺数据崩溃。
+- **构建前自检**：提交前跑 `pnpm build` 确认无 TypeScript 错误；验证 sitemap、metadata 中的 URL 是生产域名而非 localhost。
+- **Docker（备用）**：设 `DOCKER_BUILD=true` 时 `next.config.ts` 输出 `standalone`，配合根目录 `Dockerfile`。
 
 ## 开发问题记录与解决方案
 
@@ -214,4 +233,4 @@ git add -A && git commit -m "<type>: <description>" && git push
 
 - **禁止默认使用本地数据库**：在没有明确确认远程数据库不存在的情况下，不允许建议或使用本地数据库（Docker/localhost）
 - 当需要运行 seed 脚本、migration 或任何数据库操作时，先询问用户使用哪个数据库环境
-- 当前状态：仅有本地数据库配置（localhost:5433），尚未配置远程数据库
+- 当前状态：本地开发用 Docker Postgres（localhost:5433）；**线上已配置 Vercel 远程数据库**（生产 + Preview，连接串见 Vercel 环境变量 `DATABASE_URL`）。操作生产/Preview 数据库前务必先与用户确认环境

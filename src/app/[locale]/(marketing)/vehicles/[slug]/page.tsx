@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import type { Locale } from 'next-intl';
 import {
   getVehicleBySlug,
   getAllModels,
@@ -16,15 +17,17 @@ import {
   buildCarJsonLd,
   buildVehicleReviewJsonLd,
 } from '@/lib/seo/structured-data';
-import { formatPrice, generateCompareSlug } from '@/lib/vehicle-utils';
-import { getOgImageUrl } from '@/lib/metadata';
-import { generateAlternates } from '@/lib/hreflang';
+import {
+  buildVehicleSeoDescription,
+  buildVehicleSeoTitle,
+  formatPrice,
+  generateCompareSlug,
+} from '@/lib/vehicle-utils';
+import { constructMetadata, getOgImageUrl } from '@/lib/metadata';
 import { websiteConfig } from '@/config/website';
 import { RelatedContent } from '@/components/tesla/related-content';
 import { VehicleImage } from '@/components/tesla/vehicle-image';
-import { VehicleAngleViewer } from '@/components/tesla/vehicle-angle-viewer';
 import { getVehicleGeneration } from '@/lib/vehicle-generations';
-import { getAnglePhotos } from '@/lib/vehicle-angles';
 import { VEHICLE_FAQS } from '@/config/vehicle-faqs';
 import { buildFAQPageJsonLd } from '@/lib/seo/structured-data';
 import { MODEL_BLOG_LINKS } from '@/config/vehicle-blog-links';
@@ -43,57 +46,32 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const vehicle = await getVehicleBySlug(slug);
   if (!vehicle) return {};
 
-  const range = vehicle.rangeEPA;
-  const price = vehicle.basePriceMSRP
-    ? `$${Number(vehicle.basePriceMSRP).toLocaleString()}`
-    : null;
-  const batteryCapacity =
-    vehicle.batteryCapacity != null
-      ? `${Number(vehicle.batteryCapacity).toLocaleString('en-US', {
-          maximumFractionDigits: 1,
-        })} kWh battery`
-      : null;
-  const specHighlights = [
-    range && `${range} mi range`,
-    vehicle.acceleration060 && `${vehicle.acceleration060}s 0-60`,
-    price && `${price} MSRP`,
-  ].filter(Boolean);
-  const detailHighlights = [
-    vehicle.horsepower && `${vehicle.horsepower} hp`,
-    batteryCapacity,
-  ].filter(Boolean);
   const title =
-    vehicle.seoTitle ??
-    `${vehicle.year} ${vehicle.title} Specs, Range & Price | MDT`;
+    vehicle.seoTitle && vehicle.seoTitle.length <= 70
+      ? vehicle.seoTitle
+      : buildVehicleSeoTitle(vehicle);
   const description =
-    vehicle.seoDescription ??
-    [
-      `${vehicle.year} ${vehicle.title} specs${
-        specHighlights.length > 0 ? `: ${specHighlights.join(', ')}` : '.'
-      }`,
-      detailHighlights.length > 0 ? `${detailHighlights.join(', ')}.` : null,
-      'See charging, dimensions, cargo, FAQs, and related trim comparisons on MyDreamTesla.',
-    ]
-      .filter(Boolean)
-      .join(' ');
+    vehicle.seoDescription && vehicle.seoDescription.length <= 155
+      ? vehicle.seoDescription
+      : buildVehicleSeoDescription(vehicle);
 
   const ogImage = getOgImageUrl({
     title: vehicle.title,
-    subtitle: `Range: ${vehicle.rangeEPA ?? 'N/A'} mi · 0-60: ${vehicle.acceleration060 ?? 'N/A'}s`,
+    subtitle: `Range: ${vehicle.rangeKm ?? 'N/A'} km · 0-60: ${vehicle.acceleration060 ?? 'N/A'}s`,
     type: 'vehicle',
   });
 
-  return {
+  return constructMetadata({
     title,
     description,
-    alternates: generateAlternates(`/vehicles/${slug}`),
-    openGraph: { images: [ogImage] },
-    twitter: { card: 'summary_large_image', images: [ogImage] },
-  };
+    image: ogImage,
+    locale: locale as Locale,
+    pathname: `/vehicles/${slug}`,
+  });
 }
 
 export default async function VehicleDetailPage({ params }: Props) {
@@ -114,7 +92,6 @@ export default async function VehicleDetailPage({ params }: Props) {
     : null;
   const vehicleImage =
     generation?.image ?? `/images/vehicles/${vehicle.slug}.png`;
-  const anglePhotos = model ? getAnglePhotos(model.slug, vehicle.year) : null;
 
   // Related blog articles for this model
   const blogSlugs = model ? (MODEL_BLOG_LINKS[model.slug] ?? []) : [];
@@ -160,22 +137,18 @@ export default async function VehicleDetailPage({ params }: Props) {
       <header className="mb-16 mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         {/* Left: Image */}
         <div>
-          {anglePhotos ? (
-            <VehicleAngleViewer photos={anglePhotos} alt={vehicle.title} />
-          ) : (
-            <div className="overflow-hidden rounded-lg bg-paper">
-              <VehicleImage
-                src={vehicleImage}
-                alt={vehicle.title}
-                width={1000}
-                height={500}
-                className="h-auto w-full mix-blend-multiply object-contain p-6 dark:mix-blend-normal"
-                fallbackClassName="flex h-[280px] w-full items-center justify-center"
-                fallbackLabel={String(vehicle.year)}
-                priority
-              />
-            </div>
-          )}
+          <div className="overflow-hidden rounded-lg bg-paper">
+            <VehicleImage
+              src={vehicleImage}
+              alt={vehicle.title}
+              width={1000}
+              height={500}
+              className="h-auto w-full object-contain p-6"
+              fallbackClassName="flex h-[280px] w-full items-center justify-center"
+              fallbackLabel={String(vehicle.year)}
+              priority
+            />
+          </div>
         </div>
 
         {/* Right: Title + Key specs metadata */}
@@ -189,14 +162,16 @@ export default async function VehicleDetailPage({ params }: Props) {
 
           {/* Stats row — large font-display numbers */}
           <div className="mt-8 flex flex-wrap gap-8">
-            {vehicle.rangeEPA && (
+            {vehicle.rangeKm && (
               <div>
                 <p className="font-display text-[40px] font-bold leading-none tracking-[-1px] text-foreground sm:text-[48px]">
-                  {vehicle.rangeEPA}
-                  <span className="ml-1 text-[18px] font-medium text-ink-3 sm:text-[20px]">mi</span>
+                  {vehicle.rangeKm}
+                  <span className="ml-1 text-[18px] font-medium text-ink-3 sm:text-[20px]">
+                    km
+                  </span>
                 </p>
                 <p className="mt-1 font-mono text-[11px] font-medium uppercase tracking-[2px] text-ink-3">
-                  EPA Range
+                  Range
                 </p>
               </div>
             )}
@@ -204,7 +179,9 @@ export default async function VehicleDetailPage({ params }: Props) {
               <div>
                 <p className="font-display text-[40px] font-bold leading-none tracking-[-1px] text-foreground sm:text-[48px]">
                   {vehicle.acceleration060}
-                  <span className="ml-1 text-[18px] font-medium text-ink-3 sm:text-[20px]">s</span>
+                  <span className="ml-1 text-[18px] font-medium text-ink-3 sm:text-[20px]">
+                    s
+                  </span>
                 </p>
                 <p className="mt-1 font-mono text-[11px] font-medium uppercase tracking-[2px] text-ink-3">
                   0-60 mph
