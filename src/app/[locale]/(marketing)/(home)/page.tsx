@@ -70,12 +70,6 @@ export default async function HomePage({ params }: HomePageProps) {
       <section className="mx-auto max-w-[1400px] px-8 pb-20 pt-24 sm:pt-32">
         <FadeInSection>
           <div className="max-w-3xl">
-            <div
-              data-deploy-check="114514"
-              className="mb-6 inline-block rounded-lg bg-red-600 px-4 py-2 font-mono text-2xl font-bold text-white"
-            >
-              114514
-            </div>
             <h1 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-2px] text-foreground sm:text-[56px] md:text-[72px]">
               Find the Tesla you&rsquo;ll{' '}
               <em className="font-serif text-ed-accent">actually</em> love.
